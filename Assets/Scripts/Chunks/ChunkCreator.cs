@@ -52,6 +52,8 @@ public class ChunkCreator : MonoBehaviour
         }
 
         CentralRoomCreater();
+
+        ChangeOrientationOfBlocks();
     }
 
     private void FloorCreator()
@@ -370,7 +372,7 @@ public class ChunkCreator : MonoBehaviour
 
         for (int k = 0; k < FloorCount; k++)
         {
-            for (int i = _CentralRoomCoordX - _CentralRoomSizeX /*-step*/; i < _CentralRoomCoordX+ _CentralRoomSizeX /*+ step*/; i++)
+            for (int i = _CentralRoomCoordX - _CentralRoomSizeX /*-step*/; i < _CentralRoomCoordX + _CentralRoomSizeX /*+ step*/; i++)
             {
                 for (int j = _CentralRoomCoordX - _CentralRoomSizeY /*- step*/; j < _CentralRoomCoordX + _CentralRoomSizeY /*+ step*/; j++)
                 {
@@ -379,24 +381,206 @@ public class ChunkCreator : MonoBehaviour
                         ChunkArray[i, j, k].GetComponent<Block>().UnCollapse();
                         ChunkArray[i, j, k] = new GameObject();
                         ChunkArray[i, j, k].transform.parent = transform;
+
+                        ChunkArray[i, j, k].AddComponent<Block>();
+                        Block p = ChunkArray[i, j, k].GetComponent<Block>();
+                        p.InitializeBlock(i, j, k, _Tiles[1], RoomScaleX, RoomScaleY, RoomScaleZ, 1);
+                        p.SetCollapsed(FloorHolder.transform);
+                    }
+                    else
+                    {
+                        ChunkArray[i, j, k].GetComponent<Block>().UnCollapse();
+                        ChunkArray[i, j, k] = new GameObject();
+                        ChunkArray[i, j, k].transform.parent = transform;
                         ChunkArray[i, j, k].AddComponent<Block>();
 
-                        Block b = ChunkArray[i, j, k].GetComponent<Block>();
-                        
+                        Block p = ChunkArray[i, j, k].GetComponent<Block>();
                         if (k == 0)
                         {
-                            b.InitializeBlock(i, j, k, _Tiles[1], RoomScaleX, RoomScaleY, RoomScaleZ, 1);
-                            b.SetCollapsed(FloorHolder.transform);
+                            p.InitializeBlock(i, j, k, _Tiles[1], RoomScaleX, RoomScaleY, RoomScaleZ, 1);
+                            p.SetCollapsed(FloorHolder.transform);
                         }
                         else
                         {
-                            b.InitializeBlock(i, j, k, _Tiles[2], RoomScaleX, RoomScaleY, RoomScaleZ, 2);
-                            b.SetCollapsed(EmptyHolder.transform);
+                            p.InitializeBlock(i, j, k, _Tiles[2], RoomScaleX, RoomScaleY, RoomScaleZ, 2);
+                            p.SetCollapsed(EmptyHolder.transform);
                         }
                     }
                 }
             }
             step = step + 1;
+        }
+    }
+
+    private void ChangeOrientationOfBlocks()
+    {
+        for (int i = 1; i < GridSize - 1; i++)
+        {
+            for (int j = 1; j < GridSize - 1; j++)
+            {
+                for (int k = 0; k < FloorCount; k++)
+                {
+                    if (ChunkArray[i, j, k].GetComponent<Block>().ID == 0)
+                    {
+                        int[] orient = new int[4];
+
+                        if (ChunkArray[i - 1 > 0 ? i - 1 : i, j, k].GetComponent<Block>().ID == 1)
+                            orient[0] = 1;
+                        else
+                            orient[0] = 0;
+                        /*if (chunks[i, j - 1 > 0 ? j - 1 : j, k] == null)
+                            orient[1] = 0;*/
+                        if (ChunkArray[i, j - 1 > 0 ? j - 1 : j, k].GetComponent<Block>().ID == 1)
+                            orient[1] = 1;
+                        else
+                            orient[1] = 0;
+                        /*if (chunks[i + 1 < grid_size ? i + 1 : i, j, k] == null)
+                            orient[2] = 0;*/
+                        if (ChunkArray[i + 1 < GridSize ? i + 1 : i, j, k].GetComponent<Block>().ID == 1)
+                            orient[2] = 1;
+                        else
+                            orient[2] = 0;
+                        /*if (chunks[i, j + 1 > grid_size ? j + 1 : j, k] == null)
+                            orient[3] = 0;*/
+                        if (ChunkArray[i, j + 1 > 0 ? j + 1 : j, k].GetComponent<Block>().ID == 1)
+                            orient[3] = 1;
+                        else
+                            orient[3] = 0;
+
+                        int sum = orient[0] * 1000 + orient[1] * 100 + orient[2] * 10 + orient[3];
+                        GameObject obj = _BlendBlocks[0].blocks[UnityEngine.Random.Range(0, 3)];
+                        int[] rot = new int[3];
+
+                        switch (sum)
+                        {
+                            case 0000:
+                                obj = _BlendBlocks[5].blocks[UnityEngine.Random.Range(0, 3)];
+                                rot[0] = 0;
+                                rot[1] = 0;
+                                rot[2] = 0;
+                                break;
+
+                            case 1000:
+                                obj = _BlendBlocks[0].blocks[UnityEngine.Random.Range(0, 3)];
+                                rot[0] = 0;
+                                rot[1] = 90;
+                                rot[2] = 0;
+                                break;
+
+                            case 0100:
+                                obj = _BlendBlocks[0].blocks[UnityEngine.Random.Range(0, 3)];
+                                rot[0] = 0;
+                                rot[1] = 0;
+                                rot[2] = 0;
+                                break;
+
+                            case 0010:
+                                obj = _BlendBlocks[0].blocks[UnityEngine.Random.Range(0, 3)];
+                                rot[0] = 0;
+                                rot[1] = -90;
+                                rot[2] = 0;
+                                break;
+
+                            case 0001:
+                                obj = _BlendBlocks[0].blocks[UnityEngine.Random.Range(0, 3)];
+                                rot[0] = 0;
+                                rot[1] = -180;
+                                rot[2] = 0;
+                                break;
+
+                            case 1100:
+                                obj = _BlendBlocks[1].blocks[UnityEngine.Random.Range(0, 3)];
+                                rot[0] = 0;
+                                rot[1] = 0;
+                                rot[2] = 0;
+                                break;
+
+                            case 0110:
+                                obj = _BlendBlocks[1].blocks[UnityEngine.Random.Range(0, 3)];
+                                rot[0] = 0;
+                                rot[1] = -90;
+                                rot[2] = 0;
+                                break;
+
+                            case 0011:
+                                obj = _BlendBlocks[1].blocks[UnityEngine.Random.Range(0, 3)];
+                                rot[0] = 0;
+                                rot[1] = -180;
+                                rot[2] = 0;
+                                break;
+
+                            case 1001:
+                                obj = _BlendBlocks[1].blocks[UnityEngine.Random.Range(0, 3)];
+                                rot[0] = 0; 
+                                rot[1] = 90;
+                                rot[2] = 0;
+                                break;
+
+                            case 1010:
+                                obj = _BlendBlocks[4].blocks[UnityEngine.Random.Range(0, 3)];
+                                rot[0] = 0;
+                                rot[1] = 90;
+                                rot[2] = 0;
+                                break;
+
+                            case 0101:
+                                obj = _BlendBlocks[4].blocks[UnityEngine.Random.Range(0, 3)];
+                                rot[0] = 0;
+                                rot[1] = 0;
+                                rot[2] = 0;
+                                break;
+
+                            case 1110:
+                                obj = _BlendBlocks[2].blocks[UnityEngine.Random.Range(0, 3)];
+                                rot[0] = 0;
+                                rot[1] = 0;
+                                rot[2] = 0;
+                                break;
+
+                            case 0111:
+                                obj = _BlendBlocks[2].blocks[UnityEngine.Random.Range(0, 3)];
+                                rot[0] = 0;
+                                rot[1] = -90;
+                                rot[2] = 0;
+                                break;
+
+                            case 1011:
+                                obj = _BlendBlocks[2].blocks[UnityEngine.Random.Range(0, 3)];
+                                rot[0] = 0;
+                                rot[1] = -180;
+                                rot[2] = 0;
+                                break;
+
+                            case 1101:
+                                obj = _BlendBlocks[2].blocks[UnityEngine.Random.Range(0, 3)];
+                                rot[0] = 0;
+                                rot[1] = 90;
+                                rot[2] = 0;
+                                break;
+
+                            case 1111:
+                                obj = _BlendBlocks[3].blocks[UnityEngine.Random.Range(0, 3)];
+                                rot[0] = 0;
+                                rot[1] = 0;
+                                rot[2] = 0;
+                                break;
+
+                            default:
+                                break;
+                        }
+
+                        ChunkArray[i, j, k].GetComponent<Block>().UnCollapse();
+                        ChunkArray[i, j, k] = new GameObject();
+                        ChunkArray[i, j, k].transform.parent = transform;
+                        ChunkArray[i, j, k].AddComponent<Block>();
+
+                        Block b = ChunkArray[i, j, k].GetComponent<Block>();
+                        b.InitializeBlock(i, j, k, obj, RoomScaleX, RoomScaleY, RoomScaleZ, 0);
+                        b.SetCollapsed(ChunkHolder.transform);
+                        b.Rotate(rot[0], rot[2], rot[1]);
+                    }
+                }
+            }
         }
     }
 
