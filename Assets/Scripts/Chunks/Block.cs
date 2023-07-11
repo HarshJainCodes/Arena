@@ -13,7 +13,7 @@ public class Block : MonoBehaviour
     /// current is the gameobject that needs to be instantiated
     /// , this is assigned randomly 
     /// </summary>
-    private GameObject _Current;
+    public GameObject Current;
 
     public bool Collapsed = false;
 
@@ -21,9 +21,13 @@ public class Block : MonoBehaviour
     private int _ScaleY;
     private int _ScaleZ;
 
+    public GameObject Created;
+
     [SerializeField] private float _XOffset;
     [SerializeField] private float _YOffset;
     [SerializeField] private float _ZOffset;
+
+    Vector3 chunkScale;
 
     /// <summary>
     /// This is the ID of the each block
@@ -58,34 +62,61 @@ public class Block : MonoBehaviour
         _X = x;
         _Y = y;
         _Z = z;
-        _Current = current;
+        Current = current;
         _ScaleX = scaleX;
         _ScaleY = scaleY;
         _ScaleZ = scaleZ;
         ID = id;
     }
 
-    public void SetCollapsed()
+    public void SetCollapsed(Transform Holder)
     {
         Collapsed = true;
-
+        InstantiatePrefab(Holder);
     }
 
-    private void InstantiatePrefab()
+    public void UnCollapse()
+    {
+        Collapsed = false;
+
+        if (Created != null)
+        {
+            Destroy(Created);
+        }
+    }
+
+    public void Rotate(int rotX, int rotY, int rotZ)
+    {
+        Created.transform.rotation = Quaternion.Euler(new Vector3(rotX, rotZ, rotY));
+    }
+
+    private void InstantiatePrefab(Transform Holder)
     {
         Vector3 _BlockOffset = new Vector3((_X + _XOffset) * _ScaleX, (_Z + _ZOffset) * _ScaleZ, (_Y + _YOffset) * _ScaleY);
-
+        
         switch (ID)
         {
             case 0:
+                Created = Instantiate(Current, _BlockOffset, Quaternion.identity, Holder);
+                this.chunkScale = Created.transform.localScale;
+                Created.transform.localScale = new Vector3(_ScaleX * this.chunkScale.x, _ScaleZ * this.chunkScale.z, _ScaleY * this.chunkScale.y);
                 break;
             case 1:
+                Created = Instantiate(Current, _BlockOffset, Quaternion.identity, Holder);
+                this.chunkScale = Created.transform.localScale;
+                Created.transform.localScale = new Vector3(_ScaleX * this.chunkScale.x, _ScaleZ * this.chunkScale.z, _ScaleY * this.chunkScale.y);
                 break;
             case 2:
                 break;
             case 3:
+                Created = Instantiate(Current, _BlockOffset, Quaternion.Euler(new Vector3(-90, 0, 0)), Holder);
+                this.chunkScale = Created.transform.localScale;
+                Created.transform.localScale = new Vector3(_ScaleX * this.chunkScale.x, _ScaleZ * this.chunkScale.z, _ScaleY * this.chunkScale.y);
                 break;
             case 4:
+                Created = Instantiate(Current, _BlockOffset, Quaternion.Euler(new Vector3(-90, 0, 0)), Holder);
+                this.chunkScale = Created.transform.localScale;
+                Created.transform.localScale = new Vector3(_ScaleX * this.chunkScale.x, _ScaleZ * this.chunkScale.z, _ScaleY * this.chunkScale.y);
                 break;
         }
     }
