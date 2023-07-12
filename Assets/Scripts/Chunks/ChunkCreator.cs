@@ -66,6 +66,9 @@ public class ChunkCreator : MonoBehaviour
     [Tooltip("This will hold all the runtime instantiated empty ")]
     [SerializeField] private GameObject _EmptyHolder;
 
+    private ChunkAnimation _ChunkAnimation;
+    private FloorAnimation _FloorAnimation;
+
     private System.Random _Rnd = new System.Random();
 
     private Queue<int[]> _Queue = new Queue<int[]>();
@@ -90,6 +93,13 @@ public class ChunkCreator : MonoBehaviour
         {
             ExecuteQueue();
         }
+
+        CentralRoomCreater();
+
+        ChangeOrientationOfBlocks();
+
+        _ChunkAnimation = GetComponent<ChunkAnimation>();
+        _FloorAnimation = GetComponent<FloorAnimation>();
     }
 
     /// <summary>
@@ -660,12 +670,15 @@ public class ChunkCreator : MonoBehaviour
         if (_HasRun == false)
         {
             _HasRun = true;
-            CentralRoomCreater();
-
-            ChangeOrientationOfBlocks();
 
             CombineCubes.Instance.MakeCubeSegments();
             CombineCubes.Instance.CombineCubeSegments();
+
+            CombineFloors.Instance.MakeFloorSegments();
+            CombineFloors.Instance.CombineFloorSegments();
+
+            _ChunkAnimation._AnimateCube();
+            _FloorAnimation._AnimateFloor();
         }
     }
 }
