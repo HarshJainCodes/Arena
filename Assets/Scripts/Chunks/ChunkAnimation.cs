@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,12 +9,25 @@ public class ChunkAnimation : MonoBehaviour
 
     private IEnumerator _Animate(Transform t)
     {
-        t.position = new Vector3(0, -500, 0);
-        float riseSpeed = Random.Range(40, 150);
+        float RandomPos = UnityEngine.Random.Range(-300, -500);
+        float progressScale = UnityEngine.Random.Range(4, 6);
+        t.position = new Vector3(0, RandomPos, 0);
 
-        while (t.position.y < 0)
+        float progress = 0;
+        while (progress <= 1)
         {
-            t.position += new Vector3(0, riseSpeed * Time.deltaTime, 0);
+            progress += Time.deltaTime / progressScale;
+
+            // linear 
+            float blockPosition = Tween.InOutBack(RandomPos, 0 - RandomPos, progress);
+
+            //quad
+            //float tValue = Mathf.Pow(progress, 2);
+
+            // smoothstep
+            //float tValue = progress * progress * (3 - 2 * progress);
+
+            t.position = new Vector3(0, blockPosition, 0);
             yield return null;
         }
         t.position = Vector3.zero;

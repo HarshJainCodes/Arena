@@ -678,7 +678,7 @@ public class ChunkCreator : MonoBehaviour
             CombineFloors.Instance.CombineFloorSegments();
 
             _ChunkAnimation._AnimateCube();
-            _FloorAnimation._AnimateFloor();
+            //_FloorAnimation._AnimateFloor();
         }
     }
 }
