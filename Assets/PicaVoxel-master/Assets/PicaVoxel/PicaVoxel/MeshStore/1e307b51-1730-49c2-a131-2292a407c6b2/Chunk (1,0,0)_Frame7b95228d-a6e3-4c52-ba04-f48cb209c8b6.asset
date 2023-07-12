@@ -6,7 +6,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Chunk (0,0,1)_Frameffac3519-0189-4ef0-b8f9-8356d95864e9
+  m_Name: Chunk (1,0,0)_Frame7b95228d-a6e3-4c52-ba04-f48cb209c8b6
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -30,20 +30,36 @@ Mesh:
   m_BonesAABB: []
   m_VariableBoneCountWeights:
     m_Data: 
-  m_MeshCompression: 3
+  m_MeshCompression: 0
   m_IsReadable: 1
   m_KeepVertices: 1
   m_KeepIndices: 1
   m_IndexFormat: 0
-  m_IndexBuffer: 
+  m_IndexBuffer: 0300020000000000010003000700060004000400050007000b000900080008000a000b000f000d000c000c000e000f00
   m_VertexData:
     serializedVersion: 3
-    m_VertexCount: 0
+    m_VertexCount: 16
     m_Channels:
     - stream: 0
       offset: 0
       format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
       dimension: 0
+    - stream: 0
+      offset: 24
+      format: 2
+      dimension: 4
+    - stream: 0
+      offset: 28
+      format: 0
+      dimension: 2
     - stream: 0
       offset: 0
       format: 0
@@ -80,43 +96,27 @@ Mesh:
       offset: 0
       format: 0
       dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 0
-    _typelessdata: 
+    m_DataSize: 576
+    _typelessdata: 00000000000000000000000000000000000080bf00000000ffffffff0000000000000000cdcccc3f000000000000000000000000000080bf00000000ffffffff0000803f000000000000000000000000cdcccc3f00000000000080bf00000000ffffffff000000000000803fcdcccc3f00000000cdcccc3f00000000000080bf00000000ffffffff0000803f0000803f0000000000000000000000000000000000000000000080bfffffffff000000000000000000000000cdcccc3d000000000000000000000000000080bfffffffff0000803f00000000cdcccc3f00000000000000000000000000000000000080bfffffffff000000000000803fcdcccc3fcdcccc3d000000000000000000000000000080bfffffffff0000803f0000803fcdcccc3f00000000000000000000803f0000000000000000ffffffff0000000000000000cdcccc3f00000000cdcccc3f0000803f0000000000000000ffffffff0000803f00000000cdcccc3fcdcccc3d000000000000803f0000000000000000ffffffff000000000000803fcdcccc3fcdcccc3dcdcccc3f0000803f0000000000000000ffffffff0000803f0000803f00000000cdcccc3d00000000000000000000803f00000000ffffffff0000000000000000cdcccc3fcdcccc3d00000000000000000000803f00000000ffffffff0000803f0000000000000000cdcccc3dcdcccc3f000000000000803f00000000ffffffff000000000000803fcdcccc3fcdcccc3dcdcccc3f000000000000803f00000000ffffffff0000803f0000803f
   m_CompressedMesh:
     m_Vertices:
-      m_NumItems: 48
-      m_Range: 1.6
+      m_NumItems: 0
+      m_Range: 0
       m_Start: 0
-      m_Data: 000000000000fc0f0010000000c4ff000000c0ff0000000000ffff0fc0ff000001c0ff4000000010ffff0fc4ff0000f03f0040fcff3f00ffff0fc4ff
-      m_BitSize: 10
+      m_Data: 
+      m_BitSize: 0
     m_UV:
-      m_NumItems: 32
-      m_Range: 1
+      m_NumItems: 0
+      m_Range: 0
       m_Start: 0
-      m_Data: 0000ff0000ffffff0000ff0000ffffff0000ff0000ffffff0000ff0000ffffff
-      m_BitSize: 8
+      m_Data: 
+      m_BitSize: 0
     m_Normals:
-      m_NumItems: 32
-      m_Range: 2
-      m_Start: -1
-      m_Data: 000880000880200002200002e00ffee00ffe200882200882
-      m_BitSize: 6
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
     m_Tangents:
       m_NumItems: 0
       m_Range: 0
@@ -128,17 +128,17 @@ Mesh:
       m_Data: 
       m_BitSize: 0
     m_NormalSigns:
-      m_NumItems: 16
-      m_Data: 00f0
-      m_BitSize: 1
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
     m_TangentSigns:
       m_NumItems: 0
       m_Data: 
       m_BitSize: 0
     m_FloatColors:
-      m_NumItems: 64
+      m_NumItems: 0
       m_Range: 0
-      m_Start: 1
+      m_Start: 0
       m_Data: 
       m_BitSize: 0
     m_BoneIndices:
@@ -146,10 +146,10 @@ Mesh:
       m_Data: 
       m_BitSize: 0
     m_Triangles:
-      m_NumItems: 24
-      m_Data: 2300316744759b88badfccfe
-      m_BitSize: 4
-    m_UVInfo: 5
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
   m_LocalAABB:
     m_Center: {x: 0.8, y: 0.05, z: 0.8}
     m_Extent: {x: 0.8, y: 0.05, z: 0.8}

@@ -1,6 +1,7 @@
 using PicaVoxel;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class VoxelRunTimeManipulation : MonoBehaviour
@@ -13,7 +14,8 @@ public class VoxelRunTimeManipulation : MonoBehaviour
         none,
         add,
         remove,
-        edit
+        edit,
+        bucket
     }
     /// <summary>
     /// The bool checks whether the script to add is enables or disabled
@@ -71,6 +73,8 @@ public class VoxelRunTimeManipulation : MonoBehaviour
             // bool found is used to stop the loop when we actually find a voxel;
             bool found = false;
 
+            Ray screenRay=Camera.main.ScreenPointToRay(Input.mousePosition);
+
             // Casting a ray to detect whether we hit a voxel or not with the cam centre
             Ray r = new Ray(_CamTransform.position, _CamTransform.forward);
 
@@ -84,7 +88,7 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                 Volume currentVoxelVolume = _VoxelVolumes[_SelectedVolume];
 
                 // The Voxel v stores the position of the current voxel that is selected by the ray
-                Voxel? v = currentVoxelVolume.GetVoxelAtWorldPosition(r.GetPoint(d));
+                Voxel? v = currentVoxelVolume.GetVoxelAtWorldPosition(screenRay.GetPoint(d));
 
                 //checks if that voxel is active
                 if (v.HasValue && v.Value.Active)
@@ -99,7 +103,7 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                         case OperationType.add:
 
                             //gets the position of the voxel to be built
-                            Vector3 buildPos = r.GetPoint(d - 0.05f);
+                            Vector3 buildPos = screenRay.GetPoint(d - 0.05f);
 
                             // The Voxel v2 stores the location of the voxel to be created and is made to check whether the voxel here is active or not 
                             Voxel? v2 = currentVoxelVolume.GetVoxelAtWorldPosition(buildPos);
@@ -117,9 +121,8 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                             break;
 
                         case OperationType.remove:
-
                             // We simply set the satus of that particular voxel as inactive thus it does not render
-                            currentVoxelVolume.SetVoxelAtWorldPosition(r.GetPoint(d), new Voxel()
+                            currentVoxelVolume.SetVoxelAtWorldPosition(screenRay.GetPoint(d), new Voxel()
                             {
                                 State = VoxelState.Inactive,
                                 Color = _selectedColour,
@@ -130,12 +133,31 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                         case OperationType.edit:
 
                             // We simply change the colour of the voxel here.
-                            currentVoxelVolume.SetVoxelAtWorldPosition(r.GetPoint(d), new Voxel()
+                            currentVoxelVolume.SetVoxelAtWorldPosition(screenRay.GetPoint(d), new Voxel()
                             {
                                 State = VoxelState.Active,
                                 Color = _selectedColour,
                                 Value = 128
                             });
+                            break;
+
+                        case OperationType.bucket:
+                            for (int i = 0; i < currentVoxelVolume.XSize; i++)
+                                for (int j = 0; j < currentVoxelVolume.YSize; j++)
+                                    for (int k = 0; k < currentVoxelVolume.ZSize; k++)
+                                    {
+                                        Voxel? a = currentVoxelVolume.GetVoxelAtArrayPosition(i, j, k);
+                                        if (a.Value.Active)
+                                        {
+                                            currentVoxelVolume.SetVoxelAtArrayPosition(new PicaVoxelPoint(new Vector3(i,j,k)), new Voxel()
+                                            {
+                                                State = VoxelState.Active,
+                                                Color = _selectedColour,
+                                                Value = 128
+                                            });
+                                        }
+                                        
+                                    }
                             break;
                     }
                     found = true;
