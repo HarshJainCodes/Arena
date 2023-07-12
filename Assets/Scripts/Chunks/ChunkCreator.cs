@@ -70,6 +70,11 @@ public class ChunkCreator : MonoBehaviour
 
     private Queue<int[]> _Queue = new Queue<int[]>();
 
+    /// <summary>
+    /// this is required as this cant be put in Start cuz if Other Script's Start Method is called first than it will break as it has dependencies on this script
+    /// </summary>
+    private bool _HasRun = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -85,13 +90,6 @@ public class ChunkCreator : MonoBehaviour
         {
             ExecuteQueue();
         }
-
-        CentralRoomCreater();
-
-        ChangeOrientationOfBlocks();
-
-        CombineCubes.Instance.MakeCubeSegments();
-        CombineCubes.Instance.CombineCubeSegments();
     }
 
     /// <summary>
@@ -659,6 +657,15 @@ public class ChunkCreator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (_HasRun == false)
+        {
+            _HasRun = true;
+            CentralRoomCreater();
+
+            ChangeOrientationOfBlocks();
+
+            CombineCubes.Instance.MakeCubeSegments();
+            CombineCubes.Instance.CombineCubeSegments();
+        }
     }
 }

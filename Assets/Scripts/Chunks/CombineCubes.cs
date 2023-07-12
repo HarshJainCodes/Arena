@@ -23,8 +23,6 @@ public class CombineCubes : MonoBehaviour
         _ChunkCreator = GetComponent<ChunkCreator>();
         _GridSize = _ChunkCreator.GetGridSize();
         _FloorCount = _ChunkCreator.GetFloorCount();
-        
-
     }
 
     public void MakeCubeSegments()
