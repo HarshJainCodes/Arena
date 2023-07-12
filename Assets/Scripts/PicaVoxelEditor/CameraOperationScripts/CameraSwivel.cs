@@ -30,13 +30,19 @@ public class CameraSwivel : MonoBehaviour
     {
         _PlayerTransform = _Player.transform;
         _Offset = new Vector3(_PlayerTransform.position.x + _XOffset, _PlayerTransform.position.y + _YOffset, _PlayerTransform.position.z + _ZOffset);
+        _Offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * _TurnSpeed, Vector3.up) * _Offset;
+        transform.position = _PlayerTransform.position + _Offset;
+        transform.LookAt(_PlayerTransform.position);
     }
 
     void FixedUpdate()
     {
-        // We calculate the offset and turn based on mouse axis
-        _Offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * _TurnSpeed, Vector3.up) * _Offset;
-        transform.position = _PlayerTransform.position + _Offset;
-        transform.LookAt(_PlayerTransform.position);
+        if (Input.GetMouseButton(1))
+        {
+            // We calculate the offset and turn based on mouse axis
+            _Offset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * _TurnSpeed, Vector3.up) * _Offset;
+            transform.position = _PlayerTransform.position + _Offset;
+            transform.LookAt(_PlayerTransform.position);
+        }
     }
 }
