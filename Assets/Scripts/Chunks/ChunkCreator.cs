@@ -18,6 +18,7 @@ public class ChunkCreator : MonoBehaviour
     /// This will store tiles (Wall, floorParent, Empty, Stairs) that will be used to reference prefabs for Instantiating.
     /// </summary>
     [SerializeField] private GameObject[] _Tiles;
+    private List<GameObject> tiless;
 
     /// <summary>
     /// This will store the various prefabs of the walls (1 side, 2 side, 3 side, 4 side, parallel, top_bottom) that will be used to Instantiate in <see cref="Block.InstantiatePrefab(Transform)"/>
@@ -26,6 +27,7 @@ public class ChunkCreator : MonoBehaviour
 
     [Tooltip("The size of the grid. Grid is generally (GridSize x GridSize)")]
     [SerializeField] private int _GridSize = 10;
+    public bool IsGridGenerated = false;
     public int GetGridSize()
     {
         return _GridSize;
@@ -664,6 +666,58 @@ public class ChunkCreator : MonoBehaviour
         _Queue.Enqueue(arr);
     }
 
+    public List<GameObject> GetSpawnPoints(Transform player, int numberOfEnemies, int minEnemyDistance, int maxEnemeyDistance)
+    {
+
+        Vector3 playerWorldPoition = player.TransformPoint(Vector3.zero);
+        int count = 0;
+        tiless = new List<GameObject>();
+
+        foreach (GameObject go in ChunkArray)
+        {
+            Block b = go.GetComponent<Block>();
+            count++;
+            if (b.ID == 1 &&
+                (Vector3.Distance(b.Created.transform.position, playerWorldPoition) < maxEnemeyDistance && Vector3.Distance(b.Created.transform.position, playerWorldPoition) > minEnemyDistance))
+            {
+                tiless.Add(b.Created);
+            }
+        }
+
+        List<float> distances = new List<float>();
+        foreach (GameObject b in tiless)
+        {
+            float distance = Mathf.Abs(b.transform.position.y - playerWorldPoition.y);
+            distances.Add(distance);
+        }
+
+        float maxDistance = distances.Count > 0 ? distances.Max() : 1f;
+        List<float> normalizedDistances = distances.Select(d => maxDistance - d).ToList();
+
+
+        List<float> weights = normalizedDistances.Select(d => Mathf.Exp(d)).ToList();
+        List<GameObject> selectedObjects = new List<GameObject>();
+
+        for (int i = 0; i < numberOfEnemies; i++)
+        {
+            float totalWeight = weights.Sum();
+            float randNum = UnityEngine.Random.Range(0f, totalWeight);
+            float cumulativeWeight = 0f;
+
+            for (int j = 0; j < tiless.Count; j++)
+            {
+                cumulativeWeight += weights[j];
+                if (randNum <= cumulativeWeight)
+                {
+                    selectedObjects.Add(tiless[j]);
+                    break;
+                }
+            }
+        }
+
+        return selectedObjects;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -675,10 +729,10 @@ public class ChunkCreator : MonoBehaviour
             CombineCubes.Instance.CombineCubeSegments();
 
             CombineFloors.Instance.MakeFloorSegments();
-            CombineFloors.Instance.CombineFloorSegments();
+            //CombineFloors.Instance.CombineFloorSegments();
 
             _ChunkAnimation._AnimateCube();
-            //_FloorAnimation._AnimateFloor();
+            _FloorAnimation._AnimateFloor();
         }
     }
 }
