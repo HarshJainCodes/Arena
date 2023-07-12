@@ -6,9 +6,9 @@ using UnityEngine;
 public class VoxelRunTimeManipulation : MonoBehaviour
 {
     /// <summary>
-    /// The enum deternmines the type of operation the script is set to.
+    /// The enum deternmines the type of operation the RunTimeVoxelManipulation Script is set to.
     /// </summary>
-    private enum _operationType
+    public enum OperationType
     {
         none,
         add,
@@ -46,16 +46,24 @@ public class VoxelRunTimeManipulation : MonoBehaviour
     [SerializeField]
     private Color _selectedColour;
 
+    /// <summary>
+    /// This enumerator determines which operation is to be executed and has getter method 
+    /// <see cref="GetTypeOfOperation"/>
+    /// and setter method
+    /// <see cref="SetTypeOfOperation(OperationType)"/>
+    /// </summary>
     [SerializeField]
-    private _operationType _typeOfOperation = _operationType.none;
+    private OperationType _typeOfOperation = OperationType.none;
     
 
-    // Update is called once per frame
     void Update()
     {
         _VoxelManipulation();
     }
 
+    /// <summary>
+    /// This function holds code for manipulating individual voxels 
+    /// </summary>
     private void _VoxelManipulation()
     {
         if (Input.GetMouseButtonDown(0))
@@ -77,22 +85,27 @@ public class VoxelRunTimeManipulation : MonoBehaviour
 
                 // The Voxel v stores the position of the current voxel that is selected by the ray
                 Voxel? v = currentVoxelVolume.GetVoxelAtWorldPosition(r.GetPoint(d));
+
                 //checks if that voxel is active
                 if (v.HasValue && v.Value.Active)
                 { 
                     switch (_typeOfOperation)
                     {
-                        case _operationType.none:
+                        case OperationType.none:
+
                             // This state exists in case that the player wants to move the blocks and so on.
                             break;
 
-                        case _operationType.add:
+                        case OperationType.add:
+
                             //gets the position of the voxel to be built
                             Vector3 buildPos = r.GetPoint(d - 0.05f);
+
                             // The Voxel v2 stores the location of the voxel to be created and is made to check whether the voxel here is active or not 
                             Voxel? v2 = currentVoxelVolume.GetVoxelAtWorldPosition(buildPos);
                             if (v2.HasValue && !v2.Value.Active)
                             {
+
                                 // Here we actually set the values of the voxel at that position
                                 currentVoxelVolume.SetVoxelAtWorldPosition(buildPos, new Voxel()
                                 {
@@ -103,7 +116,8 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                             }
                             break;
 
-                        case _operationType.remove:
+                        case OperationType.remove:
+
                             // We simply set the satus of that particular voxel as inactive thus it does not render
                             currentVoxelVolume.SetVoxelAtWorldPosition(r.GetPoint(d), new Voxel()
                             {
@@ -113,7 +127,8 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                             });
                             break;
 
-                        case _operationType.edit:
+                        case OperationType.edit:
+
                             // We simply change the colour of the voxel here.
                             currentVoxelVolume.SetVoxelAtWorldPosition(r.GetPoint(d), new Voxel()
                             {
@@ -129,4 +144,27 @@ public class VoxelRunTimeManipulation : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// This function returns the current operation that is being performed.
+    /// </summary>
+    /// <returns>OperationType enum</returns>
+    public OperationType GetTypeOfOperation() { return _typeOfOperation; }
+    /// <summary>
+    /// This function sets the opertaion that is to be performed on a voxel.
+    /// </summary>
+    /// <param name="op"></param>
+    public void SetTypeOfOperation(OperationType op) { _typeOfOperation = op; }
+
+    /// <summary>
+    /// This function returns the currently chosen color 
+    /// </summary>
+    /// <returns>return type is Color</returns>
+    public Color GetColor() { return _selectedColour; }
+
+    /// <summary>
+    /// This function sets the user requested color to be put on the blocks
+    /// </summary>
+    /// <param name="choice"></param>
+    public void SetColor(Color choice) { _selectedColour = choice; }
 }
