@@ -307,22 +307,22 @@ MonoBehaviour:
     - {fileID: 6551509538046857342, guid: 98da011943fc5bf41b0f851942ab6821, type: 3}
     - {fileID: 6551509538046857342, guid: 98da011943fc5bf41b0f851942ab6821, type: 3}
     - {fileID: 6551509538046857342, guid: 98da011943fc5bf41b0f851942ab6821, type: 3}
-  GridSize: 50
-  Padding: 5
-  FloorCount: 6
-  MinRoomCount: 40
-  MaxRoomCount: 50
-  RoomScaleX: 6
-  RoomScaleY: 6
-  RoomScaleZ: 6
+  _GridSize: 50
+  _Padding: 5
+  _FloorCount: 6
+  _MinRoomCount: 30
+  _MaxRoomCount: 50
+  _RoomScaleX: 6
+  _RoomScaleY: 6
+  _RoomScaleZ: 6
   _CentralRoomSize: 5
   _CentralRoomSizeX: 9
   _CentralRoomSizeY: 9
   _CentralRoomCoordX: 0
-  ChunkHolder: {fileID: 274887173}
-  FloorHolder: {fileID: 270755869}
-  StairsHolder: {fileID: 803848685}
-  EmptyHolder: {fileID: 387755602}
+  _ChunkHolder: {fileID: 274887173}
+  _FloorHolder: {fileID: 270755869}
+  _StairsHolder: {fileID: 803848685}
+  _EmptyHolder: {fileID: 387755602}
 --- !u!4 &1405397277
 Transform:
   m_ObjectHideFlags: 0
@@ -531,8 +531,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959554045}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0.094588175, y: 0.818915, z: -0.5481017, w: -0.14147724}
+  m_LocalPosition: {x: 176.3155, y: 302.93243, z: 274.86057}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
