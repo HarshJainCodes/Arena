@@ -69,12 +69,20 @@ public class Block : MonoBehaviour
         ID = id;
     }
 
+    /// <summary>
+    /// This will collapse the block into the appropriate type based on the ID of the block.
+    /// The transform holder is the parent of new created block
+    /// </summary>
+    /// <param name="Holder"></param>
     public void SetCollapsed(Transform Holder)
     {
         Collapsed = true;
-        InstantiatePrefab(Holder);
+        _InstantiatePrefab(Holder);
     }
 
+    /// <summary>
+    /// This will uncollapse the block and destroy the block that was created using s<see cref="SetCollapsed(Transform)"/>
+    /// </summary>
     public void UnCollapse()
     {
         Collapsed = false;
@@ -85,12 +93,22 @@ public class Block : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This will rotate the block based on the rotX, rotY & rotZ
+    /// </summary>
+    /// <param name="rotX"></param>
+    /// <param name="rotY"></param>
+    /// <param name="rotZ"></param>
     public void Rotate(int rotX, int rotY, int rotZ)
     {
         Created.transform.rotation = Quaternion.Euler(new Vector3(rotX, rotZ, rotY));
     }
 
-    private void InstantiatePrefab(Transform Holder)
+    /// <summary>
+    /// This will instantiate various prefabs based on the ID that was set. The transform Holder is the parent gameobject of the new created block
+    /// </summary>
+    /// <param name="Holder"></param>
+    private void _InstantiatePrefab(Transform Holder)
     {
         Vector3 _BlockOffset = new Vector3((_X + _XOffset) * _ScaleX, (_Z + _ZOffset) * _ScaleZ, (_Y + _YOffset) * _ScaleY);
         
@@ -119,17 +137,5 @@ public class Block : MonoBehaviour
                 Created.transform.localScale = new Vector3(_ScaleX * this.chunkScale.x, _ScaleZ * this.chunkScale.z, _ScaleY * this.chunkScale.y);
                 break;
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

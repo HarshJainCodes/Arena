@@ -6,47 +6,70 @@ using UnityEngine;
 
 public class ChunkCreator : MonoBehaviour
 {
+    /// <summary>
+    /// This Array of GameObject of size [<see cref="_GridSize"/>, <see cref="_GridSize"/>, <see cref="_FloorCount"/>] will store GameObjects that will have the <see cref="Block"/> script attached to it.
+    /// This change is done so that <see cref="GameObject.Find(string)"/> can be avoided hence it is quite expensive.
+    /// </summary>
+    private GameObject[,,] _ChunkArray;
 
-    private GameObject[,,] ChunkArray;
+    /// <summary>
+    /// This will store tiles (Wall, floorParent, Empty, Stairs) that will be used to reference prefabs for Instantiating.
+    /// </summary>
     [SerializeField] private GameObject[] _Tiles;
+
+    /// <summary>
+    /// This will store the various prefabs of the walls (1 side, 2 side, 3 side, 4 side, parallel, top_bottom) that will be used to Instantiate in <see cref="Block.InstantiatePrefab(Transform)"/>
+    /// </summary>
     [SerializeField] private List<BlendBlocks> _BlendBlocks = new List<BlendBlocks>();
 
-    [SerializeField] private int GridSize = 10;
-    [SerializeField] private int Padding = 2;
-    [SerializeField] private int FloorCount = 2;
-    [SerializeField] private int MinRoomCount = 3;
-    [SerializeField] private int MaxRoomCount = 5;
+    [Tooltip("The size of the grid. Grid is generally (GridSize x GridSize)")]
+    [SerializeField] private int _GridSize = 10;
+    [Tooltip("the padding between the blocks")]
+    [SerializeField] private int _Padding = 2;
+    [Tooltip("Number of floors in the arena")]
+    [SerializeField] private int _FloorCount = 2;
+    [Tooltip("Minimum number of floors")]
+    [SerializeField] private int _MinRoomCount = 3;
+    [Tooltip("Maximum number of floors")]
+    [SerializeField] private int _MaxRoomCount = 5;
 
-    [SerializeField] private int RoomScaleX = 1;
-    [SerializeField] private int RoomScaleY = 1;
-    [SerializeField] private int RoomScaleZ = 1;
+    [Tooltip("Room Scale X")]
+    [SerializeField] private int _RoomScaleX = 1;
+    [Tooltip("Room Scale Y")]
+    [SerializeField] private int _RoomScaleY = 1;
+    [Tooltip("Room Scale Z")]
+    [SerializeField] private int _RoomScaleZ = 1;
 
     [SerializeField] private int _CentralRoomSize;
     [SerializeField] private int _CentralRoomSizeX;
     [SerializeField] private int _CentralRoomSizeY;
     [SerializeField] private int _CentralRoomCoordX;
 
-    [SerializeField] private GameObject ChunkHolder;
-    [SerializeField] private GameObject FloorHolder;
-    [SerializeField] private GameObject StairsHolder;
-    [SerializeField] private GameObject EmptyHolder;
+    [Tooltip("This will hold all the runtime instantiated chunks")]
+    [SerializeField] private GameObject _ChunkHolder;
+    [Tooltip("This will hold all the runtime instantiated floors")]
+    [SerializeField] private GameObject _FloorHolder;
+    [Tooltip("This will hold all the runtime instantiated stairs")]
+    [SerializeField] private GameObject _StairsHolder;
+    [Tooltip("This will hold all the runtime instantiated empty ")]
+    [SerializeField] private GameObject _EmptyHolder;
 
     private System.Random _Rnd = new System.Random();
 
-    private Queue<int[]> queue = new Queue<int[]>();
+    private Queue<int[]> _Queue = new Queue<int[]>();
 
     // Start is called before the first frame update
     void Start()
     {
-        ChunkArray = new GameObject[GridSize, GridSize, FloorCount];
-        _CentralRoomCoordX = GridSize / 2;
-        _CentralRoomSize = _CentralRoomSize > GridSize ? (GridSize / 2) - Padding : _CentralRoomSize;
+        _ChunkArray = new GameObject[_GridSize, _GridSize, _FloorCount];
+        _CentralRoomCoordX = _GridSize / 2;
+        _CentralRoomSize = _CentralRoomSize > _GridSize ? (_GridSize / 2) - _Padding : _CentralRoomSize;
 
         FloorCreator();
 
         CoverRest();
 
-        while (queue.Any())
+        while (_Queue.Any())
         {
             ExecuteQueue();
         }
@@ -56,11 +79,14 @@ public class ChunkCreator : MonoBehaviour
         ChangeOrientationOfBlocks();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     private void FloorCreator()
     {
-        for (int i = 0; i < FloorCount; i++)
+        for (int i = 0; i < _FloorCount; i++)
         {
-            int max = _Rnd.Next(MinRoomCount, MaxRoomCount);
+            int max = _Rnd.Next(_MinRoomCount, _MaxRoomCount);
             for (int j = 0; j < max; j++)
             {
                 CollapseRoom(i);
@@ -68,67 +94,74 @@ public class ChunkCreator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="floor"></param>
     private void CollapseRoom(int floor)
     {
-        int grid_rnd_start_x = _Rnd.Next(Padding, GridSize - Padding);
-        int grid_rnd_start_y = _Rnd.Next(Padding, GridSize - Padding);
+        int grid_rnd_start_x = _Rnd.Next(_Padding, _GridSize - _Padding);
+        int grid_rnd_start_y = _Rnd.Next(_Padding, _GridSize - _Padding);
 
-        int grid_rnd_height = _Rnd.Next(1, Padding);
-        int grid_rnd_width = _Rnd.Next(1, Padding);
+        int grid_rnd_height = _Rnd.Next(1, _Padding);
+        int grid_rnd_width = _Rnd.Next(1, _Padding);
 
         Addqueue(grid_rnd_start_x + _Rnd.Next(1, grid_rnd_height), grid_rnd_start_y + _Rnd.Next(1, grid_rnd_width), floor);
 
-        for (int i = grid_rnd_start_x; i < ((grid_rnd_start_x + grid_rnd_width) > GridSize ? GridSize : (grid_rnd_start_x + grid_rnd_width)); i++)
+        for (int i = grid_rnd_start_x; i < ((grid_rnd_start_x + grid_rnd_width) > _GridSize ? _GridSize : (grid_rnd_start_x + grid_rnd_width)); i++)
         {
-            for (int j = grid_rnd_start_y; j < ((grid_rnd_start_y + grid_rnd_height) > GridSize ? GridSize : (grid_rnd_start_y + grid_rnd_height)); j++)
+            for (int j = grid_rnd_start_y; j < ((grid_rnd_start_y + grid_rnd_height) > _GridSize ? _GridSize : (grid_rnd_start_y + grid_rnd_height)); j++)
             {
-                if (ChunkArray[i, j, floor] == null)
+                if (_ChunkArray[i, j, floor] == null)
                 {
-                    ChunkArray[i, j, floor] = new GameObject();
-                    ChunkArray[i, j, floor].transform.parent = transform;
-                    ChunkArray[i, j, floor].AddComponent<Block>();
+                    _ChunkArray[i, j, floor] = new GameObject();
+                    _ChunkArray[i, j, floor].transform.parent = transform;
+                    _ChunkArray[i, j, floor].AddComponent<Block>();
 
-                    Block b = ChunkArray[i, j, floor].GetComponent<Block>();
-                    b.InitializeBlock(i, j, floor, _Tiles[1], RoomScaleX, RoomScaleY, RoomScaleZ, 1);
-                    b.SetCollapsed(FloorHolder.transform);
+                    Block b = _ChunkArray[i, j, floor].GetComponent<Block>();
+                    b.InitializeBlock(i, j, floor, _Tiles[1], _RoomScaleX, _RoomScaleY, _RoomScaleZ, 1);
+                    b.SetCollapsed(_FloorHolder.transform);
                 }
             }
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     private void CoverRest()
     {
-        for (int i = 0; i < GridSize; i++)
+        for (int i = 0; i < _GridSize; i++)
         {
-            for (int j = 0; j < GridSize; j++)
+            for (int j = 0; j < _GridSize; j++)
             {
-                for (int  k = 0; k < FloorCount; k++)
+                for (int  k = 0; k < _FloorCount; k++)
                 {
-                    if (ChunkArray[i, j, k] == null || ChunkArray[i, j, k].GetComponent<Block>().ID == 0)
+                    if (_ChunkArray[i, j, k] == null || _ChunkArray[i, j, k].GetComponent<Block>().ID == 0)
                     {
                         int[] orient = new int[4];
 
-                        if (ChunkArray[i - 1 > 0 ? i - 1 : i, j, k] == null)
+                        if (_ChunkArray[i - 1 > 0 ? i - 1 : i, j, k] == null)
                             orient[0] = 0;
-                        else if (ChunkArray[i - 1 > 0 ? i - 1 : i, j, k].GetComponent<Block>().ID == 1)
+                        else if (_ChunkArray[i - 1 > 0 ? i - 1 : i, j, k].GetComponent<Block>().ID == 1)
                             orient[0] = 1;
                         else
                             orient[0] = 0;
-                        if (ChunkArray[i, j - 1 > 0 ? j - 1 : j, k] == null)
+                        if (_ChunkArray[i, j - 1 > 0 ? j - 1 : j, k] == null)
                             orient[1] = 0;
-                        else if (ChunkArray[i, j - 1 > 0 ? j - 1 : j, k].GetComponent<Block>().ID == 1)
+                        else if (_ChunkArray[i, j - 1 > 0 ? j - 1 : j, k].GetComponent<Block>().ID == 1)
                             orient[1] = 1;
                         else
                             orient[1] = 0;
-                        if (ChunkArray[i + 1 < GridSize ? i + 1 : i, j, k] == null)
+                        if (_ChunkArray[i + 1 < _GridSize ? i + 1 : i, j, k] == null)
                             orient[2] = 0;
-                        else if (ChunkArray[i + 1 < GridSize ? i + 1 : i, j, k].GetComponent<Block>().ID == 1)
+                        else if (_ChunkArray[i + 1 < _GridSize ? i + 1 : i, j, k].GetComponent<Block>().ID == 1)
                             orient[2] = 1;
                         else
                             orient[2] = 0;
-                        if (ChunkArray[i, j + 1 > GridSize ? j + 1 : j, k] == null)
+                        if (_ChunkArray[i, j + 1 > _GridSize ? j + 1 : j, k] == null)
                             orient[3] = 0;
-                        else if (ChunkArray[i, j + 1 > 0 ? j + 1 : j, k].GetComponent<Block>().ID == 1)
+                        else if (_ChunkArray[i, j + 1 > 0 ? j + 1 : j, k].GetComponent<Block>().ID == 1)
                             orient[3] = 1;
                         else
                             orient[3] = 0;
@@ -255,13 +288,13 @@ public class ChunkCreator : MonoBehaviour
                             default:
                                 break;
                         }
-                        ChunkArray[i, j, k] = new GameObject();
-                        ChunkArray[i, j, k].transform.parent = transform;
-                        ChunkArray[i, j, k].AddComponent<Block>();
+                        _ChunkArray[i, j, k] = new GameObject();
+                        _ChunkArray[i, j, k].transform.parent = transform;
+                        _ChunkArray[i, j, k].AddComponent<Block>();
 
-                        Block b = ChunkArray[i, j, k].GetComponent<Block>();
-                        b.InitializeBlock(i, j, k, obj, RoomScaleX, RoomScaleY, RoomScaleZ, 0);
-                        b.SetCollapsed(ChunkHolder.transform);
+                        Block b = _ChunkArray[i, j, k].GetComponent<Block>();
+                        b.InitializeBlock(i, j, k, obj, _RoomScaleX, _RoomScaleY, _RoomScaleZ, 0);
+                        b.SetCollapsed(_ChunkHolder.transform);
                         b.Rotate(rot[0], rot[2], rot[1]);
                     }
                 }
@@ -269,12 +302,15 @@ public class ChunkCreator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     private void ExecuteQueue()
     {
-        int[] coordinate = queue.Peek();
+        int[] coordinate = _Queue.Peek();
 
-        float xdirection = ((GridSize / 2) - coordinate[0]) / (GridSize / 2);
-        float ydirection = ((GridSize / 2) - coordinate[1]) / (GridSize / 2);
+        float xdirection = ((_GridSize / 2) - coordinate[0]) / (_GridSize / 2);
+        float ydirection = ((_GridSize / 2) - coordinate[1]) / (_GridSize / 2);
         int z_path = coordinate[2];
         int x_create_direction = xdirection >= 0 ? 1 : -1;
         int y_create_direction = ydirection >= 0 ? 1 : -1;
@@ -285,15 +321,15 @@ public class ChunkCreator : MonoBehaviour
         int z_origin = coordinate[2];
         bool flip = false;
 
-        while (x_path < GridSize - Padding && x_path > Padding)
+        while (x_path < _GridSize - _Padding && x_path > _Padding)
         {
-            if (ChunkArray[x_path, coordinate[1], coordinate[2]].GetComponent<Block>().ID != 1)
+            if (_ChunkArray[x_path, coordinate[1], coordinate[2]].GetComponent<Block>().ID != 1)
             {
                 flip = true;
             }
             if (flip)
             {
-                if (ChunkArray[x_path, coordinate[1], coordinate[2]].GetComponent<Block>().ID == 1)
+                if (_ChunkArray[x_path, coordinate[1], coordinate[2]].GetComponent<Block>().ID == 1)
                 {
                     /*chunks[x_path, coordinate[1], coordinate[2]].un_collapse();
                     chunks[x_path, coordinate[1], coordinate[2]] = new block(x_path, coordinate[1], coordinate[2], tiles[4], room_x_scale, room_y_scale, room_z_scale, 4);
@@ -303,74 +339,77 @@ public class ChunkCreator : MonoBehaviour
                     break;
                 }
             }
-            ChunkArray[x_path, coordinate[1], coordinate[2]].GetComponent<Block>().UnCollapse();
+            _ChunkArray[x_path, coordinate[1], coordinate[2]].GetComponent<Block>().UnCollapse();
 
-            ChunkArray[x_path, coordinate[1], coordinate[2]] = new GameObject();
-            ChunkArray[x_path, coordinate[1], coordinate[2]].transform.parent = transform;
-            ChunkArray[x_path, coordinate[1], coordinate[2]].AddComponent<Block>();
+            _ChunkArray[x_path, coordinate[1], coordinate[2]] = new GameObject();
+            _ChunkArray[x_path, coordinate[1], coordinate[2]].transform.parent = transform;
+            _ChunkArray[x_path, coordinate[1], coordinate[2]].AddComponent<Block>();
 
-            Block b = ChunkArray[x_path, coordinate[1], coordinate[2]].GetComponent<Block>();
-            b.InitializeBlock(x_path, coordinate[1], coordinate[2], _Tiles[1], RoomScaleX, RoomScaleY, RoomScaleZ, 1);
-            b.SetCollapsed(FloorHolder.transform);
+            Block b = _ChunkArray[x_path, coordinate[1], coordinate[2]].GetComponent<Block>();
+            b.InitializeBlock(x_path, coordinate[1], coordinate[2], _Tiles[1], _RoomScaleX, _RoomScaleY, _RoomScaleZ, 1);
+            b.SetCollapsed(_FloorHolder.transform);
 
             x_path = x_path + x_create_direction;
         }
         flip = false;
-        while (y_path < GridSize - Padding && y_path > Padding)
+        while (y_path < _GridSize - _Padding && y_path > _Padding)
         {
-            if (ChunkArray[coordinate[0], y_path, z_path].GetComponent<Block>().Current == _Tiles[1] && flip)
+            if (_ChunkArray[coordinate[0], y_path, z_path].GetComponent<Block>().Current == _Tiles[1] && flip)
             {
                 break;
             }
-            if (ChunkArray[coordinate[0], y_path, z_path].GetComponent<Block>().Current == _Tiles[1])
+            if (_ChunkArray[coordinate[0], y_path, z_path].GetComponent<Block>().Current == _Tiles[1])
             {
                 flip = true;
             }
-            ChunkArray[coordinate[0], y_path, z_path].GetComponent<Block>().UnCollapse();
+            _ChunkArray[coordinate[0], y_path, z_path].GetComponent<Block>().UnCollapse();
 
-            ChunkArray[coordinate[0], y_path, z_path] = new GameObject();
-            ChunkArray[coordinate[0], y_path, z_path].transform.parent = transform;
-            ChunkArray[coordinate[0], y_path, z_path].AddComponent<Block>();
+            _ChunkArray[coordinate[0], y_path, z_path] = new GameObject();
+            _ChunkArray[coordinate[0], y_path, z_path].transform.parent = transform;
+            _ChunkArray[coordinate[0], y_path, z_path].AddComponent<Block>();
 
-            Block b = ChunkArray[coordinate[0], y_path, z_path].GetComponent<Block>();
-            b.InitializeBlock(coordinate[0], y_path, z_path, _Tiles[1], RoomScaleX, RoomScaleY, RoomScaleZ, 1);
-            b.SetCollapsed(FloorHolder.transform);
+            Block b = _ChunkArray[coordinate[0], y_path, z_path].GetComponent<Block>();
+            b.InitializeBlock(coordinate[0], y_path, z_path, _Tiles[1], _RoomScaleX, _RoomScaleY, _RoomScaleZ, 1);
+            b.SetCollapsed(_FloorHolder.transform);
 
             y_path = y_path + y_create_direction;
         }
-        queue.Dequeue();
+        _Queue.Dequeue();
 
-        if (z_origin != FloorCount - 1)
+        if (z_origin != _FloorCount - 1)
         {
-            if (ChunkArray[x_origin, y_origin, z_origin + 1].GetComponent<Block>().ID == 1)
+            if (_ChunkArray[x_origin, y_origin, z_origin + 1].GetComponent<Block>().ID == 1)
             {
                 //Debug.Log("This is executed");
-                ChunkArray[x_origin, y_origin, z_origin].GetComponent<Block>().UnCollapse();
-                ChunkArray[x_origin, y_origin, z_origin] = new GameObject();
-                ChunkArray[x_origin, y_origin, z_origin].transform.parent = transform;
-                ChunkArray[x_origin, y_origin, z_origin].AddComponent<Block>();
+                _ChunkArray[x_origin, y_origin, z_origin].GetComponent<Block>().UnCollapse();
+                _ChunkArray[x_origin, y_origin, z_origin] = new GameObject();
+                _ChunkArray[x_origin, y_origin, z_origin].transform.parent = transform;
+                _ChunkArray[x_origin, y_origin, z_origin].AddComponent<Block>();
 
-                Block b = ChunkArray[x_origin, y_origin, z_origin].GetComponent<Block>();
-                b.InitializeBlock(x_origin, y_origin, z_origin, _Tiles[3], RoomScaleX, RoomScaleY, RoomScaleZ, 3);
-                b.SetCollapsed(StairsHolder.transform);
+                Block b = _ChunkArray[x_origin, y_origin, z_origin].GetComponent<Block>();
+                b.InitializeBlock(x_origin, y_origin, z_origin, _Tiles[3], _RoomScaleX, _RoomScaleY, _RoomScaleZ, 3);
+                b.SetCollapsed(_StairsHolder.transform);
 
-                ChunkArray[x_origin, y_origin, z_origin + 1].GetComponent<Block>().UnCollapse();
-                ChunkArray[x_origin, y_origin, z_origin + 1] = new GameObject();
-                ChunkArray[x_origin, y_origin, z_origin + 1].transform.parent = transform;
-                ChunkArray[x_origin, y_origin, z_origin + 1].AddComponent<Block>();
+                _ChunkArray[x_origin, y_origin, z_origin + 1].GetComponent<Block>().UnCollapse();
+                _ChunkArray[x_origin, y_origin, z_origin + 1] = new GameObject();
+                _ChunkArray[x_origin, y_origin, z_origin + 1].transform.parent = transform;
+                _ChunkArray[x_origin, y_origin, z_origin + 1].AddComponent<Block>();
 
-                Block c = ChunkArray[x_origin, y_origin, z_origin + 1].GetComponent<Block>();
-                c.InitializeBlock(x_origin, y_origin, z_origin + 1, _Tiles[2], RoomScaleX, RoomScaleY, RoomScaleZ, 2);
-                c.SetCollapsed(EmptyHolder.transform);
+                Block c = _ChunkArray[x_origin, y_origin, z_origin + 1].GetComponent<Block>();
+                c.InitializeBlock(x_origin, y_origin, z_origin + 1, _Tiles[2], _RoomScaleX, _RoomScaleY, _RoomScaleZ, 2);
+                c.SetCollapsed(_EmptyHolder.transform);
             }
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     private void CentralRoomCreater()
     {
         int step = 1;
 
-        for (int k = 0; k < FloorCount; k++)
+        for (int k = 0; k < _FloorCount; k++)
         {
             for (int i = _CentralRoomCoordX - _CentralRoomSizeX /*-step*/; i < _CentralRoomCoordX + _CentralRoomSizeX /*+ step*/; i++)
             {
@@ -378,32 +417,32 @@ public class ChunkCreator : MonoBehaviour
                 {
                     if (i == _CentralRoomCoordX - _CentralRoomSizeX || i == _CentralRoomCoordX + _CentralRoomSizeY - 1 || j == _CentralRoomCoordX - _CentralRoomSizeY || j == _CentralRoomCoordX + _CentralRoomSizeY - 1)
                     {
-                        ChunkArray[i, j, k].GetComponent<Block>().UnCollapse();
-                        ChunkArray[i, j, k] = new GameObject();
-                        ChunkArray[i, j, k].transform.parent = transform;
+                        _ChunkArray[i, j, k].GetComponent<Block>().UnCollapse();
+                        _ChunkArray[i, j, k] = new GameObject();
+                        _ChunkArray[i, j, k].transform.parent = transform;
 
-                        ChunkArray[i, j, k].AddComponent<Block>();
-                        Block p = ChunkArray[i, j, k].GetComponent<Block>();
-                        p.InitializeBlock(i, j, k, _Tiles[1], RoomScaleX, RoomScaleY, RoomScaleZ, 1);
-                        p.SetCollapsed(FloorHolder.transform);
+                        _ChunkArray[i, j, k].AddComponent<Block>();
+                        Block p = _ChunkArray[i, j, k].GetComponent<Block>();
+                        p.InitializeBlock(i, j, k, _Tiles[1], _RoomScaleX, _RoomScaleY, _RoomScaleZ, 1);
+                        p.SetCollapsed(_FloorHolder.transform);
                     }
                     else
                     {
-                        ChunkArray[i, j, k].GetComponent<Block>().UnCollapse();
-                        ChunkArray[i, j, k] = new GameObject();
-                        ChunkArray[i, j, k].transform.parent = transform;
-                        ChunkArray[i, j, k].AddComponent<Block>();
+                        _ChunkArray[i, j, k].GetComponent<Block>().UnCollapse();
+                        _ChunkArray[i, j, k] = new GameObject();
+                        _ChunkArray[i, j, k].transform.parent = transform;
+                        _ChunkArray[i, j, k].AddComponent<Block>();
 
-                        Block p = ChunkArray[i, j, k].GetComponent<Block>();
+                        Block p = _ChunkArray[i, j, k].GetComponent<Block>();
                         if (k == 0)
                         {
-                            p.InitializeBlock(i, j, k, _Tiles[1], RoomScaleX, RoomScaleY, RoomScaleZ, 1);
-                            p.SetCollapsed(FloorHolder.transform);
+                            p.InitializeBlock(i, j, k, _Tiles[1], _RoomScaleX, _RoomScaleY, _RoomScaleZ, 1);
+                            p.SetCollapsed(_FloorHolder.transform);
                         }
                         else
                         {
-                            p.InitializeBlock(i, j, k, _Tiles[2], RoomScaleX, RoomScaleY, RoomScaleZ, 2);
-                            p.SetCollapsed(EmptyHolder.transform);
+                            p.InitializeBlock(i, j, k, _Tiles[2], _RoomScaleX, _RoomScaleY, _RoomScaleZ, 2);
+                            p.SetCollapsed(_EmptyHolder.transform);
                         }
                     }
                 }
@@ -412,37 +451,40 @@ public class ChunkCreator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     private void ChangeOrientationOfBlocks()
     {
-        for (int i = 1; i < GridSize - 1; i++)
+        for (int i = 1; i < _GridSize - 1; i++)
         {
-            for (int j = 1; j < GridSize - 1; j++)
+            for (int j = 1; j < _GridSize - 1; j++)
             {
-                for (int k = 0; k < FloorCount; k++)
+                for (int k = 0; k < _FloorCount; k++)
                 {
-                    if (ChunkArray[i, j, k].GetComponent<Block>().ID == 0)
+                    if (_ChunkArray[i, j, k].GetComponent<Block>().ID == 0)
                     {
                         int[] orient = new int[4];
 
-                        if (ChunkArray[i - 1 > 0 ? i - 1 : i, j, k].GetComponent<Block>().ID == 1)
+                        if (_ChunkArray[i - 1 > 0 ? i - 1 : i, j, k].GetComponent<Block>().ID == 1)
                             orient[0] = 1;
                         else
                             orient[0] = 0;
                         /*if (chunks[i, j - 1 > 0 ? j - 1 : j, k] == null)
                             orient[1] = 0;*/
-                        if (ChunkArray[i, j - 1 > 0 ? j - 1 : j, k].GetComponent<Block>().ID == 1)
+                        if (_ChunkArray[i, j - 1 > 0 ? j - 1 : j, k].GetComponent<Block>().ID == 1)
                             orient[1] = 1;
                         else
                             orient[1] = 0;
                         /*if (chunks[i + 1 < grid_size ? i + 1 : i, j, k] == null)
                             orient[2] = 0;*/
-                        if (ChunkArray[i + 1 < GridSize ? i + 1 : i, j, k].GetComponent<Block>().ID == 1)
+                        if (_ChunkArray[i + 1 < _GridSize ? i + 1 : i, j, k].GetComponent<Block>().ID == 1)
                             orient[2] = 1;
                         else
                             orient[2] = 0;
                         /*if (chunks[i, j + 1 > grid_size ? j + 1 : j, k] == null)
                             orient[3] = 0;*/
-                        if (ChunkArray[i, j + 1 > 0 ? j + 1 : j, k].GetComponent<Block>().ID == 1)
+                        if (_ChunkArray[i, j + 1 > 0 ? j + 1 : j, k].GetComponent<Block>().ID == 1)
                             orient[3] = 1;
                         else
                             orient[3] = 0;
@@ -569,14 +611,14 @@ public class ChunkCreator : MonoBehaviour
                                 break;
                         }
 
-                        ChunkArray[i, j, k].GetComponent<Block>().UnCollapse();
-                        ChunkArray[i, j, k] = new GameObject();
-                        ChunkArray[i, j, k].transform.parent = transform;
-                        ChunkArray[i, j, k].AddComponent<Block>();
+                        _ChunkArray[i, j, k].GetComponent<Block>().UnCollapse();
+                        _ChunkArray[i, j, k] = new GameObject();
+                        _ChunkArray[i, j, k].transform.parent = transform;
+                        _ChunkArray[i, j, k].AddComponent<Block>();
 
-                        Block b = ChunkArray[i, j, k].GetComponent<Block>();
-                        b.InitializeBlock(i, j, k, obj, RoomScaleX, RoomScaleY, RoomScaleZ, 0);
-                        b.SetCollapsed(ChunkHolder.transform);
+                        Block b = _ChunkArray[i, j, k].GetComponent<Block>();
+                        b.InitializeBlock(i, j, k, obj, _RoomScaleX, _RoomScaleY, _RoomScaleZ, 0);
+                        b.SetCollapsed(_ChunkHolder.transform);
                         b.Rotate(rot[0], rot[2], rot[1]);
                     }
                 }
@@ -584,13 +626,19 @@ public class ChunkCreator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
+    /// <param name="z"></param>
     private void Addqueue(int x, int y, int z)
     {
         int[] arr = new int[3];
         arr[0] = x;
         arr[1] = y;
         arr[2] = z;
-        queue.Enqueue(arr);
+        _Queue.Enqueue(arr);
     }
 
     // Update is called once per frame
