@@ -81,7 +81,7 @@ public class Block : MonoBehaviour
     }
 
     /// <summary>
-    /// This will uncollapse the block and destroy the block that was created using s<see cref="SetCollapsed(Transform)"/>
+    /// This will uncollapse the block and destroy the block that was created using <see cref="SetCollapsed(Transform)"/>
     /// </summary>
     public void UnCollapse()
     {
