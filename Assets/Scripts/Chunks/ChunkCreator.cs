@@ -35,6 +35,10 @@ public class ChunkCreator : MonoBehaviour
 
     [Tooltip("the padding between the blocks")]
     [SerializeField] private int _Padding = 2;
+    public int GetPadding()
+    {
+        return _Padding;
+    }
     [Tooltip("Number of floors in the arena")]
     [SerializeField] private int _FloorCount = 2;
     public int GetFloorCount()
@@ -49,10 +53,16 @@ public class ChunkCreator : MonoBehaviour
 
     [Tooltip("Room Scale X")]
     [SerializeField] private int _RoomScaleX = 1;
+    
     [Tooltip("Room Scale Y")]
     [SerializeField] private int _RoomScaleY = 1;
     [Tooltip("Room Scale Z")]
     [SerializeField] private int _RoomScaleZ = 1;
+
+    public Vector3Int GetRoomScale()
+    {
+        return new Vector3Int(_RoomScaleX, _RoomScaleY, _RoomScaleZ);
+    }
 
     [SerializeField] private int _CentralRoomSize;
     [SerializeField] private int _CentralRoomSizeX;

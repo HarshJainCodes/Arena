@@ -14,6 +14,10 @@ public class FloorAnimation : MonoBehaviour
 	    {
 		    yield return null;
 	    }
+
+        //this indicates that the A* has scanned all the arena
+        // after this we can merge our floors
+        CombineFloors.Instance.CombineFloorSegments();
     }
 
 	private IEnumerator _Animate(Transform t)

@@ -7,6 +7,8 @@ public class CombineCubes : MonoBehaviour
     public static CombineCubes Instance { get; private set; }
 
     [SerializeField] private GameObject _CombinedCubeHolder;
+    [SerializeField] private GameObject _Empty;
+
     private ChunkCreator _ChunkCreator;
 
     private int _GridSize;
@@ -28,6 +30,42 @@ public class CombineCubes : MonoBehaviour
     public void MakeCubeSegments()
     {
         _ChunkArray = _ChunkCreator.ChunkArray;
+
+        int a = 0;
+
+        Vector3Int roomScale = _ChunkCreator.GetRoomScale();
+
+        while (a <= _GridSize)
+        {
+            int j = Random.Range(1, _ChunkCreator.GetPadding());
+            int nextI = Mathf.Min(_GridSize - 1, Random.Range(a + 4, a + 8));
+            for (int ii = a; ii < nextI; ii++)
+            {
+                for (int jj = 0; jj < j; jj++)
+                {
+                    for (int k = 0; k < _FloorCount; k++)
+                    {
+                        Block b = _ChunkArray[ii, jj, k].GetComponent<Block>();
+
+                        if (b.ID == 0)
+                        {
+                            b.UnCollapse();
+                            _ChunkArray[ii, jj, k] = new GameObject();
+                            _ChunkArray[ii, jj, k].transform.parent = transform;
+                            Block newB = _ChunkArray[ii, jj, k].AddComponent<Block>();
+
+                            newB.InitializeBlock(ii, jj, k, _Empty, roomScale.x, roomScale.y, roomScale.z, 2);
+                            newB.SetCollapsed(transform);
+                        }
+                    }
+                }
+            }
+            a = nextI;
+            if (a >= _GridSize - 1)
+            {
+                break;
+            }
+        }
 
         for (int i = 0; i < _GridSize; i += 10)
         {
