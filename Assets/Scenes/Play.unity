@@ -25187,7 +25187,7 @@ GameObject:
   - component: {fileID: 2098595024}
   - component: {fileID: 2098595026}
   - component: {fileID: 2098595025}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SoundManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25804,7 +25804,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904052382946}
-  m_LocalRotation: {x: 0.74158895, y: -0.018891566, z: -0.01711901, w: 0.67037004}
+  m_LocalRotation: {x: -0.482288, y: -0.8057134, z: -0.2950072, w: -0.17662093}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -25892,7 +25892,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904058514593}
-  m_LocalRotation: {x: 0.74158895, y: -0.018891566, z: -0.01711901, w: 0.67037004}
+  m_LocalRotation: {x: -0.482288, y: -0.8057134, z: -0.2950072, w: -0.17662093}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -26064,7 +26064,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904255469873}
-  m_LocalRotation: {x: 0.03649572, y: 0.6879742, z: -0.034723166, w: 0.7239847}
+  m_LocalRotation: {x: 0.10251969, y: -0.87981474, z: 0.40818664, w: 0.22090587}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -26207,7 +26207,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904437498142}
-  m_LocalRotation: {x: 0.74158895, y: -0.018891566, z: -0.01711901, w: 0.67037004}
+  m_LocalRotation: {x: -0.482288, y: -0.8057134, z: -0.2950072, w: -0.17662093}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -26503,7 +26503,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3325105413017719241}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CameraPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26523,7 +26523,7 @@ GameObject:
   - component: {fileID: 3325105413121527901}
   - component: {fileID: 3325105413121527900}
   - component: {fileID: 3325105413121527899}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerController
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -26740,7 +26740,7 @@ GameObject:
   - component: {fileID: 3325105413407470008}
   - component: {fileID: 3325105413407470009}
   - component: {fileID: 3325105413407470010}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26847,7 +26847,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3325105413649675651}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -27,10 +27,8 @@ public class CombineCubes : MonoBehaviour
         _FloorCount = _ChunkCreator.GetFloorCount();
     }
 
-    public void MakeCubeSegments()
+    private void _CutCubes(int side)
     {
-        _ChunkArray = _ChunkCreator.ChunkArray;
-
         int a = 0;
 
         Vector3Int roomScale = _ChunkCreator.GetRoomScale();
@@ -41,31 +39,85 @@ public class CombineCubes : MonoBehaviour
             int nextI = Mathf.Min(_GridSize - 1, Random.Range(a + 4, a + 8));
             for (int ii = a; ii < nextI; ii++)
             {
-                for (int jj = 0; jj < j; jj++)
-                {
-                    for (int k = 0; k < _FloorCount; k++)
-                    {
-                        Block b = _ChunkArray[ii, jj, k].GetComponent<Block>();
+                int minJ;
+                int maxJ;
 
+                if (side == 0 || side == 2)
+                {
+                    minJ = 0;
+                    maxJ = j;
+                }
+                else
+                {
+                    minJ = _GridSize - j;
+                    maxJ = _GridSize;
+                }
+
+                for (int jj = minJ; jj < maxJ; jj++)
+                {
+                    int minK = Random.Range(0, _FloorCount - 1);
+                    int maxK = Random.Range(minK, _FloorCount + 1);
+                    for (int k = minK; k < maxK; k++)
+                    {
+                        Block b;
+                        if (side == 0 || side == 1)
+                        {
+                            b = _ChunkArray[ii, jj, k].GetComponent<Block>();
+                        }
+                        else
+                        {
+                            b = _ChunkArray[jj, ii, k].GetComponent<Block>();
+                        }
+                        
                         if (b.ID == 0)
                         {
                             b.UnCollapse();
-                            _ChunkArray[ii, jj, k] = new GameObject();
-                            _ChunkArray[ii, jj, k].transform.parent = transform;
-                            Block newB = _ChunkArray[ii, jj, k].AddComponent<Block>();
+                            if (side == 0 || side == 1)
+                            {
+                                _ChunkArray[ii, jj, k] = new GameObject();
+                                _ChunkArray[ii, jj, k].transform.parent = transform;
+                                Block newB = _ChunkArray[ii, jj, k].AddComponent<Block>();
 
-                            newB.InitializeBlock(ii, jj, k, _Empty, roomScale.x, roomScale.y, roomScale.z, 2);
-                            newB.SetCollapsed(transform);
+                                newB.InitializeBlock(ii, jj, k, _Empty, roomScale.x, roomScale.y, roomScale.z, 2);
+                                newB.SetCollapsed(transform);
+                            }
+                            else
+                            {
+                                _ChunkArray[jj, ii, k] = new GameObject();
+                                _ChunkArray[jj, ii, k].transform.parent = transform;
+                                Block newB = _ChunkArray[jj, ii, k].AddComponent<Block>();
+
+                                newB.InitializeBlock(jj, ii, k, _Empty, roomScale.x, roomScale.y, roomScale.z, 2);
+                                newB.SetCollapsed(transform);
+                            }
                         }
                     }
                 }
             }
-            a = nextI;
+            a = nextI + Random.Range(2, 5);
             if (a >= _GridSize - 1)
             {
                 break;
             }
         }
+
+    }
+
+    public void MakeCubeSegments()
+    {
+        _ChunkArray = _ChunkCreator.ChunkArray;
+
+        _CutCubes(0);
+        _CutCubes(0);
+
+        _CutCubes(1);
+        _CutCubes(1);
+
+        _CutCubes(2);
+        _CutCubes(2);
+
+        _CutCubes(3);
+        _CutCubes(3);
 
         for (int i = 0; i < _GridSize; i += 10)
         {
