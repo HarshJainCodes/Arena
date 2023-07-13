@@ -6,6 +6,7 @@ public class TestInputScript : MonoBehaviour
 {
     [SerializeField] private CamPerspectiveScript _CamManager;
     [SerializeField] private VoxelRunTimeManipulation _ToolManipulation;
+    [SerializeField] private ImprovedCamSwivel _CamSwivelScript;
 
     private void Update()
     {
@@ -26,7 +27,7 @@ public class TestInputScript : MonoBehaviour
         {
             _ToolManipulation.SetTypeOfOperation(VoxelRunTimeManipulation.OperationType.remove);
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKeyDown(KeyCode.R))
         {
             _ToolManipulation.SetTypeOfOperation(VoxelRunTimeManipulation.OperationType.edit);
         }
@@ -34,7 +35,7 @@ public class TestInputScript : MonoBehaviour
         {
             _ToolManipulation.SetTypeOfOperation(VoxelRunTimeManipulation.OperationType.bucket);
         }
-        if (Input.GetKeyDown(KeyCode.A))
+        if(Input.GetKeyDown(KeyCode.A))
         {
             _ToolManipulation.SetColor(Color.red);
         }
@@ -54,5 +55,9 @@ public class TestInputScript : MonoBehaviour
         {
             _CamManager.SwapToPerspective();
         }
+        /*if(Input.GetKeyDown(KeyCode.Space))
+        {
+            _CamSwivelScript.CanMove=!_CamSwivelScript.CanMove;
+        }*/
     }
 }
