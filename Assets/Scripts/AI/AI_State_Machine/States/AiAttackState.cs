@@ -26,8 +26,7 @@ public class AiAttackState : AiState
 		agent.GetComponent<AIDestinationSetter>().enabled = false;
 		agent.GetComponent<AIPath>().enabled = false;
 		agent.GetComponent<Seeker>().enabled = false;
-
-		agent.transform.LookAt(agent.GetComponent<AIDestinationSetter>().target);
+		
 		Vector3 lookPos = agent.GetComponent<AIDestinationSetter>().target.position - agent.transform.position;
 		lookPos.y = 0;
 		Quaternion rotation = Quaternion.LookRotation(lookPos);
@@ -35,7 +34,8 @@ public class AiAttackState : AiState
 		t -= Time.deltaTime;
 		if (t <= 0)
 		{
-			agent.GetComponentInChildren<Shooter>().Shoot();
+			if(agent.sensor.IsInSight(agent.playerTransform.gameObject))
+				agent.GetComponentInChildren<Shooter>().Shoot();
 			t = 1;
 		}
 
@@ -47,8 +47,8 @@ public class AiAttackState : AiState
 
 	public void Exit(AiAgent agent)
 	{
-		agent.GetComponent<AIDestinationSetter>().enabled = true;
-		agent.GetComponent<AIPath>().enabled = true;
-		agent.GetComponent<Seeker>().enabled = true;
+		agent.GetComponent<AIDestinationSetter>().enabled = false;
+		agent.GetComponent<AIPath>().enabled = false;
+		agent.GetComponent<Seeker>().enabled = false;
 	}
 }

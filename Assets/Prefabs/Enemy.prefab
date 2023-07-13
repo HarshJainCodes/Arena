@@ -1752,6 +1752,7 @@ MonoBehaviour:
   InitialStateType: 2
   playerTransform: {fileID: 0}
   maxSightDistance: 20
+  sensor: {fileID: 0}
 --- !u!114 &4800039381583709333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1771,7 +1772,11 @@ MonoBehaviour:
   ScanFrequency: 30
   Layers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
+  OcclusionLayers:
+    serializedVersion: 2
+    m_Bits: 136
+  Objects: []
 --- !u!114 &8010322405159772788
 MonoBehaviour:
   m_ObjectHideFlags: 0
