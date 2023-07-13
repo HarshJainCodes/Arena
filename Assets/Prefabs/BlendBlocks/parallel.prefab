@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2546466693106165490}
   - component: {fileID: 1921424258783774334}
   - component: {fileID: 6017467937397623522}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: parallel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4228936616935748660}
   - component: {fileID: 7660235178466456886}
-  m_Layer: 8
+  m_Layer: 3
   m_Name: parallel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
