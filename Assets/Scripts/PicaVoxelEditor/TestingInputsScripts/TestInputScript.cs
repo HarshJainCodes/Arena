@@ -54,5 +54,9 @@ public class TestInputScript : MonoBehaviour
         {
             _CamManager.SwapToPerspective();
         }
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            _ToolManipulation.MirrorChange = !_ToolManipulation.MirrorChange;
+        }
     }
 }

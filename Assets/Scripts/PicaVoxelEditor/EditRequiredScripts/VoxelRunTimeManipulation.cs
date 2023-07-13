@@ -1,6 +1,7 @@
 using PicaVoxel;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEditor;
 using UnityEngine;
 
@@ -20,8 +21,8 @@ public class VoxelRunTimeManipulation : MonoBehaviour
     /// <summary>
     /// The bool checks whether the script to add is enables or disabled
     /// </summary>
-    [SerializeField]
-    private bool _Add = false;
+    /*[SerializeField]
+    private bool _Add = false;*/
     /// <summary>
     /// The main camera transform is necessary to fire a ray from the centre
     /// </summary>
@@ -56,6 +57,10 @@ public class VoxelRunTimeManipulation : MonoBehaviour
     /// </summary>
     [SerializeField]
     private OperationType _typeOfOperation = OperationType.none;
+
+    [SerializeField] private bool _MirrorChange = false;
+
+    [SerializeField] private ImprovedCamSwivel _CamSwivel;
     
 
     void Update()
@@ -89,7 +94,8 @@ public class VoxelRunTimeManipulation : MonoBehaviour
 
                 // The Voxel v stores the position of the current voxel that is selected by the ray
                 Voxel? v = currentVoxelVolume.GetVoxelAtWorldPosition(screenRay.GetPoint(d));
-
+                //stores the array position of the point in space
+                PicaVoxelPoint temp=currentVoxelVolume.GetVoxelArrayPosition(screenRay.GetPoint(d));
                 //checks if that voxel is active
                 if (v.HasValue && v.Value.Active)
                 { 
@@ -117,6 +123,22 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                                     Color = _selectedColour,
                                     Value = 128
                                 });
+                                if(_MirrorChange)
+                                {
+                                    PicaVoxelPoint p = currentVoxelVolume.GetVoxelArrayPosition(buildPos);
+                                    p.X = p.X - 16;
+                                    p.X = 16 - p.X - 1;
+                                    Voxel? v3=currentVoxelVolume.GetVoxelAtArrayPosition(p.X,p.Y,p.Z);
+                                    if(v3.HasValue && !v3.Value.Active)
+                                    {
+                                        currentVoxelVolume.SetVoxelAtArrayPosition(p, new Voxel()
+                                        {
+                                            State = VoxelState.Active,
+                                            Color = _selectedColour,
+                                            Value = 128
+                                        });
+                                    }
+                                }
                             }
                             break;
 
@@ -128,6 +150,22 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                                 Color = _selectedColour,
                                 Value = 128
                             });
+                            if(_MirrorChange)
+                            {
+                                PicaVoxelPoint p = currentVoxelVolume.GetVoxelArrayPosition(screenRay.GetPoint(d));
+                                p.X = p.X - 16;
+                                p.X = 16 - p.X -1;
+                                Voxel? v3 = currentVoxelVolume.GetVoxelAtArrayPosition(p.X,p.Y,p.Z);
+                                if (v3.HasValue && v3.Value.Active)
+                                {
+                                    currentVoxelVolume.SetVoxelAtArrayPosition(p, new Voxel()
+                                    {
+                                        State = VoxelState.Inactive,
+                                        Color = _selectedColour,
+                                        Value = 128
+                                    });
+                                }
+                            }
                             break;
 
                         case OperationType.edit:
@@ -139,6 +177,22 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                                 Color = _selectedColour,
                                 Value = 128
                             });
+                            if (_MirrorChange)
+                            {
+                                PicaVoxelPoint p = currentVoxelVolume.GetVoxelArrayPosition(screenRay.GetPoint(d));
+                                p.X = p.X - 16;
+                                p.X = 16 - p.X -1;
+                                Voxel? v3 = currentVoxelVolume.GetVoxelAtArrayPosition(p.X, p.Y, p.Z);
+                                if (v3.HasValue && v3.Value.Active)
+                                {
+                                    currentVoxelVolume.SetVoxelAtArrayPosition(p, new Voxel()
+                                    {
+                                        State = VoxelState.Active,
+                                        Color = _selectedColour,
+                                        Value = 128
+                                    });
+                                }
+                            }
                             break;
 
                         case OperationType.bucket:
@@ -189,4 +243,17 @@ public class VoxelRunTimeManipulation : MonoBehaviour
     /// </summary>
     /// <param name="choice"></param>
     public void SetColor(Color choice) { _selectedColour = choice; }
+
+    /// <summary>
+    /// this getter and setter method sets the private variable
+    /// <see cref="_MirrorChange"/> and allows you to mirror developments in runtime
+    /// </summary>
+    public bool MirrorChange{ get { return _MirrorChange; } set { _MirrorChange = value; } }
+
+    /// <summary>
+    /// This getter method gets the currently editable volume 
+    /// </summary>
+    public Transform CurrentVolume { get {  return _VoxelVolumes[_SelectedVolume].transform; } }
+
+    public int SelectedVolume { set { _VoxelVolumes[_SelectedVolume].transform.gameObject.SetActive(false); _SelectedVolume = value; _VoxelVolumes[_SelectedVolume].transform.gameObject.SetActive(true); _CamSwivel.ChangeTransform = CurrentVolume; } }
 }
