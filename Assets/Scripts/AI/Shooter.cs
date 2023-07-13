@@ -32,7 +32,7 @@ public class Shooter : MonoBehaviour
 				bulletsPerFire = weapon.bulletsPerFire;
 				StartCoroutine(HandleShooting());
 			}
-			// if (weapon.timeBetweenShots == 0) SoundManager.Instance.PlaySound(weapon.audioSFX.firing, 0, weapon.pitchVariationFiringSFX, 0);
+			if (weapon.timeBetweenShots == 0) SoundManager.Instance.PlaySound(weapon.audioSFX.firing, 0, weapon.pitchVariationFiringSFX, 0);
 			Invoke("CanShoot", weapon.fireRate);
 		}
 		else if (shootstyle == 2) //Melee
@@ -72,7 +72,7 @@ public class Shooter : MonoBehaviour
 					foreach (var p in firePoint)
 					{
 						if (weapon.muzzleVFX != null)
-							Instantiate(weapon.muzzleVFX, p.position, p.transform.rotation, p.transform); // VFX
+							Instantiate(weapon.muzzleVFX, p.position, p.transform.rotation); // VFX
 					}
 
 					if (weapon.useProceduralShot) ProceduralShot.Instance.Shoot(weapon.proceduralShotPattern);

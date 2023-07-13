@@ -13,6 +13,8 @@ public class AiSensor : MonoBehaviour
     public Color MeshColor = Color.red;
     public int ScanFrequency = 30;
     public LayerMask Layers;
+    public LayerMask OcclusionLayers;
+    public List<GameObject> Objects = new List<GameObject>();
 
     Collider[] _Colliders = new Collider[50];
     Mesh _Mesh;
@@ -24,8 +26,9 @@ public class AiSensor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _Mesh = CreateWedgeMesh();
         _ScanInterval = 1f / ScanFrequency;
-    }
+	}
 
     // Update is called once per frame
     void Update()
@@ -40,8 +43,38 @@ public class AiSensor : MonoBehaviour
 
     private void Scan()
     {
-	    _Count = Physics.OverlapSphereNonAlloc(transform.position, Distance, _Colliders, Layers,
-		    QueryTriggerInteraction.Collide);    
+	    _Count = Physics.OverlapSphereNonAlloc(transform.position, Distance, _Colliders, Layers, QueryTriggerInteraction.Collide);
+	    
+        Objects.Clear();
+        for (int i = 0; i < _Count; i++)
+        {
+	        GameObject obj = _Colliders[i].gameObject;
+	        if (IsInSight(obj))
+	        {
+		        Objects.Add(obj);
+	        }
+        }
+    }
+
+    public bool IsInSight(GameObject obj)
+    {
+        Vector3 origin = transform.position;
+        Vector3 dest = obj.transform.position;
+        Vector3 dir = dest - origin;
+        if(dir.y < 0 || dir.y > Height)
+            return false;
+
+        dir.y = 0;
+        float deltaAngle = Vector3.Angle(dir, transform.forward);
+        if(deltaAngle > Angle)
+			return false;
+
+        origin.y += Height / 2;
+        dest.y = origin.y;
+        if (Physics.Linecast(origin, dest, OcclusionLayers))
+			return false;
+
+        return true;
     }
 
     Mesh CreateWedgeMesh()
@@ -128,8 +161,8 @@ public class AiSensor : MonoBehaviour
 
     private void OnValidate()
     {
-		_Mesh = CreateWedgeMesh();
-        _ScanInterval = 1f / ScanFrequency;
+	    _Mesh = CreateWedgeMesh();
+	    _ScanInterval = 1f / ScanFrequency;
 	}
 
     private void OnDrawGizmos()
@@ -144,6 +177,12 @@ public class AiSensor : MonoBehaviour
         for (int i = 0; i < _Count; i++)
         {
 	        Gizmos.DrawSphere( _Colliders[i].transform.position, 0.2f);
+		}
+
+        Gizmos.color = Color.green;
+        foreach (GameObject obj in Objects)
+        {
+	        Gizmos.DrawSphere(obj.transform.position, 0.2f);
 		}
     }
 }
