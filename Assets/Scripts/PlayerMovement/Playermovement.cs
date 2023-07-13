@@ -40,6 +40,7 @@ public class Playermovement : MonoBehaviour
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
+    public bool canDoubleJump = false;
     bool readyToJump = false;
 
     [Header("Crouching")]
@@ -53,6 +54,8 @@ public class Playermovement : MonoBehaviour
     private RaycastHit slopeHit;
     private bool exitingSlope;
 
+
+    private bool hasJumped = false;
 
     private Vector2 keyInput;
 
@@ -87,6 +90,8 @@ public class Playermovement : MonoBehaviour
     {
         if(isWallRunning)
         {
+            //jumpCount = 0;
+            
             state = MovementState.wallRunning;
             desiredMoveSpeed = wallRunSpeed;
         }
@@ -121,6 +126,7 @@ public class Playermovement : MonoBehaviour
         //Mode - Walking
         else if (grounded)
         {
+            //jumpCount = 0;
             cam.DoFov(60);
             state = MovementState.walking;
             desiredMoveSpeed = walkSpeed;
@@ -172,11 +178,21 @@ public class Playermovement : MonoBehaviour
         keyInput = GameInput.instance.GetMovementVectorNormalized();
         
         //when to JUMP
+        
         if(Keyboard.current[jumpKey].isPressed && readyToJump && grounded)
         {
             readyToJump = false;
+            hasJumped = true;
+
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown);
+        }
+        if(Keyboard.current[jumpKey].wasPressedThisFrame && !grounded && hasJumped)
+        {
+            hasJumped = false;
+            Jump();
+            Invoke(nameof(ResetJump), jumpCooldown);
+
         }
 
         //START CROUCH
@@ -204,7 +220,9 @@ public class Playermovement : MonoBehaviour
             rb.drag = groundDrag;
         else
             rb.drag = 0;
-        
+      /*  if (jumpCount == 2 && grounded)
+            jumpCount = 0;*/
+
     }
 
     private void FixedUpdate()
@@ -238,7 +256,8 @@ public class Playermovement : MonoBehaviour
 
     private bool CheckGround()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight / 2 + 0.2f, whatIsGround); 
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight / 2 + 0.2f, whatIsGround);
+        
         return grounded;
     }
 
@@ -264,9 +283,11 @@ public class Playermovement : MonoBehaviour
         }  
     }
 
+    
     private void Jump()
     {
         exitingSlope = true;
+        //jumpCount++;
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
@@ -298,4 +319,12 @@ public class Playermovement : MonoBehaviour
         return grounded;
     }
 
+    public  void SetBoolTrue()
+    {
+        hasJumped = true;
+    }
+    public void SetBoolFalse()
+    {
+        hasJumped = false;
+    }
 }

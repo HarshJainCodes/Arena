@@ -114,6 +114,8 @@ GameObject:
   - component: {fileID: 3325105414014683745}
   - component: {fileID: 3325105414014683744}
   - component: {fileID: 3325105414014683751}
+  - component: {fileID: 4713271530035740731}
+  - component: {fileID: 3115161294918150094}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -240,6 +242,36 @@ MonoBehaviour:
   wallCheckDistance: 0.7
   minJumpHeight: 1
   cam: {fileID: 0}
+--- !u!114 &4713271530035740731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3325105414014683772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d7d39606d94f04da5ca3862a82ca2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enable: 1
+  amplitude: 0.002
+  frequency: 20
+  camera: {fileID: 0}
+  cameraHolder: {fileID: 0}
+--- !u!114 &3115161294918150094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3325105414014683772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3004408125bdb954bbd5b5b264ad22c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reloadKey: 32
 --- !u!1 &3325105414120590326
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +365,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f12b9bb6ba5e0d348a66e915936f936a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

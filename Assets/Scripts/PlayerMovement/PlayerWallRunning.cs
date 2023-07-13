@@ -90,6 +90,7 @@ public class PlayerWallRunning : MonoBehaviour
             }
             if(Keyboard.current[wallJumpKey].wasPressedThisFrame)
             {
+
                 WallJump();
             }
         }
@@ -111,6 +112,7 @@ public class PlayerWallRunning : MonoBehaviour
 
     void StartWallRun()
     {
+        pm.SetBoolFalse();
         pm.isWallRunning = true;
         if(!CanWallRunInfinity)
             wallRunTimer = maxWallRunTime;
@@ -132,7 +134,7 @@ public class PlayerWallRunning : MonoBehaviour
         }
        
         //float dot = Vector3.Dot(cam.GetComponent<Transform>().forward, orientation.forward);
-        rb.AddForce(cam.GetComponent<Transform>().forward* wallRunForce, ForceMode.Force);
+        rb.AddForce(orientation.forward* wallRunForce, ForceMode.Force);
 
         //push to wall force
         if(!(wallLeft && keyInput.x>0)&&!(wallRight &&keyInput.x<0))
@@ -142,6 +144,8 @@ public class PlayerWallRunning : MonoBehaviour
     }
     void StopWallRun()
     {
+        pm.SetBoolTrue();
+
         pm.isWallRunning = false;
         rb.useGravity = true;
         cam.DoFov(60);
@@ -150,12 +154,12 @@ public class PlayerWallRunning : MonoBehaviour
 
     void WallJump()
     {
+        //Debug.Log("wall jump");
         exitingWall = true;
-
         exitWallTimer = exitWallTime;
         Vector3 wallNormal = wallRight ? rightWallHit.normal :leftWallHit.normal;
 
-        Vector3 forceToApply = transform.up * wallJumpUpForce + wallNormal * wallJumpSideForce;
+        Vector3 forceToApply = transform.up * wallJumpUpForce + wallNormal*100 * wallJumpSideForce;
 
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         rb.AddForce(forceToApply, ForceMode.Impulse);
