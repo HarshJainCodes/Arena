@@ -74,7 +74,7 @@ public class ImprovedCamSwivel : MonoBehaviour
             _Phi = Mathf.Clamp((_Phi + Input.GetAxis("Mouse Y") * Time.deltaTime * _SwivelSpeed), Mathf.PI/6, 5*Mathf.PI/6);
             _Theta = Mathf.Clamp((_Theta - Input.GetAxis("Mouse X") * Time.deltaTime * _SwivelSpeed), -Mathf.PI, Mathf.PI);
         }
-        _Radius = _Radius + Input.mouseScrollDelta.y;
+        _Radius = _Radius - Input.mouseScrollDelta.y;
     }
     /// <summary>
     /// Getter and setter method for changing the
