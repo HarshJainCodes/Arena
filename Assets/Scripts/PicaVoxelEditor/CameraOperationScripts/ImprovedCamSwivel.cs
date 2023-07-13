@@ -16,11 +16,9 @@ public class ImprovedCamSwivel : MonoBehaviour
     /// <summary>
     /// The Actual object that we want to swivel about.
     /// </summary>
-<<<<<<< Updated upstream
-    [SerializeField] private GameObject _SwivelObject;
-=======
+
+
     [SerializeField] private Transform _SwivelObject;
->>>>>>> Stashed changes
 
     /// <summary>
     /// Radius for the radial coordinate system
@@ -61,11 +59,9 @@ public class ImprovedCamSwivel : MonoBehaviour
         float y = _Radius * Mathf.Cos(_Phi);
         _PositionCastesian = new Vector3(x, y, z);
         transform.position = _PositionCastesian;
-<<<<<<< Updated upstream
-        transform.LookAt(_SwivelObject.transform);
-=======
+
+
         transform.LookAt(_SwivelObject);
->>>>>>> Stashed changes
     }
 
     /// <summary>
@@ -86,9 +82,7 @@ public class ImprovedCamSwivel : MonoBehaviour
     /// bool 
     /// </summary>
     public bool CanMove { get { return _CanMove; } set { _CanMove = value; } }
-<<<<<<< Updated upstream
-=======
+
 
     public Transform ChangeTransform { set { _SwivelObject = value; } }
->>>>>>> Stashed changes
 }
