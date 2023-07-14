@@ -24,16 +24,22 @@ public class FloorAnimation : MonoBehaviour
     {
 	    _NoOfCoroutines++;
 
+        float randomPos = UnityEngine.Random.Range(-300, -500);
+        float progressScale = UnityEngine.Random.Range(4, 6);
+        t.position = new Vector3(0, randomPos, 0);
 
-		t.position = new Vector3(0, -500, 0);
-        float riseSpeed = Random.Range(40, 150);
-
-        while (t.position.y < 0)
+        float progress = 0;
+        while (progress <= 1)
         {
-            t.position += new Vector3(0, riseSpeed * Time.deltaTime, 0);
+            progress += Time.deltaTime / progressScale;
+
+            float blockPos = Tween.InOutBack(randomPos, 0 - randomPos, progress);
+
+            t.position = new Vector3(0, blockPos, 0);
             yield return null;
         }
         t.position = Vector3.zero;
+
         _NoOfCoroutines--;
         if (_NoOfCoroutines == 0)
         {

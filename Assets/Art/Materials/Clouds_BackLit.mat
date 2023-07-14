@@ -85,7 +85,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EdgeIntensity: 10
+    - _EdgeIntensity: 0.57
     - _Glossiness: 0.5
     - _McBAmt: 55.09
     - _McFAmt: 1
