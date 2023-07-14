@@ -8,6 +8,7 @@ public enum AiStateType
 	Patrol,
 	Chase,
 	Attack,
+	AttackSurround,
 	Dead
 }
 
