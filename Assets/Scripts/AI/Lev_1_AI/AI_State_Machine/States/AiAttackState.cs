@@ -1,3 +1,4 @@
+using System;
 using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,16 +17,16 @@ public class AiAttackState : AiState
 	public void Enter(AiAgent agent)
 	{
 		aiPath = agent.GetComponent<AIPath>();	
-		agent.GetComponent<AIDestinationSetter>().enabled = false;
-		agent.GetComponent<AIPath>().enabled = false;
-		agent.GetComponent<Seeker>().enabled = false;
+		agent.GetComponent<AIDestinationSetter>().enabled = true;
+		agent.GetComponent<AIPath>().enabled = true;
+		agent.GetComponent<Seeker>().enabled = true;
 	}
 
 	public void Update(AiAgent agent)
 	{
-		agent.GetComponent<AIDestinationSetter>().enabled = false;
-		agent.GetComponent<AIPath>().enabled = false;
-		agent.GetComponent<Seeker>().enabled = false;
+		agent.GetComponent<AIDestinationSetter>().enabled = true;
+		agent.GetComponent<AIPath>().enabled = true;
+		agent.GetComponent<Seeker>().enabled = true;
 		
 		Vector3 lookPos = agent.GetComponent<AIDestinationSetter>().target.position - agent.transform.position;
 		lookPos.y = 0;
@@ -39,7 +40,7 @@ public class AiAttackState : AiState
 			t = 1;
 		}
 
-		if (!aiPath.reachedEndOfPath)
+		if (!agent.InRange)
 		{
 			agent.stateMachine.ChangeState(AiStateType.Chase);
 		}

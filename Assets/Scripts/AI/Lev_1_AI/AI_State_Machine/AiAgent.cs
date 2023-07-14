@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
 
 public class AiAgent : MonoBehaviour
@@ -7,8 +9,10 @@ public class AiAgent : MonoBehaviour
     public AiStateMachine stateMachine;
     public AiStateType InitialStateType;
     public Transform playerTransform;
-    // private Vector3 = new Vector3(32, 23, 21);
-    [SerializeField] public float maxSightDistance = 17f;
+    public float StopDistance = 6f;
+    public bool InRange = false;
+    public int Level = 1;
+	[SerializeField] public float maxSightDistance = 17f;
     [HideInInspector]public AiSensor sensor;
 
     // Start is called before the first frame update
@@ -18,6 +22,7 @@ public class AiAgent : MonoBehaviour
         sensor = GetComponent<AiSensor>();
         stateMachine = new AiStateMachine(this);
         stateMachine.RegisterState(new AiChaseState());
+        stateMachine.RegisterState(new AiAttackSurroundState());
         stateMachine.RegisterState(new AiDeathState());
         stateMachine.RegisterState(new AiIdeState());
         stateMachine.RegisterState(new AiAttackState());
@@ -27,6 +32,10 @@ public class AiAgent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        stateMachine.Update();
+	    stateMachine.Update();
+
+	    // if the distance between the player and the enemy is lesser than the endReachedDistance
+	    InRange = StopDistance > Math.Abs(
+		    (GetComponent<AIDestinationSetter>().target.position - transform.position).magnitude);
     }
 }

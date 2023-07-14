@@ -1,3 +1,4 @@
+using System;
 using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,9 +26,13 @@ public class AiChaseState : AiState
 		agent.GetComponent<AIDestinationSetter>().enabled = true;
 		agent.GetComponent<AIPath>().enabled = true;
 		agent.GetComponent<Seeker>().enabled = true;
-		if (aiPath.reachedEndOfPath)
+
+		if (agent.InRange)
 		{
-			agent.stateMachine.ChangeState(AiStateType.Attack);
+			if(agent.Level == 1)
+				agent.stateMachine.ChangeState(AiStateType.Attack);
+			else if(agent.Level == 2)
+				agent.stateMachine.ChangeState(AiStateType.AttackSurround);
 		}
 	}
 
