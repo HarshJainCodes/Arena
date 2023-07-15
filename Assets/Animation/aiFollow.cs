@@ -16,7 +16,7 @@ public class aiFollow : MonoBehaviour
 	void Start()
     {
         animator = GetComponent<Animator>();
-		aiPath = GetComponent<AIPath>();
+		aiPath = GetComponentInChildren<AIPath>();
     }
 
     // Update is called once per frame
