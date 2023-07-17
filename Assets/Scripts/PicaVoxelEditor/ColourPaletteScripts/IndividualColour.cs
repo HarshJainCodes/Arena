@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
 [RequireComponent(typeof(Button))]
+[ExecuteInEditMode]
 public class IndividualColour : MonoBehaviour
 {
     [SerializeField] private Color _Value;
@@ -20,6 +21,13 @@ public class IndividualColour : MonoBehaviour
 
     public void PassToParentObject()
     {
-        _master.passColour(_Value);
+        _master.passColour(_Value,this);
     }
+
+    public void setParentColor()
+    {
+        gameObject.GetComponent<Image>().color = value;
+    }
+
+
 }
