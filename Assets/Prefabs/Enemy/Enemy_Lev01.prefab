@@ -18751,7 +18751,7 @@ Transform:
   m_GameObject: {fileID: 1678001535762723948}
   m_LocalRotation: {x: -0.0000872601, y: 0.000000082238024, z: 0.00094244676, w: 0.99999964}
   m_LocalPosition: {x: 0, y: 0.00056380033, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9136858026202530562}
@@ -81753,7 +81753,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: PT_Kulkarni
+  health: 0
   maxHealth: 10
+  shield: 0
   maxShield: 5
   healthSlider: {fileID: 8538964664738437873}
   shieldSlider: {fileID: 5571343485124115425}
@@ -81776,7 +81778,7 @@ MonoBehaviour:
     OnDeath:
       m_PersistentCalls:
         m_Calls: []
-  timeToDie: 2.11
+  timeToDie: 1.04
 --- !u!114 &2794244529140090394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81818,7 +81820,7 @@ MonoBehaviour:
   - {fileID: 4797417470889903783}
   hitLayer:
     serializedVersion: 2
-    m_Bits: 392
+    m_Bits: 256
   effects:
     grassImpact: {fileID: 0}
     metalImpact: {fileID: 0}
@@ -81826,6 +81828,7 @@ MonoBehaviour:
     woodImpact: {fileID: 0}
     enemyImpact: {fileID: 0}
   canShoot: 0
+  hitPlayer: 0
 --- !u!1 &7658544596131738320
 GameObject:
   m_ObjectHideFlags: 0

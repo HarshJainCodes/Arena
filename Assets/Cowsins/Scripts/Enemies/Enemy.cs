@@ -24,11 +24,11 @@ public class Enemy : MonoBehaviour, IDamageable
     [Tooltip("Name of the enemy. This will appear on the killfeed"),SerializeField]
     private string _name;
 
-    protected float health; 
+    public float health; 
     [Tooltip("initial enemy health "), SerializeField] 
     protected float maxHealth;
 
-    protected float shield; 
+    public float shield; 
     [Tooltip("initial enemy shield"), SerializeField]
     protected float  maxShield;
 

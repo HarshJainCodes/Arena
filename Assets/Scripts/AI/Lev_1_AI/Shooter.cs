@@ -14,6 +14,7 @@ public class Shooter : MonoBehaviour
 	public Effects effects;
 
 	public bool canShoot;
+	public bool hitPlayer;
 
 	private void Start()
 	{
@@ -57,7 +58,7 @@ public class Shooter : MonoBehaviour
 
 	private IEnumerator HandleShooting()
 	{
-		// Determine wether we are sending a raycast, aka hitscan weapon, we are spawning a projectile or melee attacking
+		// Determine weather we are sending a raycast, aka hitscan weapon, we are spawning a projectile or melee attacking
 		int style = (int)weapon.shootStyle;
 
 		//Determine weapon class / style
@@ -101,8 +102,8 @@ public class Shooter : MonoBehaviour
 		//This defines the first hit on the object
 		Vector3 dir = CowsinsUtilities.GetSpreadDirection(weapon.spreadAmount, firePoint[0]);
 		Ray ray = new Ray(firePoint[0].transform.position, dir);
-
-		if (Physics.Raycast(ray, out hit, weapon.bulletRange, hitLayer))
+		hitPlayer = Physics.Raycast(ray, out hit, weapon.bulletRange, hitLayer);
+		if (hitPlayer)
 		{
 			float damageMultiplier = 1.5f;
 			// float dmg = .1f * damageMultiplier;

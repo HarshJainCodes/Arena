@@ -13,9 +13,6 @@ AnimatorStateMachine:
     m_State: {fileID: 1327996126717807662}
     m_Position: {x: 350, y: 110, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -1259585190370911138}
-    m_Position: {x: 360, y: 190, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: -7611143829912835979}
     m_Position: {x: 650, y: 340, z: 0}
   - serializedVersion: 1
@@ -24,6 +21,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -2677319581946171457}
     m_Position: {x: 650, y: 220, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -1467726719617381115}
+    m_Position: {x: 350, y: 230, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -155,7 +155,7 @@ BlendTree:
     m_DirectBlendParameter: Speed
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 2619540402416036911, guid: 3889b0dd00bae00478729b7e9705fa3a, type: 3}
+    m_Motion: {fileID: 2619540402416036911, guid: bc8811640c437bf41bc6423bb4632582, type: 3}
     m_Threshold: 0.1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -202,14 +202,14 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1102 &-1259585190370911138
+--- !u!1102 &-1467726719617381115
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dying_2
+  m_Name: DieAnim
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -222,7 +222,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400218, guid: a45d4ed2ae2c5b843bb3bfaeddb763c1, type: 3}
+  m_Motion: {fileID: 2619540402416036911, guid: d0fe7a4e1ce016340a9ff5815b00f0c8, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

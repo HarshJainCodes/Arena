@@ -37,5 +37,13 @@ public class AiAgent : MonoBehaviour
 	    // if the distance between the player and the enemy is lesser than the endReachedDistance
 	    InRange = StopDistance > Math.Abs(
 		    (GetComponent<AIDestinationSetter>().target.position - transform.position).magnitude);
-    }
+	    if (sensor.IsInSight(playerTransform.gameObject))
+	    {
+		    if (Level == 1)
+			    stateMachine.ChangeState(AiStateType.Attack);
+		    else if (Level == 2)
+			    stateMachine.ChangeState(AiStateType.AttackSurround);
+	    }
+
+	}
 }

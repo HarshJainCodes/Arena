@@ -23,17 +23,17 @@ public class TrainingTarget : Enemy
         isDead = true;
 
 		events.OnDeath.Invoke();
-        GetComponent<Animator>().Play("Dying_2");
+        GetComponentInParent<Animator>().Play("DieAnim");
         GetComponent<CapsuleCollider>().enabled = false;
 		// aiPath.maxSpeed = 0;
 
 		if (shieldSlider != null)shieldSlider.gameObject.SetActive(false);
         if (healthSlider != null) healthSlider.gameObject.SetActive(false);
 
-        if (UI.GetComponent<UIController>().displayEvents)
-        {
-            UI.GetComponent<UIController>().AddKillfeed(name);
-        }
+        // if (UI.GetComponent<UIController>().displayEvents)
+        // {
+        //     UI.GetComponent<UIController>().AddKillfeed(name);
+        // }
 
         // if (transform.parent.GetComponent<CompassElement>() != null) transform.parent.GetComponent<CompassElement>().Remove();
         Invoke("onDie", timeToDie);
@@ -41,7 +41,7 @@ public class TrainingTarget : Enemy
         GetComponent<AIDestinationSetter>().enabled = false;
         GetComponent<AIPath>().enabled = false;
         GetComponent<Seeker>().enabled = false;
-        aiAgent.stateMachine.ChangeState(AiStateType.Dead);
+        aiAgent.stateMachine.ChangeState(AiStateType.Dead); 
     }
 
 	private void onDie()

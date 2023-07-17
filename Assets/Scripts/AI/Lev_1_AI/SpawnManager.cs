@@ -23,7 +23,9 @@ public class SpawnManager : MonoBehaviour
     
     [FormerlySerializedAs("numberOfEnemiesPerWave")] public int NumberOfEnemiesPerWave = 15;
 
-    [FormerlySerializedAs("enemyPrefab")] public Transform EnemyPrefab; 
+    [FormerlySerializedAs("EnemyPrefab")] [FormerlySerializedAs("enemyPrefab")] public Transform Enemy1Prefab; 
+     public Transform Enemy2Prefab; 
+    // [FormerlySerializedAs("enemyPrefab")] public Transform Enemy3Prefab; 
     
     [FormerlySerializedAs("spawnPoints")] public List<GameObject> SpawnPoints;
     
@@ -81,7 +83,7 @@ public class SpawnManager : MonoBehaviour
 
         foreach (GameObject t in SpawnPoints)
         {
-            Transform enemy = Instantiate(EnemyPrefab, t.transform.position, Quaternion.identity);
+            Transform enemy = Instantiate(Enemy1Prefab, t.transform.position, Quaternion.identity);
             enemy.gameObject.GetComponentInChildren<AIDestinationSetter>().target = _Player;
            _Enemies.Add(enemy.gameObject);
         }
