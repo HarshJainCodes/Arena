@@ -9,4 +9,8 @@ public class ControlScript : MonoBehaviour
 
     public int ActiveVolume { set { _ActiveVolume = value; _VoxelRunTimeManip.SelectedVolume = value; } get { return _ActiveVolume; } }
 
+    public void ColourSet(Color color)
+    {
+        _VoxelRunTimeManip.SetColor(color);
+    }
 }
