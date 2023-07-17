@@ -19,6 +19,8 @@ public class CombineCubes : MonoBehaviour
     /// <summary>
     /// All the barriers that needs to be placed on the borders of the arena
     /// </summary>
+
+    [SerializeField] private GameObject _BarrierParent;
     [SerializeField] private GameObject _BarrierLeft;
     [SerializeField] private GameObject _BarrierRight;
     [SerializeField] private GameObject _BarrierUp;
@@ -181,27 +183,32 @@ public class CombineCubes : MonoBehaviour
                     if (_IsValid(i - 1, j, 5) && _ChunkArray[i - 1, j, 5].GetComponent<Block>().ID == 0)    // left
                     {
                         GameObject barrierLeftGO = Instantiate(_BarrierLeft, new Vector3((i - 1) * gridScale.x, 6.5f * gridScale.z, j * gridScale.y), Quaternion.identity);
+                        barrierLeftGO.transform.parent = _BarrierParent.transform;
                         barrierLeftGO.transform.localScale = gridScale;
                     }
                     if (_IsValid(i + 1, j, 5) && _ChunkArray[i + 1, j, 5].GetComponent<Block>().ID == 0)    // right
                     {
                         GameObject barrierRightGO = Instantiate(_BarrierRight, new Vector3((i + 1) * gridScale.x, 6.5f * gridScale.z, j * gridScale.y), Quaternion.identity);
+                        barrierRightGO.transform.parent = _BarrierParent.transform;
                         barrierRightGO.transform.localScale = gridScale;
                     }
                     if (_IsValid(i, j + 1, 5) && _ChunkArray[i, j + 1, 5].GetComponent<Block>().ID == 0)    // up
                     {
                         GameObject barrierUPGO = Instantiate(_BarrierUp, new Vector3(i * gridScale.x, 6.5f * gridScale.z, (j + 1) * gridScale.y), Quaternion.identity);
+                        barrierUPGO.transform.parent = _BarrierParent.transform;
                         barrierUPGO.transform.localScale = gridScale;
                     }
                     if (_IsValid(i, j - 1, 5) && _ChunkArray[i, j - 1, 5].GetComponent<Block>().ID == 0)    // down
                     {
                         GameObject barrierDownGO = Instantiate(_BarrierDown, new Vector3(i * gridScale.x, 6.5f * gridScale.z, (j - 1) * gridScale.y), Quaternion.identity);
+                        barrierDownGO.transform.parent = _BarrierParent.transform;
                         barrierDownGO.transform.localScale = gridScale;
                     }
                 }
                 else if (j == _GridSize - 1 && b.ID == 0)    // if it is an block
                 {
                     GameObject barrierUpGO1 = Instantiate(_BarrierUp, new Vector3(i * gridScale.x, 6.5f * gridScale.z, (j + 1) * gridScale.y), Quaternion.identity);
+                    barrierUpGO1.transform.parent = _BarrierParent.transform;
                     barrierUpGO1.transform.localScale = gridScale;
                 }
             }
@@ -227,23 +234,28 @@ public class CombineCubes : MonoBehaviour
                     if (_IsValid(i - 1, j, 5) && _ChunkArray[i - 1, j, 5].GetComponent<Block>().ID == 0)
                     {
                         GameObject barrierLeftGO = Instantiate(_BarrierLeft, new Vector3((i - 1) * gridScale.x, 6.5f * gridScale.z, j * gridScale.y), Quaternion.identity);
+                        barrierLeftGO.transform.parent = _BarrierParent.transform;
                         barrierLeftGO.transform.localScale = gridScale;
                     }if (_IsValid(i + 1, j, 5) && _ChunkArray[i + 1, j, 5].GetComponent<Block>().ID == 0)
                     {
                         GameObject barrierRightGO = Instantiate(_BarrierRight, new Vector3((i + 1) * gridScale.x, 6.5f * gridScale.z, j * gridScale.y), Quaternion.identity);
+                        barrierRightGO.transform.parent = _BarrierParent.transform;
                         barrierRightGO.transform.localScale = gridScale;
                     }if (_IsValid(i, j + 1, 5) && _ChunkArray[i, j + 1, 5].GetComponent<Block>().ID == 0)
                     {
                         GameObject barrierUPGO = Instantiate(_BarrierUp, new Vector3(i * gridScale.x, 6.5f * gridScale.z, (j + 1) * gridScale.y), Quaternion.identity);
+                        barrierUPGO.transform.parent = _BarrierParent.transform;
                         barrierUPGO.transform.localScale = gridScale;
                     }if (_IsValid(i, j - 1, 5) && _ChunkArray[i, j - 1, 5].GetComponent<Block>().ID == 0)
                     {
                         GameObject barrierDownGO = Instantiate(_BarrierDown, new Vector3(i * gridScale.x, 6.5f * gridScale.z, (j - 1) * gridScale.y), Quaternion.identity);
+                        barrierDownGO.transform.parent = _BarrierParent.transform;
                         barrierDownGO.transform.localScale = gridScale;
                     }
                 }else if (j == 0 && b.ID == 0)    // if it is an block
                 {
                     GameObject barrierDownGO1 = Instantiate(_BarrierDown, new Vector3(i * gridScale.x, 6.5f * gridScale.z, (j - 1) * gridScale.y), Quaternion.identity);
+                    barrierDownGO1.transform.parent = _BarrierParent.transform;
                     barrierDownGO1.transform.localScale = gridScale;
                 }
             }
@@ -268,23 +280,28 @@ public class CombineCubes : MonoBehaviour
                     if (_IsValid(j - 1, i, 5) && _ChunkArray[j - 1, i, 5].GetComponent<Block>().ID == 0)
                     {
                         GameObject barrierLeftGO = Instantiate(_BarrierLeft, new Vector3((j - 1) * gridScale.x, 6.5f * gridScale.z, i * gridScale.y), Quaternion.identity);
+                        barrierLeftGO.transform.parent = _BarrierParent.transform;
                         barrierLeftGO.transform.localScale = gridScale;
                     }if (_IsValid(j + 1, i, 5) && _ChunkArray[j + 1, i, 5].GetComponent<Block>().ID == 0)
                     {
                         GameObject barrierRightGO = Instantiate(_BarrierRight, new Vector3((j + 1) * gridScale.x, 6.5f * gridScale.z, i * gridScale.y), Quaternion.identity);
+                        barrierRightGO.transform.parent = _BarrierParent.transform;
                         barrierRightGO.transform.localScale = gridScale;
                     }if (_IsValid(j, i + 1, 5) && _ChunkArray[j, i + 1, 5].GetComponent<Block>().ID == 0)
                     {
                         GameObject barrierUpGO = Instantiate(_BarrierUp, new Vector3(j * gridScale.x, 6.5f * gridScale.z, (i + 1) * gridScale.y), Quaternion.identity);
+                        barrierUpGO.transform.parent = _BarrierParent.transform;
                         barrierUpGO.transform.localScale = gridScale;
                     }if (_IsValid(j, i - 1, 5) && _ChunkArray[j, i - 1, 5].GetComponent<Block>().ID == 0)
                     {
                         GameObject barrierDownGO = Instantiate(_BarrierDown, new Vector3(j * gridScale.x, 6.5f * gridScale.z, (i - 1) * gridScale.y), Quaternion.identity);
+                        barrierDownGO.transform.parent = _BarrierParent.transform;
                         barrierDownGO.transform.localScale = gridScale;
                     }
                 }else if (j == 0 && b.ID == 0) // if it is an block 
                 {
                     GameObject barrierleft1 = Instantiate(_BarrierLeft, new Vector3((j - 1) * gridScale.x, 6.5f * gridScale.z, i * gridScale.y), Quaternion.identity);
+                    barrierleft1.transform.parent = _BarrierParent.transform;
                     barrierleft1.transform.localScale = gridScale;
                 }
             }
@@ -309,27 +326,32 @@ public class CombineCubes : MonoBehaviour
                     if (_IsValid(j - 1, i, 5) && _ChunkArray[j - 1, i, 5].GetComponent<Block>().ID == 0)
                     {
                         GameObject barrierLeftGO = Instantiate(_BarrierLeft, new Vector3((j - 1) * gridScale.x, 6.5f * gridScale.z, i * gridScale.y), Quaternion.identity);
+                        barrierLeftGO.transform.parent = _BarrierParent.transform;
                         barrierLeftGO.transform.localScale = gridScale;
                     }
                     if (_IsValid(j + 1, i, 5) && _ChunkArray[j + 1, i, 5].GetComponent<Block>().ID == 0)
                     {
                         GameObject barrierRightGO = Instantiate(_BarrierRight, new Vector3((j + 1) * gridScale.x, 6.5f * gridScale.z, i * gridScale.y), Quaternion.identity);
+                        barrierRightGO.transform.parent = _BarrierParent.transform;
                         barrierRightGO.transform.localScale = gridScale;
                     }
                     if (_IsValid(j, i + 1, 5) && _ChunkArray[j, i + 1, 5].GetComponent<Block>().ID == 0)
                     {
                         GameObject barrierUpGO = Instantiate(_BarrierUp, new Vector3(j * gridScale.x, 6.5f * gridScale.z, (i + 1) * gridScale.y), Quaternion.identity);
+                        barrierUpGO.transform.parent = _BarrierParent.transform;
                         barrierUpGO.transform.localScale = gridScale;
                     }
                     if (_IsValid(j, i - 1, 5) && _ChunkArray[j, i - 1, 5].GetComponent<Block>().ID == 0)
                     {
                         GameObject barrierDownGO = Instantiate(_BarrierDown, new Vector3(j * gridScale.x, 6.5f * gridScale.z, (i - 1) * gridScale.y), Quaternion.identity);
+                        barrierDownGO.transform.parent = _BarrierParent.transform;
                         barrierDownGO.transform.localScale = gridScale;
                     }
                 }
                 else if (j == _GridSize - 1 && b.ID == 0)
                 {
                     GameObject barrierRight1 = Instantiate(_BarrierRight, new Vector3((j + 1) * gridScale.x, 6.5f * gridScale.z, i * gridScale.y), Quaternion.identity);
+                    barrierRight1.transform.parent = _BarrierParent.transform;
                     barrierRight1.transform.localScale = gridScale;
                 }
             }

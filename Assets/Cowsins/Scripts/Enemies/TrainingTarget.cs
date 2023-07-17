@@ -1,5 +1,6 @@
 using Pathfinding;
 using Pathfinding.RVO.Sampled;
+using System;
 using UnityEngine;
 
 public class TrainingTarget : Enemy
@@ -9,6 +10,8 @@ public class TrainingTarget : Enemy
     AiAgent aiAgent;
     private bool isDead = false;
 
+    private EnemyDrop _EnemyDropScript;
+
     public override void Damage(float damage)
     {
         if (isDead) return;
@@ -17,6 +20,14 @@ public class TrainingTarget : Enemy
         aiAgent = GetComponent<AiAgent>();
         // GetComponent<Animator>().Play("Hit_Reaction_2");
     }
+
+    private void Awake()
+    {
+        aiAgent = GetComponent<AiAgent>();
+        aiPath = GetComponent<AIPath>();
+        _EnemyDropScript = GetComponent<EnemyDrop>();
+    }
+
     public override void Die()
     {
         if (isDead) return;
@@ -47,5 +58,6 @@ public class TrainingTarget : Enemy
 	private void onDie()
     {
 	    Destroy(gameObject.transform.parent.gameObject);
-	}
+        _EnemyDropScript.Drop((EnemyDrop.EnemyDrops) UnityEngine.Random.Range(0, Enum.GetValues(typeof(EnemyDrop.EnemyDrops)).Length));
+    }
 }
