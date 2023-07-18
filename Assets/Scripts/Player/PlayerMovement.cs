@@ -467,6 +467,10 @@ namespace Arena
         public float GetLandTime() => landTime;
 
         public Vector3 GetVelocity() => rb.velocity;
+        public void SetCrouch(bool val)
+        {
+            crouching = val;
+        }
     }
 
 }

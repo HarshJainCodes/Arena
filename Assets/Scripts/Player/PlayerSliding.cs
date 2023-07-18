@@ -85,6 +85,7 @@ namespace Arena
         {
             pm.isSliding = false;
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+            pm.SetCrouch(false);
             //rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
     }

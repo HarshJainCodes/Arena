@@ -186,7 +186,8 @@ namespace Arena
                 return;
             if (playerCam == null)
                 return;
-
+            if (!playerCam.gameObject.activeInHierarchy)
+                return;
             const string stateName = "Fire";
             animator.Play(stateName, 0, 0.0f);
             //Reduce ammunition! We just shot, so we need to get rid of one!
