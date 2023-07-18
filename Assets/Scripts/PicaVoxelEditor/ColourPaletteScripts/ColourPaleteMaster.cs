@@ -20,6 +20,11 @@ public class ColourPaleteMaster : MonoBehaviour
 
     public void SetPickedButtonColor(Color value)
     {
-        _pickedButton.value = value;
+        if (_pickedButton != null)
+        {
+            _pickedButton.value = value;
+            _pickedButton.setParentColor();
+            Debug.Log("value");
+        }
     }
 }

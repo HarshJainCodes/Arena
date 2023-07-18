@@ -32,6 +32,7 @@ namespace TS.ColorPicker
         public Color ThisColor;
         [SerializeField] private ColourPaleteMaster _master;
 
+
         #endregion
 
         private void Awake()
@@ -47,8 +48,9 @@ namespace TS.ColorPicker
             _hsbPicker.ValueChanged = HsbPicker_ValueChanged;
             _inputRgb.ValueChanged = InputColorChannels_RGB_ValueChanged;
             _inputHex.ValueChanged = InputHex_ValueChanged;
+            _screenTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
 
-            enabled = false;
+            enabled = true;
         }
         private void Update()
         {
@@ -56,6 +58,7 @@ namespace TS.ColorPicker
             var color = _screenTexture.GetPixel((int)mousePosition.x, (int)mousePosition.y);
 
             UpdateColor(color);
+            ThisColor = _currentColor;
 
             if (Input.anyKeyDown)
             {
@@ -63,8 +66,7 @@ namespace TS.ColorPicker
                 enabled = false;
             }
             Debug.Log("In color picker");
-            ThisColor = _currentColor;
-            _master.SetPickedButtonColor(ThisColor);
+
         }
 
         public Color CurrentColour()
@@ -148,7 +150,7 @@ namespace TS.ColorPicker
 
             enabled = true;
         }
-
+       
         public void UI_Button_Picker()
         {
             StartCoroutine(EnableScreenPicker_Coroutine());
@@ -157,7 +159,10 @@ namespace TS.ColorPicker
         {
             OnSubmit?.Invoke(_currentColor);
 
+            _master.SetPickedButtonColor(_currentColor); 
             //Enable(false);
+            Debug.Log("hi");
+            Debug.Log(CurrentColour());
         }
         public void UI_Button_Cancel()
         {
@@ -189,14 +194,14 @@ namespace TS.ColorPicker
 
                 if(GUILayout.Button("Open"))
                 {
-                    _target.Open();
+                   // _target.Open();
                 }
 
                 EditorGUILayout.BeginHorizontal();
                 _color = EditorGUILayout.ColorField(_color);
                 if (GUILayout.Button("Open with Color"))
                 {
-                    _target.Open(_color);
+                    //_target.Open(_color);
                 }
                 EditorGUILayout.EndHorizontal();
             }
