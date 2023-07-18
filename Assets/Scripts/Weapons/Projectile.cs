@@ -24,8 +24,10 @@ public class Projectile : MonoBehaviour
 	public Transform[] metalImpactPrefabs;
 	public Transform[] dirtImpactPrefabs;
 	public Transform[] concreteImpactPrefabs;
-	// Start is called before the first frame update
-	private void Start()
+
+    private float EnemyDamage = 2;
+    // Start is called before the first frame update
+    private void Start()
 	{
 		//Grab the game mode service, we need it to access the player character!
 		
@@ -38,8 +40,13 @@ public class Projectile : MonoBehaviour
 	}
 	private void OnCollisionEnter(Collision collision)
 	{
-		//Ignore collisions with other projectiles.
-		if (collision.gameObject.GetComponent<Projectile>() != null)
+        if (collision.collider.gameObject.TryGetComponent<TrainingTarget>(out TrainingTarget trainingTarget))
+        {
+            trainingTarget.Damage(EnemyDamage);
+        }
+
+        //Ignore collisions with other projectiles.
+        if (collision.gameObject.GetComponent<Projectile>() != null)
 			return;
 
 		// //Ignore collision if bullet collides with "Player" tag

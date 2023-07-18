@@ -82886,7 +82886,6 @@ GameObject:
   - component: {fileID: 2794244529140090394}
   - component: {fileID: 9125732770733866005}
   - component: {fileID: 6461360210587375312}
-  - component: {fileID: 9037289554311995422}
   m_Layer: 0
   m_Name: GodOffset
   m_TagString: Untagged
@@ -83199,7 +83198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Distance: 11.99
-  Angle: 30
+  Angle: 45
   Height: 1
   MeshColor: {r: 1, g: 0, b: 0, a: 1}
   ScanFrequency: 30

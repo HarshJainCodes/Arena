@@ -112,7 +112,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
         // Custom event on damaged
         events.OnDamaged.Invoke();
-        UI.GetComponent<UIController>().Hitmarker();
+        /*UI.GetComponent<UIController>().Hitmarker();
         // If you do not want to show a damage pop up, stop, do not continue
         if (!showUI) return;
             GameObject popup = Instantiate(damagePopUp,transform.position,Quaternion.identity) as GameObject;
@@ -121,7 +121,7 @@ public class Enemy : MonoBehaviour, IDamageable
          else 
             popup.transform.GetChild(0).GetComponent<TMP_Text>().text = oldDmg.ToString("F1");
             float xRand = Random.Range(-xVariation, xVariation);
-            popup.transform.position = popup.transform.position + new Vector3(xRand, 0, 0);
+            popup.transform.position = popup.transform.position + new Vector3(xRand, 0, 0);*/
     }
     public virtual void Die()
     {
