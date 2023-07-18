@@ -112,6 +112,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
         // Custom event on damaged
         events.OnDamaged.Invoke();
+
+        return;
         UI.GetComponent<UIController>().Hitmarker();
         // If you do not want to show a damage pop up, stop, do not continue
         if (!showUI) return;

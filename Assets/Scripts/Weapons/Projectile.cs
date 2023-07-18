@@ -24,6 +24,9 @@ public class Projectile : MonoBehaviour
 	public Transform[] metalImpactPrefabs;
 	public Transform[] dirtImpactPrefabs;
 	public Transform[] concreteImpactPrefabs;
+
+	private float EnemyDamage = 2;
+
 	// Start is called before the first frame update
 	private void Start()
 	{
@@ -38,6 +41,12 @@ public class Projectile : MonoBehaviour
 	}
 	private void OnCollisionEnter(Collision collision)
 	{
+
+		if (collision.collider.gameObject.TryGetComponent<TrainingTarget>(out TrainingTarget trainingTarget))
+		{
+			trainingTarget.Damage(EnemyDamage);
+		}
+
 		//Ignore collisions with other projectiles.
 		if (collision.gameObject.GetComponent<Projectile>() != null)
 			return;

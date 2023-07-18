@@ -14,7 +14,9 @@ GameObject:
   - component: {fileID: 3649526429121574286}
   - component: {fileID: 3649526429121574287}
   - component: {fileID: 3649526429121574284}
+  - component: {fileID: -7010309587176689584}
   - component: {fileID: 3649526429121574285}
+  - component: {fileID: 8275656866240786169}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -183,6 +185,22 @@ MonoBehaviour:
   fieldOfViewWeapon: 55
   holdToRun: 1
   holdToAim: 1
+--- !u!114 &-7010309587176689584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3649526429121574282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d97621dfed4a4448a23f9764de6083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerOrientation: {fileID: 0}
+  DropLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &3649526429121574285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,6 +491,19 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &8275656866240786169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3649526429121574282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde957da2fb6e4943907e5415376f575, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 100
 --- !u!1 &3649526429603080907
 GameObject:
   m_ObjectHideFlags: 0
