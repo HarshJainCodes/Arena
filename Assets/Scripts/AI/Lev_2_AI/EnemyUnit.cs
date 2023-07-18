@@ -26,7 +26,7 @@ public class EnemyUnit : MonoBehaviour
 		else
 		{
 			Agent.GetComponent<AIPath>().endReachedDistance = endDistance;
-			Agent.GetComponent<AIDestinationSetter>().target = SurroundManager.Instance.Target;
+			Agent.GetComponent<AIDestinationSetter>().target = Agent.playerTransform;
 			Agent.stateMachine.ChangeState(AiStateType.Chase);
 		}
 	}

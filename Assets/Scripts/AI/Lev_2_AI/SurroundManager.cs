@@ -36,14 +36,14 @@ public class SurroundManager : MonoBehaviour
 
 	private void Update()
 	{
-		for (int i = 0; i < Units.Count; i++)
-		{
-			if (Units[i].Agent.stateMachine.currentStateType != AiStateType.AttackSurround)
-			{
-				Units.RemoveAt(i);
-				i--;
-			}
-		}
+		// for (int i = 0; i < Units.Count; i++)
+		// {
+		// 	if (Units[i].Agent.stateMachine.currentStateType != AiStateType.AttackSurround)
+		// 	{
+		// 		Units.RemoveAt(i);
+		// 		i--;
+		// 	}
+		// }
 		MakeAgentsCircleTarget();
 	}
 

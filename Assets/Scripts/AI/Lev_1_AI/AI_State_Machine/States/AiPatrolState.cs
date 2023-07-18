@@ -1,11 +1,19 @@
-﻿using Pathfinding;
+﻿using System;
+using Pathfinding;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace AI.Lev_1_AI.AI_State_Machine.States
 {
 	public class AiPatrolState : AiState
 	{
 		public AiAgent Agent;
-		public float range = 5f;
+		public AIPath AiPath;
+		public AIPath ai => Agent.GetComponent<AIPath>();
+		public float range = 10f;
+		public float endDistance;
+		public float t = 8f;
+		private Vector3 _Spawn;
 
 		public AiStateType GetStateType()
 		{
@@ -14,25 +22,94 @@ namespace AI.Lev_1_AI.AI_State_Machine.States
 
 		public void Enter(AiAgent agent)
 		{
-			agent.GetComponent<AIDestinationSetter>().enabled = true;
-			agent.GetComponent<AIPath>().enabled = true;
-			agent.GetComponent<Seeker>().enabled = true;
+			Agent = agent;
+			_Spawn = Agent.transform.position;
+			endDistance = Agent.GetComponent<AIPath>().endReachedDistance;
+			AiPath = Agent.GetComponent<AIPath>();
+			Agent.GetComponent<AIDestinationSetter>().enabled = true;
+			Agent.GetComponent<AIPath>().enabled = true;
+			Agent.GetComponent<Seeker>().enabled = true;
+			AiPath.maxSpeed = 2f;
+			MoveTo(PickRandomPoint());
 		}
 
 		public void Update(AiAgent agent)
 		{
-			agent.GetComponent<AIDestinationSetter>().enabled = true;
-			agent.GetComponent<AIPath>().enabled = true;
-			agent.GetComponent<Seeker>().enabled = true;
-			
+			Agent.GetComponent<AIDestinationSetter>().enabled = true;
+			Agent.GetComponent<AIPath>().enabled = true;
+			Agent.GetComponent<Seeker>().enabled = true;
 
+			if (Agent.sensor.IsInSight(Agent.playerTransform.gameObject))
+			{
+				AiPath.maxSpeed = 4f;
+				Agent.GetComponent<AIPath>().endReachedDistance = endDistance;
+				Agent.GetComponent<AIDestinationSetter>().target = Agent.playerTransform;
+				Agent.stateMachine.ChangeState(AiStateType.Chase);
+			}
+
+			if (!ai.pathPending && (ai.reachedEndOfPath || !ai.hasPath))
+			{
+				// t -= Time.deltaTime;
+				// if (t <= 0)
+				{
+					MoveTo(PickRandomPoint());
+					// t = 8f;
+				}
+				ai.SearchPath();
+			}
 		}
 
 		public void Exit(AiAgent agent)
 		{
-			agent.GetComponent<AIDestinationSetter>().enabled = false;
-			agent.GetComponent<AIPath>().enabled = false;
-			agent.GetComponent<Seeker>().enabled = false;
+			AiPath.maxSpeed = 4f;
+			Agent.GetComponent<AIPath>().endReachedDistance = endDistance;
+			Agent.GetComponent<AIDestinationSetter>().target = Agent.playerTransform;
+			Agent.GetComponent<AIDestinationSetter>().enabled = false;
+			Agent.GetComponent<AIPath>().enabled = false;
+			Agent.GetComponent<Seeker>().enabled = false;
+		}
+
+		Vector3 PickRandomPoint()
+		{
+			Vector3 point = Random.insideUnitSphere * range;
+
+			point.y = 0;
+			point += Agent.transform.position;
+			while(DistanceFromSpawn(point) >= 25f)
+			{
+				point = Random.insideUnitSphere * range;
+				point.y = 0;
+				point += Agent.transform.position;
+			}
+			return point;
+		}
+
+		public void MoveTo(Vector3 position)
+		{
+			Agent.patrolPoint.position = position;
+
+			// if (ai.velocity.magnitude == 0)
+			// {
+			// 	return;
+			// }
+
+			if (!Agent.sensor.IsInSight(Agent.playerTransform.gameObject))
+			{
+				Agent.GetComponent<AIPath>().endReachedDistance = 1f;
+				Agent.GetComponent<AIDestinationSetter>().target = Agent.patrolPoint;
+			}
+			else
+			{
+				AiPath.maxSpeed = 4f;
+				Agent.GetComponent<AIPath>().endReachedDistance = endDistance;
+				Agent.GetComponent<AIDestinationSetter>().target = Agent.playerTransform;
+				Agent.stateMachine.ChangeState(AiStateType.Chase);
+			}
+		}
+
+		private float DistanceFromSpawn(Vector3 point)
+		{
+			return (float)(Math.Sqrt(Math.Pow(point.x - _Spawn.x, 2) + Math.Pow(point.z - _Spawn.z, 2)));
 		}
 	}
 }

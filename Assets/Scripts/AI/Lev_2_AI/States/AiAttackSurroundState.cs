@@ -28,7 +28,7 @@ public class AiAttackSurroundState : AiState
 		agent.GetComponent<AIPath>().enabled = true;
 		agent.GetComponent<Seeker>().enabled = true;
 
-		Vector3 lookPos = SurroundManager.Instance.Target.position - agent.transform.position;
+		Vector3 lookPos = agent.playerTransform.position - agent.transform.position;
 		lookPos.y = 0;
 		Quaternion rotation = Quaternion.LookRotation(lookPos);
 		agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, rotation, 0.5f);
@@ -48,8 +48,10 @@ public class AiAttackSurroundState : AiState
 
 	public void Exit(AiAgent agent)
 	{
-		agent.GetComponent<AIDestinationSetter>().enabled = false;
-		agent.GetComponent<AIPath>().enabled = false;
-		agent.GetComponent<Seeker>().enabled = false;
+		SurroundManager.Instance.Units.Remove(agent.GetComponent<EnemyUnit>());
+		agent.GetComponent<AIDestinationSetter>().target = agent.playerTransform;
+		agent.GetComponent<AIDestinationSetter>().enabled = true;
+		agent.GetComponent<AIPath>().enabled = true;
+		agent.GetComponent<Seeker>().enabled = true;
 	}
 }

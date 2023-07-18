@@ -7,12 +7,20 @@ public class TrainingTarget : Enemy
 {
     [SerializeField]private float timeToDie = 3;
     AIPath aiPath;
-    AiAgent aiAgent;
+    SpawnManager spawnManager;
+    public AiAgent aiAgent;
     private bool isDead = false;
-
+    
     private EnemyDrop _EnemyDropScript;
-
-    public override void Damage(float damage)
+    
+    private void Awake()
+    {
+        aiAgent = GetComponent<AiAgent>();
+        aiPath = GetComponent<AIPath>();
+        spawnManager = FindObjectOfType<SpawnManager>();
+        _EnemyDropScript = GetComponent<EnemyDrop>();
+    }
+	public override void Damage(float damage)
     {
         if (isDead) return;
         if(GetComponent<AiAgent>().stateMachine.currentStateType == AiStateType.Idle) GetComponent<AiAgent>().stateMachine.ChangeState(AiStateType.Chase);
@@ -21,12 +29,12 @@ public class TrainingTarget : Enemy
         // GetComponent<Animator>().Play("Hit_Reaction_2");
     }
 
-    private void Awake()
-    {
-        aiAgent = GetComponent<AiAgent>();
-        aiPath = GetComponent<AIPath>();
-        _EnemyDropScript = GetComponent<EnemyDrop>();
-    }
+    // private void Awake()
+    // {
+    //     aiAgent = GetComponent<AiAgent>();
+    //     aiPath = GetComponent<AIPath>();
+    //     _EnemyDropScript = GetComponent<EnemyDrop>();
+    // }
 
     public override void Die()
     {
@@ -35,7 +43,9 @@ public class TrainingTarget : Enemy
 
 		events.OnDeath.Invoke();
         GetComponentInParent<Animator>().Play("DieAnim");
-        GetComponent<CapsuleCollider>().enabled = false;
+        spawnManager.Enemies.Remove(transform.parent.gameObject);
+
+		GetComponent<CapsuleCollider>().enabled = false;
 		// aiPath.maxSpeed = 0;
 
 		if (shieldSlider != null)shieldSlider.gameObject.SetActive(false);
@@ -48,7 +58,6 @@ public class TrainingTarget : Enemy
 
         // if (transform.parent.GetComponent<CompassElement>() != null) transform.parent.GetComponent<CompassElement>().Remove();
         Invoke("onDie", timeToDie);
-
         GetComponent<AIDestinationSetter>().enabled = false;
         GetComponent<AIPath>().enabled = false;
         GetComponent<Seeker>().enabled = false;

@@ -102,6 +102,7 @@ public class Shooter : MonoBehaviour
 		//This defines the first hit on the object
 		Vector3 dir = CowsinsUtilities.GetSpreadDirection(weapon.spreadAmount, firePoint[0]);
 		Ray ray = new Ray(firePoint[0].transform.position, dir);
+		GetComponentInParent<Animator>().Play("ShootAnim");
 		hitPlayer = Physics.Raycast(ray, out hit, weapon.bulletRange, hitLayer);
 		if (hitPlayer)
 		{

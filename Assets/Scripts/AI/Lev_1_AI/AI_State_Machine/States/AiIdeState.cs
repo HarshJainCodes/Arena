@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class AiIdeState : AiState
 {
+	public float dotProduct;
+
 	public AiStateType GetStateType()
 	{
 		return AiStateType.Idle;
@@ -32,7 +34,7 @@ public class AiIdeState : AiState
 
 		playerDirection.Normalize();
 
-		float dotProduct = Vector3.Dot(playerDirection, agentDirection);
+		dotProduct = Vector3.Dot(playerDirection, agentDirection);
 		if (dotProduct > 0.8660254037f)
 		{
 			agent.GetComponent<AIDestinationSetter>().enabled = true;

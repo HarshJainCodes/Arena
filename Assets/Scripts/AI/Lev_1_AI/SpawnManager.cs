@@ -22,14 +22,13 @@ public class SpawnManager : MonoBehaviour
     private Transform _Player;
     
     [FormerlySerializedAs("numberOfEnemiesPerWave")] public int NumberOfEnemiesPerWave = 15;
-
-    [FormerlySerializedAs("EnemyPrefab")] [FormerlySerializedAs("enemyPrefab")] public Transform Enemy1Prefab; 
-     public Transform Enemy2Prefab; 
-    // [FormerlySerializedAs("enemyPrefab")] public Transform Enemy3Prefab; 
+	public List<Transform> EnemyPrefabs;
+	private int _CurrentEnemyIndex = 0;
+    public Transform EnemyPrefab;    
     
     [FormerlySerializedAs("spawnPoints")] public List<GameObject> SpawnPoints;
     
-    private List<GameObject> _Enemies;
+    [FormerlySerializedAs("_Enemies")] public List<GameObject> Enemies;
     
     bool _IsGeneratingEnemies = false;
 
@@ -38,9 +37,11 @@ public class SpawnManager : MonoBehaviour
     [FormerlySerializedAs("maxEnemyDistance")] public int MaxEnemyDistance = 30;
     void Start()
     {
-        _CurrentTime = TimeBetweenWaves;
+        // EnemyPrefabs = GetComponent<List<Transform>>();
+        EnemyPrefab = EnemyPrefabs[_CurrentEnemyIndex];
+		_CurrentTime = TimeBetweenWaves;
         _IsTimerRunning = true;
-        _Enemies = new List<GameObject>();
+        Enemies = new List<GameObject>();
         _Player = GameObject.FindGameObjectWithTag("Player").transform;
         //GenerateNewWave();
         Debug.Log("generate wave called");
@@ -53,22 +54,26 @@ public class SpawnManager : MonoBehaviour
             return;
         if(Generator.IsGridGenerated)
         {
-            if(_IsTimerRunning)
-            {
-                _CurrentTime -= Time.deltaTime;
-                if(_CurrentTime<=0 && _CurrentWave<NumberOfWaves)
-                {
-                    _IsTimerRunning = false;
+	        if (Enemies.Count == 0)
+	        {
+		        if(_IsTimerRunning)
+		        {
+			        _CurrentTime -= Time.deltaTime;
+			        if(_CurrentTime<=0 && _CurrentWave<NumberOfWaves)
+			        {
+				        _IsTimerRunning = false;
 
-                    if (!_IsGeneratingEnemies)
-                    {
-                        GenerateNewWave();
+				        if (!_IsGeneratingEnemies)
+				        {
+					        EnemyPrefab = EnemyPrefabs[_CurrentEnemyIndex];
+					        GenerateNewWave();
+					        _CurrentEnemyIndex++;
+				        }
 
-                    }
-
-                }
+			        }
                 
-            }
+		        }
+	        }
         }
     }
 
@@ -83,9 +88,9 @@ public class SpawnManager : MonoBehaviour
 
         foreach (GameObject t in SpawnPoints)
         {
-            Transform enemy = Instantiate(Enemy1Prefab, t.transform.position, Quaternion.identity);
+            Transform enemy = Instantiate(EnemyPrefab, t.transform.position, Quaternion.identity);
             enemy.gameObject.GetComponentInChildren<AIDestinationSetter>().target = _Player;
-           _Enemies.Add(enemy.gameObject);
+           Enemies.Add(enemy.gameObject);
         }
 
         _IsGeneratingEnemies = false;
