@@ -1,4 +1,3 @@
-using Microsoft.Unity.VisualStudio.Editor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,7 +18,7 @@ public class PalateGenerator : MonoBehaviour
             item.value = new Color(i / (float)images.Length, i / (float)images.Length, i / (float)images.Length);
             item.setParentColor();
             //Debug.Log(item.color);
-            PrefabUtility.RecordPrefabInstancePropertyModifications(item);
+            //PrefabUtility.RecordPrefabInstancePropertyModifications(item);
             i++;
 
             //Debug.Log(item.name);

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
 
 public class PalatteGeneratorCKYB : MonoBehaviour
 {
@@ -73,7 +73,7 @@ public class PalatteGeneratorCKYB : MonoBehaviour
 
             item.value = new Color(r / (float)images.Length, g / (float)images.Length, b / (float)images.Length,1);
             //Debug.Log(r);
-            PrefabUtility.RecordPrefabInstancePropertyModifications(item);
+            //PrefabUtility.RecordPrefabInstancePropertyModifications(item);
             i++;
         }
     }
