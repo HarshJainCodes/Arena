@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 4134639276840700856}
   m_Layer: 3
   m_Name: 4side
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
