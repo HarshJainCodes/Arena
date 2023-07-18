@@ -9,6 +9,7 @@ TagManager:
   - Critical
   - Wall
   - Ground
+  - SpawnMan
   layers:
   - Default
   - TransparentFX
