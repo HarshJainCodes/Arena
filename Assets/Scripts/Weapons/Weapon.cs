@@ -76,6 +76,47 @@ namespace Arena
         [SerializeField]
         private Transform playerCam;
 
+        [Tooltip("Holster Audio Clip.")]
+        [SerializeField]
+        private AudioClip audioClipHolster;
+
+        [Tooltip("Unholster Audio Clip.")]
+        [SerializeField]
+        private AudioClip audioClipUnholster;
+
+
+        [Tooltip("Reload Audio Clip.")]
+        [SerializeField]
+        private AudioClip audioClipReload;
+
+        [Tooltip("Reload Empty Audio Clip.")]
+        [SerializeField]
+        private AudioClip audioClipReloadEmpty;
+
+
+        [Tooltip("Reload Open Audio Clip.")]
+        [SerializeField]
+        private AudioClip audioClipReloadOpen;
+
+        [Tooltip("Reload Insert Audio Clip.")]
+        [SerializeField]
+        private AudioClip audioClipReloadInsert;
+
+        [Tooltip("Reload Close Audio Clip.")]
+        [SerializeField]
+        private AudioClip audioClipReloadClose;
+
+        
+
+
+        [Tooltip("AudioClip played when this weapon is fired without any ammunition.")]
+        [SerializeField]
+        private AudioClip audioClipFireEmpty;
+
+        [Tooltip("")]
+        [SerializeField]
+        private AudioClip audioClipBoltAction;
+
         private Animator animator;
 
         private int ammunitionCurrent;
@@ -135,21 +176,27 @@ namespace Arena
         {
             const string boolName = "Reloading";
             animator.SetBool(boolName, true);
+            AudioManagerServices.instance.PlayOneShot(HasAmmunition() ? audioClipReload : audioClipReloadEmpty, new AudioSettings(1.0f, 0.0f, false));
             animator.Play(cycledReload ? "Reload Open" : (HasAmmunition() ? "Reload" : "Reload Empty"), 0, 0.0f);
         }
 
         public void Fire(float spreadMultiplier = 1f)
         {
+            if (muzzleBehaviour == null)
+                return;
+            if (playerCam == null)
+                return;
+
             const string stateName = "Fire";
             animator.Play(stateName, 0, 0.0f);
             //Reduce ammunition! We just shot, so we need to get rid of one!
             ammunitionCurrent = Mathf.Clamp(ammunitionCurrent - 1, 0, maxAmmo);
-            if (playerCam == null)
-                return;
+            
             //Set the slide back if we just ran out of ammunition.
             if (ammunitionCurrent == 0)
                 SetSlideBack(1);
 
+            muzzleBehaviour.Effect();
             for (var i = 0; i < shotCount; i++)
             {
                 //Determine a random spread value using all of our multipliers.
@@ -222,8 +269,50 @@ namespace Arena
         public bool HasAmmunition() => ammunitionCurrent > 0;
         public RuntimeAnimatorController GetAnimatorController() => controller;
 
+
         public WeaponAttachmentManager GetAttachmentManager() => attachmentManager;
 
+        public  AudioClip GetAudioClipHolster() => audioClipHolster;
+        /// <summary>
+        /// GetAudioClipUnholster.
+        /// </summary>
+        public  AudioClip GetAudioClipUnholster() => audioClipUnholster;
+
+        /// <summary>
+        /// GetAudioClipReload.
+        /// </summary>
+        public  AudioClip GetAudioClipReload() => audioClipReload;
+        /// <summary>
+        /// GetAudioClipReloadEmpty.
+        /// </summary>
+        public  AudioClip GetAudioClipReloadEmpty() => audioClipReloadEmpty;
+
+        /// <summary>
+        /// GetAudioClipReloadOpen.
+        /// </summary>
+        public  AudioClip GetAudioClipReloadOpen() => audioClipReloadOpen;
+        /// <summary>
+        /// GetAudioClipReloadInsert.
+        /// </summary>
+        public  AudioClip GetAudioClipReloadInsert() => audioClipReloadInsert;
+        /// <summary>
+        /// GetAudioClipReloadClose.
+        /// </summary>
+        public  AudioClip GetAudioClipReloadClose() => audioClipReloadClose;
+
+        /// <summary>
+        /// GetAudioClipFireEmpty.
+        /// </summary>
+        public  AudioClip GetAudioClipFireEmpty() => audioClipFireEmpty;
+        /// <summary>
+        /// GetAudioClipBoltAction.
+        /// </summary>
+        public  AudioClip GetAudioClipBoltAction() => audioClipBoltAction;
+
+        /// <summary>
+        /// GetAudioClipFire.
+        /// </summary>
+        public  AudioClip GetAudioClipFire() => muzzleBehaviour.GetAudioClipFire();
 
     }
 }

@@ -12,6 +12,10 @@ public class Muzzle : MonoBehaviour
     [Tooltip("Sprite. Displayed on the player's interface.")]
     [SerializeField]
     private Sprite sprite;
+    
+    [SerializeField]
+    public AudioClip  audioClipFire;
+
 
     [Tooltip("Firing Particles.")]
     [SerializeField]
@@ -78,6 +82,7 @@ public class Muzzle : MonoBehaviour
         if (particles != null)
             particles.Emit(flashParticlesCount);
 
+        AudioManagerServices.instance.PlayOneShot(audioClipFire,new AudioSettings(1.0f,0.0f,true));
         //Make sure that we have a light to flash!
         if (flashLight != null)
         {
@@ -98,6 +103,7 @@ public class Muzzle : MonoBehaviour
 
     public  Light GetFlashLight() => flashLight;
     public  float GetFlashLightDuration() => flashLightDuration;
+    public AudioClip GetAudioClipFire() => audioClipFire;
 
     private IEnumerator DisableLight()
     {

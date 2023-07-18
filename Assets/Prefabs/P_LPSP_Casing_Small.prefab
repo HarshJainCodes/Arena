@@ -124,6 +124,13 @@ MonoBehaviour:
   maximumRotation: 360
   despawnTime: 1
   speed: 2500
+  casingSounds:
+  - {fileID: 8300000, guid: 82fd1b9495a6b2045bbeabe4b7c168da, type: 3}
+  - {fileID: 8300000, guid: 9900c91b18eff614bb5654ec3471c41a, type: 3}
+  - {fileID: 8300000, guid: 978c88d300d39be41bc7eba2331d1c4c, type: 3}
+  - {fileID: 8300000, guid: 1715c914ea52a9f4ebac3ad860573e80, type: 3}
+  - {fileID: 8300000, guid: b8431057c404b004db076407851e3ede, type: 3}
+  audioSource: {fileID: 82444821930212418}
 --- !u!82 &82444821930212418
 AudioSource:
   m_ObjectHideFlags: 0

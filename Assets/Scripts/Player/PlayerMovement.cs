@@ -120,6 +120,8 @@ namespace Arena
         private float landTime;
         [HideInInspector]
         public bool canDoublJump = false;
+        public AudioClip jumpStart;
+        public AudioClip jumpLand;
         /* [SerializeField]
          private bool canCrouch = true;
 
@@ -258,6 +260,7 @@ namespace Arena
                 jumping = false;
                 canDoublJump = false;
                 landTime = Time.time;
+                AudioManagerServices.instance.PlayOneShot(jumpLand, new AudioSettings(0.5f, 0.0f, true));
             }
             else if (wasGrounded && !grounded)
             {
@@ -354,6 +357,7 @@ namespace Arena
                 DoubleJump();
                 return;
             }
+            AudioManagerServices.instance.PlayOneShot(jumpStart, new AudioSettings(0.5f, 0.0f, true));
 
             canDoublJump = true;
             jumping = true;
@@ -361,6 +365,7 @@ namespace Arena
             exitingSlope = true;
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
             lastJumpTime = Time.deltaTime;
             readyToJump = false;
             Invoke(nameof(ResetJump), jumpCooldown);
@@ -460,6 +465,8 @@ namespace Arena
         public float GetMultiplierBackwards() => walkingMultiplierBackwards;
 
         public float GetLandTime() => landTime;
+
+        public Vector3 GetVelocity() => rb.velocity;
     }
 
 }
