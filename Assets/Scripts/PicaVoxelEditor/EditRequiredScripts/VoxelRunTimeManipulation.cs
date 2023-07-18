@@ -97,6 +97,8 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                 //stores the array position of the point in space
                 PicaVoxelPoint temp=currentVoxelVolume.GetVoxelArrayPosition(screenRay.GetPoint(d));
                 //checks if that voxel is active
+                int halfCubeSize = currentVoxelVolume.XSize/2;
+                //stores half of the cube size so that mirror functions
                 if (v.HasValue && v.Value.Active)
                 { 
                     switch (_typeOfOperation)
@@ -126,8 +128,8 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                                 if(_MirrorChange)
                                 {
                                     PicaVoxelPoint p = currentVoxelVolume.GetVoxelArrayPosition(buildPos);
-                                    p.X = p.X - 16;
-                                    p.X = 16 - p.X - 1;
+                                    p.X = p.X - halfCubeSize ;
+                                    p.X = halfCubeSize - p.X - 1;
                                     Voxel? v3=currentVoxelVolume.GetVoxelAtArrayPosition(p.X,p.Y,p.Z);
                                     if(v3.HasValue && !v3.Value.Active)
                                     {
@@ -153,8 +155,8 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                             if(_MirrorChange)
                             {
                                 PicaVoxelPoint p = currentVoxelVolume.GetVoxelArrayPosition(screenRay.GetPoint(d));
-                                p.X = p.X - 16;
-                                p.X = 16 - p.X -1;
+                                p.X = p.X - halfCubeSize;
+                                p.X = halfCubeSize - p.X -1;
                                 Voxel? v3 = currentVoxelVolume.GetVoxelAtArrayPosition(p.X,p.Y,p.Z);
                                 if (v3.HasValue && v3.Value.Active)
                                 {
@@ -180,8 +182,8 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                             if (_MirrorChange)
                             {
                                 PicaVoxelPoint p = currentVoxelVolume.GetVoxelArrayPosition(screenRay.GetPoint(d));
-                                p.X = p.X - 16;
-                                p.X = 16 - p.X -1;
+                                p.X = p.X - halfCubeSize;
+                                p.X = halfCubeSize - p.X -1;
                                 Voxel? v3 = currentVoxelVolume.GetVoxelAtArrayPosition(p.X, p.Y, p.Z);
                                 if (v3.HasValue && v3.Value.Active)
                                 {
