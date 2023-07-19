@@ -35,7 +35,7 @@ public class AiAttackSurroundState : AiState
 		t -= Time.deltaTime;
 		if (t <= 0)
 		{
-			if (agent.sensor.IsInSight(agent.playerTransform.gameObject))
+			// if (agent.sensor.IsInSight(agent.playerTransform.gameObject))
 				agent.GetComponentInChildren<Shooter>().Shoot();
 			t = 1;
 		}

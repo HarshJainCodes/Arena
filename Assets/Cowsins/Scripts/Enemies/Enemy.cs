@@ -128,11 +128,11 @@ public class Enemy : MonoBehaviour, IDamageable
         // Custom event on damaged
         events.OnDeath.Invoke();
 
-        // Does it display killfeed on death? 
-        if (UI.GetComponent<UIController>().displayEvents)
-        {
-            UI.GetComponent<UIController>().AddKillfeed(_name);
-        }
+        // // Does it display killfeed on death? 
+        // if (UI.GetComponent<UIController>().displayEvents)
+        // {
+        //     UI.GetComponent<UIController>().AddKillfeed(_name);
+        // }
         Destroy(this.gameObject);
     }
 }

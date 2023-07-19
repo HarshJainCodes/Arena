@@ -33,7 +33,13 @@ public class Shooter : MonoBehaviour
 				bulletsPerFire = weapon.bulletsPerFire;
 				StartCoroutine(HandleShooting());
 			}
-			if (weapon.timeBetweenShots == 0) SoundManager.Instance.PlaySound(weapon.audioSFX.firing, 0, weapon.pitchVariationFiringSFX, 0);
+
+			if (weapon.timeBetweenShots == 0)
+			{
+				AudioManagerServices.instance.PlayOneShot(weapon.audioSFX.firing,new AudioSettings(1,0,true));
+			}
+
+			//SoundManager.Instance.PlaySound(weapon.audioSFX.firing, 0, weapon.pitchVariationFiringSFX, 0);}
 			Invoke("CanShoot", weapon.fireRate);
 		}
 		else if (shootstyle == 2) //Melee
@@ -106,11 +112,11 @@ public class Shooter : MonoBehaviour
 		hitPlayer = Physics.Raycast(ray, out hit, weapon.bulletRange, hitLayer);
 		if (hitPlayer)
 		{
-			float damageMultiplier = 1.5f;
+			// float damageMultiplier = 1.5f;
 			// float dmg = .1f * damageMultiplier;
-			float dmg = weapon.damagePerBullet * damageMultiplier;
+			float dmg = weapon.damagePerBullet * weapon.criticalDamageMultiplier;
 			Hit(hit.collider.gameObject.layer, dmg, hit, true);
-			hitObj = hit.collider.transform;
+			hitObj = hit.collider.transform; 
 
 			//Handle Penetration
 			Ray newRay = new Ray(hit.point, ray.direction);
@@ -120,7 +126,7 @@ public class Shooter : MonoBehaviour
 			{
 				if (hitObj != newHit.collider.transform)
 				{
-					float dmg_ = weapon.damagePerBullet * damageMultiplier * weapon.penetrationDamageReduction;
+					float dmg_ = weapon.damagePerBullet * weapon.criticalDamageMultiplier * weapon.penetrationDamageReduction;
 					Hit(newHit.collider.gameObject.layer, dmg_, newHit, true);
 				}
 			}
