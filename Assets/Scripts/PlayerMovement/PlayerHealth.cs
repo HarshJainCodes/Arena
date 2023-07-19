@@ -1,11 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int Health;
-    private int MaxHealth;
+    public float Health;
+    private float MaxHealth;
+
+    public event EventHandler<float> OnHealthBarChanged;
 
     // Start is called before the first frame update
     void Start()
@@ -14,14 +17,16 @@ public class PlayerHealth : MonoBehaviour
         MaxHealth = 100;
     }
 
-    public void AddHealthToPlayer(int amount)
+    public void AddHealthToPlayer(float amount)
     {
         Health = Mathf.Min(MaxHealth, Health + amount);
+        OnHealthBarChanged?.Invoke(this, Health);
     }
 
-    public void DamagePlayer(int amount)
+    public void DamagePlayer(float amount)
     {
         Health = Mathf.Max(0, Health - amount);
+        OnHealthBarChanged?.Invoke(this, Health);
 
         if (Health <= 0)
         {
