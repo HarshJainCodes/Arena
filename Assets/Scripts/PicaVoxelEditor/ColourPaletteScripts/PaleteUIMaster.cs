@@ -27,5 +27,9 @@ public class PaleteUIMaster : MonoBehaviour
         {
             _ColourPicker.SetActive(true);
         }
+        else
+        {
+            _ColourPicker.SetActive(false);
+        }
     }
 }
