@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AiAttackSurroundState : AiState
+public class AiAttackSurroundState : IAiState
 {
 	private float t = 1f;
 	public AIPath aiPath;
@@ -35,7 +35,7 @@ public class AiAttackSurroundState : AiState
 		t -= Time.deltaTime;
 		if (t <= 0)
 		{
-			if (agent.sensor.IsInSight(agent.playerTransform.gameObject))
+			// if (agent.sensor.IsInSight(agent.playerTransform.gameObject))
 				agent.GetComponentInChildren<Shooter>().Shoot();
 			t = 1;
 		}

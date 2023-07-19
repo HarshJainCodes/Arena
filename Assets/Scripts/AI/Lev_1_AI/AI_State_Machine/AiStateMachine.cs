@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AiStateMachine 
 {
-    public AiState[] states;
+    public IAiState[] states;
     public AiAgent agent;
     public AiStateType currentStateType;
 
@@ -12,16 +12,16 @@ public class AiStateMachine
     {
 	    this.agent = agent;
         int numStates = System.Enum.GetNames(typeof(AiStateType)).Length;
-        states = new AiState[numStates];
+        states = new IAiState[numStates];
     }
 
-    public void RegisterState(AiState state)
+    public void RegisterState(IAiState state)
     {
 		int index = (int)state.GetStateType();
         states[index] = state;
 	}
 
-    public AiState GetState(AiStateType stateType)
+    public IAiState GetState(AiStateType stateType)
     {
         int index = (int)stateType;
         return states[index];
