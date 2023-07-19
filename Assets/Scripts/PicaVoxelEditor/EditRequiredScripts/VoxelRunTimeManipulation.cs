@@ -61,7 +61,14 @@ public class VoxelRunTimeManipulation : MonoBehaviour
     [SerializeField] private bool _MirrorChange = false;
 
     [SerializeField] private ImprovedCamSwivel _CamSwivel;
-    
+
+    [SerializeField] private Queue<previousOp>[] _OpQueue;
+
+ 
+    private void Awake()
+    {
+            _OpQueue=new Queue<previousOp>[_VoxelVolumes.Length];
+    }
 
     void Update()
     {
@@ -259,3 +266,21 @@ public class VoxelRunTimeManipulation : MonoBehaviour
 
     public int SelectedVolume { set { _VoxelVolumes[_SelectedVolume].transform.gameObject.SetActive(false); _SelectedVolume = value; _VoxelVolumes[_SelectedVolume].transform.gameObject.SetActive(true); _CamSwivel.ChangeTransform = CurrentVolume; } }
 }
+/// <summary>
+/// This class is to record the previous operation that was performed on the volume so as to be able to reverse it. It 
+/// is still only store in memory and will be flushed once the 
+/// </summary>
+public class previousOp
+{
+    Voxel? _self;
+    VoxelRunTimeManipulation.OperationType op;
+
+    public previousOp(Voxel v, VoxelRunTimeManipulation.OperationType op)
+    {
+        this.op = op;
+        _self = v;
+    }
+
+    public Voxel? self { get { return _self; } set { _self = value; } }
+}
+
