@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.00000035762784}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.025817722, y: 0.025817722, z: 0.025817722}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7809040584024702419}
   m_RootOrder: 0
@@ -166,6 +167,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7809040582340555318}
   m_Father: {fileID: 0}
@@ -251,7 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!95 &3857064786287386553
 Animator:
-  serializedVersion: 3
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -264,10 +266,12 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6519759092135988298
 MonoBehaviour:
   m_ObjectHideFlags: 0

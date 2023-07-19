@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace AI.Lev_1_AI.AI_State_Machine.States
 {
-	public class AiPatrolState : AiState
+	public class AiPatrolState : IAiState
 	{
 		public AiAgent Agent;
 		public AIPath AiPath;

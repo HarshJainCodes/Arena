@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AiAttackSurroundState : AiState
+public class AiAttackSurroundState : IAiState
 {
 	private float t = 1f;
 	public AIPath aiPath;
