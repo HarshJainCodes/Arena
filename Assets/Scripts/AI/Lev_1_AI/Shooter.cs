@@ -118,6 +118,9 @@ public class Shooter : MonoBehaviour
 			Hit(hit.collider.gameObject.layer, dmg, hit, true);
 			hitObj = hit.collider.transform; 
 
+			// added by harsh 
+			hit.collider.gameObject.transform.parent.GetComponent<PlayerHealth>().DamagePlayer(-dmg);
+
 			//Handle Penetration
 			Ray newRay = new Ray(hit.point, ray.direction);
 			RaycastHit newHit;

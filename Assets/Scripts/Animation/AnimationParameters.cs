@@ -925,6 +925,10 @@ namespace Arena
             //Notify the weapon to fill the ammunition by the amount.
             if (equippedWeapon != null)
                 equippedWeapon.FillAmmunition(amount);
+            if(equippedWeapon.HasCycledReload())
+            {
+                AudioManagerServices.instance.PlayOneShot(equippedWeapon.GetAudioClipReloadInsert(), new AudioSettings(1, 0, true));
+            }
         }
         public void AnimationEndedBolt()
         {
@@ -975,6 +979,22 @@ namespace Arena
             //Set slide back.
             if (equippedWeapon != null)
                 equippedWeapon.SetSlideBack(back);
+        }
+
+        public  void SetActiveMagazine(int active)
+        {
+            //Set magazine gameObject active.
+            equippedMagzine.gameObject.SetActive(active != 0);
+        }
+
+        public void PlayOpen()
+        {
+            AudioManagerServices.instance.PlayOneShot(equippedWeapon.GetAudioClipReloadOpen(), new AudioSettings(1, 0, true));
+        }
+
+        public void PlayClose()
+        {
+            AudioManagerServices.instance.PlayOneShot(equippedWeapon.GetAudioClipReloadClose(), new AudioSettings(1, 0, true));
         }
     }
 }
