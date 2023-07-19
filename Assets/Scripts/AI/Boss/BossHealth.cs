@@ -2,6 +2,7 @@ using Pathfinding;
 using Pathfinding.RVO.Sampled;
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BossHealth : Enemy
 {
@@ -9,7 +10,7 @@ public class BossHealth : Enemy
 	AIPath aiPath;
 	public AiBossAgent BossAgent;
 	private bool _IsDead = false;
-	private bool _IsInvulnerable = false;
+	public bool IsInvulnerable = false;
 
 	private EnemyDrop _EnemyDropScript;
 
@@ -22,7 +23,7 @@ public class BossHealth : Enemy
 	public override void Damage(float damage)
 	{
 		if (_IsDead) return;
-		if(_IsInvulnerable) return;
+		if(IsInvulnerable) return;
 		if (BossAgent.StateMachine.CurrentBossStateType is AiBossStateType.Idle or AiBossStateType.Patrol) BossAgent.StateMachine.ChangeState(AiBossStateType.Chase);
 		base.Damage(damage);
 	}

@@ -12,12 +12,14 @@ public class AiBossAgent : MonoBehaviour
     public Transform PlayerTransform;
     public Transform PatrolPoint;
     public SpawnManager SpawnManager;
+	public BossHealth BossHealth;
     public float StopDistance = 6f;
     public bool InRange = false;
 
 
 	void Start()
     {
+		BossHealth = GetComponent<BossHealth>();
 	    StateMachine = new AiBossStateMachine(this);
 		StateMachine.RegisterState(new AiBossObservePlayerState());
 	}
