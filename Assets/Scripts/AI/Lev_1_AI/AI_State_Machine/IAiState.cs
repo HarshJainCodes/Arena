@@ -12,7 +12,7 @@ public enum AiStateType
 	Dead
 }
 
-public interface AiState 
+public interface IAiState 
 {
     AiStateType GetStateType();
 	void Enter(AiAgent agent);

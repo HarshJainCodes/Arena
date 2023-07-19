@@ -31843,9 +31843,10 @@ GameObject:
   - component: {fileID: 3852929233390351705}
   - component: {fileID: 457626720749660534}
   - component: {fileID: 421236224372784130}
+  - component: {fileID: 3918697576112509702}
   m_Layer: 0
   m_Name: Biped_Big_Head
-  m_TagString: Untagged
+  m_TagString: Critical
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31916,6 +31917,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!135 &3918697576112509702
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2940366545338244985}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.6
+  m_Center: {x: -0.000000029802322, y: 1.14, z: -0.00000011920929}
 --- !u!1 &2942038323745897445
 GameObject:
   m_ObjectHideFlags: 0
@@ -81624,9 +81638,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.03
-  m_Height: 4.61
+  m_Height: 4.39
   m_Direction: 1
-  m_Center: {x: 0, y: 2.05, z: 0}
+  m_Center: {x: 0, y: 1.84, z: 0}
 --- !u!114 &3612463840218020054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81830,7 +81844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e65c3767def1046ad7e6e747655b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Distance: 11.99
+  Distance: 15
   Angle: 45
   Height: 1
   MeshColor: {r: 1, g: 0, b: 0, a: 1}
