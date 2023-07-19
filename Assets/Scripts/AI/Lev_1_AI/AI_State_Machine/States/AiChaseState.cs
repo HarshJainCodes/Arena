@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AiChaseState : AiState
+public class AiChaseState : IAiState
 {
 	public AIPath aiPath;
 	private float t = 1f;

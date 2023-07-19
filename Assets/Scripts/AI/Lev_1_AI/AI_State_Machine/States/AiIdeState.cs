@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AiIdeState : AiState
+public class AiIdeState : IAiState
 {
 	public float dotProduct;
 

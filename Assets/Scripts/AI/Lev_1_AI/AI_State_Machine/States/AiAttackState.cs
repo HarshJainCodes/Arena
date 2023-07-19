@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class AiAttackState : AiState
+public class AiAttackState : IAiState
 {
 	private float t = 1f;
 	public AIPath aiPath;

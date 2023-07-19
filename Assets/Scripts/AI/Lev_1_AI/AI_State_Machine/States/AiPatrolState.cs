@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace AI.Lev_1_AI.AI_State_Machine.States
 {
-	public class AiPatrolState : AiState
+	public class AiPatrolState : IAiState
 	{
 		public AiAgent Agent;
 		public AIPath AiPath;
@@ -39,7 +39,7 @@ namespace AI.Lev_1_AI.AI_State_Machine.States
 			Agent.GetComponent<AIPath>().enabled = true;
 			Agent.GetComponent<Seeker>().enabled = true;
 
-			if (Agent.sensor.IsInSight(Agent.playerTransform.gameObject))
+			if (Agent.sensor.IsInSight(Agent.playerTransform.gameObject) || Agent.InRange)
 			{
 				AiPath.maxSpeed = 4f;
 				Agent.GetComponent<AIPath>().endReachedDistance = endDistance;
@@ -93,7 +93,7 @@ namespace AI.Lev_1_AI.AI_State_Machine.States
 			// 	return;
 			// }
 
-			if (!Agent.sensor.IsInSight(Agent.playerTransform.gameObject))
+			if (!Agent.sensor.IsInSight(Agent.playerTransform.gameObject) && !Agent.InRange)
 			{
 				Agent.GetComponent<AIPath>().endReachedDistance = 1f;
 				Agent.GetComponent<AIDestinationSetter>().target = Agent.patrolPoint;
