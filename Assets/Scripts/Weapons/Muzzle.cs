@@ -82,7 +82,7 @@ public class Muzzle : MonoBehaviour
         if (particles != null)
             particles.Emit(flashParticlesCount);
 
-        AudioManagerServices.instance.PlayOneShot(audioClipFire,new AudioSettings(1.0f,0.0f,true));
+       // AudioManagerServices.instance.PlayOneShot(audioClipFire,new AudioSettings(1.0f,0.0f,true));
         //Make sure that we have a light to flash!
         if (flashLight != null)
         {
