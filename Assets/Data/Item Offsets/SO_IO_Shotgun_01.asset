@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SO_IO_Shotgun_01
   m_EditorClassIdentifier: 
   standingLocation: {x: 0, y: 0, z: 0}
-  standingRotation: {x: 0, y: -3, z: 0}
-  aimingLocation: {x: 0, y: 0, z: 0}
-  aimingRotation: {x: 0, y: 0, z: 0}
+  standingRotation: {x: 10, y: 0, z: -7.19}
+  aimingLocation: {x: -0.014, y: 0, z: -0.02}
+  aimingRotation: {x: 7.3, y: -6.4, z: -4.82}
   runningLocation: {x: 0, y: 0, z: 0}
   runningRotation: {x: 0, y: 0, z: 0}
   crouchingLocation: {x: 0, y: 0, z: 0}

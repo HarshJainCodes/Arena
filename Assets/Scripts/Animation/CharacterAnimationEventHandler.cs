@@ -48,12 +48,12 @@ namespace Arena
         /// <summary>
         /// Sets the equipped weapon's magazine to be active or inactive! This function is called from an Animation Event.
         /// </summary>
-        /*private void OnSetActiveMagazine(int active)
+        private void OnSetActiveMagazine(int active)
         {
             //Notify the character.
             if (animParams != null)
                 animParams.SetActiveMagazine(active);
-        }*/
+        }
 
         /// <summary>
         /// Bolt Animation Ended. This function is called from an Animation Event.
@@ -120,6 +120,26 @@ namespace Arena
             //Notify the character.
             if (animParams != null)
                 animParams.SetSlideBack(back);
+        }
+
+        private void OnPlayReloadOpen()
+        {
+            if(animParams!=null)
+            {
+                AudioManagerServices.instance.PlayOneShot(
+                animParams.GetInventory().GetEquipped().GetAudioClipReloadOpen(), new AudioSettings(1, 0, true)
+                    );
+            }
+        }
+
+        private void OnPlayReloadClose()
+        {
+            if (animParams != null)
+            {
+                AudioManagerServices.instance.PlayOneShot(
+                animParams.GetInventory().GetEquipped().GetAudioClipReloadClose(), new AudioSettings(1, 0, true)
+                    );
+            }
         }
     }
 }
