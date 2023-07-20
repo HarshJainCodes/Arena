@@ -14,10 +14,10 @@ public class AiBossObservePlayerState : IAiBossState
     { 
 	    bossAgent.BossHealth.IsInvulnerable = true;
        bossAgent.gameObject.GetComponent<Animator>().Play("BossIdle1Anim");
-    }
+	}
 
     public void Update(AiBossAgent bossAgent)
-    {
+	{
 		Vector3 lookPos = bossAgent.PlayerTransform.position - bossAgent.transform.position;
 		lookPos.y = 0;
 		Quaternion rotation = Quaternion.LookRotation(lookPos);
