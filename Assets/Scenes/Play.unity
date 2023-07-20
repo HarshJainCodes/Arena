@@ -10713,15 +10713,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3649526429121574280, guid: c16d3e7e3bb088741b3bd2d72e4faf56, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 66.7
+      value: 59.5
       objectReference: {fileID: 0}
     - target: {fileID: 3649526429121574280, guid: c16d3e7e3bb088741b3bd2d72e4faf56, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1000
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 3649526429121574280, guid: c16d3e7e3bb088741b3bd2d72e4faf56, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 169.8
+      value: 164.6
       objectReference: {fileID: 0}
     - target: {fileID: 3649526429121574280, guid: c16d3e7e3bb088741b3bd2d72e4faf56, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17477,9 +17477,9 @@ MonoBehaviour:
   _FloorCount: 6
   _MinRoomCount: 30
   _MaxRoomCount: 50
-  _RoomScaleX: 6
-  _RoomScaleY: 6
-  _RoomScaleZ: 6
+  _RoomScaleX: 18
+  _RoomScaleY: 18
+  _RoomScaleZ: 18
   _CentralRoomSize: 5
   _CentralRoomSizeX: 9
   _CentralRoomSizeY: 9
@@ -17694,19 +17694,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9bbd724d4999e954bb597ecf73ae22fc, type: 3}
       propertyPath: m_LocalScale.x
-      value: 6
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9bbd724d4999e954bb597ecf73ae22fc, type: 3}
       propertyPath: m_LocalScale.y
-      value: 6
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9bbd724d4999e954bb597ecf73ae22fc, type: 3}
       propertyPath: m_LocalScale.z
-      value: 6
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9bbd724d4999e954bb597ecf73ae22fc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 150
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9bbd724d4999e954bb597ecf73ae22fc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17714,7 +17714,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9bbd724d4999e954bb597ecf73ae22fc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 150
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9bbd724d4999e954bb597ecf73ae22fc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -20511,7 +20511,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3564278681899161508, guid: 8f73330a0de5c31469fed02a999a381f, type: 3}
       propertyPath: data.dataString
-      value: UEsDBBQAAAgIAMArIexuE1SjvAIAAOMFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVNty2jAQ/RVGz20HnJCGvrWQSztNwsTt5KHkQVhrW4MseXQJEIZ/765ssCEzDNacvZ2zu9KOKb4FOzVBe/ZtMPo0YBXYAtKa62euC0Bw+GWMcFZyyzMP9h5kUfqIf0VcaldD5o29s1I8GEERjM6sb7yHDS+MTuU7HHxepPAlOfHo88y9NC0F6UwF3srsuy5UpIBg0DI3troRBUyN8w7hnCsHaLLGU7RGaDdgmzZg237f6TvYkwbQKKDzGo3P/UbjcfQMOlO8qkEQ4y7gIjkE4Ck6alTT+iRUwSglXUuF+W0dpaZ1CRZIq5AclUUOJLQ89PIk9inPHRzGYfl2Ji02qEnKfpimaxV3q4bYG1eBylxHQk3Khw/WUdLYc2uq4whHQ9LjS5mtnvk24873utqHZ6e8g15zteJLBS8l6EdzZ3GBBBq9DRQaHCSzXqqjtGkJ2arza8iegaH+OMdRN8d9FL+ZKlktj1uIQKpM7PaEYsDiXH4i4bgXrs2EKJH46+APL/oL1BpupXUeTW1BTeyWJlhyZbd4oMZnwU+N1RDRlnINmiu/nWMW3x/g8KOtV/XMcsvpprS1W9vhApyFRLjzHw7PTHOz7mbl4Feo6rmR2qfAbVb28rnSrB/AlU/BK6mhU0SGR+zh1GjdLJ87NVJUGmzOs16Uh40PFmbc83gBkBLuiOgXxC7GCB2UonWMIij3PxRBv9fmscGyKsLs0eh4d06+r7QGRZDidMsZiOtLPhHZEpbXPBEXnydXyZUYJXB1mV0ky0nO4i2QGlvO1bzpWTsp3B/dadG48ZTxNz2QIAb0puEfr+P1E5av7+R7ZXptkTo3aWYB9FOT6SgaLBbDV0LcCIlyU/Be6riBbLdgymQrEItjokVs8M3GW77osixYLd+MJ2TBpvElWzCCj5drbuFNwpqKH5Lt2f4/UEsDBBQAAAgIAMArIexUjQQ4cgAAAH0AAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrRSaoqFSaJlSnJSapJFolGKsa6lmZFZiqFRqplJsrFRkmWaUixQfUllQapfYm4qRE9AYklGWmZeSmZeup5PYmVqkXtRZoo7yHyl2FoAUEsBAi0AFAAACAgAwCsh7G4TVKO8AgAA4wUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAwCsh7FSNBDhyAAAAfQAAAAkAJAAAAAAAAAAAAAAACQMAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAADGAwAAAAA=
+      value: UEsDBBQAAAgIAMArIexQjfymxQIAAOoFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVN9v2jAQ/leQn7cKKDDY2wZtt2ltUbOpD6MPJr4kFo4d+UeBVvzvu3MCCVRCxPruvrv7znd+Z4rvwc5N0J597X351GMl2BySiusnrnNAsH81RjgtuOWpB/sDZF74iJO71K6C1Bt7Z6W4N4IYjM6sa/wBO54bncg3OPo8S+ELcuLR54l7aRAfEM2ZEryV6Tedq1gCgkHLzNjyRuQwN847hDOuHKDJGk9sjdB7j+0awr75vtG3dyANoFFA6zUaH/1G46vxtD+bNu5oiISgU8XLCgQV3vJmkyMPT9FRo6jGZ0iJjFLSNRUxv6+i4qQqwAJJFpKjwFgK6S2OLT3jPmaZA9+4WL5fSIt9qoOy76ZuXsndpi7slatAaaaxoDrk/QfrYFjbM2vK000O+qTHFzLdPPF9yp3vNLcLL87rDnrL1YavFTwXoB/MncU5Emj0NhA1OBguOqFO0uYFpJvWry72AgzVx+sctNd5iOJ3cyXL9WkYEUiUid2eEQcs3stPLDiOh2siIUpF/HXwh+fdOWoMt9I6j6Ymoabq1iZYcmW3eKDGp8HPjdUQ0abkCjRXfr/EKL57gf2Ptk7WC8stp4Vpcje24x5cUCLc+vf7F6al2bZ35eBXKKulkdonwG1adOK5wmzvwRWPwSupoVVEhgfs4dxoXQ+fOzcSKwk242mH5WHng4UF9zwuAJaEMyK6CbGLkaGDUjSOUQTF/oci6PdSvzmYVkWYPRgdd+fs+0JjkAcpzqecgZiO+Eyka1hP+VBcf55NhhMxGMJklF4P17OMxS2QGlvO1bLuWXNTOD+61aJx4inib3onQfToacM/XsX1E5Zv7+RbaTptkTozSWoB9GMd6SQaLCbDV0LcCIlyE/Be6jiB7H3FlEk3IFanQKvY4Judt3zVRlmxSr4aT8iKzeODtmIEn5ZraeFVwpaSH4Md2OE/UEsDBBQAAAgIAMArIexUjQQ4cgAAAH0AAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrRSaoqFSaJlSnJSapJFolGKsa6lmZFZiqFRqplJsrFRkmWaUixQfUllQapfYm4qRE9AYklGWmZeSmZeup5PYmVqkXtRZoo7yHyl2FoAUEsBAi0AFAAACAgAwCsh7FCN/KbFAgAA6gUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAwCsh7FSNBDhyAAAAfQAAAAkAJAAAAAAAAAAAAAAAEgMAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAADPAwAAAAA=
       objectReference: {fileID: 0}
     - target: {fileID: 3564278681899161509, guid: 8f73330a0de5c31469fed02a999a381f, type: 3}
       propertyPath: m_RootOrder
@@ -23018,7 +23018,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 2000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -23044,8 +23044,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959554045}
-  m_LocalRotation: {x: 0.089247994, y: -0.8035148, z: 0.12462934, w: 0.57520974}
-  m_LocalPosition: {x: 434, y: 127, z: 239}
+  m_LocalRotation: {x: 0.15596588, y: -0.66287947, z: 0.14399114, w: 0.71800554}
+  m_LocalPosition: {x: 1706.3707, y: 500.21637, z: 426.14853}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25647,6 +25647,14 @@ PrefabInstance:
     - target: {fileID: 474361351226899879, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
       propertyPath: offsetAimingRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 680678699699023081, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
+      propertyPath: offsetAimingLocation.x
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 680678699699023081, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
+      propertyPath: offsetAimingLocation.z
+      value: 0.008
       objectReference: {fileID: 0}
     - target: {fileID: 1663233515218421185, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
       propertyPath: scopeIndex

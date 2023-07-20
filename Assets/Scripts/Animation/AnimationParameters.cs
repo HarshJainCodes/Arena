@@ -925,10 +925,10 @@ namespace Arena
             //Notify the weapon to fill the ammunition by the amount.
             if (equippedWeapon != null)
                 equippedWeapon.FillAmmunition(amount);
-            if(equippedWeapon.HasCycledReload())
+            /*if(equippedWeapon.HasCycledReload())
             {
                 AudioManagerServices.instance.PlayOneShot(equippedWeapon.GetAudioClipReloadInsert(), new AudioSettings(1, 0, true));
-            }
+            }*/
         }
         public void AnimationEndedBolt()
         {
