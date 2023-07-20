@@ -127,7 +127,8 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                             break;
 
                         case OperationType.add:
-                            Volume temp2 = currentVoxelVolume;
+                            Volume temp2 = new Volume();
+                            temp2=currentVoxelVolume;
                             addtoreversestack(temp2,OperationType.add);
                             //gets the position of the voxel to be built
                             Vector3 buildPos = screenRay.GetPoint(d - 0.05f);
@@ -164,7 +165,8 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                             break;
 
                         case OperationType.remove:
-                            Volume temp3 = currentVoxelVolume;
+                            Volume temp3 = new Volume(); 
+                            temp3=currentVoxelVolume;
                             addtoreversestack(temp3, OperationType.remove);
                             // We simply set the satus of that particular voxel as inactive thus it does not render
                             currentVoxelVolume.SetVoxelAtWorldPosition(screenRay.GetPoint(d), new Voxel()
@@ -193,7 +195,8 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                             break;
 
                         case OperationType.edit:
-                            Volume temp4 = currentVoxelVolume;
+                            Volume temp4 = new Volume(); 
+                            temp4=currentVoxelVolume;
                             addtoreversestack(temp4, OperationType.edit);
                             // We simply change the colour of the voxel here.
                             currentVoxelVolume.SetVoxelAtWorldPosition(screenRay.GetPoint(d), new Voxel()
@@ -221,7 +224,8 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                             break;
 
                         case OperationType.bucket:
-                            Volume temp5 = currentVoxelVolume;
+                            Volume temp5 = new Volume(); 
+                            temp5=currentVoxelVolume;
                             addtoreversestack(temp5, OperationType.bucket);
                             for (int i = 0; i < currentVoxelVolume.XSize; i++)
                                 for (int j = 0; j < currentVoxelVolume.YSize; j++)
