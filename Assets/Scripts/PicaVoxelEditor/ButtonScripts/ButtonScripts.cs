@@ -19,9 +19,11 @@ public class ButtonScripts : MonoBehaviour
     }
     private void ChangeVolumeTo()
     {
-        _script.ActiveVolume = _SelfVolume;
-        _snapshotsOfVolumes.grabsnap();
-        _snapshotsOfVolumes.index = _SelfVolume;
+        if (_script.ActiveVolume!=_SelfVolume)
+        {
+            _snapshotsOfVolumes.grabsnap(_SelfVolume);
+            _script.ActiveVolume = _SelfVolume;
+        }
     }
     // Update is called once per frame
 }

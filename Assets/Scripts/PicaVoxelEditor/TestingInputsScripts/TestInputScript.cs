@@ -58,5 +58,9 @@ public class TestInputScript : MonoBehaviour
         {
             _ToolManipulation.MirrorChange = !_ToolManipulation.MirrorChange;
         }
+        if(Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.L))
+        {
+            _ToolManipulation.RevertChange();
+        }
     }
 }

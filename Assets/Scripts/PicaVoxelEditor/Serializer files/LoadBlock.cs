@@ -10,6 +10,7 @@ public class LoadBlock : MonoBehaviour
     private VolumeStorage[] _VolumeStorages = new VolumeStorage[10];
     [SerializeField]private Volume[] _Volumes;
     [SerializeField] private int set = 0;
+    [SerializeField] private VoxelRunTimeManipulation _manipScript;
     // Start is called before the first frame update
 
 
@@ -44,11 +45,19 @@ public class LoadBlock : MonoBehaviour
     }
     public void LoadData()
     {
+        getVolumes();
         for(int i=0;i<_Volumes.Length;i++)
         {
             string _currentSet = $"/{set}block{i}.json";
             _VolumeStorages[i] = _DataSerializer.LoadData<VolumeStorage>(_currentSet);
         }
         _setVoxelBlock();
+    }
+    public void getVolumes()
+    {
+        for (int i = 0; i < _Volumes.Length; i++)
+        {
+            _Volumes[i] = _manipScript.getVolume(i);
+        }
     }
 }
