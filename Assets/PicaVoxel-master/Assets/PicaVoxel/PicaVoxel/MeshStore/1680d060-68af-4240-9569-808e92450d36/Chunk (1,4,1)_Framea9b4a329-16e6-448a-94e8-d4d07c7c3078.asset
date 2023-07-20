@@ -6,7 +6,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Chunk (1,1,0)_Framea9b4a329-16e6-448a-94e8-d4d07c7c3078
+  m_Name: Chunk (1,4,1)_Framea9b4a329-16e6-448a-94e8-d4d07c7c3078
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -103,7 +103,7 @@ Mesh:
       m_NumItems: 24
       m_Range: 0.5
       m_Start: 0
-      m_Data: 0000000000cd00f03f0000fcdf0c00ff0300c0ff00fcff7f3300fcdfccff
+      m_Data: ff0300c0ff00fcff7f3300fcdfccff0000f03f00cdfcff3f00ffffdfccff
       m_BitSize: 10
     m_UV:
       m_NumItems: 16
@@ -115,7 +115,7 @@ Mesh:
       m_NumItems: 16
       m_Range: 1
       m_Start: 0
-      m_Data: 0000000000003ff0033ff003
+      m_Data: 3ff0033ff003000000000000
       m_BitSize: 6
     m_Tangents:
       m_NumItems: 0
@@ -129,8 +129,8 @@ Mesh:
       m_BitSize: 0
     m_NormalSigns:
       m_NumItems: 8
-      m_Data: 
-      m_BitSize: 0
+      m_Data: f0
+      m_BitSize: 1
     m_TangentSigns:
       m_NumItems: 0
       m_Data: 
@@ -147,7 +147,7 @@ Mesh:
       m_BitSize: 0
     m_Triangles:
       m_NumItems: 12
-      m_Data: 1390bda40f
+      m_Data: 0ba0bda40f
       m_BitSize: 3
     m_UVInfo: 5
   m_LocalAABB:

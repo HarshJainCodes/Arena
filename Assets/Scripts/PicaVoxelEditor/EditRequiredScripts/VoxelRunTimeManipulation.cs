@@ -65,7 +65,9 @@ public class VoxelRunTimeManipulation : MonoBehaviour
     [SerializeField] private GameObject _ResetPrefab;
     [SerializeField] private Transform _ResetParent;
 
- 
+
+    [SerializeField] private GameObject _ResetTilePrefab;
+
 
     void Update()
     {
@@ -271,10 +273,18 @@ public class VoxelRunTimeManipulation : MonoBehaviour
     public void ResetPrefab()
     {
         Destroy(_VoxelVolumes[_SelectedVolume].transform.gameObject);
-        GameObject temp=Instantiate(_ResetPrefab, _ResetParent);
-        temp.name = $"PicaVoxel Volume ({_SelectedVolume})";
-        
-        _VoxelVolumes[_SelectedVolume] = temp.GetComponent<Volume>(); 
+        if (_SelectedVolume != 6)
+        {
+            GameObject temp = Instantiate(_ResetPrefab, _ResetParent);
+            temp.name = $"PicaVoxel Volume ({_SelectedVolume})";
+            _VoxelVolumes[_SelectedVolume] = temp.GetComponent<Volume>();
+        }
+        else
+        {
+            GameObject temp = Instantiate(_ResetTilePrefab, _ResetParent);
+            temp.name = $"PicaVoxel Volume ({_SelectedVolume})";
+            _VoxelVolumes[_SelectedVolume] = temp.GetComponent<Volume>();
+        }
     }
 }
 /// <summary>

@@ -11,6 +11,12 @@ public class SnapshotsOfVolumes : MonoBehaviour
     [SerializeField] private RenderTexture[] _Render;
 
 
+    private void Start()
+    {
+        _Render[0] = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
+        _Cam.targetTexture = _Render[0];
+        _Snaps[0].texture = _Render[0];
+    }
     public void grabsnap(int tempIndex)
     {
         _Render[tempIndex] = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
