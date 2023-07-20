@@ -6,23 +6,24 @@ using UnityEngine;
 
 public class GetBlocks : MonoBehaviour
 {
-    private GetBlocks _instance=new GetBlocks();
-    public GetBlocks Instance { get { return _instance; } }
+    private static GetBlocks _instance;
+    public  static GetBlocks Instance { get { return _instance; } private set { _instance = value; } }
 
-    public Volume[] blocks=new Volume[7];
+    [SerializeField]
+    public static Volume[] blocks=new Volume[7];
 
     public bool export = false;
 
     private void Awake()
     {
-        if(!_instance)
+        if(Instance!=null && Instance!=this)
         {
-            _instance = this;
-            DontDestroyOnLoad(this);
+            Destroy(this);
         }
         else
         {
-           Destroy(gameObject);
+           Instance = this;
+            DontDestroyOnLoad(this);
         }
     }
     // Start is called before the first frame update

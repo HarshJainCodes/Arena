@@ -14,6 +14,11 @@ public class LoadBlock : MonoBehaviour
     // Start is called before the first frame update
 
 
+    private void Awake()
+    {
+
+    }
+
     private void _setVoxelBlock()
     {
         for(int i=0;i<_Volumes.Length;i++)
@@ -52,6 +57,7 @@ public class LoadBlock : MonoBehaviour
             _VolumeStorages[i] = _DataSerializer.LoadData<VolumeStorage>(_currentSet);
         }
         _setVoxelBlock();
+        SetExport();
     }
     public void getVolumes()
     {
@@ -59,5 +65,11 @@ public class LoadBlock : MonoBehaviour
         {
             _Volumes[i] = _manipScript.getVolume(i);
         }
+    }
+
+    public void SetExport()
+    {
+        GetBlocks.blocks= _Volumes;
+        GetBlocks.Instance.export = true;
     }
 }

@@ -1,3 +1,5 @@
+using Newtonsoft.Json.Linq;
+using PicaVoxel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +10,7 @@ using UnityEngine;
 
 public class ChunkCreator : MonoBehaviour
 {
+    [SerializeField] GameObject pref;
     /// <summary>
     /// This Array of GameObject of size [<see cref="_GridSize"/>, <see cref="_GridSize"/>, <see cref="_FloorCount"/>] will store GameObjects that will have the <see cref="Block"/> script attached to it.
     /// This change is done so that <see cref="GameObject.Find(string)"/> can be avoided hence it is quite expensive.
@@ -93,6 +96,7 @@ public class ChunkCreator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LoadChunks();
         ChunkArray = new GameObject[_GridSize, _GridSize, _FloorCount];
         _CentralRoomCoordX = _GridSize / 2;
         _CentralRoomSize = _CentralRoomSize > _GridSize ? (_GridSize / 2) - _Padding : _CentralRoomSize;
@@ -743,6 +747,40 @@ public class ChunkCreator : MonoBehaviour
 
             _ChunkAnimation._AnimateCube();
             _FloorAnimation._AnimateFloor();
+        }
+    }
+
+    public void LoadChunks()
+    {
+        if(GetBlocks.Instance.export)
+        {
+            for(int i=0;i<_BlendBlocks.Count;i++)
+            {
+                for(int j = 0; j < _BlendBlocks[i].blocks.Count; j++)
+                {
+                    GameObject temp=pref;
+                    Volume _volume=temp.GetComponent<Volume>();
+                    _volume = GetBlocks.blocks[i];
+                    for(int x = 0; x < GetBlocks.blocks[i].XSize;x++)
+                    {
+                        for (int y = 0; y < GetBlocks.blocks[i].YSize; y++)
+                        {
+                            for (int z = 0; z < GetBlocks.blocks[i].ZSize; z++)
+                            {
+                                Voxel? v= GetBlocks.blocks[i].GetVoxelAtArrayPosition(x,y,z);
+                                _volume.SetVoxelAtArrayPosition(new PicaVoxelPoint(x, y, z), new Voxel()
+                                {
+                                    State = v.Value.State,
+                                    Color = v.Value.Color,
+                                    Value = v.Value.Value
+                                }) ;
+                            }
+                        }
+                    }
+
+                    _BlendBlocks[i].blocks[j] = temp;
+                }
+            }
         }
     }
 }
