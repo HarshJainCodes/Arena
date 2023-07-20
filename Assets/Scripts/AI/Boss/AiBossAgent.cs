@@ -11,6 +11,7 @@ public class AiBossAgent : MonoBehaviour
     public AiBossStateType CurrentBossStateType;
     public Transform PlayerTransform;
     public Transform PatrolPoint;
+    public Transform ArenaCentre;
     public SpawnManager SpawnManager;
 	public BossHealth BossHealth;
     public float StopDistance = 6f;
