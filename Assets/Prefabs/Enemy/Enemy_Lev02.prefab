@@ -80790,7 +80790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e65c3767def1046ad7e6e747655b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Distance: 0
+  Distance: 15
   Angle: 45
   Height: 1
   MeshColor: {r: 1, g: 0, b: 0, a: 1}

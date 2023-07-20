@@ -71,6 +71,10 @@ public class AiSensor : MonoBehaviour
 
         origin.y += Height / 2;
         dest.y = origin.y;
+
+        if(dir.magnitude > Distance)
+            return false;
+
         if (Physics.Linecast(origin, dest, OcclusionLayers))
 			return false;
 

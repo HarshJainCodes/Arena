@@ -16,7 +16,7 @@ public class AiAttackSurroundState : IAiState
 	public void Enter(AiAgent agent)
 	{
 		aiPath = agent.GetComponent<AIPath>();
-		aiPath.maxSpeed = 3.5f;
+		aiPath.maxSpeed = 3f;
 		agent.GetComponent<AIDestinationSetter>().enabled = true;
 		agent.GetComponent<AIPath>().enabled = true;
 		agent.GetComponent<Seeker>().enabled = true;
