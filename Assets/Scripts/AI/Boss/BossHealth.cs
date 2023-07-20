@@ -12,13 +12,13 @@ public class BossHealth : Enemy
 	private bool _IsDead = false;
 	public bool IsInvulnerable = false;
 
-	private EnemyDrop _EnemyDropScript;
+	// private EnemyDrop _EnemyDropScript;
 
 	private void Awake()
 	{
 		BossAgent = GetComponent<AiBossAgent>();
 		aiPath = GetComponent<AIPath>();
-		_EnemyDropScript = GetComponent<EnemyDrop>();
+		// _EnemyDropScript = GetComponent<EnemyDrop>();
 	}
 	public override void Damage(float damage)
 	{
@@ -49,6 +49,6 @@ public class BossHealth : Enemy
 	private void onDie()
 	{
 		Destroy(gameObject.transform.parent.gameObject);
-		_EnemyDropScript.Drop((EnemyDrop.EnemyDrops)UnityEngine.Random.Range(0, Enum.GetValues(typeof(EnemyDrop.EnemyDrops)).Length));
+		// _EnemyDropScript.Drop((EnemyDrop.EnemyDrops)UnityEngine.Random.Range(0, Enum.GetValues(typeof(EnemyDrop.EnemyDrops)).Length));
 	}
 }

@@ -16,6 +16,7 @@ public class AiAttackSurroundState : IAiState
 	public void Enter(AiAgent agent)
 	{
 		aiPath = agent.GetComponent<AIPath>();
+		aiPath.maxSpeed = 3.5f;
 		agent.GetComponent<AIDestinationSetter>().enabled = true;
 		agent.GetComponent<AIPath>().enabled = true;
 		agent.GetComponent<Seeker>().enabled = true;
@@ -40,7 +41,7 @@ public class AiAttackSurroundState : IAiState
 			t = 1;
 		}
 
-		if (!agent.InRange)
+		if (!agent.InRange && !agent.sensor.IsInSight(agent.playerTransform.gameObject))
 		{
 			agent.stateMachine.ChangeState(AiStateType.Chase);
 		}
@@ -48,6 +49,7 @@ public class AiAttackSurroundState : IAiState
 
 	public void Exit(AiAgent agent)
 	{
+		aiPath.maxSpeed = 4f;
 		SurroundManager.Instance.Units.Remove(agent.GetComponent<EnemyUnit>());
 		agent.GetComponent<AIDestinationSetter>().target = agent.playerTransform;
 		agent.GetComponent<AIDestinationSetter>().enabled = true;

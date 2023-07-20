@@ -15,7 +15,6 @@ public enum AiBossStateType
 
 public interface IAiBossState
 {
-	public const string BossIdleAnim = "BossIdle1Anim";
 
 	AiBossStateType GetStateType();
 	void Enter(AiBossAgent bossAgent);
