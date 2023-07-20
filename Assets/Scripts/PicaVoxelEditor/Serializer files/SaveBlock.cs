@@ -1,6 +1,7 @@
 using PicaVoxel;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class SaveBlock : MonoBehaviour
@@ -9,6 +10,7 @@ public class SaveBlock : MonoBehaviour
     private VolumeStorage[] _VolumeStorages=new VolumeStorage[10];
     private DataSerializer _DataSerializer=new DataSerializer();
     [SerializeField] private int set = 0;
+    [SerializeField] private VoxelRunTimeManipulation _manipScript;
 
     private void Awake()
     {
@@ -44,11 +46,20 @@ public class SaveBlock : MonoBehaviour
 
     public void SerializeData()
     {
+        getVolumes();
         _StoreInSerializable();
         for(int i=0;i< _Volumes.Length;i++)
         {
             string _currentSet = $"/{set}block{i}.json";
             _DataSerializer.SaveData(_currentSet, _VolumeStorages[i]);
+        }
+    }
+
+    public void getVolumes()
+    {
+        for (int i = 0; i < _Volumes.Length; i++)
+        {
+            _Volumes[i] = _manipScript.getVolume(i);
         }
     }
 }
@@ -90,5 +101,7 @@ public class VolumeStorage
         sizez = z;
         store = new voxel[x, y, z];
     }
+
+    
 }
 

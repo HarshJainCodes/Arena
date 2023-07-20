@@ -62,13 +62,10 @@ public class VoxelRunTimeManipulation : MonoBehaviour
 
     [SerializeField] private ImprovedCamSwivel _CamSwivel;
 
-    [SerializeField] private Queue<previousOp>[] _OpQueue;
+    [SerializeField] private GameObject _ResetPrefab;
+    [SerializeField] private Transform _ResetParent;
 
  
-    private void Awake()
-    {
-            _OpQueue=new Queue<previousOp>[_VoxelVolumes.Length];
-    }
 
     void Update()
     {
@@ -264,7 +261,21 @@ public class VoxelRunTimeManipulation : MonoBehaviour
     /// </summary>
     public Transform CurrentVolume { get {  return _VoxelVolumes[_SelectedVolume].transform; } }
 
+    public Volume getVolume(int index)
+    { 
+         return _VoxelVolumes[index]; 
+    }
+
     public int SelectedVolume { set { _VoxelVolumes[_SelectedVolume].transform.gameObject.SetActive(false); _SelectedVolume = value; _VoxelVolumes[_SelectedVolume].transform.gameObject.SetActive(true); _CamSwivel.ChangeTransform = CurrentVolume; } }
+
+    public void ResetPrefab()
+    {
+        Destroy(_VoxelVolumes[_SelectedVolume].transform.gameObject);
+        GameObject temp=Instantiate(_ResetPrefab, _ResetParent);
+        temp.name = $"PicaVoxel Volume ({_SelectedVolume})";
+        
+        _VoxelVolumes[_SelectedVolume] = temp.GetComponent<Volume>(); 
+    }
 }
 /// <summary>
 /// This class is to record the previous operation that was performed on the volume so as to be able to reverse it. It 
