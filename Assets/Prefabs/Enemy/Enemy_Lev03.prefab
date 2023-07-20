@@ -82582,6 +82582,7 @@ GameObject:
   - component: {fileID: 2794244529140090394}
   - component: {fileID: 9125732770733866005}
   - component: {fileID: 6461360210587375312}
+  - component: {fileID: 4134412813888368761}
   m_Layer: 0
   m_Name: GodOffset
   m_TagString: Untagged
@@ -82921,7 +82922,7 @@ MonoBehaviour:
   - {fileID: 7146474605534693595}
   hitLayer:
     serializedVersion: 2
-    m_Bits: 392
+    m_Bits: 256
   effects:
     grassImpact: {fileID: 0}
     metalImpact: {fileID: 0}
@@ -82944,6 +82945,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Agent: {fileID: 0}
   refer: {fileID: 3357620404238349983}
+--- !u!114 &4134412813888368761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7656122392186898244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81ba1f1ee058a5341938ebd5adc64641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _HealthPack: {fileID: 7980887769675177, guid: 09ac6c0427597b644a37ac32e04cf665, type: 3}
+  _AmmoPack: {fileID: 5327198166583502317, guid: e414d376099a0ad4fbf509ea15bbed65, type: 3}
 --- !u!1 &7658067448793555642
 GameObject:
   m_ObjectHideFlags: 0
