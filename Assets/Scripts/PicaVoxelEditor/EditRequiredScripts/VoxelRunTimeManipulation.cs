@@ -1,6 +1,7 @@
 using PicaVoxel;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEditor;
 using UnityEngine;
@@ -69,6 +70,17 @@ public class VoxelRunTimeManipulation : MonoBehaviour
     [SerializeField] private GameObject _ResetTilePrefab;
 
 
+    Cqueue<previousOp>[] Cq;
+
+    private void Start()
+    {
+        Cq = new Cqueue<previousOp>[_VoxelVolumes.Length];
+        for(int i=0;i<_VoxelVolumes.Length;i++)
+        {
+            Cq[i] = new Cqueue<previousOp>(20);
+        }
+    }
+
     void Update()
     {
         _VoxelManipulation();
@@ -115,7 +127,8 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                             break;
 
                         case OperationType.add:
-
+                            Volume temp2 = currentVoxelVolume;
+                            addtoreversestack(temp2,OperationType.add);
                             //gets the position of the voxel to be built
                             Vector3 buildPos = screenRay.GetPoint(d - 0.05f);
 
@@ -144,13 +157,15 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                                             State = VoxelState.Active,
                                             Color = _selectedColour,
                                             Value = 128
-                                        });
+                                        }); 
                                     }
                                 }
                             }
                             break;
 
                         case OperationType.remove:
+                            Volume temp3 = currentVoxelVolume;
+                            addtoreversestack(temp3, OperationType.remove);
                             // We simply set the satus of that particular voxel as inactive thus it does not render
                             currentVoxelVolume.SetVoxelAtWorldPosition(screenRay.GetPoint(d), new Voxel()
                             {
@@ -174,10 +189,12 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                                     });
                                 }
                             }
+                            
                             break;
 
                         case OperationType.edit:
-
+                            Volume temp4 = currentVoxelVolume;
+                            addtoreversestack(temp4, OperationType.edit);
                             // We simply change the colour of the voxel here.
                             currentVoxelVolume.SetVoxelAtWorldPosition(screenRay.GetPoint(d), new Voxel()
                             {
@@ -204,6 +221,8 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                             break;
 
                         case OperationType.bucket:
+                            Volume temp5 = currentVoxelVolume;
+                            addtoreversestack(temp5, OperationType.bucket);
                             for (int i = 0; i < currentVoxelVolume.XSize; i++)
                                 for (int j = 0; j < currentVoxelVolume.YSize; j++)
                                     for (int k = 0; k < currentVoxelVolume.ZSize; k++)
@@ -224,7 +243,10 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                     }
                     found = true;
                 }
-                if (found) break;
+                if (found)
+                {
+                    break;
+                }
             }
         }
     }
@@ -268,7 +290,7 @@ public class VoxelRunTimeManipulation : MonoBehaviour
          return _VoxelVolumes[index]; 
     }
 
-    public int SelectedVolume { set { _VoxelVolumes[_SelectedVolume].transform.gameObject.SetActive(false); _SelectedVolume = value; _VoxelVolumes[_SelectedVolume].transform.gameObject.SetActive(true); _CamSwivel.ChangeTransform = CurrentVolume; } }
+    public int SelectedVolume { set { _VoxelVolumes[_SelectedVolume].transform.gameObject.SetActive(false); _SelectedVolume = value; _VoxelVolumes[_SelectedVolume].transform.gameObject.SetActive(true); } } //_CamSwivel.ChangeTransform = CurrentVolume; } }
 
     public void ResetPrefab()
     {
@@ -286,6 +308,31 @@ public class VoxelRunTimeManipulation : MonoBehaviour
             _VoxelVolumes[_SelectedVolume] = temp.GetComponent<Volume>();
         }
     }
+
+    public void RevertChange()
+    {
+        if (!Cq[_SelectedVolume].isEmpty())
+        {
+            previousOp temp = Cq[_SelectedVolume].popFront();
+            _VoxelVolumes[_SelectedVolume] = temp.self;
+        }
+    }
+
+    public void addtoreversestack(Volume t,OperationType op)
+    {
+        if (!Cq[_SelectedVolume].isFull())
+        {
+            Debug.Log("Here");
+            Cq[_SelectedVolume].push(new previousOp(t,op));
+        }
+        else
+        {
+            Cq[_SelectedVolume].popRear();
+            Cq[_SelectedVolume].push(new previousOp(t, op));
+        }
+    }
+
+
 }
 /// <summary>
 /// This class is to record the previous operation that was performed on the volume so as to be able to reverse it. It 
@@ -293,15 +340,19 @@ public class VoxelRunTimeManipulation : MonoBehaviour
 /// </summary>
 public class previousOp
 {
-    Voxel? _self;
-    VoxelRunTimeManipulation.OperationType op;
+    public Volume self;
+    /*public Voxel? _self;
+    public VoxelRunTimeManipulation.OperationType op;
+    public bool twinned=false; */
+    public VoxelRunTimeManipulation.OperationType op;
 
-    public previousOp(Voxel v, VoxelRunTimeManipulation.OperationType op)
+
+    public previousOp(Volume v, VoxelRunTimeManipulation.OperationType op)
     {
         this.op = op;
-        _self = v;
+        self = v;
     }
 
-    public Voxel? self { get { return _self; } set { _self = value; } }
+    //public Voxel? self { get { return _self; } set { _self = value; } }
 }
 
