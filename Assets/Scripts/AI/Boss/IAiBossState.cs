@@ -5,6 +5,7 @@ using UnityEngine;
 public enum AiBossStateType
 {
 	ObservePlayer,
+	GetInArena,
 	Idle,
 	Patrol,
 	Chase,
