@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8d3e3afad2e632f44a46b563fa6722e7
+guid: d739093aa2b8bc8478694f10dd9f6c57
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -33,18 +33,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: BossRunAnim
+      name: StandingShootAnim
       takeName: animStack
       internalID: 2619540402416036911
       firstFrame: 0
-      lastFrame: 15
+      lastFrame: 23
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

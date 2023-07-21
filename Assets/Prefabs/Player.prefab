@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 3649526429121574285}
   - component: {fileID: 811300519}
   - component: {fileID: 811300520}
+  - component: {fileID: 962068186}
+  - component: {fileID: 962068187}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -184,7 +186,7 @@ MonoBehaviour:
   runningInterpolationSpeed: 12
   aimingSpeedMultiplier: 1
   characterAnimator: {fileID: 0}
-  fieldOfView: 100
+  fieldOfView: 65
   fieldOfViewRunningMultiplier: 1.05
   fieldOfViewWeapon: 55
   holdToRun: 1
@@ -415,7 +417,19 @@ MonoBehaviour:
     m_ActionId: 98c0547a-0a5e-484e-ba12-a7812face9b0
     m_ActionName: Player/Inventory Next[/Keyboard/x]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3649526429121574284}
+        m_TargetAssemblyTypeName: Arena.AnimationParameters, Assembly-CSharp
+        m_MethodName: OnTryInventoryNext
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 8dfbac0a-435e-4fa0-a00f-21b90315bd84
     m_ActionName: Player/Inventory Next Wheel[/Mouse/scroll]
   - m_PersistentCalls:
@@ -471,7 +485,19 @@ MonoBehaviour:
     m_ActionId: 1500b140-0b9e-469c-91ca-e7f4462b5b66
     m_ActionName: Player/Toggle Laser[/Keyboard/j]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 962068187}
+        m_TargetAssemblyTypeName: PickUpDrops, Assembly-CSharp
+        m_MethodName: OnTryPickup
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: e1ba90be-8b16-4d83-b537-6b079e5a19ea
     m_ActionName: Player/Interact[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
@@ -593,6 +619,35 @@ MonoBehaviour:
   minVelocityMagnitude: 1
   audioClipWalking: {fileID: 8300000, guid: 74abbbf1b1724e34b894191db38e10a0, type: 3}
   audioClipRunning: {fileID: 8300000, guid: d2add02f58e61e640aba3ae9110591cb, type: 3}
+--- !u!114 &962068186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3649526429121574282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10c6c59f43057fd46a1c55a9bf5ceb2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 60
+--- !u!114 &962068187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3649526429121574282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d97621dfed4a4448a23f9764de6083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerOrientation: {fileID: 0}
+  DropLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &3649526429603080907
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,9 +658,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3649526429603080904}
   - component: {fileID: 3649526429603080905}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerCollider
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

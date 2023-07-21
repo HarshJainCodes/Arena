@@ -24,7 +24,7 @@ public class BossHealth : Enemy
 	{
 		if (_IsDead) return;
 		if(IsInvulnerable) return;
-		if (BossAgent.StateMachine.CurrentBossStateType is AiBossStateType.Idle or AiBossStateType.Patrol) BossAgent.StateMachine.ChangeState(AiBossStateType.Chase);
+		// if (BossAgent.StateMachine.CurrentBossStateType is AiBossStateType.Idle or AiBossStateType.Patrol) BossAgent.StateMachine.ChangeState(AiBossStateType.Chase);
 		base.Damage(damage);
 	}
 
