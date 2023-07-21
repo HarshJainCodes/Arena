@@ -10,7 +10,7 @@ public class AiBossPatrolState : IAiBossState
     public AiBossAgent BossAgent;
     public AIPath AiPath;
     public AIPath ai => BossAgent.GetComponent<AIPath>();
-    public float range = 30f;
+    public float range = 120f;
     public float endDistance;
     public float t = 8f;
     private Vector3 _Spawn;
@@ -38,13 +38,13 @@ public class AiBossPatrolState : IAiBossState
 		bossAgent.GetComponent<AIDestinationSetter>().enabled = true;
 		bossAgent.GetComponent<AIPath>().enabled = true;
 		bossAgent.GetComponent<Seeker>().enabled = true;
-		if (BossAgent.Sensor.IsInSight(BossAgent.PlayerTransform.gameObject) || BossAgent.InRange)
-		{
-	        AiPath.maxSpeed = 4f;
-			BossAgent.GetComponent<AIPath>().endReachedDistance = endDistance;
-			BossAgent.GetComponent<AIDestinationSetter>().target = BossAgent.PlayerTransform;
-			BossAgent.StateMachine.ChangeState(AiBossStateType.Chase);
-		}
+		// if (BossAgent.Sensor.IsInSight(BossAgent.PlayerTransform.gameObject) || BossAgent.InRange)
+		// {
+	 //        AiPath.maxSpeed = 4f;
+		// 	BossAgent.GetComponent<AIPath>().endReachedDistance = endDistance;
+		// 	BossAgent.GetComponent<AIDestinationSetter>().target = BossAgent.PlayerTransform;
+		// 	BossAgent.StateMachine.ChangeState(AiBossStateType.Chase);
+		// }
 
 		if (!ai.pathPending && (ai.reachedEndOfPath || !ai.hasPath))
 		{
@@ -69,7 +69,7 @@ public class AiBossPatrolState : IAiBossState
 
 	    point.y = 0;
 	    point += BossAgent.transform.position;
-	    while (DistanceFromSpawn(point) >= 25f)
+	    while (DistanceFromSpawn(point) >= 800f)
 	    {
 		    point = Random.insideUnitSphere * range;
 		    point.y = 0;
