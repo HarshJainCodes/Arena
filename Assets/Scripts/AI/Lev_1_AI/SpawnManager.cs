@@ -11,7 +11,7 @@ public class SpawnManager : MonoBehaviour
     [FormerlySerializedAs("timeBetweenWaves")] [Tooltip("In Seconds")]
     public float TimeBetweenWaves = 10;
     
-    private int _CurrentWave = 0;
+    [FormerlySerializedAs("_CurrentWave")] public int CurrentWave = 0;
     
     private float _CurrentTime = 300f;
     
@@ -50,7 +50,7 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_CurrentWave == NumberOfWaves)
+        if (CurrentWave == NumberOfWaves)
             return;
         if(Generator.IsGridGenerated)
         {
@@ -59,7 +59,7 @@ public class SpawnManager : MonoBehaviour
 		        if(_IsTimerRunning)
 		        {
 			        _CurrentTime -= Time.deltaTime;
-			        if(_CurrentTime<=0 && _CurrentWave<NumberOfWaves)
+			        if(_CurrentTime<=0 && CurrentWave<NumberOfWaves)
 			        {
 				        _IsTimerRunning = false;
 
@@ -82,7 +82,7 @@ public class SpawnManager : MonoBehaviour
     {
         _IsGeneratingEnemies = true;
         _CurrentTime = TimeBetweenWaves;
-        _CurrentWave++;
+        CurrentWave++;
         SpawnPoints = new List<GameObject>();
         SpawnPoints = Generator.GetSpawnPoints(_Player, NumberOfEnemiesPerWave, MinEnemyDistance,MaxEnemyDistance);
 

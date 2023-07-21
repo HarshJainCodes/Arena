@@ -16,13 +16,18 @@ public class AiBossAgent : MonoBehaviour
 	public BossHealth BossHealth;
     public float StopDistance = 6f;
     public bool InRange = false;
+    public float BossSpeed = 4f;
+    [HideInInspector] public AiSensor Sensor;
 
 
 	void Start()
     {
 		BossHealth = GetComponent<BossHealth>();
+        Sensor = GetComponent<AiSensor>();
 	    StateMachine = new AiBossStateMachine(this);
-		StateMachine.RegisterState(new AiBossObservePlayerState());
+	    StateMachine.RegisterState(new AiBossObservePlayerState());
+		StateMachine.RegisterState(new AiBossGetInArenaState());
+		StateMachine.RegisterState(new AiBossPatrolState());
 	}
 
 	void Update()
