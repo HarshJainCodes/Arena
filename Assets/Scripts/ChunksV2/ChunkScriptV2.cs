@@ -13,7 +13,7 @@ public class ChunkScriptV2 : MonoBehaviour
     [SerializeField] int RoomScaleY = 6;
     [SerializeField] int RoomScaleZ = 6;
 
-    int padding = 3;
+    int padding = 6;
 
     [SerializeField] private GameObject _FloorParent;
 
@@ -298,67 +298,67 @@ public class ChunkScriptV2 : MonoBehaviour
 
                         case 0:
                             wallBlock = _BlendBlocks[5].blocks[Random.Range(0, 3)];
-                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform, 0);
+                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 0);
                             break;
                         case 1:
                             wallBlock = _BlendBlocks[0].blocks[Random.Range(0, 3)];
-                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform, 270);
+                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 270);
                             break;
                         case 10:
                             wallBlock = _BlendBlocks[0].blocks[Random.Range(0, 3)];
-                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform, 0);
+                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 0);
                             break;
                         case 11:
                             wallBlock = _BlendBlocks[1].blocks[Random.Range(0, 3)];
-                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform, 270);
+                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 270);
                             break;
                         case 100:
                             wallBlock = _BlendBlocks[0].blocks[Random.Range(0, 3)];
-                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform, 90);
+                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 90);
                             break;
                         case 101:
                             wallBlock = _BlendBlocks[4].blocks[Random.Range(0, 3)];
-                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform, 90);
+                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 90);
                             break;
                         case 110:
                             wallBlock = _BlendBlocks[1].blocks[Random.Range(0, 3)];
-                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform, 0);
+                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 0);
                             break;
                         case 111:
                             wallBlock = _BlendBlocks[2].blocks[Random.Range(0, 3)];
-                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform, 0);
+                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 0);
                             break;
                         case 1000:
                             wallBlock = _BlendBlocks[0].blocks[Random.Range(0, 3)];
-                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform, 180);
+                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 180);
                             break;
                         case 1001:
                             wallBlock = _BlendBlocks[1].blocks[Random.Range(0, 3)];
-                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform, 180);
+                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 180);
                             break;
                         case 1010:
                             wallBlock = _BlendBlocks[4].blocks[Random.Range(0, 3)];
-                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform, 0);
+                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 0);
                             break;
                         case 1011:
                             wallBlock = _BlendBlocks[2].blocks[Random.Range(0, 3)];
-                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform, 180);
+                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 180);
                             break;
                         case 1100:
                             wallBlock = _BlendBlocks[1].blocks[Random.Range(0, 3)];
-                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform, 90);
+                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 90);
                             break;
                         case 1101:
                             wallBlock = _BlendBlocks[2].blocks[Random.Range(0, 3)];
-                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform, 180);
+                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 180);
                             break;
                         case 1110:
                             wallBlock = _BlendBlocks[2].blocks[Random.Range(0, 3)];
-                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform, 90);
+                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 90);
                             break;
                         case 1111:
                             wallBlock = _BlendBlocks[3].blocks[Random.Range(0, 3)];
-                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform, 0);
+                            chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 0);
                             break;
                     }
                 }
