@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AiBossGetInArenaState : IAiBossState
 {
+	bool jumpStart = true;
 	public AiBossStateType GetStateType()
 	{
 	    return AiBossStateType.GetInArena;
@@ -15,7 +16,7 @@ public class AiBossGetInArenaState : IAiBossState
 
 	public void Update(AiBossAgent bossAgent)
 	{
-		//trajectory jump motion with initial speed and angle to arena centre
+		//trajectory jump motion with initial speed and angle to arena centre to be added
 
 	}
 
