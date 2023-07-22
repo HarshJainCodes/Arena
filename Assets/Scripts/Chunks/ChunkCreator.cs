@@ -745,7 +745,8 @@ public class ChunkCreator : MonoBehaviour
             _HasRun = true;
 
             CombineCubes.Instance.MakeCubeSegments();
-            //CombineCubes.Instance.CombineCubeSegments();
+            if(!GetBlocks.Instance.export)
+            CombineCubes.Instance.CombineCubeSegments();
 
             CombineFloors.Instance.MakeFloorSegments();
             //CombineFloors.Instance.CombineFloorSegments();
