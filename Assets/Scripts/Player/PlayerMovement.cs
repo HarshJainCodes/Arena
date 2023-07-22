@@ -22,6 +22,8 @@ namespace Arena
         private CameraLook cam;
 
         [Header("Movement")]
+        [SerializeField]
+        private float gravityScale = 5f;
         private float _MoveSpeed;
         [SerializeField]
         private float speedAiming = 5f;
@@ -70,6 +72,9 @@ namespace Arena
         [Header("Jumping")]
         [SerializeField]
         private float jumpForce = 10.0f;
+
+        [SerializeField]
+        private float jumpHeight = 10f;
         [SerializeField]
         private float jumpCooldown = 0.25f;
         [SerializeField]
@@ -161,7 +166,7 @@ namespace Arena
                 isSprinting = false;
 
             }
-            if (isSliding)
+            else if (isSliding)
             {
                 state = MovementState.sliding;
                 //cam.DoFov(70);
@@ -284,6 +289,11 @@ namespace Arena
         private void FixedUpdate()
         {
             MovePlayer();
+            if(state!= MovementState.wallRunning)
+            {
+            rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass);
+
+            }
         }
         private void MovePlayer()
         {
@@ -364,8 +374,9 @@ namespace Arena
             landTime = 0;
             exitingSlope = true;
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-
+            float jf = Mathf.Sqrt(jumpHeight * -2 * (Physics.gravity.y * gravityScale));
+            rb.AddForce(transform.up * jf, ForceMode.Impulse);
+            Debug.Log("jump");
             lastJumpTime = Time.deltaTime;
             readyToJump = false;
             Invoke(nameof(ResetJump), jumpCooldown);
@@ -374,9 +385,11 @@ namespace Arena
 
         public void DoubleJump()
         {
-            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
-            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            float jf = Mathf.Sqrt(jumpHeight * -2 * (Physics.gravity.y * gravityScale));
+
+            rb.AddForce(transform.up * jf, ForceMode.Impulse);
             lastJumpTime = Time.deltaTime;
             canDoublJump = false;
         }
