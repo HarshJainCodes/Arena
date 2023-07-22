@@ -114,7 +114,7 @@ namespace Pathfinding {
 		/// Slow down when not facing the target direction.
 		/// Incurs at a small performance overhead.
 		/// </summary>
-		public bool slowWhenNotFacingTarget = true;
+		public bool slowWhenNotFacingTarget = false;
 
 		/// <summary>
 		/// What to do when within <see cref="endReachedDistance"/> units from the destination.

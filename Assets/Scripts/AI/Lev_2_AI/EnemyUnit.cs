@@ -18,7 +18,7 @@ public class EnemyUnit : MonoBehaviour
 	    float endDistance = Agent.GetComponent<AIPath>().endReachedDistance;
 		refer.position = position;
 
-		if (Agent.InRange)
+		if (Agent.InRange || Agent.sensor.IsInSight(Agent.playerTransform.gameObject))
 	    { 
 			Agent.GetComponent<AIPath>().endReachedDistance = 0f;
 			Agent.GetComponent<AIDestinationSetter>().target = refer;

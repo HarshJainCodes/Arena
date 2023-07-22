@@ -1,4 +1,6 @@
 
+using UnityEngine.UIElements;
+
 public class Node<T>
 {
     public T Value;
@@ -90,5 +92,10 @@ public class Deque<T>
             return temp;
         }
         return Head;
+    }
+
+    public void find()
+    {
+
     }
 }

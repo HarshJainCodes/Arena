@@ -5,6 +5,7 @@ using UnityEngine;
 public enum AiBossStateType
 {
 	ObservePlayer,
+	GetInArena,
 	Idle,
 	Patrol,
 	Chase,
@@ -15,7 +16,6 @@ public enum AiBossStateType
 
 public interface IAiBossState
 {
-	public const string BossIdleAnim = "BossIdle1Anim";
 
 	AiBossStateType GetStateType();
 	void Enter(AiBossAgent bossAgent);

@@ -7,23 +7,21 @@ public class SnapshotsOfVolumes : MonoBehaviour
 {
 
     [SerializeField] private Camera _Cam;
-    [SerializeField] private int _Index=0;
     [SerializeField] private RawImage[] _Snaps;
-    private RenderTexture render;
-    [SerializeField] private Material _Material;
+    [SerializeField] private RenderTexture[] _Render;
 
-    public int index{ get { return _Index; } set { _Index=value; } }
 
-    public void grabsnap()
+    private void Start()
     {
-        render = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
-        _Cam.targetTexture = render;
-        //RenderTexture render= _Cam.targetTexture;
-        Texture2D camTexture = new Texture2D(render.width, render.height, TextureFormat.ARGB32,false);
-        RenderTexture.active = render;
-        _Material.mainTexture = render;
-        _Snaps[_Index].material =_Material;
+        _Render[0] = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
+        _Cam.targetTexture = _Render[0];
+        _Snaps[0].texture = _Render[0];
     }
-    // Start is called before the first frame update
+    public void grabsnap(int tempIndex)
+    {
+        _Render[tempIndex] = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
+        _Cam.targetTexture = _Render[tempIndex];
+        _Snaps[tempIndex].texture = _Render[tempIndex];
+    }
 
 }

@@ -69273,7 +69273,7 @@ MonoBehaviour:
   healthSlider: {fileID: 1427469160480762707}
   shieldSlider: {fileID: 1705942234730413971}
   showUI: 0
-  damagePopUp: {fileID: 0}
+  damagePopUp: {fileID: 7809040584024702416, guid: 606941a26ff1c814391ed7f66dfa9f5d, type: 3}
   shieldColor: {r: 0, g: 0, b: 0, a: 0}
   healthColor: {r: 0, g: 0, b: 0, a: 0}
   xVariation: 0
@@ -69293,6 +69293,7 @@ MonoBehaviour:
         m_Calls: []
   timeToDie: 3
   BossAgent: {fileID: 0}
+  IsInvulnerable: 0
 --- !u!114 &4375336841687681576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69310,6 +69311,7 @@ MonoBehaviour:
   PlayerTransform: {fileID: 0}
   PatrolPoint: {fileID: 0}
   SpawnManager: {fileID: 0}
+  BossHealth: {fileID: 0}
   StopDistance: 6
   InRange: 0
 --- !u!1 &6862706810656654844
