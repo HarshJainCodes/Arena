@@ -18770,6 +18770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   a: 0
+  SpeedMax: 10
 --- !u!1 &1678320184327765992
 GameObject:
   m_ObjectHideFlags: 0
