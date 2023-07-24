@@ -7,6 +7,7 @@ public class ChunkScriptV2 : MonoBehaviour
 {
     List<List<List<GameObject>>> MainChunks = new List<List<List<GameObject>>>();
     int GridSize = 54;
+    int totalFloorSize = 9;
     int floorSize = 6;
 
     [SerializeField] int RoomScaleX = 6;
@@ -41,11 +42,15 @@ public class ChunkScriptV2 : MonoBehaviour
         {
             MakeWalls(i);
         }
+
+        CutCubes();
+
+        AddCubesOnTop();
     }
 
     private void InitializeArray()
     {
-        for (int k = 0; k < floorSize; k++)
+        for (int k = 0; k < totalFloorSize; k++)
         {
             List<List<GameObject>> kList = new List<List<GameObject>>();
             for (int i = 0; i < GridSize; i++)
@@ -123,7 +128,7 @@ public class ChunkScriptV2 : MonoBehaviour
         int iMax = iMin + (GridSize - 2 * padding) / 3;
 
         int jMin = padding;
-        int jMax = jMin + (GridSize - 2 * padding) / 3;
+        int jMax = jMin + (GridSize - 2 * padding) / 3 - 1;
 
         InitiateSpawnTiles(iMin, iMax, jMin, jMax, floorNo);
     }
@@ -142,7 +147,7 @@ public class ChunkScriptV2 : MonoBehaviour
     private void MiddleLeft(int floorNo)
     {
         int iMin = padding;
-        int iMax = iMin + (GridSize - 2 * padding) / 3;
+        int iMax = iMin + (GridSize - 2 * padding) / 3 - 1;
 
         int jMin = padding + (GridSize - 2 * padding) / 3;
         int jMax = jMin + (GridSize - 2 * padding) / 3;
@@ -152,7 +157,7 @@ public class ChunkScriptV2 : MonoBehaviour
 
     private void MiddleRight(int floorNo)
     {
-        int iMin = padding + (GridSize - 2 * padding) / 3 + (GridSize - 2 * padding) / 3;
+        int iMin = padding + (GridSize - 2 * padding) / 3 + (GridSize - 2 * padding) / 3 + 1;
         int iMax = iMin + (GridSize - 2 * padding) / 3;
 
         int jMin = padding + (GridSize - 2 * padding) / 3;
@@ -177,7 +182,7 @@ public class ChunkScriptV2 : MonoBehaviour
         int iMin = padding + (GridSize - 2 * padding) / 3;
         int iMax = iMin + (GridSize - 2 * padding) / 3;
 
-        int jMin = padding + 2 * (GridSize - 2 * padding) / 3;
+        int jMin = padding + 2 * (GridSize - 2 * padding) / 3 + 1;
         int jMax = jMin + (GridSize - 2 * padding) / 3;
 
         InitiateSpawnTiles(iMin, iMax, jMin, jMax, floorNo);
@@ -255,7 +260,7 @@ public class ChunkScriptV2 : MonoBehaviour
         {
             for (int j = 0; j < GridSize - 1; j++)
             {
-                if ((i > padding + (GridSize - 2 * padding) / 3) && (j > padding + (GridSize - 2 * padding) / 3) && (i < padding + 2 * (GridSize - 2 * padding) / 3) && (j < padding + 2 * (GridSize - 2 * padding) / 3))
+                if ((i >= padding + (GridSize - 2 * padding) / 3 - 1) && (j >= padding + (GridSize - 2 * padding) / 3 - 1) && (i <= padding + 2 * (GridSize - 2 * padding) / 3 + 1) && (j <= padding + 2 * (GridSize - 2 * padding) / 3 + 1))
                 {
                     continue;
                 }
@@ -362,6 +367,102 @@ public class ChunkScriptV2 : MonoBehaviour
                             break;
                     }
                 }
+            }
+        }
+    }
+
+    private void CutCubes()
+    {
+        int a = 0;
+
+        while (a <= GridSize)
+        {
+            int j = Random.Range(1, padding);
+            int nextI = Mathf.Min(GridSize - 1, Random.Range(a + 4, a + 8));
+
+            for (int ii = a; ii < nextI; ii++)
+            {
+                for (int jj = 0; jj < j; jj++)
+                {
+                    int minK = Random.Range(0, floorSize - 1);
+                    int maxK = Random.Range(minK, floorSize + 1);
+                    //int maxK = floorSize;
+
+                    for (int k = minK; k < maxK; k++)
+                    {
+                        BlocksV2 chunk = MainChunks[k][ii][jj].GetComponent<BlocksV2>();
+
+                        if (chunk.blockAssigned != null)
+                        {
+                            Destroy(chunk.blockAssigned);
+                            chunk.blockAssigned = null;
+                            chunk.ID = -1;
+                        }
+                    }
+                }
+            }
+            a = nextI + Random.Range(2, 5);
+            if (a >= GridSize - 1)
+            {
+                break;
+            }
+        }
+    }
+
+
+    private void AddCubesOnTopHelper(int iMin, int iMax, int jMin, int jMax, int k)
+    {
+        GameObject wallBlock = _BlendBlocks[3].blocks[Random.Range(0, 3)];
+
+        for (int i = iMin; i < iMax; i++)
+        {
+            for (int j = jMin; j < jMax; j++)
+            {
+                if (MainChunks[k - 1][i][j].GetComponent<BlocksV2>().blockAssigned != null)
+                {
+                    BlocksV2 chunk = MainChunks[k][i][j].GetComponent<BlocksV2>();
+                    chunk.InstantiateWall(i - wallBlock.transform.localScale.x / 2, j - wallBlock.transform.localScale.y / 2, k, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform, 0);
+                }
+            }
+        }
+
+    }
+
+    private void AddCubesOnTop()
+    {
+        int iMin, iMax, jMin, jMax;
+
+        for (int k = floorSize - 1; k < totalFloorSize; k++)
+        {
+            for (int c = 0; c < 10; c++)
+            {
+                // left side
+                iMin = Random.Range(0, padding / 2);
+                iMax = Random.Range(iMin, padding);
+                jMin = Random.Range(0, GridSize + 1);
+                jMax = Random.Range(jMin, Mathf.Min(jMin + 15, GridSize + 1));
+                AddCubesOnTopHelper(iMin, iMax, jMin, jMax, k);
+
+                // right side
+                iMin = Random.Range(GridSize - padding + 1, GridSize - padding / 2);
+                iMax = Random.Range(iMin, GridSize + 1);
+                jMin = Random.Range(0, GridSize + 1);
+                jMax = Random.Range(jMin, Mathf.Min(jMin + 15, GridSize + 1));
+                AddCubesOnTopHelper(iMin, iMax, jMin, jMax, k);
+
+                // bottom side
+                iMin = Random.Range(0, GridSize + 1);
+                iMax = Random.Range(iMin, GridSize + 1);
+                jMin = Random.Range(0, padding / 2);
+                jMax = Random.Range(jMin, padding);
+                AddCubesOnTopHelper(iMin, iMax, jMin, jMax, k);
+
+                // top side
+                iMin = Random.Range(0, GridSize + 1);
+                iMax = Random.Range(iMin, GridSize + 1);
+                jMin = Random.Range(GridSize - padding + 1, GridSize - padding / 2);
+                jMax = Random.Range(jMin, GridSize + 1);
+                AddCubesOnTopHelper(iMin, iMax, jMin, jMax, k);
             }
         }
     }
