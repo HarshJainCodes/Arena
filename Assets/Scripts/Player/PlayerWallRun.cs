@@ -66,8 +66,16 @@ namespace Arena
         }
         private void CheckForWall()
         {
+            Vector3 RightDirection = transform.position + orientation.right + orientation.forward;
+            Vector3 LeftDirection = transform.position + -orientation.right + orientation.forward;
             wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallHit, wallCheckDistance, whatIsWall);
             wallLeft = Physics.Raycast(transform.position, -orientation.right, out rightWallHit, wallCheckDistance, whatIsWall);
+
+            /*wallRight = Physics.Raycast(transform.position, RightDirection, out rightWallHit, wallCheckDistance, whatIsWall);
+
+            wallLeft = Physics.Raycast(transform.position, LeftDirection, out rightWallHit, wallCheckDistance, whatIsWall);
+            Debug.DrawRay(transform.position, RightDirection*wallCheckDistance, Color.green,1000);
+            Debug.DrawRay(transform.position, LeftDirection*wallCheckDistance, Color.green,1000);*/
         }
 
         private bool AboveGround()
@@ -170,6 +178,7 @@ namespace Arena
 
         void WallJump()
         {
+            Debug.Log("wallJump");
             exitingWall = true;
             pm.canDoublJump = true;
             exitWallTimer = exitWallTime;
