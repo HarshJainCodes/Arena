@@ -43,7 +43,7 @@ public class WeaponIK : MonoBehaviour
         Vector3 targetPosition = GetTargetPosition();
         for (int i = 0; i < Iterations; i++)
         {
-			AimAtTarget(Bone, targetPosition);
+			AimAtTarget(Bone, targetPosition + Random.insideUnitSphere * _AiAgent.Inaccuracy);
         }
 
     }
