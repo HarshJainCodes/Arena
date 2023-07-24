@@ -29,7 +29,7 @@ namespace AI.Lev_1_AI.AI_State_Machine.States
 			Agent.GetComponent<AIDestinationSetter>().enabled = true;
 			Agent.GetComponent<AIPath>().enabled = true;
 			Agent.GetComponent<Seeker>().enabled = true;
-			AiPath.maxSpeed = 2f;
+			AiPath.maxSpeed = agent.PatrolSpeed;
 			MoveTo(PickRandomPoint());
 		}
 
@@ -41,7 +41,7 @@ namespace AI.Lev_1_AI.AI_State_Machine.States
 
 			if (Agent.sensor.IsInSight(Agent.playerTransform.gameObject) || Agent.InRange)
 			{
-				AiPath.maxSpeed = 4f;
+				AiPath.maxSpeed = agent.Speed;
 				Agent.GetComponent<AIPath>().endReachedDistance = endDistance;
 				Agent.GetComponent<AIDestinationSetter>().target = Agent.playerTransform;
 				Agent.stateMachine.ChangeState(AiStateType.Chase);
@@ -100,7 +100,7 @@ namespace AI.Lev_1_AI.AI_State_Machine.States
 			}
 			else
 			{
-				AiPath.maxSpeed = 4f;
+				AiPath.maxSpeed = Agent.Speed;
 				Agent.GetComponent<AIPath>().endReachedDistance = endDistance;
 				Agent.GetComponent<AIDestinationSetter>().target = Agent.playerTransform;
 				Agent.stateMachine.ChangeState(AiStateType.Chase);

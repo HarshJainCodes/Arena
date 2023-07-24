@@ -17,6 +17,8 @@ public class AiBossAgent : MonoBehaviour
     public float StopDistance = 6f;
     public bool InRange = false;
     public float BossSpeed = 4f;
+    public float BossPatrolSpeed = 4f;
+    public float BossWalkingShootSpeed = 4f;
     [HideInInspector] public AiSensor Sensor;
 
 

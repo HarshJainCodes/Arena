@@ -17,7 +17,7 @@ public class AiAttackState : IAiState
 	public void Enter(AiAgent agent)
 	{
 		aiPath = agent.GetComponent<AIPath>();
-		aiPath.maxSpeed = 3f;
+		aiPath.maxSpeed = agent.WalkingShootSpeed;
 		agent.GetComponent<AIDestinationSetter>().enabled = true;
 		agent.GetComponent<AIPath>().enabled = true;
 		agent.GetComponent<Seeker>().enabled = true;
@@ -49,7 +49,7 @@ public class AiAttackState : IAiState
 
 	public void Exit(AiAgent agent)
 	{
-		aiPath.maxSpeed = 4f;
+		aiPath.maxSpeed = agent.Speed;
 		agent.GetComponent<AIDestinationSetter>().enabled = false;
 		agent.GetComponent<AIPath>().enabled = false;
 		agent.GetComponent<Seeker>().enabled = false;

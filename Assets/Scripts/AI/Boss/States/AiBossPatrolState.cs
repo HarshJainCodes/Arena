@@ -29,7 +29,7 @@ public class AiBossPatrolState : IAiBossState
         BossAgent.GetComponent<AIDestinationSetter>().enabled = true;
         BossAgent.GetComponent<AIPath>().enabled = true;
         BossAgent.GetComponent<Seeker>().enabled = true;
-        AiPath.maxSpeed = 3f;
+        AiPath.maxSpeed = bossAgent.BossPatrolSpeed;
         MoveTo(PickRandomPoint());
     }
 
@@ -55,7 +55,7 @@ public class AiBossPatrolState : IAiBossState
 
     public void Exit(AiBossAgent bossAgent)
     {
-	    AiPath.maxSpeed = 4f;
+	    AiPath.maxSpeed = bossAgent.BossSpeed;
         BossAgent.GetComponent<AIPath>().endReachedDistance = endDistance;
         BossAgent.GetComponent<AIDestinationSetter>().target = BossAgent.PlayerTransform;
         BossAgent.GetComponent<AIDestinationSetter>().enabled = false;

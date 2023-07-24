@@ -17668,7 +17668,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0068bb84347ba3d4a96f3e9928c0846d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aiPath: {fileID: 5748185646804645341}
   a: 0
+  AiAgent: {fileID: 3612463840218020054}
 --- !u!1 &1678753962111923705
 GameObject:
   m_ObjectHideFlags: 0
@@ -82709,8 +82711,10 @@ MonoBehaviour:
   spawnManager: {fileID: 0}
   dotProduct: 0
   StopDistance: 6
-  MinWanderSpeed: 0.1
   InRange: 0
+  Speed: 4
+  PatrolSpeed: 2
+  WalkingShootSpeed: 3.5
   Level: 2
   maxSightDistance: 20
   sensor: {fileID: 0}

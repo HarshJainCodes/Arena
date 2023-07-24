@@ -7,72 +7,80 @@ using UnityEngine;
 
 public class AiAgent : MonoBehaviour
 {
-    public AiStateMachine stateMachine;
-    public AiStateType InitialStateType;
-    public AiStateType CurrentStateType;
-    public Transform playerTransform;
-    public Transform patrolPoint;
-    public SpawnManager spawnManager;
-    public float dotProduct;
-    public float StopDistance = 6f;
-    public float MinWanderSpeed = 0.1f;
-    public bool InRange = false;
-    public int Level = 1;
+	// References to components and managers
+	public AiStateMachine stateMachine;
+	public AiStateType InitialStateType;
+	public AiStateType CurrentStateType;
+	public Transform playerTransform;
+	public Transform patrolPoint;
+	public SpawnManager spawnManager;
+	public float dotProduct;
+
+	// Movement and AI parameters
+	// this is the only place you need to change the speed of the enemy and all animations and movement will be updated
+	public float StopDistance = 6f;
+	public bool InRange = false;
+	public float Speed = 4f;
+	public float PatrolSpeed = 2f;
+	public float WalkingShootSpeed = 3.5f;
+	public int Level = 1;
 	[SerializeField] public float maxSightDistance = 17f;
-    [HideInInspector]public AiSensor sensor;
 
-    // Start is called before the first frame update
-    void Start() 
-    {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        spawnManager = GameObject.FindGameObjectWithTag("SpawnMan").GetComponent<SpawnManager>();
-        sensor = GetComponent<AiSensor>();
-        stateMachine = new AiStateMachine(this);
-        stateMachine.RegisterState(new AiChaseState());
-        stateMachine.RegisterState(new AiAttackSurroundState());
-        stateMachine.RegisterState(new AiDeathState());
-        stateMachine.RegisterState(new AiIdeState());
-        stateMachine.RegisterState(new AiAttackState());
-        stateMachine.RegisterState(new AiPatrolState());
-        stateMachine.ChangeState(InitialStateType);
-    }
+	// Sensor component for enemy detection
+	[HideInInspector] public AiSensor sensor;
 
-    // Update is called once per frame
-    void Update()
-    {
-	    stateMachine.Update();
-        CurrentStateType = stateMachine.currentStateType;
-        if (stateMachine.currentStateType != CurrentStateType)
-        {
-	        stateMachine.ChangeState(CurrentStateType);
-        }
-		// if the distance between the player and the enemy is lesser than the endReachedDistance
-		InRange = StopDistance > Math.Abs(
-			(playerTransform.position - transform.position).magnitude);
-		// InRange = inRange();
-		// if (sensor.IsInSight(playerTransform.gameObject) && InRange)
-		// {
-		//  if (Level == 1)
-		//   stateMachine.ChangeState(AiStateType.Attack);
-		//  else if (Level == 2)
-		//   stateMachine.ChangeState(AiStateType.AttackSurround);
-		// }
+	// Start is called before the first frame update
+	void Start()
+	{
+		// Getting references to other components and initializing the state machine
+		playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+		spawnManager = GameObject.FindGameObjectWithTag("SpawnMan").GetComponent<SpawnManager>();
+		sensor = GetComponent<AiSensor>();
+		GetComponent<AIPath>().maxSpeed = Speed;
 
+		// Creating the state machine and registering different AI states
+		stateMachine = new AiStateMachine(this);
+		stateMachine.RegisterState(new AiChaseState());
+		stateMachine.RegisterState(new AiAttackSurroundState());
+		stateMachine.RegisterState(new AiDeathState());
+		stateMachine.RegisterState(new AiIdeState());
+		stateMachine.RegisterState(new AiAttackState());
+		stateMachine.RegisterState(new AiPatrolState());
+		stateMachine.ChangeState(InitialStateType);
 	}
 
-    bool inRange()
-    {
-	    Vector3 playerDirection = playerTransform.position - transform.position;
-	    if (playerDirection.magnitude > StopDistance)
-	    {
-		    return false;
-	    }
-	    Vector3 agentDirection = transform.forward;
+	// Update is called once per frame
+	void Update()
+	{
+		// Update the current state of the state machine
+		CurrentStateType = stateMachine.currentStateType;
 
-	    playerDirection.Normalize();
+		// Check if the state has changed and update the state machine accordingly
+		if (stateMachine.currentStateType != CurrentStateType)
+		{
+			stateMachine.ChangeState(CurrentStateType);
+		}
 
-	    dotProduct = Vector3.Dot(playerDirection, agentDirection);
-	    if (dotProduct > 0.8660254037f) return true;
-        return false;
+		// Check if the player is in range based on the StopDistance parameter
+		InRange = StopDistance > Math.Abs((playerTransform.position - transform.position).magnitude);
+		// Alternatively, you can use the inRange() function to achieve the same result
+	}
+
+	// Function to check if the player is in range based on dot product calculations
+	bool inRange()
+	{
+		Vector3 playerDirection = playerTransform.position - transform.position;
+		if (playerDirection.magnitude > StopDistance)
+		{
+			return false;
+		}
+		Vector3 agentDirection = transform.forward;
+
+		playerDirection.Normalize();
+
+		dotProduct = Vector3.Dot(playerDirection, agentDirection);
+		if (dotProduct > 0.8660254037f) // Approximately cos(30 degrees) for 180-degree cone
+			return true;
+		return false;
 	}
 }
