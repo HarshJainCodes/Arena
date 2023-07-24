@@ -81692,6 +81692,7 @@ MonoBehaviour:
   PatrolSpeed: 4
   WalkingShootSpeed: 6
   Level: 1
+  Inaccuracy: 0
   maxSightDistance: 20
   sensor: {fileID: 7265169505010844225}
 --- !u!143 &5245328014555480337
@@ -81788,7 +81789,7 @@ MonoBehaviour:
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
   maxAcceleration: 1.2
-  rotationSpeed: 360
+  rotationSpeed: 720
   slowdownDistance: 13.02
   pickNextWaypointDist: 0.5
   endReachedDistance: 6
