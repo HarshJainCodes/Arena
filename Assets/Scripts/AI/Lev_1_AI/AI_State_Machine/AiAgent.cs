@@ -53,6 +53,7 @@ public class AiAgent : MonoBehaviour
 	void Update()
 	{
 		// Update the current state of the state machine
+		stateMachine.Update();
 		CurrentStateType = stateMachine.currentStateType;
 
 		// Check if the state has changed and update the state machine accordingly

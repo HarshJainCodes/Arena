@@ -18845,6 +18845,7 @@ MonoBehaviour:
   aiPath: {fileID: 5748185646804645341}
   a: 0
   AiAgent: {fileID: 3612463840218020054}
+  BossAgent: {fileID: 0}
 --- !u!1 &1678633418960222616
 GameObject:
   m_ObjectHideFlags: 0
@@ -81665,7 +81666,7 @@ MonoBehaviour:
   InRange: 0
   Speed: 8
   PatrolSpeed: 4
-  WalkingShootSpeed: 3.5
+  WalkingShootSpeed: 6
   Level: 1
   maxSightDistance: 20
   sensor: {fileID: 0}
