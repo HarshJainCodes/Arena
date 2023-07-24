@@ -27,7 +27,7 @@ public class AiAgent : MonoBehaviour
 	[SerializeField] public float maxSightDistance = 17f;
 
 	// Sensor component for enemy detection
-	[HideInInspector] public AiSensor sensor;
+	public AiSensor sensor;
 
 	// Start is called before the first frame update
 	void Start()
@@ -35,7 +35,6 @@ public class AiAgent : MonoBehaviour
 		// Getting references to other components and initializing the state machine
 		playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 		spawnManager = GameObject.FindGameObjectWithTag("SpawnMan").GetComponent<SpawnManager>();
-		sensor = GetComponent<AiSensor>();
 		GetComponent<AIPath>().maxSpeed = Speed;
 
 		// Creating the state machine and registering different AI states
