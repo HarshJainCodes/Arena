@@ -81581,9 +81581,9 @@ GameObject:
   - component: {fileID: 9136858026202530562}
   - component: {fileID: 6685260630587027748}
   - component: {fileID: 487490923069147936}
+  - component: {fileID: 3612463840218020054}
   - component: {fileID: 5245328014555480337}
   - component: {fileID: 3085383351168391439}
-  - component: {fileID: 3612463840218020054}
   - component: {fileID: 1189896235350604048}
   - component: {fileID: 5748185646804645341}
   - component: {fileID: 6053885820470684819}
@@ -81668,6 +81668,32 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3612463840218020054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7656122392186898244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3cbc9fbf49f6894ea37ced618e025cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitialStateType: 1
+  CurrentStateType: 0
+  playerTransform: {fileID: 0}
+  patrolPoint: {fileID: 3260458226833169153}
+  spawnManager: {fileID: 0}
+  dotProduct: 0
+  StopDistance: 6
+  InRange: 0
+  Speed: 8
+  PatrolSpeed: 4
+  WalkingShootSpeed: 6
+  Level: 1
+  maxSightDistance: 20
+  sensor: {fileID: 7265169505010844225}
 --- !u!143 &5245328014555480337
 CharacterController:
   m_ObjectHideFlags: 0
@@ -81700,32 +81726,6 @@ CapsuleCollider:
   m_Height: 4.39
   m_Direction: 1
   m_Center: {x: 0, y: 1.5, z: 0}
---- !u!114 &3612463840218020054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7656122392186898244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3cbc9fbf49f6894ea37ced618e025cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitialStateType: 1
-  CurrentStateType: 0
-  playerTransform: {fileID: 0}
-  patrolPoint: {fileID: 3260458226833169153}
-  spawnManager: {fileID: 0}
-  dotProduct: 0
-  StopDistance: 6
-  InRange: 0
-  Speed: 8
-  PatrolSpeed: 4
-  WalkingShootSpeed: 6
-  Level: 1
-  maxSightDistance: 20
-  sensor: {fileID: 7265169505010844225}
 --- !u!114 &1189896235350604048
 MonoBehaviour:
   m_ObjectHideFlags: 0

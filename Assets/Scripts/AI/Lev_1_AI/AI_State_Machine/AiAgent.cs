@@ -24,6 +24,7 @@ public class AiAgent : MonoBehaviour
 	public float PatrolSpeed = 2f;
 	public float WalkingShootSpeed = 3.5f;
 	public int Level = 1;
+	public float Inaccuracy = 0.0f;
 	[SerializeField] public float maxSightDistance = 17f;
 
 	// Sensor component for enemy detection

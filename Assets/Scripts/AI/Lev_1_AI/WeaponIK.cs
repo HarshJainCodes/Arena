@@ -7,6 +7,7 @@ public class WeaponIK : MonoBehaviour
     public Transform TargetTransform;
     public Transform AimTransform;
     public Transform Bone;
+    private AiAgent _AiAgent;
     public int Iterations = 10;
     public float AngleLimit = 90f;
     public float DistanceLimit = 1.5f;
@@ -14,7 +15,8 @@ public class WeaponIK : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-	    TargetTransform = GetComponent<AiAgent>().playerTransform;
+	    _AiAgent = GetComponent<AiAgent>();
+	    TargetTransform = _AiAgent.playerTransform;
     }
 
     Vector3 GetTargetPosition()

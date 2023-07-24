@@ -80538,6 +80538,7 @@ GameObject:
   - component: {fileID: 9125732770733866005}
   - component: {fileID: 6461360210587375312}
   - component: {fileID: 7063679300335282605}
+  - component: {fileID: 4536987512049370168}
   m_Layer: 0
   m_Name: GodOffset
   m_TagString: Untagged
@@ -80670,6 +80671,7 @@ MonoBehaviour:
   PatrolSpeed: 5
   WalkingShootSpeed: 8
   Level: 2
+  Inaccuracy: 0
   maxSightDistance: 20
   sensor: {fileID: 8057094460576962885}
 --- !u!114 &1189896235350604048
@@ -80893,6 +80895,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _HealthPack: {fileID: 7980887769675177, guid: 09ac6c0427597b644a37ac32e04cf665, type: 3}
   _AmmoPack: {fileID: 5327198166583502317, guid: e414d376099a0ad4fbf509ea15bbed65, type: 3}
+--- !u!114 &4536987512049370168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7656122392186898244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 591054beba81e3c4f91ae6a9a6930d25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetTransform: {fileID: 0}
+  AimTransform: {fileID: 1705876767307433188}
+  Bone: {fileID: 2853137648335184640}
+  Iterations: 10
+  AngleLimit: 90
+  DistanceLimit: 1.5
 --- !u!1 &7659752981481284954
 GameObject:
   m_ObjectHideFlags: 0
