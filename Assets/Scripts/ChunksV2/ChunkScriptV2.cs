@@ -43,7 +43,9 @@ public class ChunkScriptV2 : MonoBehaviour
             MakeWalls(i);
         }
 
-        CutCubes();
+        CutCubesBottom();
+        //CutCubesTop();
+        //CutCubesLeft();
 
         AddCubesOnTop();
     }
@@ -371,7 +373,7 @@ public class ChunkScriptV2 : MonoBehaviour
         }
     }
 
-    private void CutCubes()
+    private void CutCubesBottom()
     {
         int a = 0;
 
@@ -402,6 +404,82 @@ public class ChunkScriptV2 : MonoBehaviour
                 }
             }
             a = nextI + Random.Range(2, 5);
+            if (a >= GridSize - 1)
+            {
+                break;
+            }
+        }
+    }
+
+    private void CutCubesTop()
+    {
+        int a = 0;
+
+        while (a <= GridSize)
+        {
+            int j = Random.Range(GridSize - padding + 1, GridSize + 1);
+            int nextI = Mathf.Min(GridSize - 1, Random.Range(a + 4, a + 8));
+
+            for (int ii = a; ii < nextI; ii++)
+            {
+                for (int jj = 0; jj < j; jj++)
+                {
+                    int minK = Random.Range(0, floorSize - 1);
+                    int maxK = Random.Range(minK, floorSize + 1);
+                    //int maxK = floorSize;
+
+                    for (int k = minK; k < maxK; k++)
+                    {
+                        BlocksV2 chunk = MainChunks[k][ii][jj].GetComponent<BlocksV2>();
+
+                        if (chunk.blockAssigned != null)
+                        {
+                            Destroy(chunk.blockAssigned);
+                            chunk.blockAssigned = null;
+                            chunk.ID = -1;
+                        }
+                    }
+                }
+            }
+            a = nextI + Random.Range(2, 5);
+            if (a >= GridSize - 1)
+            {
+                break;
+            }
+        }
+    }
+
+    private void CutCubesLeft()
+    {
+        int a = 0;
+
+        while (a <= GridSize)
+        {
+            int i = Random.Range(1, padding);
+            int nextJ = Mathf.Min(GridSize - 1, Random.Range(a + 4, a + 8));
+
+            for (int ii = a; ii < i; ii++)
+            {
+                for (int jj = 0; jj < nextJ; jj++)
+                {
+                    int minK = Random.Range(0, floorSize - 1);
+                    int maxK = Random.Range(minK, floorSize + 1);
+                    //int maxK = floorSize;
+
+                    for (int k = minK; k < maxK; k++)
+                    {
+                        BlocksV2 chunk = MainChunks[k][jj][ii].GetComponent<BlocksV2>();
+
+                        if (chunk.blockAssigned != null)
+                        {
+                            Destroy(chunk.blockAssigned);
+                            chunk.blockAssigned = null;
+                            chunk.ID = -1;
+                        }
+                    }
+                }
+            }
+            a = nextJ + Random.Range(2, 5);
             if (a >= GridSize - 1)
             {
                 break;
