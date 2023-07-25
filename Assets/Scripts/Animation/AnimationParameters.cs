@@ -272,6 +272,7 @@ namespace Arena
         }
         private void Inspect()
         {
+           
             //State.
             inspecting = true;
             //Play.
@@ -279,6 +280,7 @@ namespace Arena
         }
         private void Fire()
         {
+            
             //Increase shots fired. We use this value to increase the spread, and also to apply recoil, so
             //it is very important that we keep it up to date.
             shotsFired++;
@@ -302,17 +304,9 @@ namespace Arena
         }
         private void PlayReloadAnimation()
         {
-            #region Animation
+            string stateName = equippedWeapon.HasCycledReload() ? "Reload Open" : (equippedWeapon.HasAmmunition() ? "Reload" : "Reload Empty");
 
-            //Get the name of the animation state to play, which depends on weapon settings, and ammunition!
-            string stateName = equippedWeapon.HasCycledReload() ? "Reload Open" :
-                (equippedWeapon.HasAmmunition() ? "Reload" : "Reload Empty");
-
-            //Play the animation state!
             characterAnimator.Play(stateName, layerActions, 0.0f);
-
-            #endregion
-
             //Set Reloading Bool. This helps cycled reloads know when they need to stop cycling.
             characterAnimator.SetBool(AHashes.Reloading, reloading = true);
 
@@ -435,6 +429,8 @@ namespace Arena
             if (inspecting)
                 return false;
 
+            if (pm.Ledgegrab)
+                return false;
             //Return.
             return true;
         }
@@ -463,6 +459,8 @@ namespace Arena
             //Block Full Reloading if needed.
             if (!equippedWeapon.CanReloadWhenFull() && equippedWeapon.IsFull())
                 return false;
+            if (pm.Ledgegrab)
+                return false;
 
             //Return.
             return true;
@@ -489,6 +487,8 @@ namespace Arena
             if (!grenadesUnlimited && grenadeCount == 0)
                 return false;
 
+            if (pm.Ledgegrab)
+                return false;
             //Return.
             return true;
         }
@@ -510,6 +510,8 @@ namespace Arena
             if (inspecting)
                 return false;
 
+            if (pm.Ledgegrab)
+                return false;
             //Return.
             return true;
         }
@@ -526,7 +528,8 @@ namespace Arena
             //Block.
             if (inspecting)
                 return false;
-
+            if (pm.Ledgegrab)
+                return false;
             //Return.
             return true;
         }
@@ -548,6 +551,8 @@ namespace Arena
             if (inspecting)
                 return false;
 
+            if (pm.Ledgegrab)
+                return false;
             //Return.
             return true;
         }
@@ -569,6 +574,8 @@ namespace Arena
             if (inspecting)
                 return false;
 
+            if (pm.Ledgegrab)
+                return false;
             //Return.
             return true;
         }
@@ -596,6 +603,8 @@ namespace Arena
             //This blocks running backwards, or while fully moving sideways.
             if (axisMovement.y <= 0 || Math.Abs(Mathf.Abs(axisMovement.x) - 1) < 0.01f)
                 return false;
+            if (pm.Ledgegrab)
+                return false;
 
             //Return.
             return true;
@@ -614,6 +623,9 @@ namespace Arena
             if (holstering)
                 return false;
 
+            if (pm.Ledgegrab)
+                return false;
+
             //Return.
             return true;
         }
@@ -626,7 +638,7 @@ namespace Arena
         public void OnTryFire(InputAction.CallbackContext context)
         {
             //Block while the cursor is unlocked.
-
+           
 
             //Switch.
             switch (context)
@@ -682,7 +694,7 @@ namespace Arena
         public void OnTryPlayReload(InputAction.CallbackContext context)
         {
             //Block while the cursor is unlocked.
-
+            
 
             //Block.
             if (!CanPlayAnimationReload())
@@ -702,7 +714,7 @@ namespace Arena
         public void OnTryInspect(InputAction.CallbackContext context)
         {
             //Block while the cursor is unlocked.
-
+            
 
             //Block.
             if (!CanPlayAnimationInspect())
@@ -721,8 +733,7 @@ namespace Arena
 
         public void OnTryAiming(InputAction.CallbackContext context)
         {
-
-
+           
             //Switch.
             switch (context.phase)
             {
@@ -788,7 +799,6 @@ namespace Arena
         {
             //Block while the cursor is unlocked.
 
-
             //Switch.
             switch (context.phase)
             {
@@ -803,8 +813,7 @@ namespace Arena
 
         public void OnTryMelee(InputAction.CallbackContext context)
         {
-
-            //Switch.
+           
             switch (context.phase)
             {
                 //Performed.
@@ -819,7 +828,6 @@ namespace Arena
 
         public void OnTryRun(InputAction.CallbackContext context)
         {
-
 
             //Switch.
             switch (context.phase)
@@ -861,7 +869,7 @@ namespace Arena
 
         public void OnTryInventoryNext(InputAction.CallbackContext context)
         {
-
+            
 
             //Null Check.
             if (inventory == null)

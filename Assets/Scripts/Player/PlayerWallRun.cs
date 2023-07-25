@@ -186,7 +186,7 @@ namespace Arena
 
             Vector3 forceToApply = transform.up * wallJumpUpForce + wallNormal * wallJumpSideForce;
 
-            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            rb.velocity = Vector3.zero;
             rb.AddForce(forceToApply, ForceMode.Impulse);
         }
 
