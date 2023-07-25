@@ -81692,7 +81692,7 @@ MonoBehaviour:
   PatrolSpeed: 4
   WalkingShootSpeed: 6
   Level: 1
-  Inaccuracy: 0
+  Inaccuracy: 0.2
   maxSightDistance: 20
   sensor: {fileID: 7265169505010844225}
 --- !u!143 &5245328014555480337

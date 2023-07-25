@@ -1,4 +1,5 @@
 using cowsins;
+using Pathfinding.RVO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,8 @@ using UnityEngine.InputSystem.HID;
 public class Shooter : MonoBehaviour
 {
 	public Weapon_SO weapon;
-	public Transform[] firePoint; 
+	public Transform[] firePoint;
+	private AiAgent _AiAgent;
 	private int bulletsPerFire;
 	RaycastHit hit;
 	[Tooltip("What objects should be hit")] public LayerMask hitLayer;
@@ -19,6 +21,7 @@ public class Shooter : MonoBehaviour
 	private void Start()
 	{
 		canShoot = true;
+		_AiAgent = GetComponent<AiAgent>();
 	}
 
 	public void Shoot()
@@ -106,7 +109,7 @@ public class Shooter : MonoBehaviour
 		Transform hitObj;
 
 		//This defines the first hit on the object
-		Vector3 dir = CowsinsUtilities.GetSpreadDirection(weapon.spreadAmount, firePoint[0]);
+		Vector3 dir = CowsinsUtilities.GetSpreadDirection(weapon.spreadAmount, firePoint[0]) + Random.insideUnitSphere * _AiAgent.Inaccuracy; 
 		Ray ray = new Ray(firePoint[0].transform.position, dir);
 		GetComponentInParent<Animator>().Play("ShootAnim");
 		hitPlayer = Physics.Raycast(ray, out hit, weapon.bulletRange, hitLayer);
