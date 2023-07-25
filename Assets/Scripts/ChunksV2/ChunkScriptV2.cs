@@ -16,6 +16,8 @@ public class ChunkScriptV2 : MonoBehaviour
 
     int padding = 6;
 
+    public bool IsGridGenerated = false;
+
     [SerializeField] private GameObject _FloorParent;
 
     [Header("Block Creation Properties")]
@@ -37,6 +39,8 @@ public class ChunkScriptV2 : MonoBehaviour
 
     CombineCubesV2 CombnieCubesV2Script;
     CombineFloorsV2 FloorCombineV2Script;
+
+    [SerializeField] private GameObject _LavaRocks;
 
     // Start is called before the first frame update
     void Start()
@@ -553,7 +557,6 @@ public class ChunkScriptV2 : MonoBehaviour
             }
         }
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -561,7 +564,16 @@ public class ChunkScriptV2 : MonoBehaviour
         {
             run = true;
             CombnieCubesV2Script.CombineCubeSegments();
-            FloorCombineV2Script.CombineFloorSegments();
+            //FloorCombineV2Script.CombineFloorSegments();
+
+            StartCoroutine(_LavaRocks.GetComponent<ChunkAnimationV2>().AnimateChunkComingToTop());
+
+            foreach (Transform t in WallHolder.transform)
+            {
+                StartCoroutine(t.GetComponent<ChunkAnimationV2>().AnimateChunkComingToTop());
+            }
+
+            FloorsHolder.GetComponent<FloorAnimaationV2>().AnimateFloorComingToTop();
         }
     }
 }
