@@ -16,8 +16,9 @@ public class SpawnManager : MonoBehaviour
     private float _CurrentTime = 300f;
     
     private bool _IsTimerRunning = false;
-    
-    [FormerlySerializedAs("_generator")] public ChunkCreator Generator;
+
+    //[FormerlySerializedAs("_generator")] public ChunkCreator Generator;
+    public ChunkScriptV2 Generator;
     
     private Transform _Player;
     
@@ -44,7 +45,6 @@ public class SpawnManager : MonoBehaviour
         Enemies = new List<GameObject>();
         _Player = GameObject.FindGameObjectWithTag("Player").transform;
         //GenerateNewWave();
-        Debug.Log("generate wave called");
     }
 
     // Update is called once per frame
@@ -69,9 +69,7 @@ public class SpawnManager : MonoBehaviour
 					        GenerateNewWave();
 					        _CurrentEnemyIndex++;
 				        }
-
 			        }
-                
 		        }
 	        }
         }
@@ -80,6 +78,7 @@ public class SpawnManager : MonoBehaviour
 
     private void GenerateNewWave()
     {
+        Debug.Log("generate wave called");
         _IsGeneratingEnemies = true;
         _CurrentTime = TimeBetweenWaves;
         CurrentWave++;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Reflection.Emit;
 using UnityEngine;
 
 public class ChunkScriptV2 : MonoBehaviour
@@ -557,6 +558,40 @@ public class ChunkScriptV2 : MonoBehaviour
             }
         }
     }
+
+    public List<GameObject> GetSpawnPoints(Transform Player, int numOfEnemies, int minEnemyDistance, int maxEnemyDistance)
+    {
+        Vector3 PlayerPosition = Player.TransformPoint(Vector3.zero);
+        int enemySpawnedCount = 0;
+
+        List<GameObject> spawnPoints = new List<GameObject>();
+
+        for (int k = 0; k < floorSize; k++)
+        {
+            for (int i = 0; i < GridSize; i++)
+            {
+                for (int j = 0; j < GridSize; j++)
+                {
+                    if (MainChunks[k][i][j].GetComponent<BlocksV2>().ID == 0 && Vector3.Distance(PlayerPosition, MainChunks[k][i][j].GetComponent<BlocksV2>().blockAssigned.transform.position) < maxEnemyDistance && Vector3.Distance(PlayerPosition, MainChunks[k][i][j].GetComponent<BlocksV2>().blockAssigned.transform.position) > minEnemyDistance)
+                    {
+                        GameObject spawn = new GameObject();
+                        spawn.transform.position = MainChunks[k][i][j].GetComponent<BlocksV2>().blockAssigned.transform.position;
+                        spawnPoints.Add(spawn);
+                        enemySpawnedCount++;
+
+                        if (enemySpawnedCount > numOfEnemies)
+                        {
+                            goto EndLoop;
+                        }
+                    }
+                }
+            }
+        }
+        EndLoop:
+
+        return spawnPoints;
+    }
+
     // Update is called once per frame
     void Update()
     {
