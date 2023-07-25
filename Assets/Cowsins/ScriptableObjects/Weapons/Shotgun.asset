@@ -30,13 +30,13 @@ MonoBehaviour:
   explosionForce: 0
   explosionVFX: {fileID: 0}
   continuousFire: 0
-  fireRate: 1.4
+  fireRate: 1
   reloadTime: 2.517
   infiniteBullets: 0
   magazineSize: 4
   bulletsPerFire: 3
   ammoCostPerFire: 1
-  bulletRange: 100
+  bulletRange: 1000
   timeBetweenShots: 0
   penetrationAmount: 10
   penetrationDamageReduction: 0.91
@@ -51,7 +51,7 @@ MonoBehaviour:
   crosshairPreset: {fileID: 2655988077585873504, guid: c578889a819b05c4aacc11a6abb692ac, type: 2}
   applyBulletSpread: 1
   applyWeight: 1
-  spreadAmount: 0.06
+  spreadAmount: 0
   aimSpreadAmount: 0
   weightMultiplier: 1.3
   applyRecoil: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   applyDifferentRecoilOnAiming: 0
   xRecoilAmountOnAiming: 0
   yRecoilAmountOnAiming: 0
-  damagePerBullet: -0.87
+  damagePerBullet: -4
   applyDamageReductionBasedOnDistance: 0
   minimumDistanceToApplyDamageReduction: 0
   damageReductionMultiplier: 0

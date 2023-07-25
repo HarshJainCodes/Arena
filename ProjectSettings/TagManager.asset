@@ -7,6 +7,9 @@ TagManager:
   - PicaVoxelVolume
   - Enemy
   - Critical
+  - Wall
+  - Ground
+  - SpawnMan
   layers:
   - Default
   - TransparentFX
@@ -16,14 +19,14 @@ TagManager:
   - UI
   - Voxel
   - Ground
+  - Player
+  - Enemy
+  - EnemyDrop
   - 
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - MniMapIcon
   - 
   - 
   - 

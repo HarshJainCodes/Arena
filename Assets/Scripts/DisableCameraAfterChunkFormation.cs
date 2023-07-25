@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DisableCameraAfterChunkFormation : MonoBehaviour
 {
+    [SerializeField] private GameObject PlayerCam;
     IEnumerator DisableCamea()
     {
         float t = 0;
@@ -18,7 +19,7 @@ public class DisableCameraAfterChunkFormation : MonoBehaviour
         Destroy(gameObject);
     }
 
-    [SerializeField] GameObject PlayerCam;
+    
 
     // Start is called before the first frame update
     void Start()

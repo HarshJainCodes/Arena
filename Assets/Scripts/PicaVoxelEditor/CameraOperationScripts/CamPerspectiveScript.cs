@@ -19,6 +19,7 @@ public class CamPerspectiveScript : MonoBehaviour
     private bool _IsPerspective = true;
 
 
+
     /// <summary>
     /// This method swaps projection to Perspective
     /// </summary>

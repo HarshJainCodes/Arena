@@ -1,3 +1,5 @@
+using Newtonsoft.Json.Linq;
+using PicaVoxel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +10,8 @@ using UnityEngine;
 
 public class ChunkCreator : MonoBehaviour
 {
+    [SerializeField] GameObject pref;
+
     /// <summary>
     /// This Array of GameObject of size [<see cref="_GridSize"/>, <see cref="_GridSize"/>, <see cref="_FloorCount"/>] will store GameObjects that will have the <see cref="Block"/> script attached to it.
     /// This change is done so that <see cref="GameObject.Find(string)"/> can be avoided hence it is quite expensive.
@@ -35,6 +39,10 @@ public class ChunkCreator : MonoBehaviour
 
     [Tooltip("the padding between the blocks")]
     [SerializeField] private int _Padding = 2;
+    public int GetPadding()
+    {
+        return _Padding;
+    }
     [Tooltip("Number of floors in the arena")]
     [SerializeField] private int _FloorCount = 2;
     public int GetFloorCount()
@@ -49,10 +57,16 @@ public class ChunkCreator : MonoBehaviour
 
     [Tooltip("Room Scale X")]
     [SerializeField] private int _RoomScaleX = 1;
+    
     [Tooltip("Room Scale Y")]
     [SerializeField] private int _RoomScaleY = 1;
     [Tooltip("Room Scale Z")]
     [SerializeField] private int _RoomScaleZ = 1;
+
+    public Vector3Int GetRoomScale()
+    {
+        return new Vector3Int(_RoomScaleX, _RoomScaleY, _RoomScaleZ);
+    }
 
     [SerializeField] private int _CentralRoomSize;
     [SerializeField] private int _CentralRoomSizeX;
@@ -83,6 +97,11 @@ public class ChunkCreator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        for (int i = 0; i < _Volumes.Length; i++)
+        {
+            _VolumeStorages[i] = new VolumeStorage(_Volumes[i].XSize, _Volumes[i].YSize, _Volumes[i].ZSize);
+        }
+        LoadChunks();
         ChunkArray = new GameObject[_GridSize, _GridSize, _FloorCount];
         _CentralRoomCoordX = _GridSize / 2;
         _CentralRoomSize = _CentralRoomSize > _GridSize ? (_GridSize / 2) - _Padding : _CentralRoomSize;
@@ -726,6 +745,7 @@ public class ChunkCreator : MonoBehaviour
             _HasRun = true;
 
             CombineCubes.Instance.MakeCubeSegments();
+            if(!GetBlocks.Instance.export)
             CombineCubes.Instance.CombineCubeSegments();
 
             CombineFloors.Instance.MakeFloorSegments();
@@ -733,6 +753,90 @@ public class ChunkCreator : MonoBehaviour
 
             _ChunkAnimation._AnimateCube();
             _FloorAnimation._AnimateFloor();
+        }
+    }
+
+
+    private void _setVoxelBlock()
+    {
+        for (int i = 0; i < _Volumes.Length; i++)
+        {
+            _Volumes[i].XSize = _VolumeStorages[i].sizex;
+            _Volumes[i].YSize = _VolumeStorages[i].sizey;
+            _Volumes[i].ZSize = _VolumeStorages[i].sizez;
+            /*_Volumes[i].Pivot = new Vector3(_Volumes[i].XSize/2, _Volumes[i].YSize / 2, _Volumes[i].ZSize / 2);
+            _Volumes[i].UpdatePivot();*/
+            _Volumes[i].UpdateAllChunks();
+            for (int x = 0; x < _Volumes[i].XSize; x++)
+            {
+                for (int y = 0; y < _Volumes[i].YSize; y++)
+                {
+                    for (int z = 0; z < _Volumes[i].ZSize; z++)
+                    {
+                        PicaVoxelPoint p = new PicaVoxelPoint(x, y, z);
+                        Color current = new Color(_VolumeStorages[i].store[x, y, z].r, _VolumeStorages[i].store[x, y, z].g, _VolumeStorages[i].store[x, y, z].b, _VolumeStorages[i].store[x, y, z].a);
+                        _Volumes[i].SetVoxelAtArrayPosition(p, new Voxel()
+                        {
+                            State = (VoxelState)_VolumeStorages[i].store[x, y, z].currentstate,
+                            Color = current,
+                            Value = _VolumeStorages[i].store[x, y, z].val
+                        });
+                    }
+                }
+            }
+            Debug.Log("Before spawn");
+        }
+    }
+
+    public void LoadData()
+    {
+        //getVolumes();
+        for (int i = 0; i < _Volumes.Length; i++)
+        {
+            string _currentSet = $"/{set}block{i}.json";
+            _VolumeStorages[i] = _DataSerializer.LoadData<VolumeStorage>(_currentSet);
+        }
+        _setVoxelBlock();
+        //SetExport();
+    }
+    [SerializeField] private int set = 0;
+    private DataSerializer _DataSerializer = new DataSerializer();
+    [SerializeField] Volume[] _Volumes;
+    private VolumeStorage[] _VolumeStorages = new VolumeStorage[10];
+    public void LoadChunks()
+    {
+        if(GetBlocks.Instance.export)
+        {
+            LoadData();
+
+            for (int i = 0; i < _BlendBlocks.Count; i++)
+            {
+                for (int j = 0; j < _BlendBlocks[i].blocks.Count; j++)
+                {
+
+                    /*GameObject temp = pref;
+                    Volume _volume = temp.GetComponent<Volume>();
+                    _volume = GetBlocks.blocks[i];
+                    for (int x = 0; x < GetBlocks.blocks[i].XSize; x++)
+                    {
+                        for (int y = 0; y < GetBlocks.blocks[i].YSize; y++)
+                        {
+                            for (int z = 0; z < GetBlocks.blocks[i].ZSize; z++)
+                            {
+                                Voxel? v = GetBlocks.blocks[i].GetVoxelAtArrayPosition(x, y, z);
+                                _volume.SetVoxelAtArrayPosition(new PicaVoxelPoint(x, y, z), new Voxel()
+                                {
+                                    State = v.Value.State,
+                                    Color = v.Value.Color,
+                                    Value = v.Value.Value
+                                });
+                            }
+                        }
+                    }*/
+
+                    _BlendBlocks[i].blocks[j] = _Volumes[i].gameObject;
+                }
+            }
         }
     }
 }

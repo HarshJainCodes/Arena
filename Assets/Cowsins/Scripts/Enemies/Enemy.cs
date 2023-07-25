@@ -24,11 +24,11 @@ public class Enemy : MonoBehaviour, IDamageable
     [Tooltip("Name of the enemy. This will appear on the killfeed"),SerializeField]
     private string _name;
 
-    protected float health; 
+    public float health; 
     [Tooltip("initial enemy health "), SerializeField] 
     protected float maxHealth;
 
-    protected float shield; 
+    public float shield; 
     [Tooltip("initial enemy shield"), SerializeField]
     protected float  maxShield;
 
@@ -112,7 +112,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
         // Custom event on damaged
         events.OnDamaged.Invoke();
-        UI.GetComponent<UIController>().Hitmarker();
+        /*UI.GetComponent<UIController>().Hitmarker();
         // If you do not want to show a damage pop up, stop, do not continue
         if (!showUI) return;
             GameObject popup = Instantiate(damagePopUp,transform.position,Quaternion.identity) as GameObject;
@@ -121,18 +121,18 @@ public class Enemy : MonoBehaviour, IDamageable
          else 
             popup.transform.GetChild(0).GetComponent<TMP_Text>().text = oldDmg.ToString("F1");
             float xRand = Random.Range(-xVariation, xVariation);
-            popup.transform.position = popup.transform.position + new Vector3(xRand, 0, 0);
+            popup.transform.position = popup.transform.position + new Vector3(xRand, 0, 0);*/
     }
     public virtual void Die()
     {
         // Custom event on damaged
         events.OnDeath.Invoke();
 
-        // Does it display killfeed on death? 
-        if (UI.GetComponent<UIController>().displayEvents)
-        {
-            UI.GetComponent<UIController>().AddKillfeed(_name);
-        }
+        // // Does it display killfeed on death? 
+        // if (UI.GetComponent<UIController>().displayEvents)
+        // {
+        //     UI.GetComponent<UIController>().AddKillfeed(_name);
+        // }
         Destroy(this.gameObject);
     }
 }
