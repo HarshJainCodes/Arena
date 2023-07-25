@@ -36,6 +36,8 @@ namespace Arena
         [SerializeField]
         private float speedWallRunning = 30.0f;
         [SerializeField]
+        private float speedClimbing = 20f;
+        [SerializeField]
         private float groundDrag = 4f;
         [SerializeField]
         private bool canCrouch = true;
@@ -117,11 +119,14 @@ namespace Arena
         private float standingHeight;
         private Vector3 velocity;
 
+        /*[SerializeField]
+        private PlayerClimbing climbScript;*/
         public bool grounded = false;
         public bool wasGrounded = false;
         private bool jumping;
         private float lastJumpTime;
         private bool crouching = false;
+        //private bool climbing = false;
         private float landTime;
         [HideInInspector]
         public bool canDoublJump = false;
@@ -136,7 +141,7 @@ namespace Arena
          [Tooltip("If true, the character will be able to jump while crouched too!")]
          [SerializeField]
          private bool canJumpWhileCrouching = true;*/
-
+        public bool Ledgegrab;
         public enum MovementState
         {
             walking,
@@ -145,7 +150,8 @@ namespace Arena
             crouching,
             sliding,
             wallRunning,
-            aiming
+            aiming,
+            climbing
         }
         private void Start()
         {
@@ -159,7 +165,13 @@ namespace Arena
         private void StateHandler()
         {
 
-            if (isWallRunning)
+            /*if(climbing)
+            {
+                state = MovementState.climbing;
+                desiredMoveSpeed = speedClimbing;
+                
+            }
+            else*/ if (isWallRunning)
             {
                 state = MovementState.wallRunning;
                 desiredMoveSpeed = speedWalking;
@@ -288,8 +300,9 @@ namespace Arena
 
         private void FixedUpdate()
         {
-            MovePlayer();
-            if(state!= MovementState.wallRunning)
+            if(!Ledgegrab)
+                MovePlayer();
+            if(state!= MovementState.wallRunning && rb.useGravity)
             {
             rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass);
 
@@ -302,6 +315,8 @@ namespace Arena
             //calculate movement direction
             moveDirection = orientation.forward * keyInput.y + orientation.right * keyInput.x;
 
+           /* if (climbScript.GetExiting())
+                return;*/
             //ON SLOPE
             if (OnSlope() && !exitingSlope)
             {
@@ -323,8 +338,8 @@ namespace Arena
             else if (!grounded)
                 rb.AddForce(moveDirection * _MoveSpeed * 10f * airMultiplier, ForceMode.Acceleration);
 
-            if (!isWallRunning)
-                rb.useGravity = !OnSlope();
+            /*if (!isWallRunning)
+                rb.useGravity = !OnSlope();*/
         }
 
         private bool CheckGround()
@@ -484,6 +499,10 @@ namespace Arena
         {
             crouching = val;
         }
+        /*public void SetClimbing(bool val)
+        {
+            climbing = val;
+        }*/
     }
 
 }

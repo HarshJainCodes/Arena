@@ -21,6 +21,8 @@ public class CameraLook : MonoBehaviour
     [SerializeField]
     private Transform playerArms;
 
+    [SerializeField]
+    private LedgeGrabArms ledgeGrabArms;
     // private Transform camHolder;
     private void Start()
     {
@@ -28,22 +30,42 @@ public class CameraLook : MonoBehaviour
         Cursor.visible = false;
         cam = GetComponent<Camera>();
     }
-
+    float xRot;
+    float yRot;
     private void Update()
     {
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * x_Sensitivity;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * y_Sensitivity;
 
-        xRotation -= mouseY;
-        yRotation += mouseX;
+        
 
-        xRotation = Mathf.Clamp(xRotation, -90, 90);
-        playerArms.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.localRotation = Quaternion.Euler(0, yRotation, 0);
+        if (!ledgeGrabArms.Ledge)
+        {
+            xRotation -= mouseY;
+            yRotation += mouseX;
+
+            xRotation = Mathf.Clamp(xRotation, -90, 90);
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            playerArms.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.localRotation = Quaternion.Euler(0, yRotation, 0);
+        }
+        else
+        {
+            xRot -= mouseY;
+            yRot += mouseX;
+            xRot = Mathf.Clamp(xRot, -20, 20);
+            yRot = Mathf.Clamp(yRot, -20, 20);
+            transform.localRotation = Quaternion.Euler(xRot, yRot, 0);
+        }
     }
 
     public void DoFov(int val)
     {
         cam.GetComponent<Camera>().DOFieldOfView(val, 0.25f);
     }
+    public void DoTilt(int val)
+    {
+        transform.DOLocalRotate(new Vector3(0, 0, val), 0.5f);
+    }
+
 }
