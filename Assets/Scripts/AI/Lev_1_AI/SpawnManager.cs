@@ -18,7 +18,8 @@ public class SpawnManager : MonoBehaviour
     private bool _IsTimerRunning = false;
 
     //[FormerlySerializedAs("_generator")] public ChunkCreator Generator;
-    public ChunkScriptV2 Generator;
+   // public ChunkScriptV2 Generator;
+    public ChunkCreator Generator;
     
     private Transform _Player;
     
