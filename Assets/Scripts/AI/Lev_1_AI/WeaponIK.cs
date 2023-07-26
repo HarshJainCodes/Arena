@@ -16,7 +16,7 @@ public class WeaponIK : MonoBehaviour
     void Start()
     {
 	    _AiAgent = GetComponent<AiAgent>();
-	    TargetTransform = _AiAgent.playerTransform;
+	    TargetTransform = _AiAgent.PlayerTransform;
     }
 
     Vector3 GetTargetPosition()

@@ -25,7 +25,7 @@ public class AiIdeState : IAiState
 		agent.GetComponent<AIPath>().enabled = false;
 		agent.GetComponent<Seeker>().enabled = false;
 
-		Vector3 playerDirection = agent.playerTransform.position - agent.transform.position;
+		Vector3 playerDirection = agent.PlayerTransform.position - agent.transform.position;
 		if (playerDirection.magnitude > agent.maxSightDistance)
 		{
 			return;
@@ -40,7 +40,7 @@ public class AiIdeState : IAiState
 			agent.GetComponent<AIDestinationSetter>().enabled = true;
 			agent.GetComponent<AIPath>().enabled = true;
 			agent.GetComponent<Seeker>().enabled = true;
-			agent.stateMachine.ChangeState(AiStateType.Chase);
+			agent.StateMachine.ChangeState(AiStateType.Chase);
 		}
 	}
 
