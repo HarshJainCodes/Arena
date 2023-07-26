@@ -1868,7 +1868,7 @@ Transform:
   - {fileID: 2123735134}
   - {fileID: 1428341328}
   m_Father: {fileID: 0}
-  m_RootOrder: 37
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &124081947
 PrefabInstance:
@@ -6491,7 +6491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3202823335974441173, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
       propertyPath: m_RootOrder
-      value: 38
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 3202823335974441173, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11223,7 +11223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3649526429121574280, guid: c16d3e7e3bb088741b3bd2d72e4faf56, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3175.88
+      value: 4000
       objectReference: {fileID: 0}
     - target: {fileID: 3649526429121574280, guid: c16d3e7e3bb088741b3bd2d72e4faf56, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13442,7 +13442,7 @@ Transform:
   - {fileID: 1952316659}
   - {fileID: 23912887}
   m_Father: {fileID: 0}
-  m_RootOrder: 36
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &908090672
 MonoBehaviour:
@@ -13870,7 +13870,7 @@ GameObject:
   - component: {fileID: 940907513}
   - component: {fileID: 940907514}
   - component: {fileID: 940907515}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13923,6 +13923,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3809501647158189444, guid: 26a5b609c9f1bf04a9818dc4b2fb9316, type: 3}
+      propertyPath: export
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3809501647158189445, guid: 26a5b609c9f1bf04a9818dc4b2fb9316, type: 3}
       propertyPath: m_RootOrder
       value: 34
@@ -15406,7 +15410,7 @@ GameObject:
   - component: {fileID: 1057577393}
   - component: {fileID: 1057577394}
   - component: {fileID: 1057577395}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15787,7 +15791,7 @@ GameObject:
   - component: {fileID: 1089418738}
   - component: {fileID: 1089418739}
   - component: {fileID: 1089418740}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18574,7 +18578,7 @@ GameObject:
   - component: {fileID: 1428341328}
   - component: {fileID: 1428341329}
   - component: {fileID: 1428341330}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CubesOnTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19796,51 +19800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2946658658d6c84439adb57181d3d412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1589146207
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1589146209}
-  - component: {fileID: 1589146208}
-  m_Layer: 0
-  m_Name: BlockPull
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1589146208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1589146207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a2b1cb382f75e545809b3b1e56a5dad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  export: 0
---- !u!4 &1589146209
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1589146207}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.198439, y: -23.6371, z: -12.704556}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 35
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1591740558 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1419977136367255383, guid: 6f756f67bbadd854f8473a95787fe045, type: 3}
@@ -20195,6 +20154,15 @@ MonoBehaviour:
     - {fileID: 6551509538046857342, guid: 98da011943fc5bf41b0f851942ab6821, type: 3}
   CubesOnTopHolder: {fileID: 1428341328}
   _LavaRocks: {fileID: 353788178}
+  set: 0
+  _Volumes:
+  - {fileID: 884644279}
+  - {fileID: 1847068900}
+  - {fileID: 2132499397}
+  - {fileID: 404330064}
+  - {fileID: 1311137726}
+  - {fileID: 939370003}
+  - {fileID: 1591740558}
 --- !u!4 &1608545621
 Transform:
   m_ObjectHideFlags: 0
@@ -20903,7 +20871,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 39
+  m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1676739345
 PrefabInstance:
@@ -23065,7 +23033,7 @@ GameObject:
   - component: {fileID: 1800526216}
   - component: {fileID: 1800526217}
   - component: {fileID: 1800526218}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27336,7 +27304,7 @@ GameObject:
   - component: {fileID: 2123735134}
   - component: {fileID: 2123735135}
   - component: {fileID: 2123735136}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
