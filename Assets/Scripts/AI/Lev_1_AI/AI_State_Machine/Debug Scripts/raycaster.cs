@@ -16,7 +16,7 @@ public class raycaster : MonoBehaviour
         RaycastHit hit; // Raycasthit is a struct that contains information about the raycast
         if (Physics.Raycast(transform.position, transform.forward, out hit)) // Raycast returns a bool, true if it hits something
         {
-			Debug.Log(hit.transform.name);
+			// Debug.Log(hit.transform.name);
 		}
     }
 
