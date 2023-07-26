@@ -27,12 +27,12 @@ public class AiChaseState : IAiState
 		agent.GetComponent<AIPath>().enabled = true;
 		agent.GetComponent<Seeker>().enabled = true;
 
-		if (agent.InRange || agent.sensor.IsInSight(agent.playerTransform.gameObject))
+		if (agent.InRange || agent.sensor.IsInSight(agent.PlayerTransform.gameObject))
 		{
 			if(agent.Level == 1)
-				agent.stateMachine.ChangeState(AiStateType.Attack);
+				agent.StateMachine.ChangeState(AiStateType.Attack);
 			else if(agent.Level == 2)
-				agent.stateMachine.ChangeState(AiStateType.AttackSurround);
+				agent.StateMachine.ChangeState(AiStateType.AttackSurround);
 		}
 	}
 

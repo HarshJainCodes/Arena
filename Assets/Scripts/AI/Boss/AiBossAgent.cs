@@ -30,6 +30,7 @@ public class AiBossAgent : MonoBehaviour
 	    StateMachine.RegisterState(new AiBossObservePlayerState());
 		StateMachine.RegisterState(new AiBossGetInArenaState());
 		StateMachine.RegisterState(new AiBossPatrolState());
+		StateMachine.RegisterState(new AiBossChaseState());
 	}
 
 	void Update()

@@ -38,13 +38,13 @@ public class AiBossPatrolState : IAiBossState
 		bossAgent.GetComponent<AIDestinationSetter>().enabled = true;
 		bossAgent.GetComponent<AIPath>().enabled = true;
 		bossAgent.GetComponent<Seeker>().enabled = true;
-		// if (BossAgent.Sensor.IsInSight(BossAgent.PlayerTransform.gameObject) || BossAgent.InRange)
-		// {
-	 //        AiPath.maxSpeed = 4f;
-		// 	BossAgent.GetComponent<AIPath>().endReachedDistance = endDistance;
-		// 	BossAgent.GetComponent<AIDestinationSetter>().target = BossAgent.PlayerTransform;
-		// 	BossAgent.StateMachine.ChangeState(AiBossStateType.Chase);
-		// }
+		if (BossAgent.Sensor.IsInSight(BossAgent.PlayerTransform.gameObject) || BossAgent.InRange)
+		{
+	        AiPath.maxSpeed = 4f;
+			BossAgent.GetComponent<AIPath>().endReachedDistance = endDistance;
+			BossAgent.GetComponent<AIDestinationSetter>().target = BossAgent.PlayerTransform;
+			BossAgent.StateMachine.ChangeState(AiBossStateType.Chase);
+		}
 
 		if (!ai.pathPending && (ai.reachedEndOfPath || !ai.hasPath))
 		{
@@ -90,7 +90,7 @@ public class AiBossPatrolState : IAiBossState
 	    BossAgent.GetComponent<AIPath>().endReachedDistance = 1f;
 	    BossAgent.GetComponent<AIDestinationSetter>().target = BossAgent.PatrolPoint;
 
-		/*if (!BossAgent.Sensor.IsInSight(BossAgent.PlayerTransform.gameObject) && !BossAgent.InRange)
+		if (!BossAgent.Sensor.IsInSight(BossAgent.PlayerTransform.gameObject) && !BossAgent.InRange)
 	    {
 		    BossAgent.GetComponent<AIPath>().endReachedDistance = 1f;
 		    BossAgent.GetComponent<AIDestinationSetter>().target = BossAgent.PatrolPoint;
@@ -100,7 +100,7 @@ public class AiBossPatrolState : IAiBossState
 		    AiPath.maxSpeed = 4f;
 		    BossAgent.GetComponent<AIPath>().endReachedDistance = endDistance;
 		    BossAgent.GetComponent<AIDestinationSetter>().target = BossAgent.PlayerTransform;
-		    // BossAgent.StateMachine.ChangeState(AiBossStateType.Chase);
-	    }*/
+		    BossAgent.StateMachine.ChangeState(AiBossStateType.Chase);
+	    }
 	}
 }
