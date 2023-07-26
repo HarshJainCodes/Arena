@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AiAttackSurroundState : IAiState
 {
-	private float t = 1f;
+	private float t = 2f;
 	public AIPath aiPath;
 	public AiStateType GetStateType()
 	{
@@ -16,7 +16,7 @@ public class AiAttackSurroundState : IAiState
 	public void Enter(AiAgent agent)
 	{
 		aiPath = agent.GetComponent<AIPath>();
-		aiPath.maxSpeed = 3f;
+		aiPath.maxSpeed = agent.WalkingShootSpeed;
 		agent.GetComponent<AIDestinationSetter>().enabled = true;
 		agent.GetComponent<AIPath>().enabled = true;
 		agent.GetComponent<Seeker>().enabled = true;
@@ -38,7 +38,7 @@ public class AiAttackSurroundState : IAiState
 		{
 			// if (agent.sensor.IsInSight(agent.playerTransform.gameObject))
 				agent.GetComponentInChildren<Shooter>().Shoot();
-			t = 1;
+			t = 2;
 		}
 
 		if (!agent.InRange && !agent.sensor.IsInSight(agent.playerTransform.gameObject))
@@ -49,7 +49,7 @@ public class AiAttackSurroundState : IAiState
 
 	public void Exit(AiAgent agent)
 	{
-		aiPath.maxSpeed = 4f;
+		aiPath.maxSpeed = agent.Speed;
 		SurroundManager.Instance.Units.Remove(agent.GetComponent<EnemyUnit>());
 		agent.GetComponent<AIDestinationSetter>().target = agent.playerTransform;
 		agent.GetComponent<AIDestinationSetter>().enabled = true;
