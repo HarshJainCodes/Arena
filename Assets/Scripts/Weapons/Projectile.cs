@@ -26,6 +26,8 @@ public class Projectile : MonoBehaviour
 	public Transform[] concreteImpactPrefabs;
 
     private float EnemyDamage = 2;
+	private float BossDamage = 2;
+	private float _CritialMultiplier = 1.7f;
     // Start is called before the first frame update
     private void Start()
 	{
@@ -40,13 +42,30 @@ public class Projectile : MonoBehaviour
 	}
 	private void OnCollisionEnter(Collision collision)
 	{
-        if (collision.collider.gameObject.TryGetComponent<TrainingTarget>(out TrainingTarget trainingTarget))
+		if (collision.gameObject.CompareTag("Boss"))
+		{
+			BossHealth bossHealth = collision.gameObject.GetComponent<BossHealth>();
+			bossHealth.Damage(BossDamage);
+		}
+        if (collision.gameObject.CompareTag("BossCritical"))
         {
-            trainingTarget.Damage(EnemyDamage);
+            BossHealth bossHealth = collision.gameObject.GetComponent<BossHealth>();
+            bossHealth.Damage(BossDamage * _CritialMultiplier);
         }
 
-        //Ignore collisions with other projectiles.
-        if (collision.gameObject.GetComponent<Projectile>() != null)
+        if (collision.gameObject.CompareTag("Enemy"))
+		{
+			TrainingTarget target = collision.gameObject.GetComponent<TrainingTarget>();
+			target.Damage(EnemyDamage);
+		}
+		if (collision.gameObject.CompareTag("Critical"))
+		{
+			TrainingTarget target = collision.gameObject.GetComponent<TrainingTarget>();
+			target.Damage(EnemyDamage * _CritialMultiplier);
+		}
+
+		//Ignore collisions with other projectiles.
+		if (collision.gameObject.GetComponent<Projectile>() != null)
 			return;
 
 		// //Ignore collision if bullet collides with "Player" tag
