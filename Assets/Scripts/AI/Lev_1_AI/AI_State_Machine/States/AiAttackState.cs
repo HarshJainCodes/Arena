@@ -36,14 +36,14 @@ public class AiAttackState : IAiState
 		t -= Time.deltaTime;
 		if (t <= 0)
 		{
-			if(agent.sensor.IsInSight(agent.playerTransform.gameObject))
+			if(agent.sensor.IsInSight(agent.PlayerTransform.gameObject))
 				agent.GetComponentInChildren<Shooter>().Shoot();
 			t = 2;
 		}
 
-		if (!agent.InRange && !agent.sensor.IsInSight(agent.playerTransform.gameObject))
+		if (!agent.InRange && !agent.sensor.IsInSight(agent.PlayerTransform.gameObject))
 		{
-			agent.stateMachine.ChangeState(AiStateType.Chase);
+			agent.StateMachine.ChangeState(AiStateType.Chase);
 		}
 	}
 

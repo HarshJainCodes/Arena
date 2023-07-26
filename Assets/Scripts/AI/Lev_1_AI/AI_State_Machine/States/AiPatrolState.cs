@@ -39,12 +39,12 @@ namespace AI.Lev_1_AI.AI_State_Machine.States
 			Agent.GetComponent<AIPath>().enabled = true;
 			Agent.GetComponent<Seeker>().enabled = true;
 
-			if (Agent.sensor.IsInSight(Agent.playerTransform.gameObject) || Agent.InRange)
+			if (Agent.sensor.IsInSight(Agent.PlayerTransform.gameObject) || Agent.InRange)
 			{
 				AiPath.maxSpeed = agent.Speed;
 				Agent.GetComponent<AIPath>().endReachedDistance = endDistance;
-				Agent.GetComponent<AIDestinationSetter>().target = Agent.playerTransform;
-				Agent.stateMachine.ChangeState(AiStateType.Chase);
+				Agent.GetComponent<AIDestinationSetter>().target = Agent.PlayerTransform;
+				Agent.StateMachine.ChangeState(AiStateType.Chase);
 			}
 
 			if (!ai.pathPending && (ai.reachedEndOfPath || !ai.hasPath))
@@ -63,7 +63,7 @@ namespace AI.Lev_1_AI.AI_State_Machine.States
 		{
 			AiPath.maxSpeed = 4f;
 			Agent.GetComponent<AIPath>().endReachedDistance = endDistance;
-			Agent.GetComponent<AIDestinationSetter>().target = Agent.playerTransform;
+			Agent.GetComponent<AIDestinationSetter>().target = Agent.PlayerTransform;
 			Agent.GetComponent<AIDestinationSetter>().enabled = false;
 			Agent.GetComponent<AIPath>().enabled = false;
 			Agent.GetComponent<Seeker>().enabled = false;
@@ -86,24 +86,24 @@ namespace AI.Lev_1_AI.AI_State_Machine.States
 
 		public void MoveTo(Vector3 position)
 		{
-			Agent.patrolPoint.position = position;
+			Agent.PatrolPoint.position = position;
 
 			// if (ai.velocity.magnitude == 0)
 			// {
 			// 	return;
 			// }
 
-			if (!Agent.sensor.IsInSight(Agent.playerTransform.gameObject) && !Agent.InRange)
+			if (!Agent.sensor.IsInSight(Agent.PlayerTransform.gameObject) && !Agent.InRange)
 			{
 				Agent.GetComponent<AIPath>().endReachedDistance = 1f;
-				Agent.GetComponent<AIDestinationSetter>().target = Agent.patrolPoint;
+				Agent.GetComponent<AIDestinationSetter>().target = Agent.PatrolPoint;
 			}
 			else
 			{
 				AiPath.maxSpeed = Agent.Speed;
 				Agent.GetComponent<AIPath>().endReachedDistance = endDistance;
-				Agent.GetComponent<AIDestinationSetter>().target = Agent.playerTransform;
-				Agent.stateMachine.ChangeState(AiStateType.Chase);
+				Agent.GetComponent<AIDestinationSetter>().target = Agent.PlayerTransform;
+				Agent.StateMachine.ChangeState(AiStateType.Chase);
 			}
 		}
 

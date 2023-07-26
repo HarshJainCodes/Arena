@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 public class AiSensor : MonoBehaviour
 {
     public AiAgent Agent;
+    public AiBossAgent BossAgent;
     public float Distance = 10f;
     public float Angle = 30f;
     public float Height = 1f;
@@ -62,7 +63,10 @@ public class AiSensor : MonoBehaviour
         Vector3 origin = transform.position;
         Vector3 dest = obj.transform.position;
         Vector3 dir = dest - origin;
-        if(Agent.stateMachine.currentStateType is not (AiStateType.Attack or AiStateType.AttackSurround))
+        if(
+				(Agent != null && Agent.StateMachine.currentStateType is not (AiStateType.Attack or AiStateType.AttackSurround)) || 
+				(BossAgent != null && BossAgent.StateMachine.CurrentBossStateType is not (AiBossStateType.Attack))	
+	        )
         {
 	        if (dir.y < 0 || dir.y > Height)
 		        return false;
