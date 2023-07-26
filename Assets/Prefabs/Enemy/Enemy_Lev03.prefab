@@ -44526,7 +44526,6 @@ Transform:
   m_Children:
   - {fileID: 6911071430264540990}
   - {fileID: 1469994617722352430}
-  - {fileID: 3689941785030266459}
   m_Father: {fileID: 1941734683731298559}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47986,6 +47985,7 @@ Transform:
   - {fileID: 1703904378940240168}
   - {fileID: 3742917250847999796}
   - {fileID: 6405923416420295804}
+  - {fileID: 6975727508534404409}
   m_Father: {fileID: 256722521957390792}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -75366,6 +75366,63 @@ Transform:
   m_Father: {fileID: 4348023965232458662}
   m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7013740768615588036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6975727508534404409}
+  - component: {fileID: 830827214266918535}
+  m_Layer: 9
+  m_Name: SensorOffset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6975727508534404409
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7013740768615588036}
+  m_LocalRotation: {x: 0.6087687, y: -0.1557504, z: 0.4757921, w: -0.61543834}
+  m_LocalPosition: {x: -0.68067795, y: -0.4837807, z: 2.3876576}
+  m_LocalScale: {x: 43.260056, y: 43.25994, z: 43.25999}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5254529898903696194}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &830827214266918535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7013740768615588036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e65c3767def1046ad7e6e747655b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Agent: {fileID: 3612463840218020054}
+  Distance: 40
+  Angle: 45
+  Height: 1.5
+  MeshColor: {r: 1, g: 0, b: 0, a: 1}
+  ScanFrequency: 30
+  Layers:
+    serializedVersion: 2
+    m_Bits: 256
+  OcclusionLayers:
+    serializedVersion: 2
+    m_Bits: 137
+  Objects: []
 --- !u!1 &7019972119908239176
 GameObject:
   m_ObjectHideFlags: 0
@@ -76008,62 +76065,6 @@ Transform:
   m_Father: {fileID: 4168508991552482026}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7110119430191926855
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3689941785030266459}
-  - component: {fileID: 6415704587883452228}
-  m_Layer: 0
-  m_Name: SensorOffset
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3689941785030266459
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7110119430191926855}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -2.15, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7840960406679247974}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &6415704587883452228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7110119430191926855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8e65c3767def1046ad7e6e747655b46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Distance: 25
-  Angle: 45
-  Height: 1.5
-  MeshColor: {r: 1, g: 0, b: 0, a: 1}
-  ScanFrequency: 30
-  Layers:
-    serializedVersion: 2
-    m_Bits: 256
-  OcclusionLayers:
-    serializedVersion: 2
-    m_Bits: 137
-  Objects: []
 --- !u!1 &7124004004989338844
 GameObject:
   m_ObjectHideFlags: 0
@@ -82776,7 +82777,7 @@ MonoBehaviour:
   Level: 2
   Inaccuracy: 0
   maxSightDistance: 20
-  sensor: {fileID: 6415704587883452228}
+  sensor: {fileID: 830827214266918535}
 --- !u!114 &1189896235350604048
 MonoBehaviour:
   m_ObjectHideFlags: 0

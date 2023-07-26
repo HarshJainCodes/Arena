@@ -7,11 +7,12 @@ using UnityEngine.Serialization;
 
 public class AiSensor : MonoBehaviour
 {
+    public AiAgent Agent;
     public float Distance = 10f;
     public float Angle = 30f;
     public float Height = 1f;
     public Color MeshColor = Color.red;
-    public int ScanFrequency = 30;
+    public int ScanFrequency = 130;
     public LayerMask Layers;
     public LayerMask OcclusionLayers;
     public List<GameObject> Objects = new List<GameObject>();
@@ -61,14 +62,16 @@ public class AiSensor : MonoBehaviour
         Vector3 origin = transform.position;
         Vector3 dest = obj.transform.position;
         Vector3 dir = dest - origin;
-        if(dir.y < 0 || dir.y > Height)
-            return false;
+        if(Agent.stateMachine.currentStateType is not (AiStateType.Attack or AiStateType.AttackSurround))
+        {
+	        if (dir.y < 0 || dir.y > Height)
+		        return false;
 
-        dir.y = 0;
-        float deltaAngle = Vector3.Angle(dir, transform.forward);
-        if(deltaAngle > Angle)
-			return false;
-
+	        dir.y = 0;
+	        float deltaAngle = Vector3.Angle(dir, transform.forward);
+	        if (deltaAngle > Angle)
+		        return false;
+        }
         origin.y += Height / 2;
         dest.y = origin.y;
 
