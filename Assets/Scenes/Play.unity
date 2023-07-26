@@ -28258,7 +28258,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904052382946}
-  m_LocalRotation: {x: 0.07276044, y: -0.61903006, z: 0.057713814, w: 0.779857}
+  m_LocalRotation: {x: 0.28469092, y: 0.41173354, z: -0.13734475, w: 0.85472983}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28346,7 +28346,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904058514593}
-  m_LocalRotation: {x: 0.07276044, y: -0.61903006, z: 0.057713814, w: 0.779857}
+  m_LocalRotation: {x: 0.28469092, y: 0.41173354, z: -0.13734475, w: 0.85472983}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28517,7 +28517,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904255469873}
-  m_LocalRotation: {x: 0.07276044, y: -0.61903006, z: 0.057713814, w: 0.779857}
+  m_LocalRotation: {x: 0.28469092, y: 0.41173354, z: -0.13734475, w: 0.85472983}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28660,7 +28660,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904437498142}
-  m_LocalRotation: {x: 0.07276044, y: -0.61903006, z: 0.057713814, w: 0.779857}
+  m_LocalRotation: {x: 0.28469092, y: 0.41173354, z: -0.13734475, w: 0.85472983}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -35998,7 +35998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5959732328176634549, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 5961360093130482496, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
       propertyPath: m_Layer
