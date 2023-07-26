@@ -70,7 +70,7 @@ namespace Arena {
             if(ledgeAvailableLeft && ledgeAvailableRight)
             {
                 
-                float playerDisplacement = ledgeL.distance;
+                float playerDisplacement = ledgeL.distance-0.1f;
                 if(!ledgeGrabbing)
                 {
 
@@ -78,7 +78,9 @@ namespace Arena {
                     rightHitPoint = ledgeR.point;*/
                     Vector3 playerOrigPos = pm.transform.position;
                     Vector3 playerNewPos = pm.transform.position - new Vector3(0, playerDisplacement, 0);
+                    Debug.Log("Hi");
                     StartCoroutine(MoveToPosition(playerNewPos, playerOrigPos, 0.2f));
+                    
                     StartLedgeGrab();
 
                 }
@@ -140,7 +142,7 @@ namespace Arena {
         {
             climbing = true;
             //PlayerAnimator.SetBool("Holstered", true);
-            Debug.Log("start climbing");
+           // Debug.Log("start climbing");
         }
 
         void ClimbingMovement()
@@ -150,8 +152,7 @@ namespace Arena {
         void StopClimbing()
         {
             climbing = false;
-            Debug.Log("stop climbing");
-
+            //
             //  PlayerAnimator.SetBool("Holstered", false);
 
         }
@@ -165,11 +166,12 @@ namespace Arena {
         void StartLedgeGrab()
         {
             Debug.Log("Start LG");
+            cam.DoTilt(-10);
+
             PlayerAnimator.SetFloat("Play Rate Holster", 5);
 
             PlayerAnimator.SetBool("Holstered", true);
-            pm.Ledgegrab = true;
-            ledgeGrabbing = true;
+           
             rb.useGravity = false;
             rb.velocity = Vector3.zero;
             leftHandPoint = ledgeGrabArms.IK_Arm_Left_Target.transform.InverseTransformPoint(LeftRaycastPoint.position);
@@ -177,10 +179,11 @@ namespace Arena {
             rightHandPoint = ledgeGrabArms.IK_Arm_Right_Target.transform.InverseTransformPoint(RightRaycastPoint.position);
             //rightHandPoint = ledgeGrabArms.IK_Arm_Right_Target.transform.InverseTransformPoint(RightRaycastPoint.position);
             Debug.Log(orientation.forward);
-            cam.DoTilt(-10);
             StartCoroutine(ResetCamTilt());
 
             ledgeGrabArms.Ledge = true;
+            pm.Ledgegrab = true;
+            ledgeGrabbing = true;
         }
 
         void StopLedgeGrab()
@@ -227,13 +230,16 @@ namespace Arena {
         IEnumerator MoveToPosition(Vector3 newPos, Vector3 startPos,float time)
         {
             float elapsedTime = 0f;
-            while(elapsedTime<time)
+            Debug.Log("Coroutine started");
+
+            while (elapsedTime<time)
             {
                 pm.transform.position = Vector3.Lerp(startPos, newPos, (elapsedTime / time));
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
             pm.transform.position = newPos;
+            Debug.Log("Coroutine Completed");
         }
     }
 }
