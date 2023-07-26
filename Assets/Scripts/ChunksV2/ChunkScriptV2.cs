@@ -21,12 +21,15 @@ public class ChunkScriptV2 : MonoBehaviour
     public bool IsGridGenerated = false;
 
     [SerializeField] private GameObject _FloorParent;
+    [SerializeField] private GameObject _StairsPrefab;
+    
 
     [Header("Block Creation Properties")]
 
     
     [SerializeField] public GameObject FloorsHolder;
     [SerializeField] public GameObject WallHolder;
+    [SerializeField] private GameObject StairsHolder;
 
     [Range(0, 20)]
     [SerializeField] private int FloorCreationIterations = 5;
@@ -125,6 +128,10 @@ public class ChunkScriptV2 : MonoBehaviour
 
     private void InitiateSpawnTiles(int iMin, int iMax, int jMin, int jMax, int k)
     {
+        BlocksV2 chunk;
+        BlocksV2 chunkBelow;
+        bool stairsFormed = false;
+
         for (int c = 0; c < FloorCreationIterations; c++)
         {
             int ii = Random.Range(iMin, iMax - 1);
@@ -137,10 +144,26 @@ public class ChunkScriptV2 : MonoBehaviour
             {
                 for (int j = jj; j < jjMax; j++)
                 {
-                    BlocksV2 chunk = MainChunks[k][i][j].GetComponent<BlocksV2>();
+                    chunk = MainChunks[k][i][j].GetComponent<BlocksV2>();
                     if (chunk.blockAssigned == null)
                     {
                         chunk.InstantiateTile(i - _FloorParent.transform.localScale.x / 2, j - _FloorParent.transform.localScale.y / 2, k, _FloorParent, RoomScaleX, RoomScaleY, RoomScaleZ, 0, FloorsHolder.transform.GetChild(k));
+                    }else if (stairsFormed == false && chunk.ID == 0)
+                    {
+                        if (k > 0)
+                        {
+                            chunkBelow = MainChunks[k - 1][i][j].GetComponent<BlocksV2>();
+                            if (chunkBelow.ID == 0)
+                            {
+                                Destroy(chunkBelow.blockAssigned);
+                                chunkBelow.ID = -1;
+                                Destroy(chunk.blockAssigned);
+                                chunk.ID = -1;
+                                stairsFormed = true;
+
+                                chunkBelow.InstantiateStair(i - _StairsPrefab.transform.localScale.x , j - _StairsPrefab.transform.localScale.y, k - 1, _StairsPrefab, RoomScaleX, RoomScaleY, RoomScaleZ, StairsHolder.transform);
+                            }
+                        }
                     }
                 }
             }
