@@ -499,6 +499,7 @@ namespace Arena
         {
             crouching = val;
         }
+        public float GetPlayerHeight() => playerHeight;
         /*public void SetClimbing(bool val)
         {
             climbing = val;

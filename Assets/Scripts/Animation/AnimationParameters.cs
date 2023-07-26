@@ -528,6 +528,7 @@ namespace Arena
             //Block.
             if (inspecting)
                 return false;
+
             if (pm.Ledgegrab)
                 return false;
             //Return.
