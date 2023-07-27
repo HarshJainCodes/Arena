@@ -13,7 +13,7 @@ namespace Arena
 
         [Tooltip("Inventory.")]
         [SerializeField]
-        private Inventory inventory;
+        private Inventory inventory; //Invenoty stores all the weapons the player has
 
         [Tooltip("If true, the character's grenades will never run out.")]
         [SerializeField]
@@ -177,18 +177,18 @@ namespace Arena
             runningAlpha = Mathf.Lerp(runningAlpha, running ? 1.0f : 0.0f, Time.deltaTime * runningInterpolationSpeed);
             float runningFieldOfView = Mathf.Lerp(1.0f, fieldOfViewRunningMultiplier, runningAlpha);
             cameraWorld.fieldOfView = Mathf.Lerp(fieldOfView, fieldOfView * equippedWeapon.GetFieldOfViewMultiplierAim(), aimingAlpha) * runningFieldOfView;
+            
             //Interpolate the depth camera's field of view based on whether we are aiming or not.
             cameraDepth.fieldOfView = Mathf.Lerp(fieldOfViewWeapon, fieldOfViewWeapon * equippedWeapon.GetFieldOfViewMultiplierAimWeapon(), aimingAlpha);
 
             wasAiming = aiming;
 
         }
+
+
+        #region GETTER FUNCTIONS
         public int GetShotsFired() => shotsFired;
         public Camera GetCameraWorld() => cameraWorld;
-        /// <summary>
-        /// GetCameraDepth.
-        /// </summary>
-        /// <returns></returns>
         public Camera GetCameraDepth() => cameraDepth;
         public Inventory GetInventory() => inventory;
         public int GetGrenadesCurrent() => grenadeCount;
@@ -205,6 +205,7 @@ namespace Arena
         public bool IsInspecting() => inspecting;
         public bool IsHoldingButtonFire() => holdingButtonFire;
 
+        #endregion
 
         private void UpdateAnimator()
         {
@@ -270,14 +271,19 @@ namespace Arena
             //Update Animator Crouching.
             characterAnimator.SetBool(AHashes.Crouching, pm.IsCrouching());
         }
+        /// <summary>
+        /// Plays the Inspect Aniamtion
+        /// </summary>
         private void Inspect()
         {
-           
             //State.
             inspecting = true;
             //Play.
             characterAnimator.CrossFade("Inspect", 0.0f, layerActions, 0);
         }
+        /// <summary>
+        /// Handles Fire Animation
+        /// </summary>
         private void Fire()
         {
             
@@ -302,6 +308,9 @@ namespace Arena
             if (!equippedWeapon.HasAmmunition() && equippedWeapon.GetAutomaticallyReloadOnEmpty())
                 StartCoroutine(nameof(TryReloadAutomatic));
         }
+        /// <summary>
+        /// Plays reload animation
+        /// </summary>
         private void PlayReloadAnimation()
         {
             string stateName = equippedWeapon.HasCycledReload() ? "Reload Open" : (equippedWeapon.HasAmmunition() ? "Reload" : "Reload Empty");
@@ -313,6 +322,10 @@ namespace Arena
             //Reload.
             equippedWeapon.Reload();
         }
+        /// <summary>
+        /// Automatically reload if reloadOnEmpty = true
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator TryReloadAutomatic()
         {
             //Yield.
@@ -321,6 +334,12 @@ namespace Arena
             //Play Reload Animation.
             PlayReloadAnimation();
         }
+
+        /// <summary>
+        /// Equips weapon at given index.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         private IEnumerator Equip(int index = 0)
         {
             //Only if we're not holstered, holster. If we are already, we don't need to wait.
@@ -341,6 +360,9 @@ namespace Arena
             //Refresh.
             RefreshWeaponSetup();
         }
+        /// <summary>
+        /// Updates the references
+        /// </summary>
         private void RefreshWeaponSetup()
         {
             //Make sure we have a weapon. We don't want errors!
@@ -359,6 +381,9 @@ namespace Arena
             equippedMagzine = weaponAttachmentManager.GetEquippedMagazine();
 
         }
+        /// <summary>
+        /// Plays the weapon empty animation
+        /// </summary>
         private void FireEmpty()
         {
             /*
@@ -369,6 +394,10 @@ namespace Arena
             //Play.
             characterAnimator.CrossFade("Fire Empty", 0.05f, layerOverlay, 0);
         }
+
+        /// <summary>
+        /// Plays grenade animation
+        /// </summary>
         private void PlayGrenadeThrow()
         {
             //Start State.
@@ -382,6 +411,9 @@ namespace Arena
             characterAnimator.CrossFade("Grenade Throw", 0.05f,
                 characterAnimator.GetLayerIndex("Layer Actions Arm Right"), 0.0f);
         }
+        /// <summary>
+        /// Plays Melee Attack Animation
+        /// </summary>
         private void PlayMelee()
         {
             //Start State.
@@ -395,22 +427,34 @@ namespace Arena
             characterAnimator.CrossFade("Knife Attack", 0.05f,
                 characterAnimator.GetLayerIndex("Layer Actions Arm Right"), 0.0f);
         }
+        /// <summary>
+        /// Sets the bolt value for bolt action weapons
+        /// </summary>
+        /// <param name="value"></param>
         private void UpdateBolt(bool value)
         {
             //Update.
             characterAnimator.SetBool(AHashes.Bolt, bolting = value);
         }
+        /// <summary>
+        /// Holsters or Unholsters the weapon and plays the respective animation
+        /// </summary>
+        /// <param name="value"></param>
         private void SetHolstered(bool value = true)
         {
             //Update value.
             holstered = value;
-            Debug.Log("Holst cllled in " + value);
+            //Debug.Log("Holst cllled in " + value);
 
             //Update Animator.
             const string boolName = "Holstered";
             characterAnimator.SetBool(boolName, holstered);
         }
 
+        /// <summary>
+        /// Checks if player can fire
+        /// </summary>
+        /// <returns></returns>
         private bool CanPlayAnimationFire()
         {
             //Block.
@@ -434,6 +478,10 @@ namespace Arena
             //Return.
             return true;
         }
+        /// <summary>
+        /// Checks if player can reload
+        /// </summary>
+        /// <returns></returns>
         private bool CanPlayAnimationReload()
         {
             //No reloading!
@@ -465,6 +513,10 @@ namespace Arena
             //Return.
             return true;
         }
+        /// <summary>
+        /// Checks if player can throw grenade
+        /// </summary>
+        /// <returns></returns>
         private bool CanPlayAnimationGrenadeThrow()
         {
             //Block.
@@ -492,6 +544,10 @@ namespace Arena
             //Return.
             return true;
         }
+        /// <summary>
+        /// Checks if player can melee attack
+        /// </summary>
+        /// <returns></returns>
         private bool CanPlayAnimationMelee()
         {
             //Block.
@@ -515,6 +571,10 @@ namespace Arena
             //Return.
             return true;
         }
+        /// <summary>
+        /// Checks if player can Holster the weapon
+        /// </summary>
+        /// <returns></returns>
         private bool CanPlayAnimationHolster()
         {
             //Block.
@@ -534,6 +594,10 @@ namespace Arena
             //Return.
             return true;
         }
+        /// <summary>
+        /// Checks if player can change his weapon
+        /// </summary>
+        /// <returns></returns>
         private bool CanChangeWeapon()
         {
             //Block.
@@ -557,6 +621,10 @@ namespace Arena
             //Return.
             return true;
         }
+        /// <summary>
+        /// Checks if player can Inspect weapon
+        /// </summary>
+        /// <returns></returns>
         private bool CanPlayAnimationInspect()
         {
             //Block.
@@ -580,6 +648,10 @@ namespace Arena
             //Return.
             return true;
         }
+        /// <summary>
+        /// Checks if player can run
+        /// </summary>
+        /// <returns></returns>
         private bool CanRun()
         {
             if (inspecting || bolting)
@@ -610,7 +682,10 @@ namespace Arena
             //Return.
             return true;
         }
-
+        /// <summary>
+        /// Checks if player can aim/ADS
+        /// </summary>
+        /// <returns></returns>
         private bool CanAim()
         {
             if (holstered || inspecting)
@@ -634,13 +709,11 @@ namespace Arena
 
 
 
-
-
+        #region INPUT_EVENTS
+        //These are refered in the new input system's input action event on player
         public void OnTryFire(InputAction.CallbackContext context)
         {
-            //Block while the cursor is unlocked.
-           
-
+ 
             //Switch.
             switch (context)
             {
@@ -694,9 +767,7 @@ namespace Arena
         }
         public void OnTryPlayReload(InputAction.CallbackContext context)
         {
-            //Block while the cursor is unlocked.
             
-
             //Block.
             if (!CanPlayAnimationReload())
                 return;
@@ -761,7 +832,7 @@ namespace Arena
 
         public void OnTryHolster(InputAction.CallbackContext context)
         {
-            //Block while the cursor is unlocked.
+            
 
             //Go back if we cannot even play the holster animation.
             if (!CanPlayAnimationHolster())
@@ -798,7 +869,7 @@ namespace Arena
 
         public void OnTryThrowGrenade(InputAction.CallbackContext context)
         {
-            //Block while the cursor is unlocked.
+            
 
             //Switch.
             switch (context.phase)
@@ -870,8 +941,7 @@ namespace Arena
 
         public void OnTryInventoryNext(InputAction.CallbackContext context)
         {
-            
-
+      
             //Null Check.
             if (inventory == null)
                 return;
@@ -920,9 +990,9 @@ namespace Arena
         }
 
 
+        #endregion
 
-
-
+        #region ANIMATION_EVENTS
         public void EjectCasing()
         {
             //Notify the weapon.
@@ -996,6 +1066,9 @@ namespace Arena
             equippedMagzine.gameObject.SetActive(active != 0);
         }
 
+        #endregion
+
+        
         public void PlayOpen()
         {
             AudioManagerServices.instance.PlayOneShot(equippedWeapon.GetAudioClipReloadOpen(), new AudioSettings(1, 0, true));

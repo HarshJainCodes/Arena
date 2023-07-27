@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SO_IO_Sniper_01
   m_EditorClassIdentifier: 
   standingLocation: {x: 0, y: 0, z: 0}
-  standingRotation: {x: 0, y: -3, z: 0}
+  standingRotation: {x: -13.7, y: -3, z: 0}
   aimingLocation: {x: 0, y: 0, z: 0}
-  aimingRotation: {x: 0, y: 0, z: 0}
+  aimingRotation: {x: 0, y: 0.1, z: -1.95}
   runningLocation: {x: 0, y: 0, z: 0}
   runningRotation: {x: 0, y: 0, z: 0}
   crouchingLocation: {x: 0, y: 0, z: 0}
