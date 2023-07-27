@@ -14,37 +14,25 @@ public class TestInputScript : MonoBehaviour
 
     private void InputScript()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.N))
         {
             _ToolManipulation.SetTypeOfOperation(VoxelRunTimeManipulation.OperationType.none);
         }
-        if(Input.GetKeyDown(KeyCode.W))
+        if(Input.GetKeyDown(KeyCode.T))
         {
             _ToolManipulation.SetTypeOfOperation(VoxelRunTimeManipulation.OperationType.add);
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             _ToolManipulation.SetTypeOfOperation(VoxelRunTimeManipulation.OperationType.remove);
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.G))
         {
             _ToolManipulation.SetTypeOfOperation(VoxelRunTimeManipulation.OperationType.edit);
         }
-        if(Input.GetKeyDown(KeyCode.T))
+        if(Input.GetKeyDown(KeyCode.B))
         {
             _ToolManipulation.SetTypeOfOperation(VoxelRunTimeManipulation.OperationType.bucket);
-        }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            _ToolManipulation.SetColor(Color.red);
-        }
-        if(Input.GetKeyDown(KeyCode.S))
-        {
-            _ToolManipulation.SetColor(Color.green);
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            _ToolManipulation.SetColor(Color.blue);
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -54,7 +42,7 @@ public class TestInputScript : MonoBehaviour
         {
             _CamManager.SwapToPerspective();
         }
-        if(Input.GetKeyDown(KeyCode.H))
+        if(Input.GetKeyDown(KeyCode.M))
         {
             _ToolManipulation.MirrorChange = !_ToolManipulation.MirrorChange;
         }
