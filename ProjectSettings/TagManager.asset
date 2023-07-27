@@ -10,6 +10,8 @@ TagManager:
   - Wall
   - Ground
   - SpawnMan
+  - BossCritical
+  - Boss
   layers:
   - Default
   - TransparentFX

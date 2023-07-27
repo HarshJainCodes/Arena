@@ -13,13 +13,13 @@ public class SpawnManager : MonoBehaviour
     
     [FormerlySerializedAs("_CurrentWave")] public int CurrentWave = 0;
     
-    private float _CurrentTime = 300f;
+    [FormerlySerializedAs("_CurrentTime")] public float CurrentTime = 300f;
     
     private bool _IsTimerRunning = false;
 
     //[FormerlySerializedAs("_generator")] public ChunkCreator Generator;
-   // public ChunkScriptV2 Generator;
-    public ChunkCreator Generator;
+    public ChunkScriptV2 Generator;
+    //public ChunkCreator Generator;
     
     private Transform _Player;
     
@@ -34,14 +34,14 @@ public class SpawnManager : MonoBehaviour
     
     bool _IsGeneratingEnemies = false;
 
-    [FormerlySerializedAs("minEnemyDistance")] public int MinEnemyDistance = 20;
+    [FormerlySerializedAs("minEnemyDistance")] public int MinEnemyDistance = 10;
 
-    [FormerlySerializedAs("maxEnemyDistance")] public int MaxEnemyDistance = 30;
+    [FormerlySerializedAs("maxEnemyDistance")] public int MaxEnemyDistance = 60;
     void Start()
     {
         // EnemyPrefabs = GetComponent<List<Transform>>();
         EnemyPrefab = EnemyPrefabs[_CurrentEnemyIndex];
-		_CurrentTime = TimeBetweenWaves;
+		CurrentTime = TimeBetweenWaves;
         _IsTimerRunning = true;
         Enemies = new List<GameObject>();
         _Player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -59,8 +59,8 @@ public class SpawnManager : MonoBehaviour
 	        {
 		        if(_IsTimerRunning)
 		        {
-			        _CurrentTime -= Time.deltaTime;
-			        if(_CurrentTime<=0 && CurrentWave<NumberOfWaves)
+			        CurrentTime -= Time.deltaTime;
+			        if(CurrentTime<=0 && CurrentWave<NumberOfWaves)
 			        {
 				        _IsTimerRunning = false;
 
@@ -81,7 +81,7 @@ public class SpawnManager : MonoBehaviour
     {
         Debug.Log("generate wave called");
         _IsGeneratingEnemies = true;
-        _CurrentTime = TimeBetweenWaves;
+        CurrentTime = TimeBetweenWaves;
         CurrentWave++;
         SpawnPoints = new List<GameObject>();
         SpawnPoints = Generator.GetSpawnPoints(_Player, NumberOfEnemiesPerWave, MinEnemyDistance,MaxEnemyDistance);

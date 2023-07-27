@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AiAttackSurroundState : IAiState
 {
-	private float t = 2f;
+	private float t = 0f;
 	public AIPath aiPath;
 	public AiStateType GetStateType()
 	{
@@ -29,7 +29,7 @@ public class AiAttackSurroundState : IAiState
 		agent.GetComponent<AIPath>().enabled = true;
 		agent.GetComponent<Seeker>().enabled = true;
 
-		Vector3 lookPos = agent.playerTransform.position - agent.transform.position;
+		Vector3 lookPos = agent.PlayerTransform.position - agent.transform.position;
 		lookPos.y = 0;
 		Quaternion rotation = Quaternion.LookRotation(lookPos);
 		agent.transform.rotation = Quaternion.Slerp(agent.transform.rotation, rotation, 0.5f);
@@ -38,12 +38,12 @@ public class AiAttackSurroundState : IAiState
 		{
 			// if (agent.sensor.IsInSight(agent.playerTransform.gameObject))
 				agent.GetComponentInChildren<Shooter>().Shoot();
-			t = 2;
+			t = 1;
 		}
 
-		if (!agent.InRange && !agent.sensor.IsInSight(agent.playerTransform.gameObject))
+		if (!agent.InRange && !agent.sensor.IsInSight(agent.PlayerTransform.gameObject))
 		{
-			agent.stateMachine.ChangeState(AiStateType.Chase);
+			agent.StateMachine.ChangeState(AiStateType.Chase);
 		}
 	}
 
@@ -51,7 +51,7 @@ public class AiAttackSurroundState : IAiState
 	{
 		aiPath.maxSpeed = agent.Speed;
 		SurroundManager.Instance.Units.Remove(agent.GetComponent<EnemyUnit>());
-		agent.GetComponent<AIDestinationSetter>().target = agent.playerTransform;
+		agent.GetComponent<AIDestinationSetter>().target = agent.PlayerTransform;
 		agent.GetComponent<AIDestinationSetter>().enabled = true;
 		agent.GetComponent<AIPath>().enabled = true;
 		agent.GetComponent<Seeker>().enabled = true;

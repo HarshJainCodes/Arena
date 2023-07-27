@@ -23,7 +23,7 @@ public class TrainingTarget : Enemy
 	public override void Damage(float damage)
     {
         if (isDead) return;
-        if(GetComponent<AiAgent>().stateMachine.currentStateType is AiStateType.Idle or AiStateType.Patrol) GetComponent<AiAgent>().stateMachine.ChangeState(AiStateType.Chase);
+        if(GetComponent<AiAgent>().StateMachine.currentStateType is AiStateType.Idle or AiStateType.Patrol) GetComponent<AiAgent>().StateMachine.ChangeState(AiStateType.Chase);
         base.Damage(damage);
         aiAgent = GetComponent<AiAgent>();
         // GetComponent<Animator>().Play("Hit_Reaction_2");
@@ -61,7 +61,7 @@ public class TrainingTarget : Enemy
         GetComponent<AIDestinationSetter>().enabled = false;
         GetComponent<AIPath>().enabled = false;
         GetComponent<Seeker>().enabled = false;
-        aiAgent.stateMachine.ChangeState(AiStateType.Dead); 
+        aiAgent.StateMachine.ChangeState(AiStateType.Dead); 
     }
 
 	private void onDie()
