@@ -28,7 +28,7 @@ Material:
     m_Floats:
     - _PlayerHealth: 0.36
     - _WaveHealth: 0.63
-    - _WaveTime: 0.47476617
+    - _WaveTime: 1
     m_Colors:
     - _FullHealthColor: {r: 0, g: 1, b: 0, a: 1}
     - _HighTimeColor: {r: 0, g: 1, b: 0, a: 1}

@@ -18,8 +18,8 @@ public class SpawnManager : MonoBehaviour
     private bool _IsTimerRunning = false;
 
     //[FormerlySerializedAs("_generator")] public ChunkCreator Generator;
-   // public ChunkScriptV2 Generator;
-    public ChunkCreator Generator;
+    public ChunkScriptV2 Generator;
+    //public ChunkCreator Generator;
     
     private Transform _Player;
     
@@ -34,9 +34,9 @@ public class SpawnManager : MonoBehaviour
     
     bool _IsGeneratingEnemies = false;
 
-    [FormerlySerializedAs("minEnemyDistance")] public int MinEnemyDistance = 20;
+    [FormerlySerializedAs("minEnemyDistance")] public int MinEnemyDistance = 10;
 
-    [FormerlySerializedAs("maxEnemyDistance")] public int MaxEnemyDistance = 30;
+    [FormerlySerializedAs("maxEnemyDistance")] public int MaxEnemyDistance = 60;
     void Start()
     {
         // EnemyPrefabs = GetComponent<List<Transform>>();
