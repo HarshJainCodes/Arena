@@ -47,6 +47,8 @@ namespace Arena
 
         [SerializeField]
         private LeaningInput leaningInput;
+
+        #region UNITY FUNCTION
         private void Start()
         {
             pm = GetComponent<PlayerMovement>();
@@ -64,25 +66,31 @@ namespace Arena
             if (pm.isWallRunning)
                 WallRunning();
         }
+        #endregion
+
+        #region CUSTOM FUNCTIONS
+        /// <summary>
+        /// Checks if player has a wall to his left or his right
+        /// </summary>
         private void CheckForWall()
         {
             Vector3 RightDirection = transform.position + orientation.right + orientation.forward;
             Vector3 LeftDirection = transform.position + -orientation.right + orientation.forward;
             wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallHit, wallCheckDistance, whatIsWall);
             wallLeft = Physics.Raycast(transform.position, -orientation.right, out rightWallHit, wallCheckDistance, whatIsWall);
-
-            /*wallRight = Physics.Raycast(transform.position, RightDirection, out rightWallHit, wallCheckDistance, whatIsWall);
-
-            wallLeft = Physics.Raycast(transform.position, LeftDirection, out rightWallHit, wallCheckDistance, whatIsWall);
-            Debug.DrawRay(transform.position, RightDirection*wallCheckDistance, Color.green,1000);
-            Debug.DrawRay(transform.position, LeftDirection*wallCheckDistance, Color.green,1000);*/
         }
 
+        /// <summary>
+        /// Checks if player is at a certain height to wallrun
+        /// </summary>
+        /// <returns></returns>
         private bool AboveGround()
         {
             return !Physics.Raycast(transform.position, Vector3.down, minJumpHeight, whatIsGround);
         }
-
+        /// <summary>
+        /// Handles different wall run states
+        /// </summary>
         private void StateMachine()
         {
             keyInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -123,7 +131,9 @@ namespace Arena
                     StopWallRun();
             }
         }
-
+        /// <summary>
+        /// Sets bools,velocity, camera tilt etc.
+        /// </summary>
         void StartWallRun()
         {
             pm.isWallRunning = true;
@@ -132,21 +142,20 @@ namespace Arena
                 wallRunTimer = maxWallRunTime;
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             if (wallRight)
-            {
-                // DoTilt(-5);
+            { 
+                //camera tilt to left
                 leaningInput.SetLeaningInput(-1);
             }
             else
             {
+                //camera tilt to right
                 leaningInput.SetLeaningInput(1);
-                //DoTilt(25);
             }
-            //cam.DoFov(90);
-            /*if (wallLeft)
-                cam.DoTilt(-5f);
-            if (wallRight)
-                cam.DoTilt(5f);*/
+          
         }
+        /// <summary>
+        /// Perform the wall run movement i.e adds force to the player in the wall direction
+        /// </summary>
         void WallRunning()
         {
             rb.useGravity = useGravity;
@@ -157,7 +166,7 @@ namespace Arena
                 wallForward = -wallForward;
             }
 
-            //float dot = Vector3.Dot(cam.GetComponent<Transform>().forward, orientation.forward);
+            
             rb.AddForce(orientation.forward * wallRunForce, ForceMode.Force);
 
             //push to wall force
@@ -166,16 +175,20 @@ namespace Arena
                 rb.AddForce(-wallNormal * 100, ForceMode.Force);
             }
         }
+        /// <summary>
+        /// Resets all bools,gravity etc.
+        /// </summary>
         void StopWallRun()
         {
             pm.isWallRunning = false;
             rb.useGravity = true;
             leaningInput.SetLeaningInput(0);
             DoTilt(0);
-            //cam.DoFov(60);
-            //cam.DoTilt(0);
+            
         }
-
+        /// <summary>
+        /// Performs wall jumps
+        /// </summary>
         void WallJump()
         {
             Debug.Log("wallJump");
@@ -189,11 +202,15 @@ namespace Arena
             rb.velocity = Vector3.zero;
             rb.AddForce(forceToApply, ForceMode.Impulse);
         }
-
+        /// <summary>
+        /// Rotates the camera in the forward axiz by zTili in 0.25s.
+        /// </summary>
+        /// <param name="zTilt"></param>
         void DoTilt(float zTilt)
         {
             cam.transform.DOLocalRotate(new Vector3(0, 0, zTilt), 0.25f);
         }
+        #endregion
     }
 }
 

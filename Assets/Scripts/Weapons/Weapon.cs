@@ -179,7 +179,10 @@ namespace Arena
             AudioManagerServices.instance.PlayOneShot(HasAmmunition() ? audioClipReload : audioClipReloadEmpty, new AudioSettings(1.0f, 0.0f, false));
             animator.Play(cycledReload ? "Reload Open" : (HasAmmunition() ? "Reload" : "Reload Empty"), 0, 0.0f);
         }
-
+        /// <summary>
+        /// Performs fire action, reduces bullet count, plays animation, and muzzle flash effect
+        /// </summary>
+        /// <param name="spreadMultiplier"></param>
         public void Fire(float spreadMultiplier = 1f)
         {
             if (muzzleBehaviour == null)
@@ -213,7 +216,10 @@ namespace Arena
                 projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectileImpulse;
             }
         }
-
+        /// <summary>
+        /// Refills the ammunition count
+        /// </summary>
+        /// <param name="amount"></param>
         public void FillAmmunition(int amount)
         {
             ammunitionCurrent = amount != 0 ? Mathf.Clamp(ammunitionCurrent + amount, 0, GetAmmunitionMax()) : maxAmmo;
@@ -224,13 +230,19 @@ namespace Arena
             const string boolName = "Slide Back";
             animator.SetBool(boolName, back != 0);
         }
-
+        /// <summary>
+        /// Aniamtion event to spawn a bullet casing prefab
+        /// </summary>
         public void EjectCasing()
         {
             //Spawn casing prefab at spawn point.
             if (prefabCasing != null && socketEjection != null)
                 Instantiate(prefabCasing, socketEjection.position, socketEjection.rotation);
         }
+        /// <summary>
+        /// Gets FOV multiplier while AIMING for different scopes
+        /// </summary>
+        /// <returns></returns>
         public float GetFieldOfViewMultiplierAim()
         {
             //Make sure we don't have any issues even with a broken setup!
@@ -243,6 +255,10 @@ namespace Arena
             //Return.
             return 1.0f;
         }
+        /// <summary>
+        /// Gets FOV multiplier while NOT AIMING 
+        /// </summary>
+        /// <returns></returns>
         public float GetFieldOfViewMultiplierAimWeapon()
         {
             //Make sure we don't have any issues even with a broken setup!
@@ -255,6 +271,8 @@ namespace Arena
             //Return.
             return 1.0f;
         }
+
+        #region GETTER FUNCTIONS
         public Animator GetAnimator() => animator;
         public bool CanReloadAimed() => canReloadAimed;
         public int GetAmmunitionCurrent() => ammunitionCurrent;
@@ -269,52 +287,18 @@ namespace Arena
         public bool IsFull() => ammunitionCurrent == maxAmmo;
         public bool HasAmmunition() => ammunitionCurrent > 0;
         public RuntimeAnimatorController GetAnimatorController() => controller;
-
-
         public WeaponAttachmentManager GetAttachmentManager() => attachmentManager;
-
         public  AudioClip GetAudioClipHolster() => audioClipHolster;
-        /// <summary>
-        /// GetAudioClipUnholster.
-        /// </summary>
         public  AudioClip GetAudioClipUnholster() => audioClipUnholster;
-
-        /// <summary>
-        /// GetAudioClipReload.
-        /// </summary>
         public  AudioClip GetAudioClipReload() => audioClipReload;
-        /// <summary>
-        /// GetAudioClipReloadEmpty.
-        /// </summary>
         public  AudioClip GetAudioClipReloadEmpty() => audioClipReloadEmpty;
-
-        /// <summary>
-        /// GetAudioClipReloadOpen.
-        /// </summary>
         public  AudioClip GetAudioClipReloadOpen() => audioClipReloadOpen;
-        /// <summary>
-        /// GetAudioClipReloadInsert.
-        /// </summary>
         public  AudioClip GetAudioClipReloadInsert() => audioClipReloadInsert;
-        /// <summary>
-        /// GetAudioClipReloadClose.
-        /// </summary>
         public  AudioClip GetAudioClipReloadClose() => audioClipReloadClose;
-
-        /// <summary>
-        /// GetAudioClipFireEmpty.
-        /// </summary>
         public  AudioClip GetAudioClipFireEmpty() => audioClipFireEmpty;
-        /// <summary>
-        /// GetAudioClipBoltAction.
-        /// </summary>
         public  AudioClip GetAudioClipBoltAction() => audioClipBoltAction;
-
-        /// <summary>
-        /// GetAudioClipFire.
-        /// </summary>
         public  AudioClip GetAudioClipFire() => muzzleBehaviour.GetAudioClipFire();
-
+        #endregion
     }
 }
 
