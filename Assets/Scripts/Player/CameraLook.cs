@@ -6,39 +6,47 @@ using DG.Tweening;
 
 public class CameraLook : MonoBehaviour
 {
+    [Header("Sensitivity variables")]
+    [SerializeField]
+    private float x_Sensitivity;
+    [SerializeField]
+    private float y_Sensitivity;
 
-    public float x_Sensitivity;
-    public float y_Sensitivity;
-
-    public Transform orientation;
-
-    float xRotation;
-    float yRotation;
-
-    private Camera cam;
+    [Header("References")]
+    [SerializeField]
+    private Transform orientation;
     [SerializeField]
     private Transform player;
     [SerializeField]
-    private Transform playerArms;
-
+    private Transform playerArms;//ref to player arms root object
     [SerializeField]
-    private LedgeGrabArms ledgeGrabArms;
-    // private Transform camHolder;
+    private LedgeGrabArms ledgeGrabArms;//ref to the script that handles ledge grabbing.
+
+    private Camera cam;
+
+    //Variables that store rotation input and applies to camera and other objects while not ledge grabbing
+    float xRotation;
+    float yRotation;
+
+    //Variables that store rotation input and applies to camera and other objects while ledge grabbing
+    float xRot;
+    float yRot;
+
+    #region UNITY FUNCTIONS
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         cam = GetComponent<Camera>();
     }
-    float xRot;
-    float yRot;
+    
     private void Update()
     {
+        //inputs
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * x_Sensitivity;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * y_Sensitivity;
 
-        
-
+        //if not ledge grabbing
         if (!ledgeGrabArms.Ledge)
         {
             xRotation -= mouseY;
@@ -49,6 +57,7 @@ public class CameraLook : MonoBehaviour
             playerArms.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
             orientation.localRotation = Quaternion.Euler(0, yRotation, 0);
         }
+        //if ledge grabbing
         else
         {
             xRot -= mouseY;
@@ -58,14 +67,24 @@ public class CameraLook : MonoBehaviour
             transform.localRotation = Quaternion.Euler(xRot, yRot, 0);
         }
     }
+    #endregion
 
+    #region CUSTOM FUNCTIONS
+    /// <summary>
+    /// Performs camera FOV shift, lerping between current and "val".
+    /// </summary>
+    /// <param name="val"></param>
     public void DoFov(int val)
     {
         cam.GetComponent<Camera>().DOFieldOfView(val, 0.25f);
     }
+    /// <summary>
+    /// Performs camera tilts, lerping between current and "val".
+    /// </summary>
+    /// <param name="val"></param>
     public void DoTilt(int val)
     {
         transform.DOLocalRotate(new Vector3(transform.localRotation.x, transform.localRotation.y, val), 0.5f);
     }
-
+    #endregion
 }

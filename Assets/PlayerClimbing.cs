@@ -9,9 +9,9 @@ namespace Arena {
         [SerializeField]
         private Rigidbody rb;
         [SerializeField]
-        private PlayerMovement pm;
+        private PlayerMovement pm; // ref to PlayerMovement.cs script
         [SerializeField]
-        private Animator PlayerAnimator;
+        private Animator PlayerAnimator; // ref to Animator
         [SerializeField]
         private CameraLook cam;
         [SerializeField]
@@ -19,47 +19,47 @@ namespace Arena {
         [SerializeField]
         private Transform orientation;
         [SerializeField]
-        private Transform LeftRaycastPoint;
+        private Transform LeftRaycastPoint; //point from where the raycast will start for LEFT hand
         [SerializeField]
-        private Transform RightRaycastPoint;
+        private Transform RightRaycastPoint;//point from where the raycast will start for RIGHT hand
         [SerializeField]
         private LedgeGrabArms ledgeGrabArms;
 
         [Header("Variables")]
         [SerializeField]
-        private float maxClimbTime;
+        private float maxClimbTime; // controls how long the player can climb
         [SerializeField]
-        private float climbSpeed;
+        private float climbSpeed; // controls the climbing speed
         [SerializeField]
-        private Vector3 RayOffsetLeft;
+        private float rayLength; //controls the raycast length
         [SerializeField]
-        private Vector3 RayOffsetRight;
+        private float ledgeJumpBackForce; //the amount of force that will be applied in the back direction
         [SerializeField]
-        private float rayLength;
+        private float ledgeJumpUpForce;//the amount of force that will be applied in the up direction
         [SerializeField]
-        private float ledgeJumpBackForce;
+        Vector3 lhandOffset;//offset values to correct LEFT hand positions
         [SerializeField]
-        private float ledgeJumpUpForce;
+        Vector3 rhandOffset;//offset valies to correct RIGHT hand positions
 
-        private bool WallFront;
+        private bool WallFront; //checks if we have wall in front for climbing
         private RaycastHit frontWall;
-        private RaycastHit ledgeL;
-        private RaycastHit ledgeR;
+        private RaycastHit ledgeL; //stores left hand ledge hit properties
+        private RaycastHit ledgeR; //store right hand ledge hit properties
         
-        private bool climbing;
-        bool ledgeGrabbing;
+        private bool climbing; //true if player is climbing
+        bool ledgeGrabbing; // true if players is ledgeGrabbing
 
-        private float climbTimer;
+        private float climbTimer; //to keep track for climbing timer
 
-        private bool ledgeAvailableLeft;
-        private bool ledgeAvailableRight;
+        private bool ledgeAvailableLeft; //if ledge is available for left hand
+        private bool ledgeAvailableRight; //if ledge is available for right hand
 
-        Ray rayL;
-        Ray rayR;
+        Vector3 leftHandPoint;
+        Vector3 rightHandPoint;
 
-        Vector3 leftHitPoint;
-        Vector3 rightHitPoint;
-        
+       
+
+
         private void Update()
         {
             WallFront = Physics.SphereCast(transform.position,0.25f,orientation.forward,out frontWall,0.75f,WhatIsWall);
@@ -69,18 +69,16 @@ namespace Arena {
 
             if(ledgeAvailableLeft && ledgeAvailableRight)
             {
-                
+                //calculate the amount the players will have to displace in order to display ledge grab properly.
                 float playerDisplacement = ledgeL.distance-0.1f;
                 if(!ledgeGrabbing)
                 {
-
-                    /*leftHitPoint = ledgeL.point;
-                    rightHitPoint = ledgeR.point;*/
-                    Vector3 playerOrigPos = pm.transform.position;
-                    Vector3 playerNewPos = pm.transform.position - new Vector3(0, playerDisplacement, 0);
-                    Debug.Log("Hi");
-                    StartCoroutine(MoveToPosition(playerNewPos, playerOrigPos, 0.2f));
+                    Vector3 playerOrigPos = pm.transform.position; //store player old Pos
+                    Vector3 playerNewPos = pm.transform.position - new Vector3(0, playerDisplacement, 0); //calculate player new position
                     
+                    StartCoroutine(MoveToPosition(playerNewPos, playerOrigPos, 0.2f)); // move player to new position
+                    
+                    //start the ledge grab
                     StartLedgeGrab();
 
                 }
@@ -90,31 +88,18 @@ namespace Arena {
                 StopLedgeGrab();
             }
 
-            
 
-            
-               /* ledgeAvailableLeft = Physics.SphereCast(LeftRaycastPoint.position, 0.05f, orientation.forward, out ledgeL, 1f, WhatIsWall);
-                ledgeAvailableRight = Physics.SphereCast(RightRaycastPoint.position, 0.05f, orientation.forward, out ledgeR, 1f, WhatIsWall);*/
-            
-                Debug.DrawLine(LeftRaycastPoint.position, LeftRaycastPoint.position+Vector3.down*rayLength, Color.blue);
+            //debugs for raycasts
+            Debug.DrawLine(LeftRaycastPoint.position, LeftRaycastPoint.position+Vector3.down*rayLength, Color.blue);
             Debug.DrawLine(RightRaycastPoint.position, RightRaycastPoint.position+Vector3.down*rayLength, Color.blue);
 
-
-           /* if (ledgeAvailableLeft && ledgeAvailableRight && !ledgeGrabbing)
-            {
-            StartLedgeGrab();
-            }
-            else if((!ledgeAvailableLeft || !ledgeAvailableRight) && ledgeGrabbing)
-            {
-                StopLedgeGrab();
-            }*/
-
-            if (ledgeGrabbing) LedgeGrabMovement();
+            if (ledgeGrabbing) LedgeGrabMovement();//perfrom the actual ledge grab movement
 
             StateMachine();
             if (climbing) ClimbingMovement();
             if (pm.IsPlayerGrounded()) climbTimer = maxClimbTime;
         }
+
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
@@ -124,6 +109,9 @@ namespace Arena {
             Gizmos.DrawSphere(ledgeL.point,0.01f);
             Gizmos.DrawSphere(ledgeR.point,0.01f);
         }
+        /// <summary>
+        /// Checks the current state of player if he's climbing or not
+        /// </summary>
         void StateMachine()
         {
             if(!pm.IsPlayerGrounded() && WallFront && Input.GetKey(KeyCode.W) && !pm.isWallRunning)
@@ -141,10 +129,10 @@ namespace Arena {
         void StartClimbing()
         {
             climbing = true;
-            //PlayerAnimator.SetBool("Holstered", true);
-           // Debug.Log("start climbing");
         }
-
+        /// <summary>
+        /// Adds velocity in up direction to player
+        /// </summary>
         void ClimbingMovement()
         {
             rb.velocity = new Vector3(rb.velocity.x, climbSpeed, rb.velocity.z);
@@ -152,17 +140,11 @@ namespace Arena {
         void StopClimbing()
         {
             climbing = false;
-            //
-            //  PlayerAnimator.SetBool("Holstered", false);
-
         }
-        Vector3 leftHandPoint;
-        Vector3 rightHandPoint;
-
-        [SerializeField]
-        Vector3 lhandOffset;
-        [SerializeField]
-        Vector3 rhandOffset;
+        /// <summary>
+        /// Starts the ledge grab movement, sets gravity,bools, animator parameters, left and right hand positions.
+        /// </summary>
+    
         void StartLedgeGrab()
         {
             Debug.Log("Start LG");
@@ -175,17 +157,16 @@ namespace Arena {
             rb.useGravity = false;
             rb.velocity = Vector3.zero;
             leftHandPoint = ledgeGrabArms.IK_Arm_Left_Target.transform.InverseTransformPoint(LeftRaycastPoint.position);
-            //leftHandPoint = ledgeGrabArms.IK_Arm_Left_Target.transform.InverseTransformPoint(LeftRaycastPoint.position);
             rightHandPoint = ledgeGrabArms.IK_Arm_Right_Target.transform.InverseTransformPoint(RightRaycastPoint.position);
-            //rightHandPoint = ledgeGrabArms.IK_Arm_Right_Target.transform.InverseTransformPoint(RightRaycastPoint.position);
-            Debug.Log(orientation.forward);
             StartCoroutine(ResetCamTilt());
 
             ledgeGrabArms.Ledge = true;
             pm.Ledgegrab = true;
             ledgeGrabbing = true;
         }
-
+        /// <summary>
+        /// Resets all bools checks, animator parameters, left and right hand positions.
+        /// </summary>
         void StopLedgeGrab()
         {
             cam.DoTilt(10);
@@ -201,6 +182,9 @@ namespace Arena {
 
         }
 
+        /// <summary>
+        /// Keeps the hands at the required position and checks for jump input
+        /// </summary>
         void LedgeGrabMovement()
         {
             Debug.Log("LG motion");
@@ -212,29 +196,42 @@ namespace Arena {
             }
         }
 
+        /// <summary>
+        /// Coroutine function to Reset camera motion
+        /// </summary>
+        /// <returns></returns>
         IEnumerator ResetCamTilt()
         {
             yield return new WaitForSeconds(0.25f);
             cam.DoTilt(0);
-
         }
-
+        /// <summary>
+        /// Performs the LedgeJump
+        /// </summary>
         void LedgeJump()
         {
             rb.velocity = Vector3.zero;
+            //calculates the force that needs to be applied.
             Vector3 forceToApply = Vector3.up * ledgeJumpUpForce + (-orientation.forward * ledgeJumpBackForce);
             rb.AddForce(forceToApply, ForceMode.Impulse);
             StopLedgeGrab();
         }
 
-        IEnumerator MoveToPosition(Vector3 newPos, Vector3 startPos,float time)
+        /// <summary>
+        /// Lerps player to the gives newPos from startPos in time t
+        /// </summary>
+        /// <param name="newPos"></param>
+        /// <param name="startPos"></param>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        IEnumerator MoveToPosition(Vector3 newPos, Vector3 startPos,float t)
         {
             float elapsedTime = 0f;
             Debug.Log("Coroutine started");
 
-            while (elapsedTime<time)
+            while (elapsedTime<t)
             {
-                pm.transform.position = Vector3.Lerp(startPos, newPos, (elapsedTime / time));
+                pm.transform.position = Vector3.Lerp(startPos, newPos, (elapsedTime / t));
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }

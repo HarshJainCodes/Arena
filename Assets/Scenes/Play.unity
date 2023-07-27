@@ -3153,6 +3153,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.29878637
       objectReference: {fileID: 0}
+    - target: {fileID: 2106590383886407248, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: prefabFlashParticles
+      value: 
+      objectReference: {fileID: 1336949550903370, guid: 679d294f11bff5d49b2fc3da2db6c3b7, type: 3}
     - target: {fileID: 2227911378884310551, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
       propertyPath: characterBehaviour
       value: 
@@ -3845,6 +3849,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5395317914787938204, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: prefabFlashParticles
+      value: 
+      objectReference: {fileID: 1336949550903370, guid: 679d294f11bff5d49b2fc3da2db6c3b7, type: 3}
     - target: {fileID: 5430044494372398240, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.0000001
@@ -4853,6 +4861,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8556199932549131221, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: prefabFlashParticles
+      value: 
+      objectReference: {fileID: 1336949550903370, guid: 679d294f11bff5d49b2fc3da2db6c3b7, type: 3}
     - target: {fileID: 8690444647669134333, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -14947,12 +14959,36 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 137186306}
     - target: {fileID: 1773697118616702851, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingLocation.z
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1773697118616702851, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingRotation.x
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1773697118616702851, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingRotation.y
+      value: -2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1773697118616702851, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
       propertyPath: fieldOfViewMultiplierAim
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1773697118616702851, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
       propertyPath: fieldOfViewMultiplierAimWeapon
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2382291159776336710, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingLocation.z
+      value: -0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 2382291159776336710, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingRotation.x
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2382291159776336710, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingRotation.y
+      value: -2.8
       objectReference: {fileID: 0}
     - target: {fileID: 2382291159776336710, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
       propertyPath: fieldOfViewMultiplierAim
@@ -14963,12 +14999,40 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3154898949963498531, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingLocation.x
+      value: -0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3154898949963498531, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingLocation.z
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3154898949963498531, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingRotation.x
+      value: -16.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3154898949963498531, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingRotation.y
+      value: -1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3154898949963498531, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
       propertyPath: fieldOfViewMultiplierAim
       value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 3154898949963498531, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
       propertyPath: fieldOfViewMultiplierAimWeapon
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3697241807261767413, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingLocation.z
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 3697241807261767413, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingRotation.x
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3697241807261767413, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingRotation.y
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 3697241807261767413, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
       propertyPath: fieldOfViewMultiplierAim
@@ -14981,7 +15045,15 @@ PrefabInstance:
     - target: {fileID: 3722579981757267153, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
       propertyPath: prefabFlashParticles
       value: 
-      objectReference: {fileID: 6630366363211497712, guid: e1d2196309ba6554ca2be7c5902e4afa, type: 3}
+      objectReference: {fileID: 1336949550903370, guid: 679d294f11bff5d49b2fc3da2db6c3b7, type: 3}
+    - target: {fileID: 5275365366064942890, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: scopeIndex
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5275365366064942890, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: muzzleIndexRandom
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5275365366064942890, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
       propertyPath: scopeDefaultBehaviour
       value: 
@@ -14994,6 +15066,22 @@ PrefabInstance:
       propertyPath: magazineArray.Array.data[0]
       value: 
       objectReference: {fileID: 1466969043}
+    - target: {fileID: 5628600631626269473, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingLocation.x
+      value: 0.0015
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628600631626269473, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingLocation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628600631626269473, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingRotation.x
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628600631626269473, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingRotation.y
+      value: -2.8
+      objectReference: {fileID: 0}
     - target: {fileID: 5628600631626269473, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
       propertyPath: fieldOfViewMultiplierAim
       value: 0.6
@@ -15021,7 +15109,7 @@ PrefabInstance:
     - target: {fileID: 6352578574227947860, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
       propertyPath: prefabFlashParticles
       value: 
-      objectReference: {fileID: 6630366363211497712, guid: e1d2196309ba6554ca2be7c5902e4afa, type: 3}
+      objectReference: {fileID: 1336949550903370, guid: 679d294f11bff5d49b2fc3da2db6c3b7, type: 3}
     - target: {fileID: 6656956185984592638, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
       propertyPath: laserTransform
       value: 
@@ -15037,7 +15125,19 @@ PrefabInstance:
     - target: {fileID: 7238792036381283613, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
       propertyPath: prefabFlashParticles
       value: 
-      objectReference: {fileID: 6630366363211497712, guid: e1d2196309ba6554ca2be7c5902e4afa, type: 3}
+      objectReference: {fileID: 1336949550903370, guid: 679d294f11bff5d49b2fc3da2db6c3b7, type: 3}
+    - target: {fileID: 7321345299600371968, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingLocation.z
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7321345299600371968, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingRotation.x
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7321345299600371968, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingRotation.y
+      value: -2.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7321345299600371968, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
       propertyPath: fieldOfViewMultiplierAim
       value: 0.5
@@ -15045,6 +15145,22 @@ PrefabInstance:
     - target: {fileID: 7321345299600371968, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
       propertyPath: fieldOfViewMultiplierAimWeapon
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8347652015886199771, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: m_ShowToolkit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392983522672754920, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingLocation.z
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392983522672754920, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingRotation.x
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392983522672754920, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingRotation.y
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 8392983522672754920, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
       propertyPath: fieldOfViewMultiplierAim
@@ -15062,6 +15178,22 @@ PrefabInstance:
       propertyPath: laserTransform
       value: 
       objectReference: {fileID: 1620832224}
+    - target: {fileID: 8798112592431286966, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingLocation.x
+      value: 0.0015
+      objectReference: {fileID: 0}
+    - target: {fileID: 8798112592431286966, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingLocation.z
+      value: -0.007
+      objectReference: {fileID: 0}
+    - target: {fileID: 8798112592431286966, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingRotation.x
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8798112592431286966, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
+      propertyPath: offsetAimingRotation.y
+      value: -2.8
+      objectReference: {fileID: 0}
     - target: {fileID: 8798112592431286966, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
       propertyPath: fieldOfViewMultiplierAim
       value: 0.75
@@ -26326,8 +26458,6 @@ MonoBehaviour:
   ledgeGrabArms: {fileID: 1098897453}
   maxClimbTime: 0.75
   climbSpeed: 10
-  RayOffsetLeft: {x: 0.4, y: 0.8, z: 0.4}
-  RayOffsetRight: {x: 0.4, y: 0.8, z: 0.4}
   rayLength: 0.5
   ledgeJumpBackForce: 10
   ledgeJumpUpForce: 10
@@ -28000,13 +28130,17 @@ PrefabInstance:
       propertyPath: offsetAimingRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 483637239868830191, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
+      propertyPath: prefabFlashParticles
+      value: 
+      objectReference: {fileID: 1336949550903370, guid: 679d294f11bff5d49b2fc3da2db6c3b7, type: 3}
     - target: {fileID: 680678699699023081, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
       propertyPath: offsetAimingLocation.x
       value: 0.002
       objectReference: {fileID: 0}
     - target: {fileID: 680678699699023081, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
       propertyPath: offsetAimingLocation.z
-      value: 0.008
+      value: 0.003
       objectReference: {fileID: 0}
     - target: {fileID: 710044347688257825, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
       propertyPath: prefabFlashParticles
@@ -28014,7 +28148,15 @@ PrefabInstance:
       objectReference: {fileID: 1336949550903370, guid: 679d294f11bff5d49b2fc3da2db6c3b7, type: 3}
     - target: {fileID: 1663233515218421185, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
       propertyPath: scopeIndex
-      value: 5
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495007798836589983, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
+      propertyPath: offsetAimingLocation.x
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495007798836589983, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
+      propertyPath: offsetAimingLocation.z
+      value: 0.004
       objectReference: {fileID: 0}
     - target: {fileID: 3522000425856399404, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
       propertyPath: offsetAimingLocation.x
@@ -28032,6 +28174,10 @@ PrefabInstance:
       propertyPath: offsetAimingLocation.z
       value: 0.015
       objectReference: {fileID: 0}
+    - target: {fileID: 4245634470788179366, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
+      propertyPath: prefabFlashParticles
+      value: 
+      objectReference: {fileID: 1336949550903370, guid: 679d294f11bff5d49b2fc3da2db6c3b7, type: 3}
     - target: {fileID: 6914151301839052875, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
       propertyPath: offsetAimingLocation.x
       value: 0.0015
@@ -28039,6 +28185,14 @@ PrefabInstance:
     - target: {fileID: 6914151301839052875, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
       propertyPath: offsetAimingLocation.z
       value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320301584912065410, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
+      propertyPath: offsetAimingLocation.x
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7320301584912065410, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
+      propertyPath: offsetAimingLocation.z
+      value: 0.004
       objectReference: {fileID: 0}
     - target: {fileID: 7779437583523015132, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
       propertyPath: offsetAimingLocation.x
@@ -28048,6 +28202,10 @@ PrefabInstance:
       propertyPath: offsetAimingLocation.z
       value: -0.007
       objectReference: {fileID: 0}
+    - target: {fileID: 7869934566512413802, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
+      propertyPath: prefabFlashParticles
+      value: 
+      objectReference: {fileID: 1336949550903370, guid: 679d294f11bff5d49b2fc3da2db6c3b7, type: 3}
     - target: {fileID: 8391777619415372394, guid: 5e44eac7c6a452648beddfb903f6e7b2, type: 3}
       propertyPath: offsetAimingLocation.x
       value: 0.002
@@ -28083,7 +28241,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904052382946}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.1940859, y: 0.6304029, z: -0.1669573, w: 0.7328357}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28171,7 +28329,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904058514593}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.1940859, y: 0.6304029, z: -0.1669573, w: 0.7328357}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28342,7 +28500,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904255469873}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.1940859, y: 0.6304029, z: -0.1669573, w: 0.7328357}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28485,7 +28643,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904437498142}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.1940859, y: 0.6304029, z: -0.1669573, w: 0.7328357}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -145,18 +145,8 @@ namespace Arena{
             //Select Magazine!
             magazineBehaviour = magazineArray.SelectAndSetActive(magazineIndex);
         }
-        // Start is called before the first frame update
-        void Start()
-        {
 
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
+        #region GETTER FUNCTIONS
         public Scope GetEquippedScope() => scopeBehaviour;
         public Scope GetEquippedScopeDefault() => scopeDefaultBehaviour;
 
@@ -165,6 +155,7 @@ namespace Arena{
 
         public Laser GetEquippedLaser() => laserBehaviour;
         public Grip GetEquippedGrip() => gripBehaviour;
+        #endregion
     }
 }
 

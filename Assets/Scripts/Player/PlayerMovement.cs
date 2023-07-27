@@ -7,6 +7,7 @@ namespace Arena
 {
     public class PlayerMovement : MonoBehaviour
     {
+        //Keybinds
         [Header("KeyBinds")]
         [SerializeField]
         private KeyCode sprintKey;
@@ -16,15 +17,19 @@ namespace Arena
         private KeyCode crouchKey;
         [Header("References")]
         [SerializeField]
+        
+        //Reference to the orientation i.e the players forward direction.
         private Transform orientation;
 
+        //Ref to the script that performs camera movement
         [SerializeField]
         private CameraLook cam;
 
+        //Movement variables
         [Header("Movement")]
         [SerializeField]
         private float gravityScale = 5f;
-        private float _MoveSpeed;
+        private float _MoveSpeed;//the actuall variable that controlls the spped of player, it is set to respective speed of the players current state 
         [SerializeField]
         private float speedAiming = 5f;
         [SerializeField]
@@ -119,29 +124,20 @@ namespace Arena
         private float standingHeight;
         private Vector3 velocity;
 
-        /*[SerializeField]
-        private PlayerClimbing climbScript;*/
+        
         public bool grounded = false;
         public bool wasGrounded = false;
         private bool jumping;
         private float lastJumpTime;
         private bool crouching = false;
-        //private bool climbing = false;
         private float landTime;
         [HideInInspector]
         public bool canDoublJump = false;
         public AudioClip jumpStart;
         public AudioClip jumpLand;
-        /* [SerializeField]
-         private bool canCrouch = true;
-
-         [SerializeField]
-         private bool canCrouchWhileFalling = false;
-
-         [Tooltip("If true, the character will be able to jump while crouched too!")]
-         [SerializeField]
-         private bool canJumpWhileCrouching = true;*/
         public bool Ledgegrab;
+
+        //all the states the player could have
         public enum MovementState
         {
             walking,
@@ -153,6 +149,8 @@ namespace Arena
             aiming,
             climbing
         }
+
+        #region UNITY FUNCTIONS
         private void Start()
         {
             rb = GetComponent<Rigidbody>();
@@ -161,23 +159,66 @@ namespace Arena
             readyToJump = true;
             startYScale = transform.localScale.y;
         }
+        
 
+        private void Update()
+        {
+            //gets the weapon the player has
+            equippedWeapon = playerAnim.GetInventory().GetEquipped();
+            wasGrounded = grounded;
+
+            grounded = CheckGround();
+            if (grounded && !wasGrounded)
+            {
+                lastJumpTime = 0.0f;
+                jumping = false;
+                canDoublJump = false;
+                landTime = Time.time;
+                AudioManagerServices.instance.PlayOneShot(jumpLand, new AudioSettings(0.5f, 0.0f, true));
+            }
+            else if (wasGrounded && !grounded)
+            {
+                lastJumpTime = Time.time;
+            }
+               
+            SpeedControl();
+            StateHandler();
+            if (grounded)
+                rb.drag = groundDrag;
+            else
+                rb.drag = 0;
+
+        }
+
+
+        private void FixedUpdate()
+        {
+            if(!Ledgegrab)
+                MovePlayer();
+            //Handles the extra gravity on top of the default rigidbody gravity, increase the gravityScale to shorten the air time
+            if(state!= MovementState.wallRunning && rb.useGravity)
+            {
+            rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass);
+
+            }
+        }
+        #endregion
+
+        #region CUSTOM FUNCTIONS
+        /// <summary>
+        /// Called in Update, Checks for changes in player state and update the spped accordingly
+        /// </summary>
         private void StateHandler()
         {
-
-            /*if(climbing)
-            {
-                state = MovementState.climbing;
-                desiredMoveSpeed = speedClimbing;
-                
-            }
-            else*/ if (isWallRunning)
+            //state = wallrunning
+            if (isWallRunning)
             {
                 state = MovementState.wallRunning;
                 desiredMoveSpeed = speedWalking;
                 isSprinting = false;
 
             }
+            //state = sliding
             else if (isSliding)
             {
                 state = MovementState.sliding;
@@ -191,6 +232,7 @@ namespace Arena
                     desiredMoveSpeed = speedSprinting;
                 }
             }
+            //state = crouching
             else if (playerAnim.IsCrouching())
             {
                 //cam.DoFov(50);
@@ -198,7 +240,7 @@ namespace Arena
                 desiredMoveSpeed = crouchSpeed;
 
             }
-            //Mode  - Sprinting
+            //state = Sprinting
             else if (grounded && playerAnim.IsRunning())
             {
                 //cam.DoFov(65);
@@ -206,13 +248,14 @@ namespace Arena
                 state = MovementState.sprinting;
                 desiredMoveSpeed = speedSprinting;
             }
-            //Mode - Walking
+            //state = Walking && aiming
             else if (grounded && playerAnim.IsAiming())
             {
                 state = MovementState.aiming;
                 desiredMoveSpeed = speedAiming;
 
             }
+            //state = walking
             else if (grounded)
             {
                 // cam.DoFov(60);
@@ -221,7 +264,7 @@ namespace Arena
                 isSprinting = false;
 
             }
-            //Mode - Air
+            //state = Air
             else
             {
                 state = MovementState.air;
@@ -229,6 +272,7 @@ namespace Arena
 
             }
 
+            //Gradually decreases the speed from lastDesiredMoveSpeed to desiredMoveSpped if the difference is greater than 4
             if (Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && _MoveSpeed != 0)
             {
                 StopAllCoroutines();
@@ -240,6 +284,11 @@ namespace Arena
             }
             lastDesiredMoveSpeed = desiredMoveSpeed;
         }
+
+        /// <summary>
+        /// Decreases the spped over time, so to maintain momentum
+        /// </summary>
+        /// <returns></returns>
         private IEnumerator SmoothlyLerpMoveSpeed()
         {
             float time = 0;
@@ -264,50 +313,6 @@ namespace Arena
             }
             _MoveSpeed = desiredMoveSpeed;
         }
-
-        private void Update()
-        {
-            equippedWeapon = playerAnim.GetInventory().GetEquipped();
-            wasGrounded = grounded;
-
-            grounded = CheckGround();
-            if (grounded && !wasGrounded)
-            {
-                lastJumpTime = 0.0f;
-                jumping = false;
-                canDoublJump = false;
-                landTime = Time.time;
-                AudioManagerServices.instance.PlayOneShot(jumpLand, new AudioSettings(0.5f, 0.0f, true));
-            }
-            else if (wasGrounded && !grounded)
-            {
-                lastJumpTime = Time.time;
-            }
-
-            // MoveCharacter();
-
-            //  HandleInput();
-
-            SpeedControl();
-            StateHandler();
-            if (grounded)
-                rb.drag = groundDrag;
-            else
-                rb.drag = 0;
-
-        }
-
-
-        private void FixedUpdate()
-        {
-            if(!Ledgegrab)
-                MovePlayer();
-            if(state!= MovementState.wallRunning && rb.useGravity)
-            {
-            rb.AddForce(Physics.gravity * (gravityScale - 1) * rb.mass);
-
-            }
-        }
         private void MovePlayer()
         {
             keyInput = playerAnim.GetInputMovement();
@@ -315,8 +320,6 @@ namespace Arena
             //calculate movement direction
             moveDirection = orientation.forward * keyInput.y + orientation.right * keyInput.x;
 
-           /* if (climbScript.GetExiting())
-                return;*/
             //ON SLOPE
             if (OnSlope() && !exitingSlope)
             {
@@ -341,13 +344,18 @@ namespace Arena
             /*if (!isWallRunning)
                 rb.useGravity = !OnSlope();*/
         }
-
+        /// <summary>
+        /// Checks is player is on ground or not.
+        /// </summary>
+        /// <returns></returns>
         private bool CheckGround()
         {
             grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight / 2 + 0.1f, whatIsGround);
             return grounded;
         }
-
+        /// <summary>
+        /// Limits the player speed from exceeding infinitely.
+        /// </summary>
         private void SpeedControl()
         {
             //limiting speed on slopes
@@ -369,7 +377,9 @@ namespace Arena
                 }
             }
         }
-
+        /// <summary>
+        /// Jump function called from input events.
+        /// </summary>
         public void Jump()
         {
 
@@ -397,7 +407,9 @@ namespace Arena
             Invoke(nameof(ResetJump), jumpCooldown);
 
         }
-
+        /// <summary>
+        /// Performs the second jump while in air
+        /// </summary>
         public void DoubleJump()
         {
 
@@ -408,13 +420,19 @@ namespace Arena
             lastJumpTime = Time.deltaTime;
             canDoublJump = false;
         }
+        /// <summary>
+        /// Reset Jump variables after jump
+        /// </summary>
         private void ResetJump()
         {
             readyToJump = true;
 
             exitingSlope = false;
         }
-
+        /// <summary>
+        /// Checks if player is on slopes
+        /// </summary>
+        /// <returns></returns>
         public bool OnSlope()
         {
             Debug.DrawRay(transform.position, Vector3.down * (playerHeight / 2 + 0.1f), Color.red);
@@ -425,11 +443,20 @@ namespace Arena
             }
             return false;
         }
-
+        /// <summary>
+        /// Gets the direction in which the force needs to be applied on the slope. Cross product of slope normal and player right direction
+        /// </summary>
+        /// <param name="direction"></param>
+        /// <returns></returns>
         public Vector3 GetSlopeMoveDirection(Vector3 direction)
         {
             return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
         }
+
+        /// <summary>
+        /// Handle the crouch movement
+        /// </summary>
+        /// <param name="newCrouching"></param>
         public void Crouch(bool newCrouching)
         {
             //Set the new crouching value.
@@ -448,6 +475,10 @@ namespace Arena
             }
 
         }
+        /// <summary>
+        /// if CanCrouch then crouch else UnCrouch
+        /// </summary>
+        /// <param name="value"></param>
         public void TryCrouch(bool value)
         {
             if (value && CanCrouch(true))
@@ -460,6 +491,10 @@ namespace Arena
             yield return new WaitUntil(() => CanCrouch(false));
             Crouch(false);
         }
+        /// <summary>
+        /// Checks if player can Crouch 
+        /// </summary>
+        /// <param name="value"></param>
         public bool CanCrouch(bool newCrouching)
         {
             //Always block crouching if we need to.
@@ -479,27 +514,31 @@ namespace Arena
             return true;
 
         }
+        #endregion
+
+        #region ALL THE GETTER FUNCTIONS
         public void TryToggleCrouch() => TryCrouch(!crouching);
-
         public bool IsPlayerGrounded() => grounded;
-
         public bool IsCrouching() => crouching;
-
         public float GetLastJumpTime() => lastJumpTime;
         public bool IsJumping() => jumping;
         public bool WasGrounded() => wasGrounded;
         public float GetMultiplierForward() => walkingMultiplierForward;
         public float GetMultiplierSideways() => walkingMultiplierSideways;
         public float GetMultiplierBackwards() => walkingMultiplierBackwards;
-
         public float GetLandTime() => landTime;
-
         public Vector3 GetVelocity() => rb.velocity;
+        public float GetPlayerHeight() => playerHeight;
+        #endregion
+
+        #region ALL THE SETTER FUNCTIONS
         public void SetCrouch(bool val)
         {
             crouching = val;
         }
-        public float GetPlayerHeight() => playerHeight;
+        #endregion
+        
+        
         /*public void SetClimbing(bool val)
         {
             climbing = val;
