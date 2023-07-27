@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 [System.Serializable]
 public struct LedgeTransform
 {
@@ -16,7 +16,7 @@ public class LedgeGrabArms : MonoBehaviour
     public LedgeTransform leftArm;
     public LedgeTransform rightArm;
 
-
+    public float speed;
 
     public bool Ledge;
     [SerializeField]
@@ -33,8 +33,11 @@ public class LedgeGrabArms : MonoBehaviour
     {
         if(Ledge)
         {
-            IK_Arm_Right_Target.localPosition = rightArmLedge.position;
-            IK_Arm_Left_Target.localPosition = leftArmLedge.position;
+            //IK_Arm_Right_Target.localPosition = rightArmLedge.position;
+            //IK_Arm_Left_Target.localPosition = leftArmLedge.position;
+
+            IK_Arm_Right_Target.localPosition = Vector3.Lerp(IK_Arm_Right_Target.localPosition, rightArmLedge.position,0.8f*Time.deltaTime*speed);
+            IK_Arm_Left_Target.localPosition = Vector3.Lerp(IK_Arm_Left_Target.localPosition, leftArmLedge.position,0.8f*Time.deltaTime*speed);
 
             IK_Arm_Left_Target.localRotation = Quaternion.Euler(leftArmLedge.Rotation);
             IK_Arm_Right_Target.localRotation = Quaternion.Euler(rightArmLedge.Rotation);

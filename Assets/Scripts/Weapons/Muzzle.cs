@@ -51,9 +51,9 @@ public class Muzzle : MonoBehaviour
             //Instantiate Particles.
             GameObject spawnedParticlesPrefab = Instantiate(prefabFlashParticles, socket);
             //Reset the position.
-            spawnedParticlesPrefab.transform.localPosition = default;
+           /* spawnedParticlesPrefab.transform.localPosition = socket.localPosition;
             //Reset the rotation.
-            spawnedParticlesPrefab.transform.localEulerAngles = default;
+            spawnedParticlesPrefab.transform.localEulerAngles = Vector3.zero;*/
 
             //Get Reference.
             particles = spawnedParticlesPrefab.GetComponent<ParticleSystem>();
@@ -80,9 +80,13 @@ public class Muzzle : MonoBehaviour
     {
         //Try to play the fire particles from the muzzle!
         if (particles != null)
-            particles.Emit(flashParticlesCount);
+        {
+            // particles.Emit(flashParticlesCount);
+            particles.Play(true);
+            Debug.Log("Emitting");
+        }
 
-       // AudioManagerServices.instance.PlayOneShot(audioClipFire,new AudioSettings(1.0f,0.0f,true));
+        // AudioManagerServices.instance.PlayOneShot(audioClipFire,new AudioSettings(1.0f,0.0f,true));
         //Make sure that we have a light to flash!
         if (flashLight != null)
         {
@@ -115,7 +119,19 @@ public class Muzzle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        /*if (prefabFlashParticles != null)
+        {
+            //Instantiate Particles.
+            GameObject spawnedParticlesPrefab = Instantiate(prefabFlashParticles, socket);
+            //Reset the position.
+            spawnedParticlesPrefab.transform.localPosition = socket.position;
+            //Reset the rotation.
+            spawnedParticlesPrefab.transform.localEulerAngles = Vector3.zero;
+
+            //Get Reference.
+            particles = spawnedParticlesPrefab.GetComponent<ParticleSystem>();
+        }
+*/
     }
 
     // Update is called once per frame

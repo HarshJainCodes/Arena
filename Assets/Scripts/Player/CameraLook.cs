@@ -65,7 +65,7 @@ public class CameraLook : MonoBehaviour
     }
     public void DoTilt(int val)
     {
-        transform.DOLocalRotate(new Vector3(0, 0, val), 0.5f);
+        transform.DOLocalRotate(new Vector3(transform.localRotation.x, transform.localRotation.y, val), 0.5f);
     }
 
 }
