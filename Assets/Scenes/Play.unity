@@ -11256,6 +11256,10 @@ PrefabInstance:
       propertyPath: playerAnimator
       value: 
       objectReference: {fileID: 6423528}
+    - target: {fileID: 962068186, guid: c16d3e7e3bb088741b3bd2d72e4faf56, type: 3}
+      propertyPath: Health
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 962068187, guid: c16d3e7e3bb088741b3bd2d72e4faf56, type: 3}
       propertyPath: PlayerOrientation
       value: 
@@ -27527,7 +27531,7 @@ PrefabInstance:
       objectReference: {fileID: 2018357195791544022, guid: 53299479f4a1c4345b4ed4526cdacad5, type: 3}
     - target: {fileID: 7523784142672252092, guid: 9366dbe617dc99c488166f21dc749c10, type: 3}
       propertyPath: NumberOfWaves
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7523784142672252092, guid: 9366dbe617dc99c488166f21dc749c10, type: 3}
       propertyPath: MaxEnemyDistance
@@ -27543,7 +27547,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7523784142672252092, guid: 9366dbe617dc99c488166f21dc749c10, type: 3}
       propertyPath: NumberOfEnemiesPerWave
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7523784142672252092, guid: 9366dbe617dc99c488166f21dc749c10, type: 3}
       propertyPath: EnemyPrefabs.Array.size
@@ -27552,7 +27556,7 @@ PrefabInstance:
     - target: {fileID: 7523784142672252092, guid: 9366dbe617dc99c488166f21dc749c10, type: 3}
       propertyPath: EnemyPrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 2018357195791544022, guid: b5f958a5faf726647a3f76f163d046c7, type: 3}
+      objectReference: {fileID: 2018357195791544022, guid: 53299479f4a1c4345b4ed4526cdacad5, type: 3}
     - target: {fileID: 7523784142672252092, guid: 9366dbe617dc99c488166f21dc749c10, type: 3}
       propertyPath: EnemyPrefabs.Array.data[1]
       value: 
@@ -28258,7 +28262,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904052382946}
-  m_LocalRotation: {x: 0.28469092, y: 0.41173354, z: -0.13734475, w: 0.85472983}
+  m_LocalRotation: {x: 0.22892103, y: -0.3467996, z: 0.08724191, w: 0.9053806}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28346,7 +28350,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904058514593}
-  m_LocalRotation: {x: 0.28469092, y: 0.41173354, z: -0.13734475, w: 0.85472983}
+  m_LocalRotation: {x: 0.22892103, y: -0.3467996, z: 0.08724191, w: 0.9053806}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28517,7 +28521,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904255469873}
-  m_LocalRotation: {x: 0.28469092, y: 0.41173354, z: -0.13734475, w: 0.85472983}
+  m_LocalRotation: {x: 0.22892103, y: -0.3467996, z: 0.08724191, w: 0.9053806}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28660,7 +28664,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904437498142}
-  m_LocalRotation: {x: 0.28469092, y: 0.41173354, z: -0.13734475, w: 0.85472983}
+  m_LocalRotation: {x: 0.22892103, y: -0.3467996, z: 0.08724191, w: 0.9053806}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -35998,7 +36002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5959732328176634549, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
       propertyPath: m_TagString
-      value: Boss
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5961360093130482496, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
       propertyPath: m_Layer
@@ -37111,6 +37115,10 @@ PrefabInstance:
     - target: {fileID: 6854774919255583362, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6854774919255583362, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
+      propertyPath: m_TagString
+      value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 6862706810656654844, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
       propertyPath: m_Layer

@@ -36,7 +36,7 @@ public class AiBossAttackState : IAiBossState
 		if (t <= 0)
 		{
 			if(bossAgent.Sensor.IsInSight(bossAgent.PlayerTransform.gameObject))
-				Punch();
+				Punch(bossAgent);
 			t = 2;
 		}
 
@@ -54,8 +54,11 @@ public class AiBossAttackState : IAiBossState
 		bossAgent.GetComponent<Seeker>().enabled = false;
 	}
 
-	private void Punch()
+	private void Punch(AiBossAgent bossAgent)
 	{
 		// throw new System.NotImplementedException();
+		bossAgent.GetComponentInParent<Animator>().Play("BossBoxingAnim");
+		bossAgent.PlayerTransform.GetComponentInParent<PlayerHealth>().DamagePlayer(bossAgent.BossPunchDamage);
+		bossAgent.PlayerTransform.GetComponentInParent<Rigidbody>().AddForce(bossAgent.transform.forward * 5000);
 	}
 }

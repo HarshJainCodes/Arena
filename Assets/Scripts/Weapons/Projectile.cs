@@ -25,9 +25,9 @@ public class Projectile : MonoBehaviour
 	public Transform[] dirtImpactPrefabs;
 	public Transform[] concreteImpactPrefabs;
 
-    private float EnemyDamage = 2;
-	private float BossDamage = 2;
-	private float _CritialMultiplier = 1.7f;
+    private float EnemyDamage = 7;
+	private float BossDamage = 7;
+	private readonly float _CriticalMultiplier = 1.7f;
     // Start is called before the first frame update
     private void Start()
 	{
@@ -50,7 +50,7 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.CompareTag("BossCritical"))
         {
             BossHealth bossHealth = collision.gameObject.GetComponent<BossHealth>();
-            bossHealth.Damage(BossDamage * _CritialMultiplier);
+            bossHealth.Damage(BossDamage * _CriticalMultiplier);
         }
 
         if (collision.gameObject.CompareTag("Enemy"))
@@ -60,8 +60,8 @@ public class Projectile : MonoBehaviour
 		}
 		if (collision.gameObject.CompareTag("Critical"))
 		{
-			TrainingTarget target = collision.gameObject.GetComponent<TrainingTarget>();
-			target.Damage(EnemyDamage * _CritialMultiplier);
+			TrainingTarget target = collision.gameObject.GetComponentInParent<TrainingTarget>();
+			target.Damage(EnemyDamage * _CriticalMultiplier);
 		}
 
 		//Ignore collisions with other projectiles.
