@@ -6,17 +6,42 @@ public class AmmoPack : MonoBehaviour
 {
 
     [SerializeField] public int AmmoGain = 5;
+    Transform _PlayerTransform;
+
+    float _InitialPosX;
+    float _InitialPosY;
+    float _InitialPosZ;
+
+    float progress;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _InitialPosX = transform.position.x;
+        _InitialPosY = transform.position.y;
+        _InitialPosZ = transform.position.z;
+
+        _PlayerTransform = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        progress += Time.deltaTime;
+
+        if (progress > 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Vector3 finalPos = new Vector3();
+
+        finalPos.x = Tween.Linear(_InitialPosX, _PlayerTransform.position.x - _InitialPosX, progress);
+        finalPos.y = Tween.Linear(_InitialPosY, _PlayerTransform.position.y - _InitialPosY, progress);
+        finalPos.z = Tween.Linear(_InitialPosZ, _PlayerTransform.position.z - _InitialPosZ, progress);
+
+        transform.position = finalPos;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -24,7 +49,7 @@ public class AmmoPack : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             Debug.Log("ammo picked up by the player");
-            Destroy(gameObject.transform.parent.gameObject);
+            //Destroy(gameObject.transform.parent.gameObject);
         }
     }
 }
