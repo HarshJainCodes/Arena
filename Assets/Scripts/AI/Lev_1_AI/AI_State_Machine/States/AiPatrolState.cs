@@ -61,7 +61,7 @@ namespace AI.Lev_1_AI.AI_State_Machine.States
 
 		public void Exit(AiAgent agent)
 		{
-			AiPath.maxSpeed = 4f;
+			AiPath.maxSpeed = Agent.Speed;
 			Agent.GetComponent<AIPath>().endReachedDistance = endDistance;
 			Agent.GetComponent<AIDestinationSetter>().target = Agent.PlayerTransform;
 			Agent.GetComponent<AIDestinationSetter>().enabled = false;

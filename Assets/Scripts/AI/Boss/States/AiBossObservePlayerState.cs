@@ -21,6 +21,7 @@ public class AiBossObservePlayerState : IAiBossState
 
     public void Update(AiBossAgent bossAgent)
 	{
+		bossAgent.BossHealth.IsInvulnerable = true;
 		bossAgent.GetComponent<AIDestinationSetter>().enabled = false;
 		bossAgent.GetComponent<AIPath>().enabled = false;
 		bossAgent.GetComponent<Seeker>().enabled = false;

@@ -55,6 +55,10 @@ namespace Arena
             if (pm.isSliding)
                 SlidingMovement();
         }
+
+        /// <summary>
+        /// Sets the bool checks, timers, crouch scale and adds force.
+        /// </summary>
         private void StartSlide()
         {
             pm.isSliding = true;
@@ -63,6 +67,9 @@ namespace Arena
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
             slideTimer = maxSlideTime;
         }
+        /// <summary>
+        /// Called in Update - Keeps track of slide timers and slope forces
+        /// </summary>
         private void SlidingMovement()
         {
             Vector3 inputDirection = orientation.forward * keyInput.y + orientation.right * keyInput.x;
@@ -81,6 +88,9 @@ namespace Arena
             if (slideTimer <= 0)
                 StopSlide();
         }
+        /// <summary>
+        /// Resets all bool checks, crouch scale etc
+        /// </summary>
         private void StopSlide()
         {
             pm.isSliding = false;
