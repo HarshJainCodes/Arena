@@ -14,6 +14,7 @@ public class AiBossAgent : MonoBehaviour
     public Transform ArenaCentre;
     public SpawnManager SpawnManager;
 	public BossHealth BossHealth;
+	public GameObject Sliders;
     public float StopDistance = 6f;
     public bool InRange = false;
     public float BossSpeed = 4f;
@@ -27,6 +28,7 @@ public class AiBossAgent : MonoBehaviour
     {
 		BossHealth = GetComponent<BossHealth>();
         Sensor = GetComponent<AiSensor>();
+		Sliders.SetActive(false);
 	    StateMachine = new AiBossStateMachine(this);
 	    StateMachine.RegisterState(new AiBossObservePlayerState());
 		StateMachine.RegisterState(new AiBossGetInArenaState());
@@ -43,5 +45,7 @@ public class AiBossAgent : MonoBehaviour
 		{
 			StateMachine.ChangeState(CurrentBossStateType);
 		}
+		if(SpawnManager.CurrentWave == SpawnManager.NumberOfWaves)
+			Sliders.SetActive(true);
 	}
 }

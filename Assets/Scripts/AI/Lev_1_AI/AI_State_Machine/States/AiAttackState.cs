@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class AiAttackState : IAiState
 {
-	private float t = 0f;
+	private float t = 0.5f;
 	public AIPath aiPath;
 	public AiStateType GetStateType()
 	{

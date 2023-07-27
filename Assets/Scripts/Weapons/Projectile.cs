@@ -44,7 +44,7 @@ public class Projectile : MonoBehaviour
 	{
 		if (collision.gameObject.CompareTag("Boss"))
 		{
-			BossHealth bossHealth = collision.gameObject.GetComponent<BossHealth>();
+			BossHealth bossHealth = collision.gameObject.GetComponentInChildren<BossHealth>();
 			bossHealth.Damage(BossDamage);
 		}
         if (collision.gameObject.CompareTag("BossCritical"))
