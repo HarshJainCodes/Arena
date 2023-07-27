@@ -650,7 +650,6 @@ public class ChunkScriptV2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("when does this gets printed");
         if (run == false && _coroutineDone)
         {
             run = true;
