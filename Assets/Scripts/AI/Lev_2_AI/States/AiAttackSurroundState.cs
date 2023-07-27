@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AiAttackSurroundState : IAiState
 {
-	private float t = 2f;
+	private float t = 0f;
 	public AIPath aiPath;
 	public AiStateType GetStateType()
 	{
@@ -38,7 +38,7 @@ public class AiAttackSurroundState : IAiState
 		{
 			// if (agent.sensor.IsInSight(agent.playerTransform.gameObject))
 				agent.GetComponentInChildren<Shooter>().Shoot();
-			t = 2;
+			t = 1;
 		}
 
 		if (!agent.InRange && !agent.sensor.IsInSight(agent.PlayerTransform.gameObject))

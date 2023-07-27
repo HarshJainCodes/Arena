@@ -8383,7 +8383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 40964861}
-  Radius: 17
+  Radius: 7
   Units: []
 --- !u!1001 &497179074
 PrefabInstance:
