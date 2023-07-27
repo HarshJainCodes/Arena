@@ -46,12 +46,18 @@ public class ChunkScriptV2 : MonoBehaviour
     CombineFloorsV2 FloorCombineV2Script;
 
     [SerializeField] private GameObject _LavaRocks;
+    [SerializeField] private GameObject LoadingScreen;
 
     // Start is called before the first frame update
 
     private bool _coroutineDone = false;
     IEnumerator Start()
     {
+        LoadingScreen.SetActive(true);
+        _LavaRocks.SetActive(false);
+        WallHolder.SetActive(false);
+        FloorsHolder.SetActive(false);
+
         for (int i = 0; i < _Volumes.Length; i++)
         {
             Debug.Log(_Volumes[i] == null);
@@ -605,7 +611,6 @@ public class ChunkScriptV2 : MonoBehaviour
     {
         Debug.Log("calling spawn points");
         Vector3 PlayerPosition = Player.TransformPoint(Vector3.zero);
-        int enemySpawnedCount = 0;
 
 
         List<GameObject> possibleSpawnPoint = new List<GameObject>();
@@ -645,11 +650,17 @@ public class ChunkScriptV2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("when does this gets printed");
         if (run == false && _coroutineDone)
         {
             run = true;
             CombnieCubesV2Script.CombineCubeSegments();
             //FloorCombineV2Script.CombineFloorSegments();
+
+            LoadingScreen.SetActive(false);
+            _LavaRocks.SetActive(true);
+            WallHolder.SetActive(true);
+            FloorsHolder.SetActive(true);
 
             StartCoroutine(_LavaRocks.GetComponent<ChunkAnimationV2>().AnimateChunkComingToTop());
 
