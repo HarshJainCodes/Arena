@@ -603,9 +603,12 @@ public class ChunkScriptV2 : MonoBehaviour
 
     public List<GameObject> GetSpawnPoints(Transform Player, int numOfEnemies, int minEnemyDistance, int maxEnemyDistance)
     {
+        Debug.Log("calling spawn points");
         Vector3 PlayerPosition = Player.TransformPoint(Vector3.zero);
         int enemySpawnedCount = 0;
 
+
+        List<GameObject> possibleSpawnPoint = new List<GameObject>();
         List<GameObject> spawnPoints = new List<GameObject>();
 
         for (int k = 0; k < floorSize; k++)
@@ -616,20 +619,25 @@ public class ChunkScriptV2 : MonoBehaviour
                 {
                     if (MainChunks[k][i][j].GetComponent<BlocksV2>().ID == 0 && Vector3.Distance(PlayerPosition, MainChunks[k][i][j].GetComponent<BlocksV2>().blockAssigned.transform.position) < maxEnemyDistance && Vector3.Distance(PlayerPosition, MainChunks[k][i][j].GetComponent<BlocksV2>().blockAssigned.transform.position) > minEnemyDistance)
                     {
-                        GameObject spawn = new GameObject();
-                        spawn.transform.position = MainChunks[k][i][j].GetComponent<BlocksV2>().blockAssigned.transform.position;
-                        spawnPoints.Add(spawn);
-                        enemySpawnedCount++;
-
-                        if (enemySpawnedCount > numOfEnemies)
-                        {
-                            goto EndLoop;
-                        }
+                        possibleSpawnPoint.Add(MainChunks[k][i][j].GetComponent<BlocksV2>().blockAssigned);
                     }
                 }
             }
         }
-        EndLoop:
+
+        possibleSpawnPoint.Sort(delegate (GameObject A, GameObject B)
+        {
+            if (A.transform.position.y < B.transform.position.y)
+            {
+                return 1;
+            }
+            return 0;
+        });
+
+        for (int i = 0; i < numOfEnemies; i++)
+        {
+            spawnPoints.Add(possibleSpawnPoint[i]);
+        }
 
         return spawnPoints;
     }
