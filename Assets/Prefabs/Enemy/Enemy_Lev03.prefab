@@ -75412,7 +75412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Agent: {fileID: 3612463840218020054}
   BossAgent: {fileID: 0}
-  Distance: 40
+  Distance: 20
   Angle: 45
   Height: 1.5
   MeshColor: {r: 1, g: 0, b: 0, a: 1}
@@ -82771,9 +82771,9 @@ MonoBehaviour:
   SpawnManager: {fileID: 0}
   StopDistance: 6
   InRange: 0
-  Speed: 22
-  PatrolSpeed: 11
-  WalkingShootSpeed: 18
+  Speed: 28
+  PatrolSpeed: 14
+  WalkingShootSpeed: 22
   Level: 2
   Inaccuracy: 0
   maxSightDistance: 20
@@ -82839,7 +82839,7 @@ MonoBehaviour:
     maximumInterval: 0.05
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
-  maxAcceleration: 2
+  maxAcceleration: -2.5
   rotationSpeed: 6000
   slowdownDistance: 13.02
   pickNextWaypointDist: 0.5
