@@ -37682,6 +37682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Agent: {fileID: 3612463840218020054}
+  BossAgent: {fileID: 0}
   Distance: 25
   Angle: 45
   Height: 1.5
@@ -81597,7 +81598,7 @@ GameObject:
   - component: {fileID: 5244938870751967092}
   m_Layer: 0
   m_Name: GodOffset
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81684,10 +81685,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InitialStateType: 1
   CurrentStateType: 0
-  playerTransform: {fileID: 0}
-  patrolPoint: {fileID: 3260458226833169153}
-  spawnManager: {fileID: 0}
-  dotProduct: 0
+  PlayerTransform: {fileID: 0}
+  PatrolPoint: {fileID: 3260458226833169153}
+  SpawnManager: {fileID: 0}
   StopDistance: 6
   InRange: 0
   Speed: 16

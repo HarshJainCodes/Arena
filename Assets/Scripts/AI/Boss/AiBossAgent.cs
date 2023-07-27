@@ -19,6 +19,7 @@ public class AiBossAgent : MonoBehaviour
     public float BossSpeed = 4f;
     public float BossPatrolSpeed = 4f;
     public float BossWalkingShootSpeed = 4f;
+	public float BossPunchDamage = 6f;
     [HideInInspector] public AiSensor Sensor;
 
 
@@ -31,6 +32,7 @@ public class AiBossAgent : MonoBehaviour
 		StateMachine.RegisterState(new AiBossGetInArenaState());
 		StateMachine.RegisterState(new AiBossPatrolState());
 		StateMachine.RegisterState(new AiBossChaseState());
+		StateMachine.RegisterState(new AiBossAttackState());
 	}
 
 	void Update()
