@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AiBossAttackState : IAiBossState
 {
-	private float t = 2f;
+	private float t = 0f;
 	public AIPath aiPath;
 
 	public AiBossStateType GetStateType()
@@ -37,7 +37,7 @@ public class AiBossAttackState : IAiBossState
 		{
 			if(bossAgent.Sensor.IsInSight(bossAgent.PlayerTransform.gameObject))
 				Punch(bossAgent);
-			t = 2;
+			t = 1;
 		}
 
 		if (!bossAgent.InRange && !bossAgent.Sensor.IsInSight(bossAgent.PlayerTransform.gameObject))
