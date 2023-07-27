@@ -15206,7 +15206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3697241807261767413, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
       propertyPath: fieldOfViewMultiplierAim
-      value: 0.75
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3697241807261767413, guid: 541e2a1b51c045947a7ebe7ca5e0efd9, type: 3}
       propertyPath: fieldOfViewMultiplierAimWeapon
@@ -28795,7 +28795,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904052382946}
-  m_LocalRotation: {x: -0.00000694394, y: -0.0000051577204, z: -0.00000005795186, w: 1}
+  m_LocalRotation: {x: -0.061301146, y: 0.072105356, z: -0.004448216, w: -0.9955015}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28883,7 +28883,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904058514593}
-  m_LocalRotation: {x: -0.00000694394, y: -0.0000051577204, z: -0.00000005795186, w: 1}
+  m_LocalRotation: {x: -0.061301146, y: 0.072105356, z: -0.004448216, w: -0.9955015}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -29054,7 +29054,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904255469873}
-  m_LocalRotation: {x: -0.00000694394, y: -0.0000051577204, z: -0.00000005795186, w: 1}
+  m_LocalRotation: {x: -0.061301146, y: 0.072105356, z: -0.004448216, w: -0.9955015}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -29197,7 +29197,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904437498142}
-  m_LocalRotation: {x: -0.00000694394, y: -0.0000051577204, z: -0.00000005795186, w: 1}
+  m_LocalRotation: {x: -0.061301146, y: 0.072105356, z: -0.004448216, w: -0.9955015}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

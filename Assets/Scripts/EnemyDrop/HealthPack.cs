@@ -32,6 +32,7 @@ public class HealthPack : MonoBehaviour
 
         if (progress > 1)
         {
+            _PlayerTransform.gameObject.GetComponent<PlayerHealth>().AddHealthToPlayer(HealthGain);
             Destroy(gameObject);
             return;
         }
@@ -43,6 +44,8 @@ public class HealthPack : MonoBehaviour
         finalPos.z = Tween.Linear(_InitialPosZ, _PlayerTransform.position.z - _InitialPosZ, progress);
 
         transform.position = finalPos;
+        
+
     }
 
     private void OnCollisionEnter(Collision collision)

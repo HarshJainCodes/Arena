@@ -82,8 +82,11 @@ public class Shooter : MonoBehaviour
 					foreach (var p in firePoint)
 					{
 						if (weapon.muzzleVFX != null)
-							Instantiate(weapon.muzzleVFX, p.position, p.transform.rotation); // VFX
-					}
+						{
+                            GameObject t = Instantiate(weapon.muzzleVFX, p.position, p.transform.rotation); // VFX
+							Destroy(t, 1f);
+                        }
+                    }
 
 					if (weapon.useProceduralShot) ProceduralShot.Instance.Shoot(weapon.proceduralShotPattern);
 
