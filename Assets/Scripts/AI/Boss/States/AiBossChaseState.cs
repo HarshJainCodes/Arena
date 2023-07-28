@@ -28,7 +28,7 @@ public class AiBossChaseState : IAiBossState
 
 		if (bossAgent.InRange || bossAgent.Sensor.IsInSight(bossAgent.PlayerTransform.gameObject))
 		{
-			bossAgent.StateMachine.ChangeState(AiBossStateType.Attack);
+			bossAgent.StateMachine.ChangeState(AiBossStateType.Punch);
 		}
 	}
 
