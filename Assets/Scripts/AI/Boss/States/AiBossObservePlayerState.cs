@@ -6,37 +6,55 @@ using UnityEngine;
 
 public class AiBossObservePlayerState : IAiBossState
 {
-    public AiBossStateType GetStateType()
-    {
-	    return AiBossStateType.ObservePlayer;
-    }
-
-    public void Enter(AiBossAgent bossAgent)
-    {
-	    bossAgent.GetComponent<AIDestinationSetter>().enabled = false;
-	    bossAgent.GetComponent<AIPath>().enabled = false;
-	    bossAgent.GetComponent<Seeker>().enabled = false;
-		bossAgent.BossHealth.IsInvulnerable = true;
+	// Function to get the state type of this boss state
+	public AiBossStateType GetStateType()
+	{
+		return AiBossStateType.ObservePlayer;
 	}
 
-    public void Update(AiBossAgent bossAgent)
+	// Function called when entering the ObservePlayer state
+	public void Enter(AiBossAgent bossAgent)
 	{
-		bossAgent.BossHealth.IsInvulnerable = true;
+		// Disable AI-related components for pathfinding and movement
 		bossAgent.GetComponent<AIDestinationSetter>().enabled = false;
 		bossAgent.GetComponent<AIPath>().enabled = false;
 		bossAgent.GetComponent<Seeker>().enabled = false;
+
+		// Make the boss invulnerable while observing the player
+		bossAgent.BossHealth.IsInvulnerable = true;
+	}
+
+	// Function called during the ObservePlayer state's update
+	public void Update(AiBossAgent bossAgent)
+	{
+		// Make sure the boss remains invulnerable while observing the player
+		bossAgent.BossHealth.IsInvulnerable = true;
+
+		// Disable AI-related components for pathfinding and movement
+		bossAgent.GetComponent<AIDestinationSetter>().enabled = false;
+		bossAgent.GetComponent<AIPath>().enabled = false;
+		bossAgent.GetComponent<Seeker>().enabled = false;
+
+		// Calculate the direction to look at the player and adjust the boss's rotation smoothly
 		Vector3 lookPos = bossAgent.PlayerTransform.position - bossAgent.transform.position;
 		lookPos.y = 0;
 		Quaternion rotation = Quaternion.LookRotation(lookPos);
 		bossAgent.transform.rotation = Quaternion.Slerp(bossAgent.transform.rotation, rotation, 0.5f);
+
+		// If there are no other enemies and it's the final wave of the game, transition to the GetInArena state
 		if (bossAgent.SpawnManager.Enemies.Count == 0 && bossAgent.SpawnManager.CurrentWave == bossAgent.SpawnManager.NumberOfWaves)
 			bossAgent.StateMachine.ChangeState(AiBossStateType.GetInArena);
 	}
+
+	// Function called when exiting the ObservePlayer state
 	public void Exit(AiBossAgent bossAgent)
 	{
-	    bossAgent.BossHealth.IsInvulnerable = false;
-	    bossAgent.GetComponent<AIDestinationSetter>().enabled = true;
-	    bossAgent.GetComponent<AIPath>().enabled = true;
-	    bossAgent.GetComponent<Seeker>().enabled = true;
+		// Make the boss no longer invulnerable when exiting the ObservePlayer state
+		bossAgent.BossHealth.IsInvulnerable = false;
+
+		// Re-enable AI-related components for pathfinding and movement
+		bossAgent.GetComponent<AIDestinationSetter>().enabled = true;
+		bossAgent.GetComponent<AIPath>().enabled = true;
+		bossAgent.GetComponent<Seeker>().enabled = true;
 	}
 }

@@ -40,7 +40,7 @@ public class AiBossPatrolState : IAiBossState
 		bossAgent.GetComponent<Seeker>().enabled = true;
 		if (BossAgent.Sensor.IsInSight(BossAgent.PlayerTransform.gameObject) || BossAgent.InRange)
 		{
-	        AiPath.maxSpeed = 4f;
+	        AiPath.maxSpeed = BossAgent.BossSpeed;
 			BossAgent.GetComponent<AIPath>().endReachedDistance = endDistance;
 			BossAgent.GetComponent<AIDestinationSetter>().target = BossAgent.PlayerTransform;
 			BossAgent.StateMachine.ChangeState(AiBossStateType.Chase);
@@ -97,7 +97,7 @@ public class AiBossPatrolState : IAiBossState
 	    }
 	    else
 	    {
-		    AiPath.maxSpeed = 4f;
+		    AiPath.maxSpeed = BossAgent.BossSpeed;
 		    BossAgent.GetComponent<AIPath>().endReachedDistance = endDistance;
 		    BossAgent.GetComponent<AIDestinationSetter>().target = BossAgent.PlayerTransform;
 		    BossAgent.StateMachine.ChangeState(AiBossStateType.Chase);

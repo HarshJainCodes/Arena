@@ -20552,7 +20552,7 @@ MonoBehaviour:
     maximumInterval: 0.05
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
-  maxAcceleration: 1.2
+  maxAcceleration: -2.5
   rotationSpeed: 360
   slowdownDistance: 13.02
   pickNextWaypointDist: 0.5
@@ -28560,7 +28560,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904052382946}
-  m_LocalRotation: {x: -0.32596985, y: -0.54203296, z: 0.23991849, w: -0.7364666}
+  m_LocalRotation: {x: 0.10124773, y: 0.77185494, z: 0.12707691, w: -0.6146872}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28648,7 +28648,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904058514593}
-  m_LocalRotation: {x: 0.1940859, y: 0.6304029, z: -0.1669573, w: 0.7328357}
+  m_LocalRotation: {x: 0.10124773, y: 0.77185494, z: 0.12707691, w: -0.6146872}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28819,7 +28819,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904255469873}
-  m_LocalRotation: {x: 0.1940859, y: 0.6304029, z: -0.1669573, w: 0.7328357}
+  m_LocalRotation: {x: 0.10124773, y: 0.77185494, z: 0.12707691, w: -0.6146872}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -28962,7 +28962,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904437498142}
-  m_LocalRotation: {x: 0.1940859, y: 0.6304029, z: -0.1669573, w: 0.7328357}
+  m_LocalRotation: {x: 0.10124773, y: 0.77185494, z: 0.12707691, w: -0.6146872}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31079,8 +31079,16 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1637186848879472594, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637186848879472594, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.34
+      value: -1.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637186848879472594, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.64
       objectReference: {fileID: 0}
     - target: {fileID: 1642756378264713150, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
       propertyPath: m_Layer
@@ -34463,6 +34471,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 73326953}
     - target: {fileID: 4375336841687681576, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
+      propertyPath: BossSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375336841687681576, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
       propertyPath: BossHealth
       value: 
       objectReference: {fileID: 0}
@@ -34482,6 +34494,14 @@ PrefabInstance:
       propertyPath: PlayerTransform
       value: 
       objectReference: {fileID: 40964861}
+    - target: {fileID: 4375336841687681576, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
+      propertyPath: CurrentBossStateType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375336841687681576, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
+      propertyPath: InitialBossStateType
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4377124936416031590, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -35228,7 +35248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5060004762796442627, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
       propertyPath: maxHealth
-      value: 10
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 5060004762796442627, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
       propertyPath: maxShield

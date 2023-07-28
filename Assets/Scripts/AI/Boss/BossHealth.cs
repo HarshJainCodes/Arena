@@ -16,39 +16,55 @@ public class BossHealth : Enemy
 
 	private void Awake()
 	{
-		BossAgent = GetComponent<AiBossAgent>();
+		// Get references to components on the boss enemy
+		BossAgent = GetComponent<AiBossAgent>(); // This is the main script that is attached on the boss game object
 		aiPath = GetComponent<AIPath>();
 		// _EnemyDropScript = GetComponent<EnemyDrop>();
 	}
+
+	// Function to handle boss enemy damage
 	public override void Damage(float damage)
 	{
 		if (_IsDead) return;
-		if(IsInvulnerable) return;
-		// if (BossAgent.StateMachine.CurrentBossStateType is AiBossStateType.Idle or AiBossStateType.Patrol) BossAgent.StateMachine.ChangeState(AiBossStateType.Chase);
+		if (IsInvulnerable) return;
+
+		// Call the base class Damage function to apply the damage
 		base.Damage(damage);
+		// Additional logic for damage handling can be added here
 	}
 
+	// Function to handle boss enemy death
 	public override void Die()
 	{
 		if (_IsDead) return;
 		_IsDead = true;
-		
-		// GetComponentInParent<Animator>().Play("DieAnim");
 
-		GetComponent<CapsuleCollider>().enabled = false;
+		// Disable the Box collider to prevent further interactions
+		GetComponent<BoxCollider>().enabled = false;
 
+		// Disable any health or shield sliders (if they exist)
 		if (shieldSlider != null) shieldSlider.gameObject.SetActive(false);
 		if (healthSlider != null) healthSlider.gameObject.SetActive(false);
-		Invoke("onDie", timeToDie);
+
+		// Invoke the onDie function after the specified time to trigger the death effect
+		Invoke("onDie", timeToDie); // This is to allow the death animation to play
+
+		// Disable AI-related components to prevent any further actions
 		GetComponent<AIDestinationSetter>().enabled = false;
 		GetComponent<AIPath>().enabled = false;
 		GetComponent<Seeker>().enabled = false;
+
+		// Change the boss state to the dead state
 		BossAgent.StateMachine.ChangeState(AiBossStateType.Dead);
 	}
 
+	// Function called after the specified time to destroy the boss game object and perform any other cleanup
 	private void onDie()
 	{
+		// Destroy the boss game object along with its parent
 		Destroy(gameObject.transform.parent.gameObject);
+
+		// Optionally, drop items or perform other actions when the boss dies
 		// _EnemyDropScript.Drop((EnemyDrop.EnemyDrops)UnityEngine.Random.Range(0, Enum.GetValues(typeof(EnemyDrop.EnemyDrops)).Length));
 	}
 }

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Pathfinding;
 using UnityEngine;
 
-public class AiBossAttackState : IAiBossState
+public class AiBossPunchState : IAiBossState
 {
 	private float t = 0.5f;
 	public AIPath aiPath;
 
 	public AiBossStateType GetStateType()
 	{
-		return AiBossStateType.Attack;
+		return AiBossStateType.Punch;
 	}
 
 	public void Enter(AiBossAgent bossAgent)
