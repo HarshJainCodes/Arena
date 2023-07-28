@@ -5,11 +5,12 @@ using UnityEngine;
 public class DisableCameraAfterChunkFormation : MonoBehaviour
 {
     [SerializeField] private GameObject PlayerCam;
+    [SerializeField] private float TimeToDisableCam;
     IEnumerator DisableCamea()
     {
         float t = 0;
 
-        while (t < 10)
+        while (t < TimeToDisableCam)
         {
             t += Time.deltaTime;
             yield return null;
