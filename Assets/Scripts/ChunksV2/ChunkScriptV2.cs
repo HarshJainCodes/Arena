@@ -4,40 +4,76 @@ using System.Collections.Generic;
 using System.Data;
 using System.Reflection.Emit;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
+/// <summary>
+/// This is the rewrite of the chunkScipt that was the rewrite of another chunk script that was used before.
+/// This handles the core arena formation algorithm,  
+/// </summary>
 public class ChunkScriptV2 : MonoBehaviour
 {
+    /// <summary>
+    /// Main Chunks contains the 3 dimentional arena that will store the GameObjects that contains the BlocksV2 script that contains all the important data used by the algorithm to form the arena
+    /// <para> This is set up as Floor x Width x Height so for example this is a 6 x 50 x 50 3 dimentional list</para>
+    /// </summary>
     List<List<List<GameObject>>> MainChunks = new List<List<List<GameObject>>>();
-    int GridSize = 54;
+
+    [Tooltip("This determines the grid size of the whole procedurally generated arena. Remember if you change this values then you would also need to change the coordinated of the central arena. \nTypically the central arena coorinates are given by GridSize * RoomScale / 2")]
+    [SerializeField] private int GridSize = 54;
+
+    [Tooltip("This contains floors as well as the demo layers that might be used for populating stuff around the padding")]
     int totalFloorSize = 9;
+    [Tooltip("Total number of floors that would be used to instantiate walls and tiles")]
     int floorSize = 6;
 
     [SerializeField] int RoomScaleX = 6;
     [SerializeField] int RoomScaleY = 6;
     [SerializeField] int RoomScaleZ = 6;
 
+    [Tooltip("Padding used to avoid formation of floors around the corners of the arena so that we spawn walls in those area")]
     int padding = 6;
 
+    /// <summary>
+    /// This bool is used to trigger the Enemies spawnning as we only want to spawn the enemies after all other things like animation, A* graph scan, combining floors are done
+
+    /// </summary>
     public bool IsGridGenerated = false;
 
+    
     [SerializeField] private GameObject _FloorParent;
+    
     [SerializeField] private GameObject _StairsPrefab;
     
-
+    /// <summary>
+    /// this will store all the floors to keep the heiarchy clean
+    /// </summary>
     [Header("Block Creation Properties")]
 
-    
     [SerializeField] public GameObject FloorsHolder;
+
+    /// <summary>
+    /// This will store all the walls to keep the heiarchy clean
+    /// </summary>
     [SerializeField] public GameObject WallHolder;
+
+    /// <summary>
+    /// This will store all the stiars to keep the heiarchy clean
+    /// </summary>
     [SerializeField] private GameObject StairsHolder;
 
     [Range(0, 20)]
     [SerializeField] private int FloorCreationIterations = 5;
 
 
+    /// <summary>
+    /// This will store the all the 4 side walls and top and parrallel side walls to be instantiated in the scene
+    /// </summary>
     [Header("Walls")]
     [SerializeField] private List<BlendBlocks> _BlendBlocks;
 
+    /// <summary>
+    /// This will stores the cubes that are spawned on the sides of the padding above the 6 floors
+    /// </summary>
     [SerializeField] Transform CubesOnTopHolder;
 
     private bool run = false;
@@ -46,15 +82,26 @@ public class ChunkScriptV2 : MonoBehaviour
     CombineFloorsV2 FloorCombineV2Script;
 
     [SerializeField] private GameObject _LavaRocks;
+    [SerializeField] private GameObject LoadingScreen;
 
     // Start is called before the first frame update
 
     private bool _coroutineDone = false;
+
+    /// <summary>
+    /// We make this an enumerator becuase this is needed in order for the pica voxel to work, otherwise the blocks wouldnt combine properly
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Start()
     {
+        // while the arena is being formed show the loading screen.
+        LoadingScreen.SetActive(true);
+        _LavaRocks.SetActive(false);
+        WallHolder.SetActive(false);
+        FloorsHolder.SetActive(false);
+
         for (int i = 0; i < _Volumes.Length; i++)
         {
-            Debug.Log(_Volumes[i] == null);
             _VolumeStorages[i] = new VolumeStorage(_Volumes[i].XSize, _Volumes[i].YSize, _Volumes[i].ZSize);
         }
 
@@ -87,6 +134,9 @@ public class ChunkScriptV2 : MonoBehaviour
         _coroutineDone = true;
     }
 
+    /// <summary>
+    /// This function will initialize the array in all the three dimension by the <see cref="GridSize"/> and the <see cref="floorSize"/> variable
+    /// </summary>
     private void InitializeArray()
     {
         for (int k = 0; k < totalFloorSize; k++)
@@ -109,6 +159,11 @@ public class ChunkScriptV2 : MonoBehaviour
     }
 
     #region FLOORS
+
+    /// <summary>
+    /// This will form the floors based on a certain algorithm of dividing the grid into 9 blocks so that each block has a central pathway and then we can connect these pathway so that 
+    /// all the rooms remains connected to each other and the middle rooms gets connected to the central arena 
+    /// </summary>
     private void MakeFloors()
     {
         for (int i = 0; i < floorSize; i++)
@@ -126,6 +181,15 @@ public class ChunkScriptV2 : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This will initialize the given floor tiles based on the x, y, and z component passed to the function
+    /// <para> this will also make a stair in eacch of the 9 block so that we can go down</para>
+    /// </summary>
+    /// <param name="iMin"></param>
+    /// <param name="iMax"></param>
+    /// <param name="jMin"></param>
+    /// <param name="jMax"></param>
+    /// <param name="k"></param>
     private void InitiateSpawnTiles(int iMin, int iMax, int jMin, int jMax, int k)
     {
         BlocksV2 chunk;
@@ -258,6 +322,10 @@ public class ChunkScriptV2 : MonoBehaviour
         InitiateSpawnTiles(iMin, iMax, jMin, jMax, floorNo);
     }
 
+    /// <summary>
+    /// After the tiles are spawn in each 9 regions we connect them by spawning floors from the center of a arena to the center of another arena 
+    /// </summary>
+    /// <param name="floor"></param>
     private void ConnectRooms(int floor)
     {
 
@@ -308,11 +376,21 @@ public class ChunkScriptV2 : MonoBehaviour
     }
     #endregion
 
+    /// <summary>
+    /// checks if the given i and j parameters are outside of the bounds of array or not
+    /// </summary>
+    /// <param name="i"></param>
+    /// <param name="j"></param>
+    /// <returns></returns>
     private bool isValid(int i, int j)
     {
         return i >= 0 && j >= 0 && i < GridSize && j < GridSize;
     }
 
+    /// <summary>
+    /// This will make the wall on the place where there is no tile spawned also it scan all the 4 sides to check which type of wall to spawn (1side, 2side, 3side, 4side, parallel, topbottom)
+    /// </summary>
+    /// <param name="floor"></param>
     private void MakeWalls(int floor)
     {
         for (int i = 0; i < GridSize; i++)
@@ -430,6 +508,9 @@ public class ChunkScriptV2 : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This will cut the cubes to make some asymettric structures around the padding of the arena 
+    /// </summary>
     private void CutCubesBottom()
     {
         int a = 0;
@@ -601,11 +682,18 @@ public class ChunkScriptV2 : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// this is used by the spawn manager to get the list of valid game objects where enemies can be spawned 
+    /// </summary>
+    /// <param name="Player"></param>
+    /// <param name="numOfEnemies"></param>
+    /// <param name="minEnemyDistance"></param>
+    /// <param name="maxEnemyDistance"></param>
+    /// <returns> List<GameObject> </returns>
     public List<GameObject> GetSpawnPoints(Transform Player, int numOfEnemies, int minEnemyDistance, int maxEnemyDistance)
     {
         Debug.Log("calling spawn points");
         Vector3 PlayerPosition = Player.TransformPoint(Vector3.zero);
-        int enemySpawnedCount = 0;
 
 
         List<GameObject> possibleSpawnPoint = new List<GameObject>();
@@ -651,6 +739,11 @@ public class ChunkScriptV2 : MonoBehaviour
             CombnieCubesV2Script.CombineCubeSegments();
             //FloorCombineV2Script.CombineFloorSegments();
 
+            LoadingScreen.SetActive(false);
+            _LavaRocks.SetActive(true);
+            WallHolder.SetActive(true);
+            FloorsHolder.SetActive(true);
+
             StartCoroutine(_LavaRocks.GetComponent<ChunkAnimationV2>().AnimateChunkComingToTop());
 
             foreach (Transform t in WallHolder.transform)
@@ -660,6 +753,20 @@ public class ChunkScriptV2 : MonoBehaviour
 
             FloorsHolder.GetComponent<FloorAnimaationV2>().AnimateFloorComingToTop();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            Invoke("SetCursorInvisible", 5);
+        }
+    }
+
+    private void SetCursorInvisible()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void _setVoxelBlock()

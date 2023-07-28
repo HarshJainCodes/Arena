@@ -357,6 +357,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6677291166776553316, guid: ec5fdd40e62797947a90a79df17d15f5, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 16383
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec5fdd40e62797947a90a79df17d15f5, type: 3}
 --- !u!4 &6164686463225042770 stripped
@@ -371,6 +375,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3966417776310122039}
     m_Modifications:
+    - target: {fileID: 2661169195059943346, guid: bdf11905568039047a943adbe62f5e53, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 16383
+      objectReference: {fileID: 0}
     - target: {fileID: 3644505754493758525, guid: bdf11905568039047a943adbe62f5e53, type: 3}
       propertyPath: materialHidden
       value: 
@@ -545,6 +553,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7295795339477665212, guid: 2cadd769aff535a4fb4d7bf045dc579d, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 16383
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cadd769aff535a4fb4d7bf045dc579d, type: 3}
 --- !u!4 &241158883577983143 stripped
@@ -638,6 +650,10 @@ PrefabInstance:
     - target: {fileID: 4840233239652911365, guid: 95e9b96c3ea7be948b7b8c162831d0ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010760877871278274, guid: 95e9b96c3ea7be948b7b8c162831d0ee, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 16383
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95e9b96c3ea7be948b7b8c162831d0ee, type: 3}

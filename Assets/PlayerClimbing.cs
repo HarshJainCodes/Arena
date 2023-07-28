@@ -57,8 +57,8 @@ namespace Arena {
         Vector3 leftHandPoint;
         Vector3 rightHandPoint;
 
-       
 
+        bool canLedgeGrab = true;
 
         private void Update()
         {
@@ -67,8 +67,17 @@ namespace Arena {
             ledgeAvailableLeft = Physics.Raycast(LeftRaycastPoint.position, Vector3.down, out ledgeL, rayLength, WhatIsWall);
             ledgeAvailableRight = Physics.Raycast(RightRaycastPoint.position, Vector3.down, out ledgeR, rayLength, WhatIsWall);
 
-            if(ledgeAvailableLeft && ledgeAvailableRight)
+            if(ledgeAvailableLeft && ledgeAvailableRight && Input.GetKey(KeyCode.W))
             {
+                canLedgeGrab = false;
+                ClimbUpTheLedge();
+                Invoke("ResetCanLedgeGrab", 0.5f);
+
+            }
+            else if(ledgeAvailableLeft && ledgeAvailableRight && canLedgeGrab)
+            {
+                StopClimbing();
+                Debug.Log(ledgeL.distance);
                 //calculate the amount the players will have to displace in order to display ledge grab properly.
                 float playerDisplacement = ledgeL.distance-0.1f;
                 if(!ledgeGrabbing)
@@ -79,7 +88,8 @@ namespace Arena {
                     StartCoroutine(MoveToPosition(playerNewPos, playerOrigPos, 0.2f)); // move player to new position
                     
                     //start the ledge grab
-                    StartLedgeGrab();
+                    if(canLedgeGrab)
+                        StartLedgeGrab();
 
                 }
             }
@@ -114,7 +124,7 @@ namespace Arena {
         /// </summary>
         void StateMachine()
         {
-            if(!pm.IsPlayerGrounded() && WallFront && Input.GetKey(KeyCode.W) && !pm.isWallRunning)
+            if(!pm.IsPlayerGrounded() && WallFront && Input.GetKey(KeyCode.W) && !pm.isWallRunning &&!ledgeGrabbing)
             {
                 StartClimbing();
                 if (climbTimer > 0) climbTimer -= Time.deltaTime;
@@ -144,12 +154,13 @@ namespace Arena {
         /// <summary>
         /// Starts the ledge grab movement, sets gravity,bools, animator parameters, left and right hand positions.
         /// </summary>
-    
         void StartLedgeGrab()
         {
+            
+
             Debug.Log("Start LG");
             cam.DoTilt(-10);
-
+            StopClimbing();
             PlayerAnimator.SetFloat("Play Rate Holster", 5);
 
             PlayerAnimator.SetBool("Holstered", true);
@@ -159,7 +170,6 @@ namespace Arena {
             leftHandPoint = ledgeGrabArms.IK_Arm_Left_Target.transform.InverseTransformPoint(LeftRaycastPoint.position);
             rightHandPoint = ledgeGrabArms.IK_Arm_Right_Target.transform.InverseTransformPoint(RightRaycastPoint.position);
             StartCoroutine(ResetCamTilt());
-
             ledgeGrabArms.Ledge = true;
             pm.Ledgegrab = true;
             ledgeGrabbing = true;
@@ -194,6 +204,13 @@ namespace Arena {
             {
                 LedgeJump();
             }
+            if(Input.GetKey(KeyCode.W) && ledgeGrabbing)
+            {
+                canLedgeGrab = false;
+                
+                ClimbUpTheLedge();
+                Invoke("ResetCanLedgeGrab", 0.5f);
+            }
         }
 
         /// <summary>
@@ -214,6 +231,16 @@ namespace Arena {
             //calculates the force that needs to be applied.
             Vector3 forceToApply = Vector3.up * ledgeJumpUpForce + (-orientation.forward * ledgeJumpBackForce);
             rb.AddForce(forceToApply, ForceMode.Impulse);
+            StopLedgeGrab();
+        }
+        
+        void ClimbUpTheLedge()
+        {
+            rb.velocity = Vector3.zero;
+            Vector3 upforceToApply = Vector3.up * 15;
+            rb.AddForce(upforceToApply, ForceMode.Impulse);
+            Vector3 frontForceToApply = orientation.forward * 20;
+            rb.AddForce(frontForceToApply, ForceMode.Impulse);
             StopLedgeGrab();
         }
 
@@ -237,6 +264,10 @@ namespace Arena {
             }
             pm.transform.position = newPos;
             Debug.Log("Coroutine Completed");
+        }
+        void ResetCanLedgeGrab()
+        {
+            canLedgeGrab = true;
         }
     }
 }
