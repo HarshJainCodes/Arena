@@ -30,6 +30,6 @@ public interface IAiBossState
 	// Method called to update the AI state
 	void Update(AiBossAgent bossAgent);
 
-	// Method called when exiting the AI state
+	// Method called when exiting the AI state, always get things back to default
 	void Exit(AiBossAgent bossAgent);
 }

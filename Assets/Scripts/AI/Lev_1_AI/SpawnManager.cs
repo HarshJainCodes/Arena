@@ -5,108 +5,137 @@ using Pathfinding;
 using UnityEngine.Serialization;
 
 public class SpawnManager : MonoBehaviour
-{//harsh
-    [FormerlySerializedAs("numberOfWaves")] public int NumberOfWaves = 3;
+{
+	// Number of waves to be spawned
+	[FormerlySerializedAs("numberOfWaves")] public int NumberOfWaves = 3;
 
-    [FormerlySerializedAs("timeBetweenWaves")] [Tooltip("In Seconds")]
-    public float TimeBetweenWaves = 10;
-    
-    [FormerlySerializedAs("_CurrentWave")] public int CurrentWave = 0;
-    
-    [FormerlySerializedAs("_CurrentTime")] public float CurrentTime = 300f;
-    
-    private bool _IsTimerRunning = false;
+	// Time between waves in seconds
+	[FormerlySerializedAs("timeBetweenWaves")]
+	[Tooltip("In Seconds")]
+	public float TimeBetweenWaves = 10;
 
-    //[FormerlySerializedAs("_generator")] public ChunkCreator Generator;
-    public ChunkScriptV2 Generator;
-    //public ChunkCreator Generator;
-    
-    private Transform _Player;
-    
-    [FormerlySerializedAs("numberOfEnemiesPerWave")] public int NumberOfEnemiesPerWave = 15;
+	// Current wave number
+	[FormerlySerializedAs("_CurrentWave")] public int CurrentWave = 0;
+
+	// Current time for wave countdown
+	[FormerlySerializedAs("_CurrentTime")] public float CurrentTime = 300f;
+
+	// Flag to check if the timer is running
+	private bool _IsTimerRunning = false;
+
+	// Reference to the ChunkScriptV2 or ChunkCreator (for generating the level)
+	public ChunkScriptV2 Generator;
+
+	// Reference to the player's transform
+	private Transform _Player;
+
+	// Number of enemies to be spawned per wave
+	[FormerlySerializedAs("numberOfEnemiesPerWave")] public int NumberOfEnemiesPerWave = 15;
+
+	// List of enemy prefabs to be spawned
 	public List<Transform> EnemyPrefabs;
+
+	// Index of the current enemy prefab to be spawned
 	private int _CurrentEnemyIndex = 0;
-    public Transform EnemyPrefab;    
-    
-    [FormerlySerializedAs("spawnPoints")] public List<GameObject> SpawnPoints;
-    
-    [FormerlySerializedAs("_Enemies")] public List<GameObject> Enemies;
-    
-    bool _IsGeneratingEnemies = false;
 
-    [FormerlySerializedAs("minEnemyDistance")] public int MinEnemyDistance = 10;
+	// Reference to the current enemy prefab to be spawned
+	public Transform EnemyPrefab;
 
-    [FormerlySerializedAs("maxEnemyDistance")] public int MaxEnemyDistance = 60;
-    void Start()
-    {
-        // EnemyPrefabs = GetComponent<List<Transform>>();
-        EnemyPrefab = EnemyPrefabs[_CurrentEnemyIndex];
+	// List of spawn points for enemies
+	[FormerlySerializedAs("spawnPoints")] public List<GameObject> SpawnPoints;
+
+	// List of active enemy game objects
+	[FormerlySerializedAs("_Enemies")] public List<GameObject> Enemies;
+
+	// Flag to check if enemies are being generated
+	bool _IsGeneratingEnemies = false;
+
+	// Minimum distance for enemy spawn from the player
+	[FormerlySerializedAs("minEnemyDistance")] public int MinEnemyDistance = 10;
+
+	// Maximum distance for enemy spawn from the player
+	[FormerlySerializedAs("maxEnemyDistance")] public int MaxEnemyDistance = 60;
+
+	void Start()
+	{
+		// Set initial values
+		EnemyPrefab = EnemyPrefabs[_CurrentEnemyIndex];
 		CurrentTime = TimeBetweenWaves;
-        _IsTimerRunning = true;
-        Enemies = new List<GameObject>();
-        _Player = GameObject.FindGameObjectWithTag("Player").transform;
-        //GenerateNewWave();
-    }
+		_IsTimerRunning = true;
+		Enemies = new List<GameObject>();
+		_Player = GameObject.FindGameObjectWithTag("Player").transform;
+		//GenerateNewWave();
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (CurrentWave == NumberOfWaves)
-            return;
-        if(Generator.IsGridGenerated)
-        {
-	        if (Enemies.Count == 0)
-	        {
-		        if(_IsTimerRunning)
-		        {
-			        CurrentTime -= Time.deltaTime;
-			        if(CurrentTime<=0 && CurrentWave<NumberOfWaves)
-			        {
-				        _IsTimerRunning = false;
+	void Update()
+	{
+		// Check if all waves are completed
+		if (CurrentWave == NumberOfWaves)
+			return;
 
-				        if (!_IsGeneratingEnemies)
-				        {
-					        EnemyPrefab = EnemyPrefabs[_CurrentEnemyIndex];
-					        GenerateNewWave();
-					        _CurrentEnemyIndex++;
-				        }
-			        }
-		        }
-	        }
-        }
-    }
+		// Check if the grid is generated
+		if (Generator.IsGridGenerated)
+		{
+			// Check if there are no enemies and the timer is running
+			if (Enemies.Count == 0 && _IsTimerRunning)
+			{
+				// Decrease the wave countdown timer
+				CurrentTime -= Time.deltaTime;
 
+				// If the countdown timer reaches zero and there are still waves left
+				if (CurrentTime <= 0 && CurrentWave < NumberOfWaves)
+				{
+					_IsTimerRunning = false;
 
-    private void GenerateNewWave()
-    {
-        Debug.Log("generate wave called");
-        _IsGeneratingEnemies = true;
-        CurrentTime = TimeBetweenWaves;
-        CurrentWave++;
-        SpawnPoints = new List<GameObject>();
-        SpawnPoints = Generator.GetSpawnPoints(_Player, NumberOfEnemiesPerWave, MinEnemyDistance,MaxEnemyDistance);
+					// Check if enemies are not currently being generated
+					if (!_IsGeneratingEnemies)
+					{
+						// Get the current enemy prefab to spawn
+						EnemyPrefab = EnemyPrefabs[_CurrentEnemyIndex];
 
-        foreach (GameObject t in SpawnPoints)
-        {
-            Transform enemy = Instantiate(EnemyPrefab, t.transform.position, Quaternion.identity);
-            enemy.gameObject.GetComponentInChildren<AIDestinationSetter>().target = _Player;
-           Enemies.Add(enemy.gameObject);
-        }
+						// Generate a new wave of enemies
+						GenerateNewWave();
 
-        _IsGeneratingEnemies = false;
-        _IsTimerRunning = true;
-    }
+						// Move to the next enemy prefab for the next wave
+						_CurrentEnemyIndex++;
+					}
+				}
+			}
+		}
+	}
 
-    private void OnDrawGizmos()
-    {
+	// Method to generate a new wave of enemies
+	private void GenerateNewWave()
+	{
+		Debug.Log("generate wave called");
 
-        foreach (GameObject t in SpawnPoints)
-        {
-            //Transform enemy = Instantiate(enemyPrefab, t.transform.position, Quaternion.identity);
-            //enemy.gameObject.GetComponent<AIDestinationSetter>().target = player;
-            //enemies.Add(enemy.gameObject);
-            Gizmos.color = Color.white;
-            Gizmos.DrawCube(t.transform.position,Vector3.one);
-        }
-    }
+		_IsGeneratingEnemies = true;
+		CurrentTime = TimeBetweenWaves;
+		CurrentWave++;
+		SpawnPoints = new List<GameObject>();
+
+		// Get spawn points for enemies using the ChunkScriptV2/ChunkCreator
+		SpawnPoints = Generator.GetSpawnPoints(_Player, NumberOfEnemiesPerWave, MinEnemyDistance, MaxEnemyDistance);
+
+		// Spawn enemies at the determined spawn points
+		foreach (GameObject t in SpawnPoints)
+		{
+			Transform enemy = Instantiate(EnemyPrefab, t.transform.position, Quaternion.identity);
+			enemy.gameObject.GetComponentInChildren<AIDestinationSetter>().target = _Player;
+			Enemies.Add(enemy.gameObject);
+		}
+
+		_IsGeneratingEnemies = false;
+		_IsTimerRunning = true;
+	}
+
+	// Draw spawn points using Gizmos (visual debugging)
+	private void OnDrawGizmos()
+	{
+		foreach (GameObject t in SpawnPoints)
+		{
+			Gizmos.color = Color.white;
+			Gizmos.DrawCube(t.transform.position, Vector3.one);
+		}
+	}
 }
