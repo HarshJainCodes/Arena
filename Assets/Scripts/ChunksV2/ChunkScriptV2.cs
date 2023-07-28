@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Reflection.Emit;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// This is the rewrite of the chunkScipt that was the rewrite of another chunk script that was used before.
@@ -752,6 +753,20 @@ public class ChunkScriptV2 : MonoBehaviour
 
             FloorsHolder.GetComponent<FloorAnimaationV2>().AnimateFloorComingToTop();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
+            Invoke("SetCursorInvisible", 5);
+        }
+    }
+
+    private void SetCursorInvisible()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void _setVoxelBlock()
