@@ -7,16 +7,16 @@ using UnityEngine.InputSystem.HID;
 
 public class Shooter : MonoBehaviour
 {
-	public Weapon_SO weapon;
-	public Transform[] firePoint;
-	private AiAgent _AiAgent;
-	private int bulletsPerFire;
-	RaycastHit hit;
-	[Tooltip("What objects should be hit")] public LayerMask hitLayer;
-	public Effects effects;
+	public Weapon_SO weapon; // Reference to the weapon scriptable object
+	public Transform[] firePoint; // Array of fire points for shooting
+	private AiAgent _AiAgent; // Reference to the AiAgent component
+	private int bulletsPerFire; // Number of bullets per fire
+	RaycastHit hit; // Stores the information about the hit point
+	[Tooltip("What objects should be hit")] public LayerMask hitLayer; // Layer mask for the objects that should be hit by the bullets
+	public Effects effects; // Reference to the Effects scriptable object
 
-	public bool canShoot;
-	public bool hitPlayer;
+	public bool canShoot; // Indicates whether the shooter can currently shoot
+	public bool hitPlayer; // Indicates if the player was hit by the bullet
 
 	private void Start()
 	{
@@ -39,13 +39,13 @@ public class Shooter : MonoBehaviour
 
 			if (weapon.timeBetweenShots == 0)
 			{
-				AudioManagerServices.instance.PlayOneShot(weapon.audioSFX.firing,new AudioSettings(1,0,true));
+				AudioManagerServices.instance.PlayOneShot(weapon.audioSFX.firing, new AudioSettings(1, 0, true));
 			}
 
 			//SoundManager.Instance.PlaySound(weapon.audioSFX.firing, 0, weapon.pitchVariationFiringSFX, 0);}
 			Invoke("CanShoot", weapon.fireRate);
 		}
-		else if (shootstyle == 2) //Melee
+		else if (shootstyle == 2) // Melee
 		{
 			canShoot = false;
 			StartCoroutine(HandleShooting());
@@ -67,14 +67,14 @@ public class Shooter : MonoBehaviour
 
 	private IEnumerator HandleShooting()
 	{
-		// Determine weather we are sending a raycast, aka hitscan weapon, we are spawning a projectile or melee attacking
+		// Determine whether we are sending a raycast (hitscan weapon), we are spawning a projectile, or melee attacking
 		int style = (int)weapon.shootStyle;
 
-		//Determine weapon class / style
-		//Dual shooting will be introduced coming soon
+		// Determine weapon class / style
+		// Dual shooting will be introduced coming soon
 		switch (style)
 		{
-			case 0: //hitscan
+			case 0: // Hitscan
 				int i = 0;
 				while (i < bulletsPerFire)
 				{
@@ -83,10 +83,10 @@ public class Shooter : MonoBehaviour
 					{
 						if (weapon.muzzleVFX != null)
 						{
-                            GameObject t = Instantiate(weapon.muzzleVFX, p.position, p.transform.rotation); // VFX
+							GameObject t = Instantiate(weapon.muzzleVFX, p.position, p.transform.rotation); // VFX
 							Destroy(t, 1f);
-                        }
-                    }
+						}
+					}
 
 					if (weapon.useProceduralShot) ProceduralShot.Instance.Shoot(weapon.proceduralShotPattern);
 
@@ -112,7 +112,7 @@ public class Shooter : MonoBehaviour
 		Transform hitObj;
 
 		//This defines the first hit on the object
-		Vector3 dir = CowsinsUtilities.GetSpreadDirection(weapon.spreadAmount, firePoint[0]) + Random.insideUnitSphere * _AiAgent.Inaccuracy; 
+		Vector3 dir = CowsinsUtilities.GetSpreadDirection(weapon.spreadAmount, firePoint[0]) + Random.insideUnitSphere * _AiAgent.Inaccuracy;
 		Ray ray = new Ray(firePoint[0].transform.position, dir);
 		GetComponentInParent<Animator>().Play("ShootAnim");
 		hitPlayer = Physics.Raycast(ray, out hit, weapon.bulletRange, hitLayer);
@@ -122,7 +122,7 @@ public class Shooter : MonoBehaviour
 			// float dmg = .1f * damageMultiplier;
 			float dmg = weapon.damagePerBullet * weapon.criticalDamageMultiplier;
 			Hit(hit.collider.gameObject.layer, dmg, hit, true);
-			hitObj = hit.collider.transform; 
+			hitObj = hit.collider.transform;
 
 			// added by harsh 
 			hit.collider.gameObject.transform.parent.GetComponent<PlayerHealth>().DamagePlayer(-dmg);
@@ -142,66 +142,9 @@ public class Shooter : MonoBehaviour
 		}
 	}
 
-	// public void MeleeAttack(float attackRange, float damage)
-	// {
-	// 	// events.OnShoot.Invoke();
-	//
-	// 	Collider[] col = Physics.OverlapSphere(transform.position + mainCamera.transform.parent.forward * attackRange / 2, attackRange, hitLayer);
-	//
-	// 	float dmg = damage * GetComponent<PlayerStats>().damageMultiplier;
-	//
-	// 	foreach (var c in col)
-	// 	{
-	// 		if (c.transform.GetComponent<IDamageable>() != null)
-	// 		{
-	// 			if (c.CompareTag("Critical")) c.transform.parent.GetComponent<IDamageable>().Damage(dmg);
-	// 			else c.GetComponent<IDamageable>().Damage(dmg);
-	// 		}
-	//
-	// 	}
-	//
-	// 	//VISUALS
-	// 	Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
-	// 	if (Physics.Raycast(ray, out hit, attackRange, hitLayer))
-	// 	{
-	// 		Hit(hit.collider.gameObject.layer, 0f, hit, false);
-	// 	}
-	// }
-
 	private void Hit(LayerMask layer, float damage, RaycastHit h, bool damageTarget)
 	{
-		// events.OnHit.Invoke();
 		GameObject impact = null, impactBullet = null;
-
-		// switch (layer)
-		// {
-		// 	case 10:
-		// 		impact = Instantiate(effects.grassImpact, h.point, Quaternion.identity); // Grass
-		// 		impact.transform.rotation = Quaternion.LookRotation(h.normal);
-		// 		if (weapon != null)
-		// 			impactBullet = Instantiate(weapon.bulletHoleImpact.grassImpact, h.point, Quaternion.identity);
-		// 		break;
-		// 	case 11:
-		// 		impact = Instantiate(effects.metalImpact, h.point, Quaternion.identity); // Metal
-		// 		impact.transform.rotation = Quaternion.LookRotation(h.normal);
-		// 		if (weapon != null) impactBullet = Instantiate(weapon.bulletHoleImpact.metalImpact, h.point, Quaternion.identity);
-		// 		break;
-		// 	case 12:
-		// 		impact = Instantiate(effects.mudImpact, h.point, Quaternion.identity); // Mud
-		// 		impact.transform.rotation = Quaternion.LookRotation(h.normal);
-		// 		if (weapon != null) impactBullet = Instantiate(weapon.bulletHoleImpact.mudImpact, h.point, Quaternion.identity);
-		// 		break;
-		// 	case 13:
-		// 		impact = Instantiate(effects.woodImpact, h.point, Quaternion.identity); // Wood
-		// 		impact.transform.rotation = Quaternion.LookRotation(h.normal);
-		// 		if (weapon != null) impactBullet = Instantiate(weapon.bulletHoleImpact.woodImpact, h.point, Quaternion.identity);
-		// 		break;
-		// 	case 7:
-		// 		impact = Instantiate(effects.enemyImpact, h.point, Quaternion.identity); // Enemy
-		// 		impact.transform.rotation = Quaternion.LookRotation(h.normal);
-		// 		if (weapon != null) impactBullet = Instantiate(weapon.bulletHoleImpact.enemyImpact, h.point, Quaternion.identity);
-		// 		break;
-		// }
 
 		if (h.collider != null && impactBullet != null)
 		{
@@ -225,3 +168,4 @@ public class Shooter : MonoBehaviour
 
 	private void CanShoot() => canShoot = true;
 }
+
