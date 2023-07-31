@@ -88,12 +88,11 @@ public class BlocksV2 : MonoBehaviour
     /// <param name="scaleY"></param>
     /// <param name="scaleZ"></param>
     /// <param name="parent"></param>
-    public void InstantiateStair(float x, float y, float z, GameObject stairsToInstantiate, int scaleX, int scaleY, int scaleZ, Transform parent)
+    public void InstantiateStair(float x, float y, float z, GameObject stairsToInstantiate, int scaleX, int scaleY, int scaleZ, Transform parent,int rot)
     {
         blockAssigned = Instantiate(stairsToInstantiate, new Vector3(x * scaleX, z * scaleZ, y * scaleY), Quaternion.identity);
-
         blockAssigned.transform.localScale = new Vector3(scaleX/2, scaleY/2, scaleZ/2);
-        blockAssigned.transform.localRotation = Quaternion.Euler(-90, 0, 0);
+        blockAssigned.transform.localRotation = Quaternion.Euler(-90,0, rot);
         blockAssigned.transform.parent = parent;
     }
 }
