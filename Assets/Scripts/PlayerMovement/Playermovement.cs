@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+using FMOD.Studio;
+using FMODUnity;
+
+
 public class Playermovement : MonoBehaviour
 {
 
@@ -30,6 +34,10 @@ public class Playermovement : MonoBehaviour
 
     public float speedIncreaseMultiplier;
     public float slopeIncreaseMultiplier;
+
+
+    
+
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -81,6 +89,9 @@ public class Playermovement : MonoBehaviour
         
         readyToJump = true;
         startYScale = transform.localScale.y;
+
+
+        
     }
     
     private void StateHandler()
@@ -108,7 +119,7 @@ public class Playermovement : MonoBehaviour
             cam.DoFov(50);
             state = MovementState.crouching;
             desiredMoveSpeed = crouchSpeed;
-           
+           // UpdateSound();
         }
 
         //Mode  - Sprinting
@@ -117,6 +128,7 @@ public class Playermovement : MonoBehaviour
             cam.DoFov(65);
             state = MovementState.sprinting;
             desiredMoveSpeed = sprintSpeed;
+         //   UpdateSound();
         }
         //Mode - Walking
         else if (grounded)
@@ -124,11 +136,13 @@ public class Playermovement : MonoBehaviour
             cam.DoFov(60);
             state = MovementState.walking;
             desiredMoveSpeed = walkSpeed;
+           // UpdateSound();
         }
         //Mode - Air
         else
         {
             state = MovementState.air;
+          //  UpdateSound();
         }
 
 
@@ -177,6 +191,9 @@ public class Playermovement : MonoBehaviour
             readyToJump = false;
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown);
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Jump, this.transform.position);
+          //  UpdateSound();
+
         }
 
         //START CROUCH
@@ -226,13 +243,18 @@ public class Playermovement : MonoBehaviour
             }
         }
         //on ground
-        if(grounded)
+        if (grounded)
+        {
             rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode.Force);
+            
+        }
         //in air
         else if (!grounded)
+        {
             rb.AddForce(moveDirection * moveSpeed * 10f * airMultiplier, ForceMode.Force);
-
-        if(!isWallRunning)
+            
+        }
+        if (!isWallRunning)
             rb.useGravity = !OnSlope();
     }
 
@@ -269,6 +291,8 @@ public class Playermovement : MonoBehaviour
         exitingSlope = true;
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+       
     }
 
     private void ResetJump()
@@ -297,5 +321,27 @@ public class Playermovement : MonoBehaviour
     {
         return grounded;
     }
+
+
+
+    //Functionality of all sounds
+    /*public void UpdateSound()
+    {
+        // walking
+        if (grounded)
+        {
+            PLAYBACK_STATE walkState;
+            walkSFX.getPlaybackState(out walkState);
+            if (walkState.Equals(PLAYBACK_STATE.STOPPED))
+            {
+                walkSFX.start();
+            }
+            else
+            {
+                walkSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            }
+        }
+
+    }*/
 
 }
