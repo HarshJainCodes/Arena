@@ -438,74 +438,156 @@ public class ChunkScriptV2 : MonoBehaviour
                     }
 
                     GameObject wallBlock;
+                    
                     switch (val)
                     {
 
                         case 0:
+                            if (floor == floorSize - 1)
+                            {
+                                var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floor + 1) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floor+1));
+                                tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
+                            }
                             wallBlock = _BlendBlocks[5].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 0);
                             break;
                         case 1:
+                            if (floor == floorSize - 1)
+                            {
+                                var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floor + 1) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floor+1));
+                                tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
+                            }
                             wallBlock = _BlendBlocks[0].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 270);
                             break;
                         case 10:
+                            if (floor == floorSize - 1)
+                            {
+                                var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floor + 1) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floor + 1));
+                                tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
+                            }
                             wallBlock = _BlendBlocks[0].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 0);
                             break;
                         case 11:
+                            if (floor == floorSize - 1)
+                            {
+                                var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floor + 1) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floor + 1));
+                                tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
+                            }
                             wallBlock = _BlendBlocks[1].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 270);
                             break;
                         case 100:
+                            if (floor == floorSize - 1)
+                            {
+                                var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floor + 1) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floor+1));
+                                tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
+                            }
                             wallBlock = _BlendBlocks[0].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 90);
                             break;
                         case 101:
+                            if (floor == floorSize - 1)
+                            {
+                                var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floor + 1) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floor + 1));
+                                tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
+                            }
                             wallBlock = _BlendBlocks[4].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 90);
                             break;
                         case 110:
+                            if (floor == floorSize - 1)
+                            {
+                                var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floor + 1) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floor + 1));
+                                tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
+                            }
                             wallBlock = _BlendBlocks[1].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 0);
                             break;
                         case 111:
+                            if (floor == floorSize - 1)
+                            {
+                                var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floor + 1) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floor + 1));
+                                tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
+                            }
                             wallBlock = _BlendBlocks[2].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 0);
                             break;
                         case 1000:
+                            if (floor == floorSize - 1)
+                            {
+                                var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floor + 1) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floor + 1));
+                                tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
+                            }
                             wallBlock = _BlendBlocks[0].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 180);
                             break;
                         case 1001:
+                            if (floor == floorSize - 1)
+                            {
+                                var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floor + 1) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floor + 1));
+                                tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
+                            }
                             wallBlock = _BlendBlocks[1].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 180);
                             break;
                         case 1010:
+                            if (floor == floorSize - 1)
+                            {
+                                var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floor + 1) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floor + 1));
+                                tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
+                            }
                             wallBlock = _BlendBlocks[4].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 0);
                             break;
                         case 1011:
+                            if (floor == floorSize - 1)
+                            {
+                                var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floor + 1) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floor + 1));
+                                tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
+                            }
                             wallBlock = _BlendBlocks[2].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 180);
                             break;
                         case 1100:
+                            if (floor == floorSize - 1)
+                            {
+                                var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floor + 1) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floor + 1));
+                                tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
+                            }
                             wallBlock = _BlendBlocks[1].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 90);
                             break;
                         case 1101:
+                            if (floor == floorSize - 1)
+                            {
+                                var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floor + 1) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floor + 1));
+                                tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
+                            }
                             wallBlock = _BlendBlocks[2].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 180);
                             break;
                         case 1110:
+                            if (floor == floorSize - 1)
+                            {
+                                var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floor + 1) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floor + 1));
+                                tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
+                            }
                             wallBlock = _BlendBlocks[2].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 90);
                             break;
                         case 1111:
+                            if (floor == floorSize - 1)
+                            {
+                                var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floor + 1) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floor + 1));
+                                tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
+                            }
                             wallBlock = _BlendBlocks[3].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 0);
                             break;
                     }
+                    
                 }
             }
         }
@@ -879,7 +961,9 @@ public class ChunkScriptV2 : MonoBehaviour
         }
         Debug.Log("This is done");
     }
-
+    /// <summary>
+    /// This function adds the stairs to the top floor in such a fashion that the staris are connected to atleast two walls.
+    /// </summary>
     private void addStairsToAccessTop()
     {
         int k = floorSize-1;
