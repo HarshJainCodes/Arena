@@ -147,6 +147,7 @@ public class VoxelRunTimeManipulation : MonoBehaviour
                                 });
                                 if(_MirrorChange)
                                 {
+                                    //calculates halfway point to be able to mirror changes on both sides.
                                     PicaVoxelPoint p = currentVoxelVolume.GetVoxelArrayPosition(buildPos);
                                     p.X = p.X - halfCubeSize ;
                                     p.X = halfCubeSize - p.X - 1;
@@ -317,8 +318,10 @@ public class VoxelRunTimeManipulation : MonoBehaviour
     {
         if (!Cq[_SelectedVolume].isEmpty())
         {
+            Debug.Log("Here");
             previousOp temp = Cq[_SelectedVolume].popFront();
             _VoxelVolumes[_SelectedVolume] = temp.self;
+            _VoxelVolumes[_SelectedVolume].UpdateAllChunks();
         }
     }
 
@@ -326,7 +329,7 @@ public class VoxelRunTimeManipulation : MonoBehaviour
     {
         if (!Cq[_SelectedVolume].isFull())
         {
-            Debug.Log("Here");
+            
             Cq[_SelectedVolume].push(new previousOp(t,op));
         }
         else
@@ -344,7 +347,7 @@ public class VoxelRunTimeManipulation : MonoBehaviour
 /// </summary>
 public class previousOp
 {
-    public Volume self;
+    public Volume self=new Volume();
     /*public Voxel? _self;
     public VoxelRunTimeManipulation.OperationType op;
     public bool twinned=false; */

@@ -18735,6 +18735,7 @@ GameObject:
   - component: {fileID: 885390472772441529}
   - component: {fileID: 3396351914015775435}
   - component: {fileID: 2951682775284307925}
+  - component: {fileID: -6691846378116049023}
   m_Layer: 9
   m_Name: Enemy_Lev01
   m_TagString: Enemy
@@ -18846,6 +18847,18 @@ MonoBehaviour:
   a: 0
   AiAgent: {fileID: 3612463840218020054}
   BossAgent: {fileID: 0}
+--- !u!114 &-6691846378116049023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678001535762723948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd4538eae7d6f63429ea00ebcb3109c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1678633418960222616
 GameObject:
   m_ObjectHideFlags: 0

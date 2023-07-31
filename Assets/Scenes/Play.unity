@@ -6883,6 +6883,66 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2560361899302402727, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560361899302402727, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560361899342019485, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560361899343606486, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560361899926678076, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560361899971098154, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560361899971098154, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.4214287
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560361900439964197, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560361900548495877, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560361900548495877, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.1357143
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560361900961989789, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560361901072397239, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560361901282201915, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560361901372255823, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2560361901372255823, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.9428573
+      objectReference: {fileID: 0}
     - target: {fileID: 3202823335974441172, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
       propertyPath: m_Name
       value: LavaRocks
@@ -21538,7 +21598,7 @@ MonoBehaviour:
   radius: 0.04
   height: 0.16
   canMove: 1
-  maxSpeed: 4
+  maxSpeed: 40
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -28886,7 +28946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7523784142672252092, guid: 9366dbe617dc99c488166f21dc749c10, type: 3}
       propertyPath: MaxEnemyDistance
-      value: 50
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 7523784142672252092, guid: 9366dbe617dc99c488166f21dc749c10, type: 3}
       propertyPath: MinEnemyDistance
@@ -30070,7 +30130,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904052382946}
+<<<<<<< Updated upstream
   m_LocalRotation: {x: 0.10124773, y: 0.77185494, z: 0.12707691, w: -0.6146872}
+=======
+  m_LocalRotation: {x: 0.31298754, y: 0.07905524, z: -0.026356148, w: 0.94609433}
+>>>>>>> Stashed changes
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30158,7 +30222,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904058514593}
+<<<<<<< Updated upstream
   m_LocalRotation: {x: 0.096169144, y: 0.5308312, z: -0.060777217, w: 0.83980703}
+=======
+  m_LocalRotation: {x: 0.31298754, y: 0.07905524, z: -0.026356148, w: 0.94609433}
+>>>>>>> Stashed changes
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30329,7 +30397,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904255469873}
+<<<<<<< Updated upstream
   m_LocalRotation: {x: 0.096169144, y: 0.5308312, z: -0.060777217, w: 0.83980703}
+=======
+  m_LocalRotation: {x: 0.31298754, y: 0.07905524, z: -0.026356148, w: 0.94609433}
+>>>>>>> Stashed changes
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30472,7 +30544,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904437498142}
+<<<<<<< Updated upstream
   m_LocalRotation: {x: 0.096169144, y: 0.5308312, z: -0.060777217, w: 0.83980703}
+=======
+  m_LocalRotation: {x: 0.31298754, y: 0.07905524, z: -0.026356148, w: 0.94609433}
+>>>>>>> Stashed changes
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

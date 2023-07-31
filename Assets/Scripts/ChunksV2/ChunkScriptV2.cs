@@ -549,6 +549,24 @@ public class ChunkScriptV2 : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This function is used to create a floor on top of the walls as this will allow us to create a nav mesh on the same.
+    /// </summary>
+    private void instantiateStairsTop()
+    {
+        int k = totalFloorSize;
+        for(int i = 0;i<GridSize;i++)
+        {
+            for(int j=0;j<GridSize;j++)
+            {
+                if (MainChunks[k-1][i][j].GetComponent<BlocksV2>().blockAssigned != null && MainChunks[k - 1][i][j].GetComponent<BlocksV2>().ID==-1)
+                {
+                    int orient = MainChunks[k - 1][i - 1][j].GetComponent<BlocksV2>().ID;
+                }
+            }
+        }
+    }
+
     private void CutCubesTop()
     {
         int a = 0;
