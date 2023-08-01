@@ -1,8 +1,10 @@
 using PicaVoxel;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection.Emit;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -130,7 +132,8 @@ public class ChunkScriptV2 : MonoBehaviour
         //CutCubesLeft();
 
         AddCubesOnTop();
-
+        addStairsToAccessTop();
+        formFloorAtTop();
         _coroutineDone = true;
     }
 
@@ -198,11 +201,11 @@ public class ChunkScriptV2 : MonoBehaviour
 
         for (int c = 0; c < FloorCreationIterations; c++)
         {
-            int ii = Random.Range(iMin, iMax - 1);
-            int jj = Random.Range(jMin, jMax - 1);
+            int ii = UnityEngine.Random.Range(iMin, iMax - 1);
+            int jj = UnityEngine.Random.Range(jMin, jMax - 1);
 
-            int iiMax = Random.Range(Mathf.Min(ii + 2, iMax - 1), iMax - 1);
-            int jjMax = Random.Range(Mathf.Min(jj + 2, jMax - 1), jMax - 1);
+            int iiMax = UnityEngine.Random.Range(Mathf.Min(ii + 2, iMax - 1), iMax - 1);
+            int jjMax = UnityEngine.Random.Range(Mathf.Min(jj + 2, jMax - 1), jMax - 1);
 
             for (int i = ii; i < iiMax; i++)
             {
@@ -225,7 +228,7 @@ public class ChunkScriptV2 : MonoBehaviour
                                 chunk.ID = -1;
                                 stairsFormed = true;
 
-                                chunkBelow.InstantiateStair(i - _StairsPrefab.transform.localScale.x , j - _StairsPrefab.transform.localScale.y, k - 1, _StairsPrefab, RoomScaleX, RoomScaleY, RoomScaleZ, StairsHolder.transform);
+                                chunkBelow.InstantiateStair(i - _StairsPrefab.transform.localScale.x , j - _StairsPrefab.transform.localScale.y, k - 1, _StairsPrefab, RoomScaleX, RoomScaleY, RoomScaleZ, StairsHolder.transform,0);
                             }
                         }
                     }
@@ -435,74 +438,81 @@ public class ChunkScriptV2 : MonoBehaviour
                     }
 
                     GameObject wallBlock;
+                    /*if (floor == floorSize - 1)
+                    {
+                        var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floor + 1) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floor + 1));
+                        tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
+                    }
+*/
                     switch (val)
                     {
 
                         case 0:
-                            wallBlock = _BlendBlocks[5].blocks[Random.Range(0, 3)];
+                            wallBlock = _BlendBlocks[5].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 0);
                             break;
                         case 1:
-                            wallBlock = _BlendBlocks[0].blocks[Random.Range(0, 3)];
+                            wallBlock = _BlendBlocks[0].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 270);
                             break;
                         case 10:
-                            wallBlock = _BlendBlocks[0].blocks[Random.Range(0, 3)];
+                            wallBlock = _BlendBlocks[0].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 0);
                             break;
                         case 11:
-                            wallBlock = _BlendBlocks[1].blocks[Random.Range(0, 3)];
+                            wallBlock = _BlendBlocks[1].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 270);
                             break;
                         case 100:
-                            wallBlock = _BlendBlocks[0].blocks[Random.Range(0, 3)];
+                            wallBlock = _BlendBlocks[0].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 90);
                             break;
                         case 101:
-                            wallBlock = _BlendBlocks[4].blocks[Random.Range(0, 3)];
+                            wallBlock = _BlendBlocks[4].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 90);
                             break;
                         case 110:
-                            wallBlock = _BlendBlocks[1].blocks[Random.Range(0, 3)];
+                            wallBlock = _BlendBlocks[1].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 0);
                             break;
                         case 111:
-                            wallBlock = _BlendBlocks[2].blocks[Random.Range(0, 3)];
+                            wallBlock = _BlendBlocks[2].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 0);
                             break;
                         case 1000:
-                            wallBlock = _BlendBlocks[0].blocks[Random.Range(0, 3)];
+                            wallBlock = _BlendBlocks[0].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 180);
                             break;
                         case 1001:
-                            wallBlock = _BlendBlocks[1].blocks[Random.Range(0, 3)];
+                            wallBlock = _BlendBlocks[1].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 180);
                             break;
                         case 1010:
-                            wallBlock = _BlendBlocks[4].blocks[Random.Range(0, 3)];
+                            wallBlock = _BlendBlocks[4].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 0);
                             break;
                         case 1011:
-                            wallBlock = _BlendBlocks[2].blocks[Random.Range(0, 3)];
+                            wallBlock = _BlendBlocks[2].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 180);
                             break;
                         case 1100:
-                            wallBlock = _BlendBlocks[1].blocks[Random.Range(0, 3)];
+                            wallBlock = _BlendBlocks[1].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 90);
                             break;
                         case 1101:
-                            wallBlock = _BlendBlocks[2].blocks[Random.Range(0, 3)];
+                            wallBlock = _BlendBlocks[2].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 180);
                             break;
                         case 1110:
-                            wallBlock = _BlendBlocks[2].blocks[Random.Range(0, 3)];
+                            wallBlock = _BlendBlocks[2].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 90);
                             break;
                         case 1111:
-                            wallBlock = _BlendBlocks[3].blocks[Random.Range(0, 3)];
+                            wallBlock = _BlendBlocks[3].blocks[UnityEngine.Random.Range(0, 3)];
                             chunk.InstantiateWall(j - wallBlock.transform.localScale.y / 2, i - wallBlock.transform.localScale.x / 2, floor, wallBlock, RoomScaleX, RoomScaleY, RoomScaleZ, WallHolder.transform.GetChild(floor), 0);
                             break;
                     }
+                    
                 }
             }
         }
@@ -517,15 +527,15 @@ public class ChunkScriptV2 : MonoBehaviour
 
         while (a <= GridSize)
         {
-            int j = Random.Range(1, padding);
-            int nextI = Mathf.Min(GridSize - 1, Random.Range(a + 4, a + 8));
+            int j = UnityEngine.Random.Range(1, padding);
+            int nextI = Mathf.Min(GridSize - 1, UnityEngine.Random.Range(a + 4, a + 8));
 
             for (int ii = a; ii < nextI; ii++)
             {
                 for (int jj = 0; jj < j; jj++)
                 {
-                    int minK = Random.Range(0, floorSize - 1);
-                    int maxK = Random.Range(minK, floorSize + 1);
+                    int minK = UnityEngine.Random.Range(0, floorSize - 1);
+                    int maxK = UnityEngine.Random.Range(minK, floorSize + 1);
                     //int maxK = floorSize;
 
                     for (int k = minK; k < maxK; k++)
@@ -541,7 +551,7 @@ public class ChunkScriptV2 : MonoBehaviour
                     }
                 }
             }
-            a = nextI + Random.Range(2, 5);
+            a = nextI + UnityEngine.Random.Range(2, 5);
             if (a >= GridSize - 1)
             {
                 break;
@@ -555,15 +565,15 @@ public class ChunkScriptV2 : MonoBehaviour
 
         while (a <= GridSize)
         {
-            int j = Random.Range(GridSize - padding + 1, GridSize + 1);
-            int nextI = Mathf.Min(GridSize - 1, Random.Range(a + 4, a + 8));
+            int j = UnityEngine.Random.Range(GridSize - padding + 1, GridSize + 1);
+            int nextI = Mathf.Min(GridSize - 1, UnityEngine.Random.Range(a + 4, a + 8));
 
             for (int ii = a; ii < nextI; ii++)
             {
                 for (int jj = 0; jj < j; jj++)
                 {
-                    int minK = Random.Range(0, floorSize - 1);
-                    int maxK = Random.Range(minK, floorSize + 1);
+                    int minK = UnityEngine.Random.Range(0, floorSize - 1);
+                    int maxK = UnityEngine.Random.Range(minK, floorSize + 1);
                     //int maxK = floorSize;
 
                     for (int k = minK; k < maxK; k++)
@@ -579,7 +589,7 @@ public class ChunkScriptV2 : MonoBehaviour
                     }
                 }
             }
-            a = nextI + Random.Range(2, 5);
+            a = nextI + UnityEngine.Random.Range(2, 5);
             if (a >= GridSize - 1)
             {
                 break;
@@ -593,15 +603,15 @@ public class ChunkScriptV2 : MonoBehaviour
 
         while (a <= GridSize)
         {
-            int i = Random.Range(1, padding);
-            int nextJ = Mathf.Min(GridSize - 1, Random.Range(a + 4, a + 8));
+            int i = UnityEngine.Random.Range(1, padding);
+            int nextJ = Mathf.Min(GridSize - 1, UnityEngine.Random.Range(a + 4, a + 8));
 
             for (int ii = a; ii < i; ii++)
             {
                 for (int jj = 0; jj < nextJ; jj++)
                 {
-                    int minK = Random.Range(0, floorSize - 1);
-                    int maxK = Random.Range(minK, floorSize + 1);
+                    int minK = UnityEngine.Random.Range(0, floorSize - 1);
+                    int maxK = UnityEngine.Random.Range(minK, floorSize + 1);
                     //int maxK = floorSize;
 
                     for (int k = minK; k < maxK; k++)
@@ -617,7 +627,7 @@ public class ChunkScriptV2 : MonoBehaviour
                     }
                 }
             }
-            a = nextJ + Random.Range(2, 5);
+            a = nextJ + UnityEngine.Random.Range(2, 5);
             if (a >= GridSize - 1)
             {
                 break;
@@ -628,7 +638,7 @@ public class ChunkScriptV2 : MonoBehaviour
 
     private void AddCubesOnTopHelper(int iMin, int iMax, int jMin, int jMax, int k)
     {
-        GameObject wallBlock = _BlendBlocks[3].blocks[Random.Range(0, 3)];
+        GameObject wallBlock = _BlendBlocks[3].blocks[UnityEngine.Random.Range(0, 3)];
 
         for (int i = iMin; i < iMax; i++)
         {
@@ -643,6 +653,21 @@ public class ChunkScriptV2 : MonoBehaviour
         }
     }
 
+    private void formFloorAtTop()
+    {
+        for(int i=0;i<GridSize;i++)
+        {
+            for(int j=0;j<GridSize;j++)
+            {
+                if (MainChunks[floorSize - 1][i][j].GetComponent<BlocksV2>().ID == 3)
+                {
+                    var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floorSize) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floorSize));
+                    tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
+                }
+            }
+        }
+    }
+
     private void AddCubesOnTop()
     {
         int iMin, iMax, jMin, jMax;
@@ -652,31 +677,31 @@ public class ChunkScriptV2 : MonoBehaviour
             for (int c = 0; c < 10; c++)
             {
                 // left side
-                iMin = Random.Range(0, padding / 2);
-                iMax = Random.Range(iMin, padding);
-                jMin = Random.Range(0, GridSize + 1);
-                jMax = Random.Range(jMin, Mathf.Min(jMin + 15, GridSize + 1));
+                iMin = UnityEngine.Random.Range(0, padding / 2);
+                iMax = UnityEngine.Random.Range(iMin, padding);
+                jMin = UnityEngine.Random.Range(0, GridSize + 1);
+                jMax = UnityEngine.Random.Range(jMin, Mathf.Min(jMin + 15, GridSize + 1));
                 AddCubesOnTopHelper(iMin, iMax, jMin, jMax, k);
 
                 // right side
-                iMin = Random.Range(GridSize - padding + 1, GridSize - padding / 2);
-                iMax = Random.Range(iMin, GridSize + 1);
-                jMin = Random.Range(0, GridSize + 1);
-                jMax = Random.Range(jMin, Mathf.Min(jMin + 15, GridSize + 1));
+                iMin = UnityEngine.Random.Range(GridSize - padding + 1, GridSize - padding / 2);
+                iMax = UnityEngine.Random.Range(iMin, GridSize + 1);
+                jMin = UnityEngine.Random.Range(0, GridSize + 1);
+                jMax = UnityEngine.Random.Range(jMin, Mathf.Min(jMin + 15, GridSize + 1));
                 AddCubesOnTopHelper(iMin, iMax, jMin, jMax, k);
 
                 // bottom side
-                iMin = Random.Range(0, GridSize + 1);
-                iMax = Random.Range(iMin, GridSize + 1);
-                jMin = Random.Range(0, padding / 2);
-                jMax = Random.Range(jMin, padding);
+                iMin = UnityEngine.Random.Range(0, GridSize + 1);
+                iMax = UnityEngine.Random.Range(iMin, GridSize + 1);
+                jMin = UnityEngine.Random.Range(0, padding / 2);
+                jMax = UnityEngine.Random.Range(jMin, padding);
                 AddCubesOnTopHelper(iMin, iMax, jMin, jMax, k);
 
                 // top side
-                iMin = Random.Range(0, GridSize + 1);
-                iMax = Random.Range(iMin, GridSize + 1);
-                jMin = Random.Range(GridSize - padding + 1, GridSize - padding / 2);
-                jMax = Random.Range(jMin, GridSize + 1);
+                iMin = UnityEngine.Random.Range(0, GridSize + 1);
+                iMax = UnityEngine.Random.Range(iMin, GridSize + 1);
+                jMin = UnityEngine.Random.Range(GridSize - padding + 1, GridSize - padding / 2);
+                jMax = UnityEngine.Random.Range(jMin, GridSize + 1);
                 AddCubesOnTopHelper(iMin, iMax, jMin, jMax, k);
             }
         }
@@ -875,5 +900,48 @@ public class ChunkScriptV2 : MonoBehaviour
             _BlendBlocks[i].blocks[2] = objects[i].gameObject;
         }
         Debug.Log("This is done");
+    }
+    /// <summary>
+    /// This function adds the stairs to the top floor in such a fashion that the staris are connected to atleast two walls.
+    /// </summary>
+    private void addStairsToAccessTop()
+    {
+        int k = floorSize-1;
+        for(int i=0;i<GridSize;i++)
+        {
+            for(int j=0;j<GridSize;j++)
+            {
+                if (MainChunks[k][i][j].GetComponent<BlocksV2>()!=null && MainChunks[k][i][j].GetComponent<BlocksV2>().ID==0)
+                {
+                    int orient = (MainChunks[k][i][j + 1].GetComponent<BlocksV2>().ID == 0 ? 0 : 1) * 1 + (MainChunks[k][i + 1][j].GetComponent<BlocksV2>().ID == 0 ? 0 : 1) * 10 + (MainChunks[k][i][j - 1].GetComponent<BlocksV2>().ID == 0 ? 0 : 1) * 100 + (MainChunks[k][i-1][j].GetComponent<BlocksV2>().ID == 0 ? 0 : 1) * 1000;
+                    Debug.Log(orient);
+                    int rng = UnityEngine.Random.Range(0, 100);
+                    if (rng < 15)
+                    {
+                        switch (orient)
+                        {
+                            case 0011:
+                                MainChunks[k][i][j].GetComponent<BlocksV2>().InstantiateStair(i -0.5f, j - 0.5f, k, _StairsPrefab, RoomScaleX, RoomScaleY, RoomScaleZ, StairsHolder.transform, -180);
+                                break;
+
+                            case 0110:
+                                MainChunks[k][i][j].GetComponent<BlocksV2>().InstantiateStair(i -0.5f, j -0.5f, k, _StairsPrefab, RoomScaleX, RoomScaleY, RoomScaleZ, StairsHolder.transform, -90);
+                                break;
+
+                            case 1100:
+                                MainChunks[k][i][j].GetComponent<BlocksV2>().InstantiateStair(i  -0.5f, j  -0.5f, k, _StairsPrefab, RoomScaleX, RoomScaleY, RoomScaleZ, StairsHolder.transform,0);
+                                break;
+
+                            case 1001:
+                                MainChunks[k][i][j].GetComponent<BlocksV2>().InstantiateStair(i  -0.5f, j -0.5f, k, _StairsPrefab, RoomScaleX, RoomScaleY, RoomScaleZ, StairsHolder.transform, 90);
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
