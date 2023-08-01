@@ -914,7 +914,7 @@ public class ChunkScriptV2 : MonoBehaviour
                 if (MainChunks[k][i][j].GetComponent<BlocksV2>()!=null && MainChunks[k][i][j].GetComponent<BlocksV2>().ID==0)
                 {
                     int orient = (MainChunks[k][i][j + 1].GetComponent<BlocksV2>().ID == 0 ? 0 : 1) * 1 + (MainChunks[k][i + 1][j].GetComponent<BlocksV2>().ID == 0 ? 0 : 1) * 10 + (MainChunks[k][i][j - 1].GetComponent<BlocksV2>().ID == 0 ? 0 : 1) * 100 + (MainChunks[k][i-1][j].GetComponent<BlocksV2>().ID == 0 ? 0 : 1) * 1000;
-                    Debug.Log(orient);
+                    //Debug.Log(orient);
                     int rng = UnityEngine.Random.Range(0, 100);
                     if (rng < 15)
                     {
