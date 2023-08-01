@@ -80691,7 +80691,7 @@ MonoBehaviour:
     maximumInterval: 0.05
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
-  maxAcceleration: -2.5
+  maxAcceleration: 70
   rotationSpeed: 4000
   slowdownDistance: 13.02
   pickNextWaypointDist: 0.5
