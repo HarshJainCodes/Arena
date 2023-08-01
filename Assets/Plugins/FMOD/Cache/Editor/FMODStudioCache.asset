@@ -1,5 +1,227 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8182287032139548177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM/Main Menu
+  m_EditorClassIdentifier: 
+  Path: event:/BGM/Main Menu
+  Guid:
+    Data1: 680369635
+    Data2: 1080610410
+    Data3: 1723758781
+    Data4: 2146399663
+  Banks:
+  - {fileID: 2740517018283778510}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7589502156374368181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Movements/Walk
+  m_EditorClassIdentifier: 
+  Path: event:/Movements/Walk
+  Guid:
+    Data1: -865092014
+    Data2: 1313407102
+    Data3: 1749134524
+    Data4: -2107092112
+  Banks:
+  - {fileID: -6969779314726920061}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 900
+--- !u!114 &-7348052141728381928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Jump.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD/fmodUNITYtry/Build/Desktop/Jump.bank
+  Name: Jump
+  StudioPath: bank:/Movements/Jump
+  lastModified: 638264096743055305
+  FileSizes:
+  - Name: Desktop
+    Value: 98176
+  Exists: 1
+--- !u!114 &-7272533071730523940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/3D Timelines/Movements/Jump/Land/Land
+  m_EditorClassIdentifier: 
+  Path: event:/3D Timelines/Movements/Jump/Land/Land
+  Guid:
+    Data1: 341605670
+    Data2: 1191978009
+    Data3: 1574385311
+    Data4: 1532217699
+  Banks:
+  - {fileID: -7348052141728381928}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1301
+--- !u!114 &-6969779314726920061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Movements.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD/fmodUNITYtry/Build/Desktop/Movements.bank
+  Name: Movements
+  StudioPath: bank:/Movements/Movements
+  lastModified: 638264207549480347
+  FileSizes:
+  - Name: Desktop
+    Value: 71776
+  Exists: 1
+--- !u!114 &-4212399334108482437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Movements/Run
+  m_EditorClassIdentifier: 
+  Path: event:/Movements/Run
+  Guid:
+    Data1: 781044811
+    Data2: 1216528092
+    Data3: 1632033442
+    Data4: 1190678669
+  Banks:
+  - {fileID: -6969779314726920061}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 350
+--- !u!114 &-3011421606118598095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD/fmodUNITYtry/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638264834948911958
+  FileSizes:
+  - Name: Desktop
+    Value: 1036
+  Exists: 1
+--- !u!114 &-2022411233854343321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/3D Timelines/Movements/Jump/Start/Jump_Start
+  m_EditorClassIdentifier: 
+  Path: event:/3D Timelines/Movements/Jump/Start/Jump_Start
+  Guid:
+    Data1: 1077752429
+    Data2: 1119816500
+    Data3: 19891359
+    Data4: -415375465
+  Banks:
+  - {fileID: -7348052141728381928}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 900
+--- !u!114 &-1319999578525964641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM/Boss BGM
+  m_EditorClassIdentifier: 
+  Path: event:/BGM/Boss BGM
+  Guid:
+    Data1: -456855129
+    Data2: 1223943709
+    Data3: -818754922
+    Data4: 11726125
+  Banks:
+  - {fileID: 2740517018283778510}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 254563
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,10 +234,266 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
-  EditorBanks: []
-  EditorEvents: []
+  EditorBanks:
+  - {fileID: 4764109058295101183}
+  - {fileID: 6735089732092216301}
+  - {fileID: 1737426355434292292}
+  - {fileID: -7348052141728381928}
+  - {fileID: 2740517018283778510}
+  - {fileID: -3011421606118598095}
+  - {fileID: -6969779314726920061}
+  - {fileID: 4638565356831914908}
+  EditorEvents:
+  - {fileID: 3330054716571393173}
+  - {fileID: 3977371109773608358}
+  - {fileID: -7272533071730523940}
+  - {fileID: -2022411233854343321}
+  - {fileID: 2922674513292873808}
+  - {fileID: -1319999578525964641}
+  - {fileID: -8182287032139548177}
+  - {fileID: -4212399334108482437}
+  - {fileID: -7589502156374368181}
+  - {fileID: 1024354012294830050}
+  - {fileID: 5538395722298405665}
   EditorParameters: []
-  MasterBanks: []
-  StringsBanks: []
-  cacheTime: 0
+  MasterBanks:
+  - {fileID: -3011421606118598095}
+  StringsBanks:
+  - {fileID: 4764109058295101183}
+  cacheTime: 638264834953239861
   cacheVersion: 131605
+--- !u!114 &1024354012294830050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/3D Timelines/Weapons/Reload/AR/AR_Reload_NotEmpty
+  m_EditorClassIdentifier: 
+  Path: event:/3D Timelines/Weapons/Reload/AR/AR_Reload_NotEmpty
+  Guid:
+    Data1: -927822972
+    Data2: 1302813080
+    Data3: 1102818996
+    Data4: 618884482
+  Banks:
+  - {fileID: 4638565356831914908}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2518
+--- !u!114 &1737426355434292292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Firing.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD/fmodUNITYtry/Build/Desktop/Firing.bank
+  Name: Firing
+  StudioPath: bank:/SFX/Weapons/Firing
+  lastModified: 638264183805546453
+  FileSizes:
+  - Name: Desktop
+    Value: 56704
+  Exists: 1
+--- !u!114 &2740517018283778510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master 1.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD/fmodUNITYtry/Build/Desktop/Master 1.bank
+  Name: Master 1
+  StudioPath: bank:/BGM/Master 1
+  lastModified: 638260595678417954
+  FileSizes:
+  - Name: Desktop
+    Value: 13655872
+  Exists: 1
+--- !u!114 &2922674513292873808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM/Wave BGM
+  m_EditorClassIdentifier: 
+  Path: event:/BGM/Wave BGM
+  Guid:
+    Data1: 344041515
+    Data2: 1274203957
+    Data3: 714973864
+    Data4: -1118459402
+  Banks:
+  - {fileID: 2740517018283778510}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 254563
+--- !u!114 &3330054716571393173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Weopon AR/S_WEP_Fire_001
+  m_EditorClassIdentifier: 
+  Path: event:/Weopon AR/S_WEP_Fire_001
+  Guid:
+    Data1: -435565691
+    Data2: 1121877399
+    Data3: 792838586
+    Data4: -1250815296
+  Banks:
+  - {fileID: 6735089732092216301}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 730
+--- !u!114 &3977371109773608358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/3D Timelines/Weapons/Fire/S_WEP_Fire_003
+  m_EditorClassIdentifier: 
+  Path: event:/3D Timelines/Weapons/Fire/S_WEP_Fire_003
+  Guid:
+    Data1: 64067596
+    Data2: 1291855999
+    Data3: 1675172267
+    Data4: -1663520879
+  Banks:
+  - {fileID: 1737426355434292292}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2350
+--- !u!114 &4638565356831914908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Reload.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD/fmodUNITYtry/Build/Desktop/Reload.bank
+  Name: Reload
+  StudioPath: bank:/SFX/Weapons/Reload
+  lastModified: 638264834953239861
+  FileSizes:
+  - Name: Desktop
+    Value: 214272
+  Exists: 1
+--- !u!114 &4764109058295101183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD/fmodUNITYtry/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638264834948925822
+  FileSizes:
+  - Name: Desktop
+    Value: 1620
+  Exists: 1
+--- !u!114 &5538395722298405665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/3D Timelines/Weapons/Reload/AR/AR_Reload_Empty
+  m_EditorClassIdentifier: 
+  Path: event:/3D Timelines/Weapons/Reload/AR/AR_Reload_Empty
+  Guid:
+    Data1: 1095865082
+    Data2: 1089359855
+    Data3: 814815928
+    Data4: 1225331726
+  Banks:
+  - {fileID: 4638565356831914908}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3430
+--- !u!114 &6735089732092216301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/AR.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD/fmodUNITYtry/Build/Desktop/AR.bank
+  Name: AR
+  StudioPath: bank:/AR
+  lastModified: 638264183804023208
+  FileSizes:
+  - Name: Desktop
+    Value: 53888
+  Exists: 1

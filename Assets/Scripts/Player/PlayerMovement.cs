@@ -428,7 +428,7 @@ namespace Arena
                 DoubleJump();
                 return;
             }
-            AudioManagerServices.instance.PlayOneShot(jumpStart, new AudioSettings(0.5f, 0.0f, true));
+           // AudioManagerServices.instance.PlayOneShot(jumpStart, new AudioSettings(0.5f, 0.0f, true));
             AudioManager.instance.PlayOneShot(FMODEvents.instance.Jump, this.transform.position);
 
             canDoublJump = true;
