@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+using FMODUnity;
+using FMOD.Studio;
+
 namespace Arena
 {
     public class PlayerMovement : MonoBehaviour
@@ -137,6 +140,15 @@ namespace Arena
         public AudioClip jumpLand;
         public bool Ledgegrab;
 
+        //Creating audio Instance
+        private EventInstance walkSFX;
+        private EventInstance runSFX;
+        private EventInstance wallrunSFX;
+
+
+
+
+
         //all the states the player could have
         public enum MovementState
         {
@@ -147,7 +159,8 @@ namespace Arena
             sliding,
             wallRunning,
             aiming,
-            climbing
+            climbing,
+            idle
         }
 
         #region UNITY FUNCTIONS
@@ -158,8 +171,14 @@ namespace Arena
 
             readyToJump = true;
             startYScale = transform.localScale.y;
+
+            //setting audio instance
+            walkSFX = AudioManager.instance.CreateInstance(FMODEvents.instance.Walk);
+            runSFX = AudioManager.instance.CreateInstance(FMODEvents.instance.Run);
+            wallrunSFX = AudioManager.instance.CreateInstance(FMODEvents.instance.WallRun);
+
         }
-        
+
 
         private void Update()
         {
@@ -175,6 +194,7 @@ namespace Arena
                 canDoublJump = false;
                 landTime = Time.time;
                 AudioManagerServices.instance.PlayOneShot(jumpLand, new AudioSettings(0.5f, 0.0f, true));
+                AudioManager.instance.PlayOneShot(FMODEvents.instance.Land, this.transform.position);
             }
             else if (wasGrounded && !grounded)
             {
@@ -183,6 +203,7 @@ namespace Arena
                
             SpeedControl();
             StateHandler();
+            
             if (grounded)
                 rb.drag = groundDrag;
             else
@@ -216,7 +237,7 @@ namespace Arena
                 state = MovementState.wallRunning;
                 desiredMoveSpeed = speedWalking;
                 isSprinting = false;
-
+                UpdateSound();
             }
             //state = sliding
             else if (isSliding)
@@ -231,6 +252,8 @@ namespace Arena
                 {
                     desiredMoveSpeed = speedSprinting;
                 }
+                UpdateSound();
+
             }
             //state = crouching
             else if (playerAnim.IsCrouching())
@@ -238,6 +261,7 @@ namespace Arena
                 //cam.DoFov(50);
                 state = MovementState.crouching;
                 desiredMoveSpeed = crouchSpeed;
+                UpdateSound();
 
             }
             //state = Sprinting
@@ -247,29 +271,38 @@ namespace Arena
                 isSprinting = true;
                 state = MovementState.sprinting;
                 desiredMoveSpeed = speedSprinting;
+                UpdateSound();
+
             }
             //state = Walking && aiming
             else if (grounded && playerAnim.IsAiming())
             {
                 state = MovementState.aiming;
                 desiredMoveSpeed = speedAiming;
-
+                UpdateSound();
             }
             //state = walking
-            else if (grounded)
+            else if (grounded && (Input.GetKey(KeyCode.W)|| Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)))
             {
                 // cam.DoFov(60);
                 state = MovementState.walking;
                 desiredMoveSpeed = speedWalking;
                 isSprinting = false;
+                UpdateSound();
 
+            }
+            else if(grounded && !(Input.anyKey))
+            {
+                state = MovementState.idle;
+                isSprinting = false;
+                UpdateSound();
             }
             //state = Air
             else
             {
                 state = MovementState.air;
                 isSprinting = false;
-
+                UpdateSound();
             }
 
             //Gradually decreases the speed from lastDesiredMoveSpeed to desiredMoveSpped if the difference is greater than 4
@@ -277,10 +310,13 @@ namespace Arena
             {
                 StopAllCoroutines();
                 StartCoroutine(SmoothlyLerpMoveSpeed());
+                
             }
             else
             {
                 _MoveSpeed = desiredMoveSpeed;
+               
+
             }
             lastDesiredMoveSpeed = desiredMoveSpeed;
         }
@@ -393,6 +429,7 @@ namespace Arena
                 return;
             }
             AudioManagerServices.instance.PlayOneShot(jumpStart, new AudioSettings(0.5f, 0.0f, true));
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.Jump, this.transform.position);
 
             canDoublJump = true;
             jumping = true;
@@ -537,12 +574,74 @@ namespace Arena
             crouching = val;
         }
         #endregion
-        
-        
+
+
         /*public void SetClimbing(bool val)
         {
             climbing = val;
         }*/
+        //Functionality of all sounds
+       private void UpdateSound()
+        {
+            //state = wallrunning
+            if (isWallRunning)
+            {
+                PLAYBACK_STATE pbState;
+                wallrunSFX.getPlaybackState(out pbState);
+                if (pbState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    wallrunSFX.start();
+
+                }
+            }
+            
+           
+           
+            else
+            {  
+                    wallrunSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                    
+            }
+            if (grounded && playerAnim.IsRunning() && isSprinting == true)
+            {
+                PLAYBACK_STATE pbState;
+                runSFX.getPlaybackState(out pbState);
+                if (pbState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    runSFX.start();
+                }
+            }
+            else
+            {
+                
+                runSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+               
+            }
+
+            if (state == MovementState.walking)
+            {
+                PLAYBACK_STATE pbState;
+                walkSFX.getPlaybackState(out pbState);
+                if (pbState.Equals(PLAYBACK_STATE.STOPPED))
+                {
+                    walkSFX.start();
+                    Debug.LogError("walk");
+                }
+            }
+            /*  else
+              {
+                  walkSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+              }*/
+
+            if (state == MovementState.idle)
+            {
+                Debug.LogError("idle");
+                wallrunSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                runSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                walkSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            }
+
+        }
     }
 
 }
