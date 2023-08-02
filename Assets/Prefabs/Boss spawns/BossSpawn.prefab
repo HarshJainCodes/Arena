@@ -10102,6 +10102,7 @@ GameObject:
   - component: {fileID: 4624490110986903557}
   - component: {fileID: 470200964495458576}
   - component: {fileID: 7982799081799908925}
+  - component: {fileID: 4010751188451804563}
   m_Layer: 0
   m_Name: BossSpawn
   m_TagString: Untagged
@@ -10208,6 +10209,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54bdb0acd6fbfc541a7f97b1859090ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4010751188451804563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6570049479561560528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01f18b954fd3eb340b7bd027cc6eda74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Player: {fileID: 0}
+  _TimeBeforeExploding: 1
+  _DetonationDistance: 2
 --- !u!1 &6646710275047026996
 GameObject:
   m_ObjectHideFlags: 0

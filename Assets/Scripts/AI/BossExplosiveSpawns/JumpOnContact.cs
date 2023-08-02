@@ -5,10 +5,23 @@ using UnityEngine;
 
 public class JumpOnContact : MonoBehaviour
 {
-    [SerializeField] Transform _Player;
+    /// <summary>
+    /// This variable will store the players transform  
+    /// </summary>
+    Transform _Player;
+    /// <summary>
+    /// Time in float before the enemy explodes as soon as it gets within a radius
+    /// </summary>
     [SerializeField] float _TimeBeforeExploding=1f;
+    /// <summary>
+    /// Enemy explode radius. The radius within which the enemy will explode next to the player.
+    /// </summary>
     [SerializeField] int _DetonationDistance=2;
 
+    private void Start()
+    {
+        _Player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
     // Update is called once per frame
     void Update()
     {
