@@ -8,7 +8,7 @@ public class JumpOnContact : MonoBehaviour
     /// <summary>
     /// This variable will store the players transform  
     /// </summary>
-    Transform _Player;
+    GameObject _Player;
     /// <summary>
     /// Time in float before the enemy explodes as soon as it gets within a radius
     /// </summary>
@@ -20,7 +20,7 @@ public class JumpOnContact : MonoBehaviour
 
     private void Start()
     {
-        _Player = GameObject.FindGameObjectWithTag("Player").transform;
+        _Player = GameObject.FindGameObjectWithTag("Player");
     }
     // Update is called once per frame
     void Update()
@@ -37,7 +37,9 @@ public class JumpOnContact : MonoBehaviour
     /// <returns>bool</returns>
     private bool _checkDistance()
     {
-        if(Vector3.Magnitude((_Player.position - gameObject.transform.position))<_DetonationDistance)
+        //Debug.LogError(gameObject.transform.position);
+
+        if(Vector3.Magnitude((_Player.transform.position - gameObject.transform.position))<_DetonationDistance)
         {
             return true;
         }
@@ -54,8 +56,9 @@ public class JumpOnContact : MonoBehaviour
     /// <returns>nothing</returns>
     IEnumerator detonate()
     {
-        gameObject.transform.GetComponent<Animator>().SetBool("Jump",true);
+        gameObject.GetComponentInParent<Animator>().SetBool("Jump", true);
+        //gameObject.transform.GetComponent<Animator>().SetBool("Jump",true);
         yield return new WaitForSeconds(_TimeBeforeExploding);
-        Destroy(gameObject);
+        Destroy(GetComponentInParent<Transform>().gameObject);
     }
 }
