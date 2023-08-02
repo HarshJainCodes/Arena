@@ -633,7 +633,7 @@ namespace Arena
                   walkSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
               }*/
 
-            if (state == MovementState.idle)
+            if (state == MovementState.idle || jumping==true)
             {
                 Debug.LogError("idle");
                 wallrunSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
