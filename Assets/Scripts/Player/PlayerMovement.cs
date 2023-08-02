@@ -625,7 +625,7 @@ namespace Arena
                 if (pbState.Equals(PLAYBACK_STATE.STOPPED))
                 {
                     walkSFX.start();
-                    Debug.LogError("walk");
+                    //Debug.LogError("walk");
                 }
             }
             /*  else
@@ -635,7 +635,7 @@ namespace Arena
 
             if (state == MovementState.idle || jumping==true)
             {
-                Debug.LogError("idle");
+                //Debug.LogError("idle");
                 wallrunSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                 runSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                 walkSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);

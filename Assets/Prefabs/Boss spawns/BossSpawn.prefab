@@ -6494,7 +6494,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4697319237700297460}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6502,7 +6502,7 @@ Transform:
   - {fileID: 3487733677772998973}
   m_Father: {fileID: 2243018062045799607}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &2238015405695729317
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9116,12 +9116,12 @@ GameObject:
   - component: {fileID: 6002214858925899799}
   - component: {fileID: 3559333020026563001}
   - component: {fileID: 5782677473288013868}
-  - component: {fileID: 8688963117847090526}
   - component: {fileID: 2127653277236212069}
   - component: {fileID: 6172693428531313277}
   - component: {fileID: 6640186383866532068}
   - component: {fileID: 655344150244817662}
-  - component: {fileID: 6451972721057930046}
+  - component: {fileID: 456436581}
+  - component: {fileID: 456436580}
   m_Layer: 0
   m_Name: GodOffset
   m_TagString: Untagged
@@ -9137,7 +9137,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6249224627539468775}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: -1.2242377, z: 0}
+  m_LocalPosition: {x: 0, y: -1.2242377, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9209,23 +9209,10 @@ CharacterController:
   m_Height: 0.02
   m_Radius: 0.01
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &8688963117847090526
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6249224627539468775}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.5785217, y: 2.0196245, z: 2.3261414}
-  m_Center: {x: -0.06965637, y: 1.6248122, z: -0.07408142}
 --- !u!114 &2127653277236212069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9285,7 +9272,7 @@ MonoBehaviour:
   radius: 0.01
   height: 0.02
   canMove: 1
-  maxSpeed: 1
+  maxSpeed: 15
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -9302,7 +9289,7 @@ MonoBehaviour:
     maximumInterval: 2
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
-  maxAcceleration: -2.5
+  maxAcceleration: 20
   rotationSpeed: 360
   slowdownDistance: 0.6
   pickNextWaypointDist: 2
@@ -9325,7 +9312,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
---- !u!114 &6451972721057930046
+--- !u!136 &456436581
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6249224627539468775}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.47
+  m_Height: 5.01
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.97, z: 0}
+--- !u!114 &456436580
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9334,23 +9335,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 6249224627539468775}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3cbc9fbf49f6894ea37ced618e025cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 437864b4e9c49dd4396ad1a48e9ab848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialStateType: 2
-  CurrentStateType: 2
-  PlayerTransform: {fileID: 0}
-  PatrolPoint: {fileID: 0}
-  SpawnManager: {fileID: 0}
-  StopDistance: 6
-  InRange: 0
-  Speed: 4
-  PatrolSpeed: 2
-  WalkingShootSpeed: 3.5
-  Level: 1
-  Inaccuracy: 0
-  maxSightDistance: 17
-  sensor: {fileID: 0}
+  _name: 
+  health: 100
+  maxHealth: 100
+  shield: 50
+  maxShield: 50
+  healthSlider: {fileID: 0}
+  shieldSlider: {fileID: 0}
+  showUI: 0
+  damagePopUp: {fileID: 0}
+  shieldColor: {r: 0, g: 1, b: 0.91636705, a: 0}
+  healthColor: {r: 0.07006645, g: 1, b: 0, a: 0}
+  xVariation: 0
+  player: {fileID: 0}
+  events:
+    OnSpawn:
+      m_PersistentCalls:
+        m_Calls: []
+    OnShoot:
+      m_PersistentCalls:
+        m_Calls: []
+    OnDamaged:
+      m_PersistentCalls:
+        m_Calls: []
+    OnDeath:
+      m_PersistentCalls:
+        m_Calls: []
+  timeToDie: 3
+  aiAgent: {fileID: 0}
 --- !u!1 &6256148255845445114
 GameObject:
   m_ObjectHideFlags: 0
@@ -10086,6 +10101,7 @@ GameObject:
   - component: {fileID: 7478660427329475791}
   - component: {fileID: 4624490110986903557}
   - component: {fileID: 470200964495458576}
+  - component: {fileID: 7982799081799908925}
   m_Layer: 0
   m_Name: BossSpawn
   m_TagString: Untagged
@@ -10100,7 +10116,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6570049479561560528}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 452.7907, y: 16.83, z: 442.53546}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10180,6 +10196,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7982799081799908925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6570049479561560528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54bdb0acd6fbfc541a7f97b1859090ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6646710275047026996
 GameObject:
   m_ObjectHideFlags: 0
