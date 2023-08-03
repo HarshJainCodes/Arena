@@ -9123,6 +9123,7 @@ GameObject:
   - component: {fileID: 456436581}
   - component: {fileID: 456436580}
   - component: {fileID: 8843320859821065125}
+  - component: {fileID: 4117790417866292281}
   m_Layer: 0
   m_Name: GodOffset
   m_TagString: Untagged
@@ -9381,6 +9382,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _TimeBeforeExploding: 1
   _DetonationDistance: 4
+--- !u!114 &4117790417866292281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6249224627539468775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c558cd1282982964ca6a3013207375c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _selfrb: {fileID: 5782677473288013868}
 --- !u!1 &6256148255845445114
 GameObject:
   m_ObjectHideFlags: 0
