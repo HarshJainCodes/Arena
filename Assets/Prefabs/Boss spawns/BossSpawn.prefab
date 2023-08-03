@@ -9207,8 +9207,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 0.02
-  m_Radius: 0.01
+  m_Height: 3.73
+  m_Radius: 1.07
   m_SlopeLimit: 45
   m_StepOffset: 0
   m_SkinWidth: 0.08
@@ -9324,7 +9324,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.47
-  m_Height: 5.01
+  m_Height: 6.44
   m_Direction: 1
   m_Center: {x: 0, y: 0.97, z: 0}
 --- !u!114 &456436580

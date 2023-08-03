@@ -15,7 +15,8 @@ public enum AiBossStateType
 	Punch,
 	Attack,
 	FlyFollow,
-	Dead
+	Dead,
+	SpawnMobs
 }
 
 // Interface for boss AI state classes

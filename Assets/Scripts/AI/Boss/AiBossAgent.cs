@@ -28,6 +28,10 @@ public class AiBossAgent : MonoBehaviour
 	public float BossFlyFollowRadius = 6f;
 	public float BossFlyHeight = 30f;
 
+	//Addtions by Malhar Choure for the boss minions
+	[SerializeField] protected GameObject _spawnedEnemyPrefab;
+	public GameObject SpawnedEnemy { get { return _spawnedEnemyPrefab; } }
+
 	[HideInInspector]
 	public AiSensor Sensor; // Reference to the AI sensor script
 
@@ -45,6 +49,7 @@ public class AiBossAgent : MonoBehaviour
 		StateMachine.RegisterState(new AiBossPatrolState());
 		StateMachine.RegisterState(new AiBossChaseState());
 		StateMachine.RegisterState(new AiBossPunchState());
+		StateMachine.RegisterState(new AiBossSpawnMobsState());
 		StateMachine.ChangeState(InitialBossStateType); // Change to the initial boss state
 	}
 
@@ -61,4 +66,12 @@ public class AiBossAgent : MonoBehaviour
 		if (SpawnManager.CurrentWave == SpawnManager.NumberOfWaves)
 			Sliders.SetActive(true);
 	}
+
+    //Malhar Choure was here
+    public GameObject createInstance(GameObject obj)
+	{ 
+		GameObject created=Instantiate(obj,gameObject.transform);
+
+		return created;
+    }
 }

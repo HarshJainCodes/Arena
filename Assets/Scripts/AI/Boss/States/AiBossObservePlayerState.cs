@@ -41,9 +41,9 @@ public class AiBossObservePlayerState : IAiBossState
 		Quaternion rotation = Quaternion.LookRotation(lookPos);
 		bossAgent.transform.rotation = Quaternion.Slerp(bossAgent.transform.rotation, rotation, 0.5f);
 
-		// If there are no other enemies and it's the final wave of the game, transition to the GetInArena state
+		// If there are no other enemies and it's the final wave of the game, transition to the GetInArena state //changes made to next state transition by Malhar Choure
 		if (bossAgent.SpawnManager.Enemies.Count == 0 && bossAgent.SpawnManager.CurrentWave == bossAgent.SpawnManager.NumberOfWaves)
-			bossAgent.StateMachine.ChangeState(AiBossStateType.GetInArena);
+			bossAgent.StateMachine.ChangeState(AiBossStateType.SpawnMobs);
 	}
 
 	// Function called when exiting the ObservePlayer state
@@ -53,8 +53,9 @@ public class AiBossObservePlayerState : IAiBossState
 		bossAgent.BossHealth.IsInvulnerable = false;
 
 		// Re-enable AI-related components for pathfinding and movement
-		bossAgent.GetComponent<AIDestinationSetter>().enabled = true;
-		bossAgent.GetComponent<AIPath>().enabled = true;
-		bossAgent.GetComponent<Seeker>().enabled = true;
+		bossAgent.GetComponent<AIDestinationSetter>().enabled = false;
+		bossAgent.GetComponent<AIPath>().enabled = false;
+		bossAgent.GetComponent<Seeker>().enabled = false;
+		bossAgent.GetComponentInParent<aiFollow>().enabled = false;
 	}
 }
