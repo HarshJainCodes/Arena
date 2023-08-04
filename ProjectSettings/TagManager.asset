@@ -12,6 +12,7 @@ TagManager:
   - SpawnMan
   - BossCritical
   - Boss
+  - Missile
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - 
   - 
   - MniMapIcon
-  - 
+  - ParticleEffects(Do not post process)
   - 
   - 
   - 

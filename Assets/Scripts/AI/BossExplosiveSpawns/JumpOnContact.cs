@@ -1,3 +1,4 @@
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -18,6 +19,13 @@ public class JumpOnContact : MonoBehaviour
     /// </summary>
     [SerializeField] int _DetonationDistance=2;
 
+    /// <summary>
+    /// The purpose of this variable is to only trigger the coroutine once.
+    /// </summary>
+    bool _triggered = false;
+
+    [SerializeField] AIPath _pathfinding;
+
     private void Start()
     {
         _Player = GameObject.FindGameObjectWithTag("Player");
@@ -25,8 +33,9 @@ public class JumpOnContact : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_checkDistance())
+        if(_checkDistance() && !_triggered)
         {
+            _triggered = true;
             StartCoroutine(detonate());
         }
     }
@@ -57,8 +66,10 @@ public class JumpOnContact : MonoBehaviour
     IEnumerator detonate()
     {
         gameObject.GetComponentInParent<Animator>().SetBool("Jump", true);
+        _pathfinding.enabled = false;
+        yield return null;
         //gameObject.transform.GetComponent<Animator>().SetBool("Jump",true);
-        yield return new WaitForSeconds(_TimeBeforeExploding);
-        Destroy(GetComponentInParent<Transform>().gameObject);
+        //yield return new WaitForSeconds(_TimeBeforeExploding);
+        //Destroy(GetComponentInParent<Transform>().gameObject);
     }
 }
