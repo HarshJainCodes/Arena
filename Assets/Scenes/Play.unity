@@ -21961,7 +21961,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minion: {fileID: 6570049479561560528, guid: 1dfd16a879d825e4a83ba842da29b9c5, type: 3}
-  _maxEnemies: 5
+  _maxEnemies: 20
   timerLimit: 2
   bossAnimator: {fileID: 1021807948}
   _spawnPoint:
@@ -30558,7 +30558,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904052382946}
-  m_LocalRotation: {x: 0.11095274, y: 0.6502253, z: -0.09608676, w: 0.7454287}
+  m_LocalRotation: {x: -0.39178064, y: -0.5830528, z: 0.3794807, w: -0.6021227}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30646,7 +30646,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904058514593}
-  m_LocalRotation: {x: 0.11095274, y: 0.6502253, z: -0.09608676, w: 0.7454287}
+  m_LocalRotation: {x: -0.39178064, y: -0.5830528, z: 0.3794807, w: -0.6021227}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30817,7 +30817,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904255469873}
-  m_LocalRotation: {x: 0.11095274, y: 0.6502253, z: -0.09608676, w: 0.7454287}
+  m_LocalRotation: {x: -0.39178064, y: -0.5830528, z: 0.3794807, w: -0.6021227}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30960,7 +30960,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904437498142}
-  m_LocalRotation: {x: 0.11095274, y: 0.6502253, z: -0.09608676, w: 0.7454287}
+  m_LocalRotation: {x: -0.39178064, y: -0.5830528, z: 0.3794807, w: -0.6021227}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

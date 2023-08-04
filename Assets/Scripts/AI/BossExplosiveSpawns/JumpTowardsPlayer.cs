@@ -25,7 +25,7 @@ public class JumpTowardsPlayer : MonoBehaviour
         {
             _timerMax = Random.Range(2f,6f);
             _timer = 0f;
-            _selfrb.SimpleMove((((_player.position - transform.position) / Vector3.Magnitude(_player.position - transform.position))+transform.up) * 500f);
+            _selfrb.SimpleMove(((/*(_player.position - transform.position) / Vector3.Magnitude(_player.position - transform.position))*//*+*/transform.up) * 1000f));
         }
     }
 }

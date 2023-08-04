@@ -9214,7 +9214,7 @@ CharacterController:
   m_StepOffset: 0
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1.09, z: 0}
 --- !u!114 &2127653277236212069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9274,7 +9274,7 @@ MonoBehaviour:
   radius: 0.01
   height: 0.02
   canMove: 1
-  maxSpeed: 15
+  maxSpeed: 30
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -9291,8 +9291,8 @@ MonoBehaviour:
     maximumInterval: 2
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
-  maxAcceleration: 20
-  rotationSpeed: 360
+  maxAcceleration: 70
+  rotationSpeed: 700
   slowdownDistance: 0.6
   pickNextWaypointDist: 2
   endReachedDistance: 0.2
@@ -9327,7 +9327,7 @@ CapsuleCollider:
   m_Radius: 1.47
   m_Height: 6.44
   m_Direction: 1
-  m_Center: {x: 0, y: 0.97, z: 0}
+  m_Center: {x: 0, y: 2.44, z: 0}
 --- !u!114 &456436580
 MonoBehaviour:
   m_ObjectHideFlags: 0
