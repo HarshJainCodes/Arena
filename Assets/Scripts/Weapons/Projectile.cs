@@ -53,6 +53,11 @@ public class Projectile : MonoBehaviour
             bossHealth.Damage(BossDamage * _CriticalMultiplier);
         }
 
+		if(collision.gameObject.CompareTag("SpiderEnemy"))
+		{
+			HealthSystem health= collision.gameObject.GetComponent<HealthSystem>();
+			health.decreaseHealth(100);
+		}
         if (collision.gameObject.CompareTag("Enemy"))
 		{
 			TrainingTarget target = collision.gameObject.GetComponent<TrainingTarget>();

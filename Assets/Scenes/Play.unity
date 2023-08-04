@@ -5435,7 +5435,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8547486995930537901, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
 --- !u!1001 &249816234
 PrefabInstance:
@@ -8697,7 +8698,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8264332488821935660, guid: 3ba77338631dcec40a7f729b514dd9a1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3ba77338631dcec40a7f729b514dd9a1, type: 3}
 --- !u!1001 &480491297
 PrefabInstance:
@@ -9464,6 +9466,13 @@ MonoBehaviour:
       Data3: 1632033442
       Data4: 1190678669
     Path: event:/Movements/Run
+  <firing_AR>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1001 &530205188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21981,7 +21990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minion: {fileID: 6570049479561560528, guid: 1dfd16a879d825e4a83ba842da29b9c5, type: 3}
-  _maxEnemies: 20
+  _maxEnemies: 60
   timerLimit: 2
   bossAnimator: {fileID: 1021807948}
   _spawnPoint:
@@ -30578,7 +30587,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904052382946}
-  m_LocalRotation: {x: 0.22971539, y: -0.2984945, z: 0.07450475, w: 0.92335314}
+  m_LocalRotation: {x: -0.032063525, y: 0.035208438, z: 0.0012523378, w: 0.9988647}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30666,7 +30675,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904058514593}
-  m_LocalRotation: {x: 0.22971539, y: -0.2984945, z: 0.07450475, w: 0.92335314}
+  m_LocalRotation: {x: -0.032063525, y: 0.035208438, z: 0.0012523378, w: 0.9988647}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30837,7 +30846,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904255469873}
-  m_LocalRotation: {x: 0.22971539, y: -0.2984945, z: 0.07450475, w: 0.92335314}
+  m_LocalRotation: {x: -0.032063525, y: 0.035208438, z: 0.0012523378, w: 0.9988647}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30980,7 +30989,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904437498142}
-  m_LocalRotation: {x: 0.22971539, y: -0.2984945, z: 0.07450475, w: 0.92335314}
+  m_LocalRotation: {x: -0.032063525, y: 0.035208438, z: 0.0012523378, w: 0.9988647}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -37315,11 +37324,11 @@ PrefabInstance:
     - target: {fileID: 5060004762796442627, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
       propertyPath: healthSlider
       value: 
-      objectReference: {fileID: 749453267}
+      objectReference: {fileID: 461923}
     - target: {fileID: 5060004762796442627, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
       propertyPath: shieldSlider
       value: 
-      objectReference: {fileID: 461923}
+      objectReference: {fileID: 749453267}
     - target: {fileID: 5060004762796442627, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
       propertyPath: healthColor.b
       value: 0.45882353

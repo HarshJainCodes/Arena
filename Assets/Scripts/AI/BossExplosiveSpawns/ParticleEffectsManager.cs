@@ -27,8 +27,8 @@ public class ParticleEffectsManager : MonoBehaviour
 
     IEnumerator particleTrigger()
     {
-        //yield return new WaitForSeconds(1f);
-        _chargeExplosionParticleSystem.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        _chargeExplosionParticleSystem.SetActive(true); 
         yield return new WaitForSeconds(1f);
         _chargeExplosionParticleSystem.SetActive(false);
         _mainModel.SetActive(false);
