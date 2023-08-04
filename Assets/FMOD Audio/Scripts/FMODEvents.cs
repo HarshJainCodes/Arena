@@ -20,6 +20,9 @@ public class FMODEvents : MonoBehaviour
 
     [field: SerializeField] public EventReference WallRun { get; private set; }
 
+    [field: SerializeField] public EventReference firing_AR { get; private set; }
+
+
 
     public static FMODEvents instance { get; private set; }
 

@@ -19,7 +19,7 @@ MonoBehaviour:
     Data3: 1723758781
     Data4: 2146399663
   Banks:
-  - {fileID: 2740517018283778510}
+  - {fileID: 868009551940306457}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -46,7 +46,7 @@ MonoBehaviour:
     Data3: 1749134524
     Data4: -2107092112
   Banks:
-  - {fileID: -6969779314726920061}
+  - {fileID: 6870109022138291228}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 900
---- !u!114 &-7348052141728381928
+--- !u!114 &-7314649340020008759
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,15 +64,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Jump.bank
+  m_Name: bank:/Master.bank
   m_EditorClassIdentifier: 
-  Path: ../FMOD/fmodUNITYtry/Build/Desktop/Jump.bank
-  Name: Jump
-  StudioPath: bank:/Movements/Jump
-  lastModified: 638264096743055305
+  Path: ../../../../3D WORLD/Fmod/project/trial/fmodUNITYtry/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638264834948911958
   FileSizes:
   - Name: Desktop
-    Value: 98176
+    Value: 1036
   Exists: 1
 --- !u!114 &-7272533071730523940
 MonoBehaviour:
@@ -93,7 +93,7 @@ MonoBehaviour:
     Data3: 1574385311
     Data4: 1532217699
   Banks:
-  - {fileID: -7348052141728381928}
+  - {fileID: 6225295242533650151}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -101,26 +101,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1301
---- !u!114 &-6969779314726920061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Movements.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMOD/fmodUNITYtry/Build/Desktop/Movements.bank
-  Name: Movements
-  StudioPath: bank:/Movements/Movements
-  lastModified: 638264207549480347
-  FileSizes:
-  - Name: Desktop
-    Value: 71776
-  Exists: 1
 --- !u!114 &-4212399334108482437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +120,7 @@ MonoBehaviour:
     Data3: 1632033442
     Data4: 1190678669
   Banks:
-  - {fileID: -6969779314726920061}
+  - {fileID: 6870109022138291228}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -148,26 +128,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 350
---- !u!114 &-3011421606118598095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMOD/fmodUNITYtry/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638264834948911958
-  FileSizes:
-  - Name: Desktop
-    Value: 1036
-  Exists: 1
 --- !u!114 &-2022411233854343321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,7 +147,7 @@ MonoBehaviour:
     Data3: 19891359
     Data4: -415375465
   Banks:
-  - {fileID: -7348052141728381928}
+  - {fileID: 6225295242533650151}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -195,6 +155,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 900
+--- !u!114 &-1594902920003419112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Firing.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../../3D WORLD/Fmod/project/trial/fmodUNITYtry/Build/Desktop/Firing.bank
+  Name: Firing
+  StudioPath: bank:/SFX/Weapons/Firing
+  lastModified: 638264183805546453
+  FileSizes:
+  - Name: Desktop
+    Value: 56704
+  Exists: 1
 --- !u!114 &-1319999578525964641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,7 +194,7 @@ MonoBehaviour:
     Data3: -818754922
     Data4: 11726125
   Banks:
-  - {fileID: 2740517018283778510}
+  - {fileID: 868009551940306457}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
@@ -222,6 +202,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 254563
+--- !u!114 &-242281832760287400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Reload.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../../3D WORLD/Fmod/project/trial/fmodUNITYtry/Build/Desktop/Reload.bank
+  Name: Reload
+  StudioPath: bank:/SFX/Weapons/Reload
+  lastModified: 638264834953239861
+  FileSizes:
+  - Name: Desktop
+    Value: 214272
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,14 +235,14 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 4764109058295101183}
-  - {fileID: 6735089732092216301}
-  - {fileID: 1737426355434292292}
-  - {fileID: -7348052141728381928}
-  - {fileID: 2740517018283778510}
-  - {fileID: -3011421606118598095}
-  - {fileID: -6969779314726920061}
-  - {fileID: 4638565356831914908}
+  - {fileID: 4096524836862591467}
+  - {fileID: 1398201851479893077}
+  - {fileID: -1594902920003419112}
+  - {fileID: 6225295242533650151}
+  - {fileID: 868009551940306457}
+  - {fileID: -7314649340020008759}
+  - {fileID: 6870109022138291228}
+  - {fileID: -242281832760287400}
   EditorEvents:
   - {fileID: 3330054716571393173}
   - {fileID: 3977371109773608358}
@@ -257,11 +257,32 @@ MonoBehaviour:
   - {fileID: 5538395722298405665}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -3011421606118598095}
+  - {fileID: -7314649340020008759}
   StringsBanks:
-  - {fileID: 4764109058295101183}
-  cacheTime: 638264834953239861
+  - {fileID: 4096524836862591467}
+  cacheTime: 638267417641444407
   cacheVersion: 131605
+--- !u!114 &868009551940306457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master 1.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../../3D WORLD/Fmod/project/trial/fmodUNITYtry/Build/Desktop/Master
+    1.bank
+  Name: Master 1
+  StudioPath: bank:/BGM/Master 1
+  lastModified: 638260595678417954
+  FileSizes:
+  - Name: Desktop
+    Value: 13655872
+  Exists: 1
 --- !u!114 &1024354012294830050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,7 +302,7 @@ MonoBehaviour:
     Data3: 1102818996
     Data4: 618884482
   Banks:
-  - {fileID: 4638565356831914908}
+  - {fileID: -242281832760287400}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -289,7 +310,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2518
---- !u!114 &1737426355434292292
+--- !u!114 &1398201851479893077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -299,35 +320,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Firing.bank
+  m_Name: bank:/AR.bank
   m_EditorClassIdentifier: 
-  Path: ../FMOD/fmodUNITYtry/Build/Desktop/Firing.bank
-  Name: Firing
-  StudioPath: bank:/SFX/Weapons/Firing
-  lastModified: 638264183805546453
+  Path: ../../../../3D WORLD/Fmod/project/trial/fmodUNITYtry/Build/Desktop/AR.bank
+  Name: AR
+  StudioPath: bank:/AR
+  lastModified: 638264183804023208
   FileSizes:
   - Name: Desktop
-    Value: 56704
-  Exists: 1
---- !u!114 &2740517018283778510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master 1.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMOD/fmodUNITYtry/Build/Desktop/Master 1.bank
-  Name: Master 1
-  StudioPath: bank:/BGM/Master 1
-  lastModified: 638260595678417954
-  FileSizes:
-  - Name: Desktop
-    Value: 13655872
+    Value: 53888
   Exists: 1
 --- !u!114 &2922674513292873808
 MonoBehaviour:
@@ -348,7 +349,7 @@ MonoBehaviour:
     Data3: 714973864
     Data4: -1118459402
   Banks:
-  - {fileID: 2740517018283778510}
+  - {fileID: 868009551940306457}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
@@ -375,7 +376,7 @@ MonoBehaviour:
     Data3: 792838586
     Data4: -1250815296
   Banks:
-  - {fileID: 6735089732092216301}
+  - {fileID: 1398201851479893077}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
@@ -402,7 +403,7 @@ MonoBehaviour:
     Data3: 1675172267
     Data4: -1663520879
   Banks:
-  - {fileID: 1737426355434292292}
+  - {fileID: -1594902920003419112}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -410,27 +411,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2350
---- !u!114 &4638565356831914908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Reload.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMOD/fmodUNITYtry/Build/Desktop/Reload.bank
-  Name: Reload
-  StudioPath: bank:/SFX/Weapons/Reload
-  lastModified: 638264834953239861
-  FileSizes:
-  - Name: Desktop
-    Value: 214272
-  Exists: 1
---- !u!114 &4764109058295101183
+--- !u!114 &4096524836862591467
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -442,7 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
   m_Name: bank:/Master.strings.bank
   m_EditorClassIdentifier: 
-  Path: ../FMOD/fmodUNITYtry/Build/Desktop/Master.strings.bank
+  Path: ../../../../3D WORLD/Fmod/project/trial/fmodUNITYtry/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
   lastModified: 638264834948925822
@@ -469,7 +450,7 @@ MonoBehaviour:
     Data3: 814815928
     Data4: 1225331726
   Banks:
-  - {fileID: 4638565356831914908}
+  - {fileID: -242281832760287400}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -477,7 +458,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3430
---- !u!114 &6735089732092216301
+--- !u!114 &6225295242533650151
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -487,13 +468,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/AR.bank
+  m_Name: bank:/Jump.bank
   m_EditorClassIdentifier: 
-  Path: ../FMOD/fmodUNITYtry/Build/Desktop/AR.bank
-  Name: AR
-  StudioPath: bank:/AR
-  lastModified: 638264183804023208
+  Path: ../../../../3D WORLD/Fmod/project/trial/fmodUNITYtry/Build/Desktop/Jump.bank
+  Name: Jump
+  StudioPath: bank:/Movements/Jump
+  lastModified: 638264096743055305
   FileSizes:
   - Name: Desktop
-    Value: 53888
+    Value: 98176
+  Exists: 1
+--- !u!114 &6870109022138291228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Movements.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../../3D WORLD/Fmod/project/trial/fmodUNITYtry/Build/Desktop/Movements.bank
+  Name: Movements
+  StudioPath: bank:/Movements/Movements
+  lastModified: 638267417641444407
+  FileSizes:
+  - Name: Desktop
+    Value: 71776
   Exists: 1
