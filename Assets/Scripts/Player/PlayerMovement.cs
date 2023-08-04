@@ -583,26 +583,24 @@ namespace Arena
         //Functionality of all sounds
        private void UpdateSound()
         {
-            //state = wallrunning
-            if (isWallRunning)
+            
+            if (state == MovementState.wallRunning)
             {
                 PLAYBACK_STATE pbState;
                 wallrunSFX.getPlaybackState(out pbState);
                 if (pbState.Equals(PLAYBACK_STATE.STOPPED))
                 {
                     wallrunSFX.start();
-
+                    Debug.Log("wallrun");
                 }
             }
-            
-           
-           
+
             else
             {  
                     wallrunSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-                    
             }
-            if (grounded && playerAnim.IsRunning() && isSprinting == true)
+
+            if (state == MovementState.sprinting)
             {
                 PLAYBACK_STATE pbState;
                 runSFX.getPlaybackState(out pbState);
@@ -636,7 +634,7 @@ namespace Arena
             if (state == MovementState.idle || jumping==true)
             {
                 //Debug.LogError("idle");
-                wallrunSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                //wallrunSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                 runSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                 walkSFX.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             }
