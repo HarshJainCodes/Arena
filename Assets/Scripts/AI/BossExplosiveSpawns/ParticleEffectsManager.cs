@@ -18,7 +18,7 @@ public class ParticleEffectsManager : MonoBehaviour
 
     private void Update()
     {
-        if(_jumpCheck.GetBool("Jump") && !_Triggered)
+        if(_jumpCheck.GetBool("Explode") && !_Triggered)
         {
             _Triggered = true;
             StartCoroutine(particleTrigger());

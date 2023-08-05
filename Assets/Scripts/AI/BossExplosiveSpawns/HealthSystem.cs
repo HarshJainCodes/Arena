@@ -32,7 +32,7 @@ public class HealthSystem : MonoBehaviour
     {
         _setter.enabled = false;
         yield return new WaitForSeconds(0f);
-        _animator.SetBool("Jump",true);
+        _animator.SetBool("Explode",true);
         //Destroy(gameObject.GetComponentInParent<Transform>().gameObject);
     }
 }

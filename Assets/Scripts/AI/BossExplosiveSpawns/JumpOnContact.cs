@@ -67,7 +67,7 @@ public class JumpOnContact : MonoBehaviour
     {
         
         _pathfinding.enabled = false;
-        gameObject.GetComponentInParent<Animator>().SetBool("Jump", true);
+        gameObject.GetComponentInParent<Animator>().SetBool("Explode", true);
         yield return null;
         //gameObject.transform.GetComponent<Animator>().SetBool("Jump",true);
         //yield return new WaitForSeconds(_TimeBeforeExploding);
