@@ -41,9 +41,14 @@ public class AiBossObservePlayerState : IAiBossState
 		Quaternion rotation = Quaternion.LookRotation(lookPos);
 		bossAgent.transform.rotation = Quaternion.Slerp(bossAgent.transform.rotation, rotation, 0.5f);
 
-		// If there are no other enemies and it's the final wave of the game, transition to the GetInArena state //changes made to next state transition by Malhar Choure
-		if (bossAgent.SpawnManager.Enemies.Count == 0 && bossAgent.SpawnManager.CurrentWave == bossAgent.SpawnManager.NumberOfWaves)
-			bossAgent.StateMachine.ChangeState(AiBossStateType.SpawnMobs);
+        if (bossAgent.CurrentEnemy.transform.childCount == 0 && bossAgent.SpawnManager.CurrentWave == bossAgent.SpawnManager.NumberOfWaves && bossAgent.SpawnManager.Enemies.Count == 0)
+        {
+            bossAgent.StateMachine.ChangeState(AiBossStateType.SpawnMobs);
+        }
+        // If there are no other enemies and it's the final wave of the game, transition to the GetInArena state //changes made to next state transition by Malhar Choure
+        /*if (bossAgent.SpawnManager.Enemies.Count == 0 && bossAgent.SpawnManager.CurrentWave == bossAgent.SpawnManager.NumberOfWaves)
+			bossAgent.StateMachine.ChangeState(AiBossStateType.SpawnMobs);*/
+		
 	}
 
 	// Function called when exiting the ObservePlayer state

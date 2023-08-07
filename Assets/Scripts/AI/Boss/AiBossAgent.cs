@@ -30,10 +30,14 @@ public class AiBossAgent : MonoBehaviour
 
 	//Addtions by Malhar Choure for the boss minions
 	[SerializeField] protected GameObject _spawnedEnemyPrefab;
-	public GameObject SpawnedEnemy { get { return _spawnedEnemyPrefab; } }
+	public GameObject SpawnedEnemy;
+	public GameObject CurrentEnemy;
+	//Additions end here
 
 	[HideInInspector]
 	public AiSensor Sensor; // Reference to the AI sensor script
+
+
 
 	void Start()
 	{

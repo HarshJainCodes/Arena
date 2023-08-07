@@ -31,6 +31,11 @@ public class ExplodeScript : MonoBehaviour
     /// This bool makes sure that the destination setter script is turned on and off only once per cycle of update to not make it ineffeicent or introduce any problems.
     /// </summary>
     bool _triggeronce = false;
+
+    /// <summary>
+    /// The animator is called to put it into explode state
+    /// </summary>
+    [SerializeField] private Animator _parentAnimator;
     // Start is called before the first frame update
     void Start()
     {
@@ -76,7 +81,8 @@ public class ExplodeScript : MonoBehaviour
 
     IEnumerator destruct()
     {
-        Destroy(GetComponentInParent<Transform>().transform.gameObject);
+        _parentAnimator.SetBool("Explode", true);
+        Destroy(_parentAnimator.gameObject);
         yield return null;
     }
 }

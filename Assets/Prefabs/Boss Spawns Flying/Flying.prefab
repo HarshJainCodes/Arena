@@ -9333,6 +9333,7 @@ MonoBehaviour:
   _destinationSetterScript: {fileID: 7092867487650926215}
   _explodeDetectRadius: 18
   _speed: 4
+  _parentAnimator: {fileID: 3676196027261449260}
 --- !u!1 &7156299210018150598
 GameObject:
   m_ObjectHideFlags: 0

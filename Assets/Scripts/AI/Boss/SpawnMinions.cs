@@ -6,6 +6,8 @@ using UnityEngine;
 public class SpawnMinions : MonoBehaviour
 {
     [SerializeField] private GameObject _minion;
+    [SerializeField] private GameObject _flyingMinions;
+    private GameObject currentMinion;
     [SerializeField] private int _maxEnemies = 5;
     [SerializeField] private float timerLimit=2f;
     [SerializeField] private Animator bossAnimator;
@@ -18,7 +20,7 @@ public class SpawnMinions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentMinion = _minion;
     }
 
     // Update is called once per frame
@@ -28,23 +30,28 @@ public class SpawnMinions : MonoBehaviour
         bool startSpawn = bossAnimator.GetBool("StartFiring");
         if(startSpawn && timer>timerLimit)
         {
-            
-            timer = 0;
-            StartCoroutine(spawn(currnetNo));
-            currnetNo++;
+            if (currnetNo != _maxEnemies)
+            {
+                timer = 0;
+                StartCoroutine(spawn(currnetNo));
+                currnetNo++;
+            }
             if (currnetNo == _maxEnemies)
             {
                 bossAnimator.SetBool("StartFiring", false);
             }
-            
-            
+        }
+        if(currnetNo==_maxEnemies && currentMinion==_minion)
+        {
+            currentMinion = _flyingMinions;
+            currnetNo = 0;
         }
     }
 
     IEnumerator spawn(int no)
     {
         yield return new WaitForSeconds(1);
-        GameObject created = Instantiate(_minion, _spawnPoint[no%_spawnPoint.Length].position, Quaternion.identity, _spawns);
+        GameObject created = Instantiate(currentMinion, _spawnPoint[no%_spawnPoint.Length].position, Quaternion.identity, _spawns);
         //created.transform.LookAt(_player);
         created.GetComponentInChildren<AIDestinationSetter>().target = _player;
         //Rigidbody rb = created.GetComponentInChildren<Rigidbody>();

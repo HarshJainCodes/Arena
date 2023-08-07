@@ -21994,7 +21994,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minion: {fileID: 6570049479561560528, guid: 1dfd16a879d825e4a83ba842da29b9c5, type: 3}
-  _maxEnemies: 60
+  _flyingMinions: {fileID: 7975739387253322988, guid: 545b7ec0a9947e947a2384f827d31eab, type: 3}
+  _maxEnemies: 20
   timerLimit: 2
   bossAnimator: {fileID: 1021807948}
   _spawnPoint:
@@ -30591,7 +30592,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904052382946}
-  m_LocalRotation: {x: 0.2745421, y: 0.34918278, z: -0.10781679, w: 0.8894232}
+  m_LocalRotation: {x: -0.00000694394, y: -0.0000051577204, z: -0.00000005795186, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30679,7 +30680,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904058514593}
-  m_LocalRotation: {x: 0.2745421, y: 0.34918278, z: -0.10781679, w: 0.8894232}
+  m_LocalRotation: {x: -0.00000694394, y: -0.0000051577204, z: -0.00000005795186, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30850,7 +30851,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904255469873}
-  m_LocalRotation: {x: 0.2745421, y: 0.34918278, z: -0.10781679, w: 0.8894232}
+  m_LocalRotation: {x: -0.00000694394, y: -0.0000051577204, z: -0.00000005795186, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30993,7 +30994,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904437498142}
-  m_LocalRotation: {x: 0.2745421, y: 0.34918278, z: -0.10781679, w: 0.8894232}
+  m_LocalRotation: {x: -0.00000694394, y: -0.0000051577204, z: -0.00000005795186, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -36553,6 +36554,10 @@ PrefabInstance:
       propertyPath: PatrolPoint
       value: 
       objectReference: {fileID: 6690513648691408672}
+    - target: {fileID: 4375336841687681576, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
+      propertyPath: CurrentEnemy
+      value: 
+      objectReference: {fileID: 497627136}
     - target: {fileID: 4375336841687681576, guid: 02c5b0d713248de4b83f51b5d538e044, type: 3}
       propertyPath: SpawnManager
       value: 

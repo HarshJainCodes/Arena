@@ -9125,6 +9125,7 @@ GameObject:
   - component: {fileID: 8843320859821065125}
   - component: {fileID: 4117790417866292281}
   - component: {fileID: 6311837867878505345}
+  - component: {fileID: 3548691330792869072}
   m_Layer: 0
   m_Name: GodOffset
   m_TagString: SpiderEnemy
@@ -9413,6 +9414,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 470200964495458576}
   _setter: {fileID: 6640186383866532068}
+--- !u!114 &3548691330792869072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6249224627539468775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c069e4f47eb6a4392fa1e96cfc82e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gravity: 20
+  _self: {fileID: 5782677473288013868}
+  _target: {fileID: 0}
+  _speed: 10
+  _crawlUpSpeed: 10
+  _gravityIsEnabled: 1
+  _wallLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  _stopDistance: 2
+  _aiPathfinding: {fileID: 6640186383866532068}
+  _firstFloorHeight: 91
+  _mainModel: {fileID: 1027438709712804402}
 --- !u!1 &6256148255845445114
 GameObject:
   m_ObjectHideFlags: 0
@@ -10148,7 +10174,6 @@ GameObject:
   - component: {fileID: 7478660427329475791}
   - component: {fileID: 4624490110986903557}
   - component: {fileID: 470200964495458576}
-  - component: {fileID: 7982799081799908925}
   - component: {fileID: 1673184207246775753}
   m_Layer: 0
   m_Name: BossSpawn
@@ -10244,18 +10269,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7982799081799908925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6570049479561560528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54bdb0acd6fbfc541a7f97b1859090ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1673184207246775753
 MonoBehaviour:
   m_ObjectHideFlags: 0
