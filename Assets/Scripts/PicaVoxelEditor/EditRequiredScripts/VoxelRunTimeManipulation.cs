@@ -6,6 +6,9 @@ using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>s
+/// Major Class that handles all the Voxel Manipulation
+/// </summary>
 public class VoxelRunTimeManipulation : MonoBehaviour
 {
     /// <summary>
