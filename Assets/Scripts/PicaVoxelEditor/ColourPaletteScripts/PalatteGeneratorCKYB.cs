@@ -5,8 +5,14 @@ using UnityEditor;
 using UnityEngine;
 //using static UnityEditor.Progress;
 
+/// <summary>
+/// This component generates the CKYB palette in the scene
+/// </summary>
 public class PalatteGeneratorCKYB : MonoBehaviour
 {
+    /// <summary>
+    /// This script is used to generate the CKYB colour palette in the colour editor.
+    /// </summary>
     private void Awake()
     {
         int i = 0;

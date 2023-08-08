@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// This script changes cam selection between perspective and orthographic
+/// </summary>
 public class CamPerspectiveScript : MonoBehaviour
 {
     /// <summary>

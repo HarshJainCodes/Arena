@@ -53,6 +53,7 @@ public class SpawnMinions : MonoBehaviour
         yield return new WaitForSeconds(1);
         GameObject created = Instantiate(currentMinion, _spawnPoint[no%_spawnPoint.Length].position, Quaternion.identity, _spawns);
         //created.transform.LookAt(_player);
+        if(created.GetComponentInChildren<AIDestinationSetter>() != null)
         created.GetComponentInChildren<AIDestinationSetter>().target = _player;
         //Rigidbody rb = created.GetComponentInChildren<Rigidbody>();
         //rb.AddForce(created.transform.forward * _force);

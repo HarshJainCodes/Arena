@@ -6,6 +6,9 @@ using System.Xml.Serialization;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// This script allows camera to swivel around the object that we are trying to edit
+/// </summary>
 public class ImprovedCamSwivel : MonoBehaviour
 {
     /// <summary>
@@ -53,6 +56,7 @@ public class ImprovedCamSwivel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //radial to cartesian conversion
         _InputScript();
         float x = _Radius * Mathf.Cos(_Theta) * Mathf.Sin(_Phi);
         float z = _Radius * Mathf.Sin(_Theta) * Mathf.Sin(_Phi);
@@ -60,12 +64,12 @@ public class ImprovedCamSwivel : MonoBehaviour
         _PositionCastesian = new Vector3(x, y, z);
         transform.position = _PositionCastesian;
 
-
+        //To have the camera constantly point to the swivel transform
         transform.LookAt(_SwivelObject);
     }
 
     /// <summary>
-    /// This method is used to swivel around the object that we are editing
+    /// This method is used to swivel around the object that we are editing as well as clamp the movement of said camera 
     /// </summary>
     private void _InputScript()
     {
@@ -83,6 +87,8 @@ public class ImprovedCamSwivel : MonoBehaviour
     /// </summary>
     public bool CanMove { get { return _CanMove; } set { _CanMove = value; } }
 
-
+    /// <summary>
+    /// Setter method to change the swivel object if necessary.
+    /// </summary>
     public Transform ChangeTransform { set { _SwivelObject = value; } }
 }

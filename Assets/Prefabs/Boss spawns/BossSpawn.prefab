@@ -9439,6 +9439,7 @@ MonoBehaviour:
   _aiPathfinding: {fileID: 6640186383866532068}
   _firstFloorHeight: 91
   _mainModel: {fileID: 1027438709712804402}
+  _gameObjectAnimator: {fileID: 470200964495458576}
 --- !u!1 &6256148255845445114
 GameObject:
   m_ObjectHideFlags: 0
@@ -10285,6 +10286,8 @@ MonoBehaviour:
   _mainModel: {fileID: 4697319237700297460}
   _chargeExplosionParticleSystem: {fileID: 1655926246901468877}
   _explodeParticleSystem: {fileID: 5693179904755711796}
+  _explosionDamageRadius: 10
+  _targetSetter: {fileID: 655344150244817662}
 --- !u!1 &6646710275047026996
 GameObject:
   m_ObjectHideFlags: 0

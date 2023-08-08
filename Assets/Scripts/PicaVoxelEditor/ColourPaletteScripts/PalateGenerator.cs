@@ -5,6 +5,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// This script is used to generate a palete in the scene
+/// </summary>
 public class PalateGenerator : MonoBehaviour
 {
 

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// This component is present on all the individual color buttons on the various palettes
+/// </summary>
 [RequireComponent(typeof(Image))]
 [RequireComponent(typeof(Button))]
 [ExecuteInEditMode]

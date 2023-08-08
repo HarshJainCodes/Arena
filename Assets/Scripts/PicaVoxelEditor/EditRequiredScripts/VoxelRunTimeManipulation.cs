@@ -289,13 +289,25 @@ public class VoxelRunTimeManipulation : MonoBehaviour
     /// </summary>
     public Transform CurrentVolume { get {  return _VoxelVolumes[_SelectedVolume].transform; } }
 
+
+    /// <summary>
+    /// Function that returns the currently selected volume
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns>It returns the volume at a particular index</returns>
     public Volume getVolume(int index)
     { 
          return _VoxelVolumes[index]; 
     }
 
+    /// <summary>
+    /// Getter and setter method for selected volume and turns of the deselected volume
+    /// </summary>
     public int SelectedVolume { set { _VoxelVolumes[_SelectedVolume].transform.gameObject.SetActive(false); _SelectedVolume = value; _VoxelVolumes[_SelectedVolume].transform.gameObject.SetActive(true); } } //_CamSwivel.ChangeTransform = CurrentVolume; } }
 
+    /// <summary>
+    /// Scripts for the operation reversal stack. They do no work as of yet.
+    /// </summary>
     public void ResetPrefab()
     {
         Destroy(_VoxelVolumes[_SelectedVolume].transform.gameObject);
@@ -339,8 +351,8 @@ public class VoxelRunTimeManipulation : MonoBehaviour
 
 }
 /// <summary>
-/// This class is to record the previous operation that was performed on the volume so as to be able to reverse it. It 
-/// is still only store in memory and will be flushed once the 
+/// This class is to record the previous operation that was performed on the volume so as to be able to reverse it. It tries to store the entire volume but i feel that is not able to save
+/// the voxel data as it is probably only creating a shallow copy and hence the changes in volume are reflected along all
 /// </summary>
 public class previousOp
 {

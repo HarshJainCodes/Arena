@@ -4,6 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class tailors to loading the block data from JSON file onto a volume of a prefab of the same size
+/// </summary>
 public class LoadBlock : MonoBehaviour
 {
     private DataSerializer _DataSerializer = new DataSerializer();
@@ -19,6 +22,9 @@ public class LoadBlock : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// It converts the JSON data. The JSON holds value of each individual voxel which is then set on a standard prefab voxel volume
+    /// </summary>
     private void _setVoxelBlock()
     {
         for(int i=0;i<_Volumes.Length;i++)
@@ -48,6 +54,11 @@ public class LoadBlock : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// This function grabs the actual JSON file and stores it into the <see cref="VolumeStorage"/> class which is tailor made for storing serializable data regarding 
+    /// <see cref="PicaVoxel.Volume"/>. It also calls the <see cref="_setVoxelBlock"/> and the <see cref="SetExport"/> functions.
+    /// </summary>
     public void LoadData()
     {
         getVolumes();
@@ -67,6 +78,9 @@ public class LoadBlock : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This sets the export value in the <see cref="GetBlocks"/> singleton object as true so that in play mode the custom blocks are loaded in.
+    /// </summary>
     public void SetExport()
     {
         GetBlocks.blocks= _Volumes;

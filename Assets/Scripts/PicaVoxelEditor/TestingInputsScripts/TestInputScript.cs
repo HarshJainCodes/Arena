@@ -2,9 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Originally used to test the inputs without using a UI but now kept as shotcut keys to edit blocks
+/// </summary>
 public class TestInputScript : MonoBehaviour
 {
+    /// <summary>
+    /// Handle to CamToPerspectiveScript
+    /// </summary>
     [SerializeField] private CamPerspectiveScript _CamManager;
+    /// <summary>
+    /// Handle to VoxelRunTimeManipulation Script
+    /// </summary>
     [SerializeField] private VoxelRunTimeManipulation _ToolManipulation;
 
     private void Update()
@@ -12,6 +21,9 @@ public class TestInputScript : MonoBehaviour
         InputScript();
     }
 
+    /// <summary>
+    /// Originally used to test the inputs without using a UI but now kept as shotcut keys to edit blocks
+    /// </summary>
     private void InputScript()
     {
         if(Input.GetKeyDown(KeyCode.N))

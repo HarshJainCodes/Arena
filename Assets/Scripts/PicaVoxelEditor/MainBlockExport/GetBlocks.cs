@@ -3,9 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Singleton that tells the play scene whether to use the created blocks or the default blocks
+/// </summary>
 public class GetBlocks : MonoBehaviour
 {
+    /// <summary>
+    /// Singleton instance is created here and this scripts checks if the blocks were loaded to run ingame.
+    /// </summary>
     private static GetBlocks _instance;
+    /// <summary>
+    /// returns the private instance to call functions
+    /// </summary>
     public  static GetBlocks Instance { get { return _instance; } private set { _instance = value; } }
 
     [SerializeField]
@@ -25,7 +34,5 @@ public class GetBlocks : MonoBehaviour
             DontDestroyOnLoad(this);
         }
     }
-    // Start is called before the first frame update
-
-    // Update is called once per frame
+    // currently the script is only using a single bool export and yes i can just use player prefs instead but originally the scrip had more purpose.
 }

@@ -55,9 +55,14 @@ public class SpiderCrawlScript : MonoBehaviour
     /// This bool decides whether to use A* or direct pathfinding
     /// </summary>
     bool _isDirectPathfinding = true;
-
+    /// <summary>
+    /// It contains the mainmodel of the gameObject
+    /// </summary>
     [SerializeField] Transform _mainModel;
-
+    /// <summary>
+    /// 
+    /// </summary>
+    [SerializeField] Animator _gameObjectAnimator;
     private void Start()
     {
         _target = GameObject.Find("Player").transform;
@@ -72,6 +77,7 @@ public class SpiderCrawlScript : MonoBehaviour
                 gravity();
                 setRotation();
             }
+            if(!_gameObjectAnimator.GetBool("Explode"))
             _moveToTarget();
             checkWall();
             crawlUp();
@@ -113,7 +119,7 @@ public class SpiderCrawlScript : MonoBehaviour
     void checkWall()
     {
         //Raycast(transform.position, _direction, 2, _wallLayer);
-        if (Physics.Raycast(transform.position-new Vector3(0,transform.localScale.y/2,0),_direction,3,_wallLayer))
+        if (Physics.Raycast(transform.position-new Vector3(0,transform.localScale.y/2,0),_direction,4,_wallLayer))
         {
             _gravityIsEnabled= false;
         }
@@ -147,7 +153,7 @@ public class SpiderCrawlScript : MonoBehaviour
     {
         if (_aiPathfinding != null)
         {
-            if (_target.transform.position.y < _firstFloorHeight)
+            if (_target.transform.position.y < _firstFloorHeight || Vector3.Magnitude(_target.position-transform.position)>100)
             {
                 _aiPathfinding.enabled = true;
                 _isDirectPathfinding = false;
