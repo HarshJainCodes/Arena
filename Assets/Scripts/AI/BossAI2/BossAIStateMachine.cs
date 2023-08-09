@@ -25,6 +25,8 @@ public class BossAIStateMachine : MonoBehaviour
     {
         if(_globalInterrupt)
         {
+            
+            Boss.Aipath.enabled = false;
             BossStates[(int)CurrentState].exit(Boss);
             CurrentState = BossState.None;
             _globalInterrupt = false;

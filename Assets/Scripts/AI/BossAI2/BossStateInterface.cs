@@ -10,7 +10,8 @@ public enum BossState
     Attack,
     Jump,
     Death,
-    Spawn
+    Spawn,
+    Dash
 }
 public abstract class BossStateInterface : MonoBehaviour
 {
