@@ -6,7 +6,7 @@ public class ObserveState : BossStateInterface
 {
     public override void update(BossMain boss)
     {
-        Vector3 lookAtObj = new Vector3(boss.Target.position.x,boss.transform.position.x,boss.Target.position.z);
+        Vector3 lookAtObj = new Vector3(boss.Target.position.x,boss.transform.position.y,boss.Target.position.z);
         boss.gameObject.transform.LookAt(lookAtObj);
     }
 

@@ -13,10 +13,13 @@ public class SpawnMinions : MonoBehaviour
     [SerializeField] private Animator bossAnimator;
     [SerializeField] private Transform[] _spawnPoint;
     [SerializeField] private Transform _player;
+    [SerializeField] private BossMain _boss;
     [SerializeField] private int _force;
     [SerializeField] private Transform _spawns;
     private int currnetNo = 0;
     private float timer = 0f;
+    private bool finalSpawn = false;
+    public bool FinalSpawn { get { return finalSpawn; } }
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +30,7 @@ public class SpawnMinions : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        bool startSpawn = bossAnimator.GetBool("StartFiring");
+        bool startSpawn = bossAnimator.GetBool("SpawnEnemies");
         if(startSpawn && timer>timerLimit)
         {
             if (currnetNo != _maxEnemies)
@@ -36,13 +39,14 @@ public class SpawnMinions : MonoBehaviour
                 StartCoroutine(spawn(currnetNo));
                 currnetNo++;
             }
-            if (currnetNo == _maxEnemies)
+            if (currnetNo == _maxEnemies && !finalSpawn)
             {
-                bossAnimator.SetBool("StartFiring", false);
+                _boss.changeState(BossState.Observe);
             }
         }
         if(currnetNo==_maxEnemies && currentMinion==_minion)
         {
+            finalSpawn = true;
             currentMinion = _flyingMinions;
             currnetNo = 0;
         }

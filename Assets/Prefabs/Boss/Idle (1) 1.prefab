@@ -5736,37 +5736,6 @@ Transform:
   m_Father: {fileID: 3191281160419227774}
   m_RootOrder: 117
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &524123681790335978
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8903852750909991767}
-  m_Layer: 0
-  m_Name: Transform for patrol
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8903852750909991767
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 524123681790335978}
-  m_LocalRotation: {x: -0, y: -0, z: 7.1760974e-12, w: 1}
-  m_LocalPosition: {x: 0, y: -1.34, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6484875966904602639}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &532397858933667344
 GameObject:
   m_ObjectHideFlags: 0
@@ -60348,7 +60317,6 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 8903852750909991767}
   - {fileID: 1637186848879472594}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -69201,7 +69169,7 @@ Transform:
   - {fileID: 565918466432454999}
   - {fileID: 172036239058010210}
   m_Father: {fileID: 6484875966904602639}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6545031342151240562
 MeshFilter:
@@ -69322,6 +69290,9 @@ MonoBehaviour:
   BossPunchDamage: 6
   BossFlyFollowRadius: 6
   BossFlyHeight: 30
+  _spawnedEnemyPrefab: {fileID: 0}
+  SpawnedEnemy: {fileID: 0}
+  CurrentEnemy: {fileID: 0}
   Sensor: {fileID: 0}
 --- !u!1 &6862706810656654844
 GameObject:

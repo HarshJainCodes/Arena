@@ -9121,7 +9121,6 @@ GameObject:
   - component: {fileID: 6640186383866532068}
   - component: {fileID: 655344150244817662}
   - component: {fileID: 456436581}
-  - component: {fileID: 456436580}
   - component: {fileID: 8843320859821065125}
   - component: {fileID: 4117790417866292281}
   - component: {fileID: 6311837867878505345}
@@ -9332,46 +9331,6 @@ CapsuleCollider:
   m_Height: 6.44
   m_Direction: 1
   m_Center: {x: 0, y: 3.18, z: 0}
---- !u!114 &456436580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6249224627539468775}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 437864b4e9c49dd4396ad1a48e9ab848, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _name: Spawned Enemy
-  health: 25
-  maxHealth: 25
-  shield: 25
-  maxShield: 25
-  healthSlider: {fileID: 0}
-  shieldSlider: {fileID: 0}
-  showUI: 0
-  damagePopUp: {fileID: 0}
-  shieldColor: {r: 0, g: 1, b: 0.91636705, a: 0}
-  healthColor: {r: 0.07006645, g: 1, b: 0, a: 0}
-  xVariation: 0
-  player: {fileID: 0}
-  events:
-    OnSpawn:
-      m_PersistentCalls:
-        m_Calls: []
-    OnShoot:
-      m_PersistentCalls:
-        m_Calls: []
-    OnDamaged:
-      m_PersistentCalls:
-        m_Calls: []
-    OnDeath:
-      m_PersistentCalls:
-        m_Calls: []
-  timeToDie: 3
-  aiAgent: {fileID: 0}
 --- !u!114 &8843320859821065125
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,12 +12,13 @@ public class SpawnState : BossStateInterface
     public override void enter(BossMain bossAgent)
     {
         bossAgent.Aipath.enabled = false;
-        bossAgent._animationController.SetTrigger("Attack");
+        bossAgent._animationController.SetBool("SpawnEnemies",true);
         //destroy boss agent itself after some time.
     }
 
     public override void exit(BossMain bossAgent)
     {
+        bossAgent._animationController.SetBool("SpawnEnemies", false);
         bossAgent._animationController.SetTrigger("GlobalInterrupt");
     }
 }

@@ -8,6 +8,10 @@ public class ChaseState : BossStateInterface
     {
         Vector3 lookAtObj = new Vector3(boss.Target.position.x, boss.transform.position.x, boss.Target.position.z);
         boss.gameObject.transform.LookAt(lookAtObj);
+        if(!boss.Aipath.enabled)
+        {
+            boss.Aipath.enabled = true;
+        }
     }
 
     public override void enter(BossMain bossAgent)
@@ -18,6 +22,7 @@ public class ChaseState : BossStateInterface
 
     public override void exit(BossMain bossAgent)
     {
+        bossAgent.Aipath.enabled = false;
         bossAgent._animationController.SetTrigger("GlobalInterrupt");
     }
 }

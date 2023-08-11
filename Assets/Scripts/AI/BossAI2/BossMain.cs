@@ -13,10 +13,15 @@ public class BossMain : MonoBehaviour
     public Transform Target;
     public float topFloorHeight;
     public Animator _animationController;
+    public float DashTime=8f;
+    public float AttackTime = 4f;
+    public float JumpTime = 4f;
+    public CharacterController CharController;
 
     /// <summary>
     /// This is the state machine that holds and switches between various states.
     /// </summary>
+    [Tooltip("This is already set by script")]
     public BossAIStateMachine _stateMachine;
     private BossStateInterface _none=new NoneState();
     private BossStateInterface _idle= new IdleState();
@@ -27,11 +32,16 @@ public class BossMain : MonoBehaviour
     private BossStateInterface _death=new DeathState();
     private BossStateInterface _spawn=new SpawnState();
     private BossStateInterface _dash=new DashState();
+
+    private void Awake()
+    {
+        _stateMachine = new BossAIStateMachine(this);
+    }
     // Start is called before the first frame update
     void Start()
     {
+        
         DestinationSetter.target = Target;
-        _stateMachine = new BossAIStateMachine(this);
         _stateMachine.addStates(_none, BossState.None);
         _stateMachine.addStates(_idle, BossState.Idle);
         _stateMachine.addStates(_observe, BossState.Observe);
@@ -39,7 +49,7 @@ public class BossMain : MonoBehaviour
         _stateMachine.addStates(_attack, BossState.Attack);
         _stateMachine.addStates(_jump, BossState.Jump);
         _stateMachine.addStates(_death, BossState.Death);
-        _stateMachine.addStates(_death, BossState.Spawn);
+        _stateMachine.addStates(_spawn, BossState.Spawn);
         _stateMachine.addStates(_dash, BossState.Dash);
         _stateMachine.GlobalInterrupt = true;
     }
