@@ -350,8 +350,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../../../3D WORLD/Fmod/project/trial/fmodUNITYtry/Arena.fspro
-  sourceBankPath: ../../../../3D WORLD/Fmod/project/trial/fmodUNITYtry/Build
+  sourceProjectPath: ../FMOD/fmodUNITYtry/Arena.fspro
+  sourceBankPath: ../FMOD/fmodUNITYtry/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1

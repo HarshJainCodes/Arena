@@ -83,7 +83,7 @@ public class Muzzle : MonoBehaviour
         {
             // particles.Emit(flashParticlesCount);
             particles.Play(true);
-            Debug.Log("Emitting");
+            //Debug.Log("Emitting");
         }
 
         // AudioManagerServices.instance.PlayOneShot(audioClipFire,new AudioSettings(1.0f,0.0f,true));

@@ -9193,9 +9193,10 @@ GameObject:
   - component: {fileID: 7092867487650926212}
   - component: {fileID: 7092867487650926215}
   - component: {fileID: 7092867487650926214}
+  - component: {fileID: 1237137268994622949}
   m_Layer: 9
   m_Name: GodOffset
-  m_TagString: Untagged
+  m_TagString: FlyingEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9334,6 +9335,20 @@ MonoBehaviour:
   _explodeDetectRadius: 18
   _speed: 4
   _parentAnimator: {fileID: 3676196027261449260}
+--- !u!114 &1237137268994622949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7150503680248009947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3cc60f9bdacfe4f9f52d3703231846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 40
+  _dest: {fileID: 6223937359628222038}
 --- !u!1 &7156299210018150598
 GameObject:
   m_ObjectHideFlags: 0
@@ -10411,7 +10426,7 @@ GameObject:
   - component: {fileID: 5929991178621297139}
   - component: {fileID: 8480129419740763449}
   - component: {fileID: 3676196027261449260}
-  - component: {fileID: 5275901324066073835}
+  - component: {fileID: 6223937359628222038}
   m_Layer: 9
   m_Name: Flying
   m_TagString: FlyingEnemy
@@ -10506,7 +10521,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5275901324066073835
+--- !u!114 &6223937359628222038
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10515,7 +10530,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7975739387253322988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b3cc60f9bdacfe4f9f52d3703231846, type: 3}
+  m_Script: {fileID: 11500000, guid: 11e5d327135141147b8db34d0b3a62bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8007956684221046715
