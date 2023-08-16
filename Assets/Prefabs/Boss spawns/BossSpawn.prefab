@@ -9353,7 +9353,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6249224627539468775}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c558cd1282982964ca6a3013207375c8, type: 3}
   m_Name: 
@@ -10245,7 +10245,7 @@ MonoBehaviour:
   _mainModel: {fileID: 4697319237700297460}
   _chargeExplosionParticleSystem: {fileID: 1655926246901468877}
   _explodeParticleSystem: {fileID: 5693179904755711796}
-  _explosionDamageRadius: 10
+  _explosionDamageRadius: 20
   _targetSetter: {fileID: 655344150244817662}
 --- !u!1 &6646710275047026996
 GameObject:

@@ -14,6 +14,7 @@ TagManager:
   - Boss
   - Missile
   - SpiderEnemy
+  - FlyingEnemy
   layers:
   - Default
   - TransparentFX

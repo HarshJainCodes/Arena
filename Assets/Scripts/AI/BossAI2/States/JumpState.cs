@@ -41,18 +41,19 @@ public class JumpState : BossStateInterface
                 Vector3 s = new Vector3(start.x, 0f, start.z);
                 horizontalSpeed = Vector3.Magnitude(d - s)/reachTime;
                 float vertical = (destination.z - start.z);
-                verticalSpeed = ((vertical)-(9.8f / 2f * (reachTime) * (reachTime)))*3.0f;
+                verticalSpeed = 200 * Time.deltaTime;//((vertical)-(9.8f / 2f * (reachTime) * (reachTime)))*3.0f;
                 Debug.Log(destination);
                 Debug.Log(start);
                 Debug.Log(verticalSpeed);
                 Debug.Log(horizontalSpeed);
             }
         }
-        if(moveToPoint)
+        
+        if(moveToPoint && !boss.CharController.isGrounded)
         {
             Vector3 direction = (destination - start) / Vector3.Magnitude(destination - start);
             boss.CharController.Move(new Vector3(direction.x * horizontalSpeed, verticalSpeed, direction.z * horizontalSpeed)*Time.deltaTime); 
-            verticalSpeed = verticalSpeed - 8f;
+            verticalSpeed = verticalSpeed - 50f*Time.deltaTime;
         }
 
     }
@@ -69,7 +70,7 @@ public class JumpState : BossStateInterface
     {
         bossAgent.Aipath.enabled = true;
         timer = 0;
-        bossAgent._stateMachine.GlobalInterrupt = true;
+        //bossAgent._stateMachine.GlobalInterrupt = true;
         bossAgent._animationController.SetTrigger("GlobalInterrupt");
         //bossAgent.changeState(BossState.Chase);
     }

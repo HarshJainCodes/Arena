@@ -82,6 +82,7 @@ public class ExplodeScript : MonoBehaviour
     IEnumerator destruct()
     {
         _parentAnimator.SetBool("Explode", true);
+        _target.gameObject.GetComponent<PlayerHealth>().DamagePlayer(10f);
         Destroy(_parentAnimator.gameObject);
         yield return null;
     }

@@ -6,12 +6,17 @@ public class ChaseState : BossStateInterface
 {
     public override void update(BossMain boss)
     {
-        Vector3 lookAtObj = new Vector3(boss.Target.position.x, boss.transform.position.x, boss.Target.position.z);
-        boss.gameObject.transform.LookAt(lookAtObj);
-        if(!boss.Aipath.enabled)
+        if(Vector3.Magnitude(boss.Target.position-boss.transform.position)<20)
         {
-            boss.Aipath.enabled = true;
+            boss.changeState(BossState.Attack);
         }
+        //Vector3 lookAtObj = new Vector3(boss.Target.position.x, boss.transform.position.x, boss.Target.position.z);
+        //boss.gameObject.transform.LookAt(lookAtObj);
+        /*if(!boss.Aipath.enabled)
+        {
+            boss.Aipath.enabled = true;    
+        }
+        Debug.Log(boss.Aipath.enabled);*/
     }
 
     public override void enter(BossMain bossAgent)

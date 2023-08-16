@@ -69,6 +69,11 @@ public class Projectile : MonoBehaviour
 			target.Damage(EnemyDamage * _CriticalMultiplier);
 		}
 
+		if(collision.gameObject.CompareTag("FlyingEnemy"))
+		{
+			collision.gameObject.GetComponent <HealthScript>().takeDamage(20);
+		}
+
 		//Ignore collisions with other projectiles.
 		if (collision.gameObject.GetComponent<Projectile>() != null)
 			return;

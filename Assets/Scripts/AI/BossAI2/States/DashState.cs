@@ -1,38 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class DashState : BossStateInterface
 {
     float timer = 0;
+    bool triggeronce = true;
+    float speed = 100f;
     public override void update(BossMain boss)
     {
         timer += Time.deltaTime;
-        if (timer >boss.DashTime)
+        if (timer > boss.DashTime)
         {
             //Debug.LogError("Here");
             boss._animationController.SetBool("Dashed", true);
             timer = 0;
             boss._stateMachine.GlobalInterrupt = true;
+            boss.changeState(BossState.Attack);
         }
-            RaycastHit hit;
-        if (Physics.Raycast(boss.transform.position,(boss.Target.position-boss.transform.position),out hit,100f))
-        {
-            if(hit.transform.CompareTag("Player"))
+        RaycastHit hit;
+        if (triggeronce)
+        { 
+            if (Physics.Raycast(boss.transform.position, (boss.Target.position - boss.transform.position), out hit, 100f))
             {
-                Debug.Log("Boss can Dash");
-                //enable animation
-                //keep some wait
-                //change state
+                if (hit.transform.CompareTag("Player"))
+                {
+                    triggeronce = false;
+                    Debug.Log("Boss can Dash");
+                    boss.Aipath.enabled = false;
+                    boss._animationController.SetTrigger("Dash");
+                    boss._animationController.SetBool("Dashed", false);
+                }
             }
+        }
+        else
+        {
+            boss.CharController.Move((boss.Target.position - boss.transform.position) / Vector3.Magnitude(boss.Target.position - boss.transform.position) * speed * Time.deltaTime);
         }
     }
 
     public override void enter(BossMain bossAgent)
     {
-        bossAgent.Aipath.enabled = false;
-        bossAgent._animationController.SetTrigger("Dash");
-        bossAgent._animationController.SetBool("Dashed", false);
+        
     }
 
     public override void exit(BossMain bossAgent)

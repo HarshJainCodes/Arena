@@ -13,7 +13,7 @@ public class BossMain : MonoBehaviour
     public Transform Target;
     public float topFloorHeight;
     public Animator _animationController;
-    public float DashTime=8f;
+    public float DashTime=6f;
     public float AttackTime = 4f;
     public float JumpTime = 4f;
     public CharacterController CharController;
@@ -58,6 +58,7 @@ public class BossMain : MonoBehaviour
     void Update()
     {
         _stateMachine.update();
+        Debug.Log(_stateMachine.CurrentState);
     }
 
     public void changeState(BossState state)

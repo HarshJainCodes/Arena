@@ -2,19 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
     public float Health;
-    private float MaxHealth;
+    private float MaxHealth=100;
 
     public event EventHandler<float> OnHealthBarChanged;
 
     // Start is called before the first frame update
     void Start()
     {
-        Health = 100;
-        MaxHealth = 100;
+        Health = MaxHealth;
+        AddHealthToPlayer(0);
     }
 
     public void AddHealthToPlayer(float amount)
@@ -31,6 +32,14 @@ public class PlayerHealth : MonoBehaviour
         if (Health <= 0)
         {
             Debug.Log("player died");
+        }
+    }
+
+    private void Update()
+    {
+        if(Health<=0)
+        {
+            SceneManager.LoadScene("DeathScreen");
         }
     }
 }

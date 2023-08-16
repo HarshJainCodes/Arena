@@ -8,6 +8,11 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class ToMenu : MonoBehaviour
 {
+    private void Start()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
     /// <summary>
     /// For onclick listner on main menu button
     /// </summary>

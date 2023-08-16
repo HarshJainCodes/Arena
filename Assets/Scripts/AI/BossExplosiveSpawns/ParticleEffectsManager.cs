@@ -9,14 +9,15 @@ public class ParticleEffectsManager : MonoBehaviour
     public GameObject _mainModel;
     public GameObject _chargeExplosionParticleSystem;
     public GameObject _explodeParticleSystem;
-    [SerializeField] private float _explosionDamageRadius=10f;
+    [SerializeField] private float _explosionDamageRadius=20f;
     bool _Triggered = false;
-    private PlayerHealth _target;
+    private Transform _target;
     [SerializeField] private AIDestinationSetter _targetSetter;
 
 
     private void Awake()
     {
+
         _chargeExplosionParticleSystem.SetActive(false);
         _explodeParticleSystem.SetActive(false);
         ///_target = GameObject.Find("PLayer").GetComponent<PlayerHealth>();
@@ -48,13 +49,13 @@ public class ParticleEffectsManager : MonoBehaviour
 
     IEnumerator damageTarget()
     {
-        yield return new WaitForSeconds(2.2f);
-        _target=_targetSetter.target.GetComponent<PlayerHealth>() ;
-        if(Vector3.Magnitude(_target.gameObject.transform.position-transform.position)<_explosionDamageRadius)
-        {
-            Debug.LogError("Reaching");
-            _target.DamagePlayer(20f);
-        }
+        _target = _targetSetter.target;
+        yield return new WaitForSeconds(0.5f);
+       
+        //_target=_targetSetter.target.GetComponent<PlayerHealth>() ;
+        GetComponentInParent<MinionDamageStore>().setDamage(10f);
+  
+        Debug.LogError("Reaching");
         yield return null;
     }
 }
