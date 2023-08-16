@@ -21,6 +21,7 @@ public class ToMenu : MonoBehaviour
         AudioManager.instance.musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         AudioManager.instance.musicEventInstance.release();
         SceneManager.LoadScene("MainMenu");
+
     }
 
 }
