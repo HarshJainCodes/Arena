@@ -405,6 +405,41 @@ MonoBehaviour:
       Data3: 814815928
       Data4: 1225331726
     Path: event:/Weapons/Reload/AR/AR_Reload_Empty
+  <Select>k__BackingField:
+    Guid:
+      Data1: 1759849610
+      Data2: 1103533041
+      Data3: 494091924
+      Data4: -1217930197
+    Path: event:/Weapons/Fire/S_WEP_Fire_001
+  <Back>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <Delete>k__BackingField:
+    Guid:
+      Data1: 1759849610
+      Data2: 1103533041
+      Data3: 494091924
+      Data4: -1217930197
+    Path: event:/Weapons/Fire/S_WEP_Fire_001
+  <UI_Confirmation>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <Load>k__BackingField:
+    Guid:
+      Data1: 1759849610
+      Data2: 1103533041
+      Data3: 494091924
+      Data4: -1217930197
+    Path: event:/Weapons/Fire/S_WEP_Fire_001
 --- !u!1 &333517400
 GameObject:
   m_ObjectHideFlags: 0

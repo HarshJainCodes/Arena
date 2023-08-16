@@ -23,6 +23,7 @@ public class PaletteChangeButton : MonoBehaviour
     /// </summary>
     private void _SwitchPalette()
     {
+        AudioManager.instance?.PlayOneShot(FMODEvents.instance.Select, this.transform.position);
         GetComponentInParent<PaleteUIMaster>().SwitchPanel(_SelfIndex);
     }
 }

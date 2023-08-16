@@ -71,6 +71,7 @@ public class SaveBlock : MonoBehaviour
     /// </summary>
     public void SerializeData()
     {
+        AudioManager.instance?.PlayOneShot(FMODEvents.instance.UI_Confirmation, this.transform.position);
         getVolumes();
         _StoreInSerializable();
         for(int i=0;i< _Volumes.Length;i++)

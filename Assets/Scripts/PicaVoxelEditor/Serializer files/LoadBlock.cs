@@ -61,6 +61,7 @@ public class LoadBlock : MonoBehaviour
     /// </summary>
     public void LoadData()
     {
+        AudioManager.instance?.PlayOneShot(FMODEvents.instance.UI_Confirmation, this.transform.position);
         getVolumes();
         for(int i=0;i<_Volumes.Length;i++)
         {

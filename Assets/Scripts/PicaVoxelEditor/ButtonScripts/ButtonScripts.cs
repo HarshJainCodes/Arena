@@ -30,6 +30,7 @@ public class ButtonScripts : MonoBehaviour
     }
     private void ChangeVolumeTo()
     {
+        AudioManager.instance?.PlayOneShot(FMODEvents.instance.Select, this.transform.position);
         if (_script.ActiveVolume!=_SelfVolume)
         {
             _snapshotsOfVolumes.grabsnap(_SelfVolume);

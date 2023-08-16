@@ -19,6 +19,7 @@ public class UIToolNavigation : MonoBehaviour
     /// </summary>
     public void AddBlock()
     {
+        AudioManager.instance?.PlayOneShot(FMODEvents.instance.Select, this.transform.position);
         _ManipScript.SetTypeOfOperation(VoxelRunTimeManipulation.OperationType.add);
     }
 
@@ -27,6 +28,7 @@ public class UIToolNavigation : MonoBehaviour
     /// </summary>
     public void RemoveBlock()
     {
+        AudioManager.instance?.PlayOneShot(FMODEvents.instance.Select, this.transform.position);
         _ManipScript.SetTypeOfOperation(VoxelRunTimeManipulation.OperationType.remove);
     }
 
@@ -35,6 +37,7 @@ public class UIToolNavigation : MonoBehaviour
     /// </summary>
     public void MirrorBlock()
     {
+        AudioManager.instance?.PlayOneShot(FMODEvents.instance.Select, this.transform.position);
         _ManipScript.MirrorChange = !_ManipScript.MirrorChange;
     }
 
@@ -43,6 +46,7 @@ public class UIToolNavigation : MonoBehaviour
     /// </summary>
     public void ColourBlock()
     {
+        AudioManager.instance?.PlayOneShot(FMODEvents.instance.Select, this.transform.position);
         _ManipScript.SetTypeOfOperation(VoxelRunTimeManipulation.OperationType.edit);
     }
 
@@ -51,6 +55,7 @@ public class UIToolNavigation : MonoBehaviour
     /// </summary>
     public void BucketFill()
     {
+        AudioManager.instance?.PlayOneShot(FMODEvents.instance.Select, this.transform.position);
         _ManipScript.SetTypeOfOperation(VoxelRunTimeManipulation.OperationType.bucket);
     }
 }
