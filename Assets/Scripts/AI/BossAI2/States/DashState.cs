@@ -8,7 +8,7 @@ public class DashState : BossStateInterface
 {
     float timer = 0;
     bool triggeronce = true;
-    float speed = 100f;
+    float speed = 150f;
     public override void update(BossMain boss)
     {
         timer += Time.deltaTime;
@@ -35,7 +35,7 @@ public class DashState : BossStateInterface
                 }
             }
         }
-        else
+        else if(Vector3.Magnitude(boss.Target.position - boss.transform.position)>10f)
         {
             boss.CharController.Move((boss.Target.position - boss.transform.position) / Vector3.Magnitude(boss.Target.position - boss.transform.position) * speed * Time.deltaTime);
         }

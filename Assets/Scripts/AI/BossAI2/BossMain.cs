@@ -58,7 +58,7 @@ public class BossMain : MonoBehaviour
     void Update()
     {
         _stateMachine.update();
-        Debug.Log(_stateMachine.CurrentState);
+        //Debug.Log(_stateMachine.CurrentState);
     }
 
     public void changeState(BossState state)

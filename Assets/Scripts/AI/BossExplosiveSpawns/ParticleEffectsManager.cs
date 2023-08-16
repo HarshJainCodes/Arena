@@ -20,7 +20,7 @@ public class ParticleEffectsManager : MonoBehaviour
 
         _chargeExplosionParticleSystem.SetActive(false);
         _explodeParticleSystem.SetActive(false);
-        ///_target = GameObject.Find("PLayer").GetComponent<PlayerHealth>();
+        //_target = GameObject.Find("PLayer").GetComponent<PlayerHealth>();
     }
 
     private void Update()
@@ -52,8 +52,13 @@ public class ParticleEffectsManager : MonoBehaviour
         _target = _targetSetter.target;
         yield return new WaitForSeconds(0.5f);
        
+        _target= _targetSetter.target;
+        if(Vector3.Magnitude(_target.position-GetComponentInChildren<Transform>().position)<20f)
+        {
+            GetComponentInParent<MinionDamageStore>().setDamage(10f);
+        }
         //_target=_targetSetter.target.GetComponent<PlayerHealth>() ;
-        GetComponentInParent<MinionDamageStore>().setDamage(10f);
+        
   
         Debug.LogError("Reaching");
         yield return null;

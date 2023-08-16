@@ -71,7 +71,7 @@ public class Projectile : MonoBehaviour
 
 		if(collision.gameObject.CompareTag("FlyingEnemy"))
 		{
-			collision.gameObject.GetComponent <HealthScript>().takeDamage(20);
+			collision.gameObject.GetComponent<HealthScript>().takeDamage(20);
 		}
 
 		//Ignore collisions with other projectiles.

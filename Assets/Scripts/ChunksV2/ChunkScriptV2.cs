@@ -179,6 +179,7 @@ public class ChunkScriptV2 : MonoBehaviour
             TopLeft(i);
             TopMiddle(i);
             TopRight(i);
+            CentreMiddle(i);
 
             ConnectRooms(i);
         }
@@ -225,7 +226,7 @@ public class ChunkScriptV2 : MonoBehaviour
                                 Destroy(chunkBelow.blockAssigned);
                                 chunkBelow.ID = -1;
                                 Destroy(chunk.blockAssigned);
-                                chunk.ID = -1;
+                                chunk.ID = 7;
                                 stairsFormed = true;
 
                                 chunkBelow.InstantiateStair(i - _StairsPrefab.transform.localScale.x , j - _StairsPrefab.transform.localScale.y, k - 1, _StairsPrefab, RoomScaleX, RoomScaleY, RoomScaleZ, StairsHolder.transform,0);
@@ -237,6 +238,24 @@ public class ChunkScriptV2 : MonoBehaviour
         }
     }
 
+    //Malhar was here
+    private void fill(int iMin, int iMax, int jMin, int jMax, int k)
+    {
+        BlocksV2 chunk;
+        for (int i=iMin;i<iMax;i++)
+        {
+            for(int j=jMin;j<jMax;j++)
+            {
+                chunk = MainChunks[k][i][j].GetComponent<BlocksV2>();
+                if (chunk.blockAssigned == null)
+                {
+                    chunk.InstantiateTile(i - _FloorParent.transform.localScale.x / 2, j - _FloorParent.transform.localScale.y / 2, k, _FloorParent, RoomScaleX, RoomScaleY, RoomScaleZ, 0, FloorsHolder.transform.GetChild(k));
+                }
+            }
+        }
+    }
+    //Malhar's work ends here
+
     private void LowerLeft(int floorNo)
     {
         int iMin = padding;
@@ -246,6 +265,20 @@ public class ChunkScriptV2 : MonoBehaviour
         int jMax = jMin + (GridSize - 2 * padding) / 3;
 
         InitiateSpawnTiles(iMin, iMax, jMin, jMax, floorNo);
+    }
+
+    private void CentreMiddle(int floorNo)
+    {
+        if (floorNo == 0)
+        {
+            int iMin = (GridSize - 2 * padding) / 3;
+            int iMax = iMin + (GridSize - 2 * padding) / 3+padding*2;
+
+            int jMin = (GridSize - 2 * padding) / 3;
+            int jMax = jMin + (GridSize - 2 * padding) / 3 + padding*2;
+
+            fill(iMin, iMax, jMin, jMax, floorNo);
+        }
     }
 
     private void LowerMiddle(int floorNo)
