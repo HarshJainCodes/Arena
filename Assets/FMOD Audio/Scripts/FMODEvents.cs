@@ -24,6 +24,15 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference audioClipReload { get; private set; }
     [field: SerializeField] public EventReference audioClipReloadEmpty { get; private set; }
 
+    [field: Header("Editor Level")]
+
+    [field: SerializeField] public EventReference Select { get; private set; }
+    [field: SerializeField] public EventReference Back { get; private set; }
+    [field: SerializeField] public EventReference Delete { get; private set; }
+    [field: SerializeField] public EventReference UI_Confirmation { get; private set; }
+    [field: SerializeField] public EventReference Load { get; private set; }
+
+
 
 
 
