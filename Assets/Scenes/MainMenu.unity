@@ -284,6 +284,127 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274124553}
   m_CullTransparentMesh: 1
+--- !u!1 &299237209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 299237210}
+  - component: {fileID: 299237211}
+  m_Layer: 0
+  m_Name: FMODEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &299237210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299237209}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2096412498}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &299237211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299237209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb9468dd3d2f2c548bd1bdab63ade5e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ambience>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <music>k__BackingField:
+    Guid:
+      Data1: -983915689
+      Data2: 1245349546
+      Data3: -1455750210
+      Data4: 596657228
+    Path: event:/BGM/Wave Music
+  <Walk>k__BackingField:
+    Guid:
+      Data1: -703276945
+      Data2: 1216734647
+      Data3: 685212804
+      Data4: 2041733627
+    Path: event:/Movements/Footsteps/Walk
+  <Run>k__BackingField:
+    Guid:
+      Data1: -1431176757
+      Data2: 1116177196
+      Data3: 1118880928
+      Data4: 587711139
+    Path: event:/Movements/Footsteps/Run
+  <Crouch>k__BackingField:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  <Jump>k__BackingField:
+    Guid:
+      Data1: 1077752429
+      Data2: 1119816500
+      Data3: 19891359
+      Data4: -415375465
+    Path: event:/Movements/Jump/Jump_Start
+  <Land>k__BackingField:
+    Guid:
+      Data1: 341605670
+      Data2: 1191978009
+      Data3: 1574385311
+      Data4: 1532217699
+    Path: event:/Movements/Jump/Land
+  <WallRun>k__BackingField:
+    Guid:
+      Data1: -1431176757
+      Data2: 1116177196
+      Data3: 1118880928
+      Data4: 587711139
+    Path: event:/Movements/Footsteps/Run
+  <firing_AR>k__BackingField:
+    Guid:
+      Data1: 1759849610
+      Data2: 1103533041
+      Data3: 494091924
+      Data4: -1217930197
+    Path: event:/Weapons/Fire/S_WEP_Fire_001
+  <audioClipReload>k__BackingField:
+    Guid:
+      Data1: -927822972
+      Data2: 1302813080
+      Data3: 1102818996
+      Data4: 618884482
+    Path: event:/Weapons/Reload/AR/AR_Reload_NotEmpty
+  <audioClipReloadEmpty>k__BackingField:
+    Guid:
+      Data1: 1095865082
+      Data2: 1089359855
+      Data3: 814815928
+      Data4: 1225331726
+    Path: event:/Weapons/Reload/AR/AR_Reload_Empty
 --- !u!1 &333517400
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 333517403}
   - component: {fileID: 333517402}
-  - component: {fileID: 333517401}
+  - component: {fileID: 333517404}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -302,14 +423,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &333517401
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 333517400}
-  m_Enabled: 1
 --- !u!20 &333517402
 Camera:
   m_ObjectHideFlags: 0
@@ -368,6 +481,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &333517404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333517400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 659304150}
 --- !u!1 &351678845 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 867666565168150017, guid: e4e4f7e42ab430c4da8ceb92c9c864d6, type: 3}
@@ -1330,6 +1456,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069265271}
   m_CullTransparentMesh: 1
+--- !u!1 &2096412496
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2096412498}
+  - component: {fileID: 2096412497}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2096412497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096412496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9532a5411c945db45ab9bd592308baf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterVolume: 1
+  musicVolume: 1
+  ambienceVolume: 1
+  SFXVolume: 1
+--- !u!4 &2096412498
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096412496}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 842.536, y: 505.71442, z: -741.7494}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 299237210}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2142347753
 GameObject:
   m_ObjectHideFlags: 0

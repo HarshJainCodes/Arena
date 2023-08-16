@@ -107,11 +107,14 @@ public class SpawnManager : MonoBehaviour
 	// Method to generate a new wave of enemies
 	private void GenerateNewWave()
 	{
+		float musicchange = CurrentWave;
 		Debug.Log("generate wave called");
 
 		_IsGeneratingEnemies = true;
 		CurrentTime = TimeBetweenWaves;
 		CurrentWave++;
+		float music = CurrentWave;
+
 		SpawnPoints = new List<GameObject>();
 
 		// Get spawn points for enemies using the ChunkScriptV2/ChunkCreator
@@ -127,6 +130,7 @@ public class SpawnManager : MonoBehaviour
 
 		_IsGeneratingEnemies = false;
 		_IsTimerRunning = true;
+		UpdateMusic(music);
 	}
 
 	// Draw spawn points using Gizmos (visual debugging)
@@ -137,5 +141,10 @@ public class SpawnManager : MonoBehaviour
 			Gizmos.color = Color.white;
 			Gizmos.DrawCube(t.transform.position, Vector3.one);
 		}
+	}
+
+	private void UpdateMusic(float musicchange)
+    {
+            AudioManager.instance.musicEventInstance.setParameterByName("WaveMusic", musicchange);
 	}
 }

@@ -27,12 +27,17 @@ public class MainMenuUI : MonoBehaviour
             //SceneManager.LoadScene("Play");
 
             StartCoroutine(LoadScene());
+
+           
         });
 
         _CreateButton.onClick.AddListener(() =>
         {
             SceneManager.LoadScene("Create");
         });
+        AudioManager.instance.musicEventInstance = AudioManager.instance.CreateInstance(FMODEvents.instance.music);
+        AudioManager.instance.musicEventInstance.start();
+        AudioManager.instance.musicEventInstance.setParameterByName("WaveMusic", 0f);
     }
 
     IEnumerator LoadScene()

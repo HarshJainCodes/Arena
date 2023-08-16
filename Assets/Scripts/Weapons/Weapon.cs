@@ -177,6 +177,7 @@ namespace Arena
             const string boolName = "Reloading";
             animator.SetBool(boolName, true);
             AudioManagerServices.instance.PlayOneShot(HasAmmunition() ? audioClipReload : audioClipReloadEmpty, new AudioSettings(1.0f, 0.0f, false));
+            AudioManager.instance.PlayOneShot(HasAmmunition() ? FMODEvents.instance.audioClipReload : FMODEvents.instance.audioClipReloadEmpty, this.transform.position);
             animator.Play(cycledReload ? "Reload Open" : (HasAmmunition() ? "Reload" : "Reload Empty"), 0, 0.0f);
         }
         /// <summary>

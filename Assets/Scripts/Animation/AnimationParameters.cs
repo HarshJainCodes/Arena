@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using FMODUnity;
+using FMOD.Studio;
 
 namespace Arena
 {
@@ -295,7 +297,8 @@ namespace Arena
             lastShotTime = Time.time;
             //Fire the weapon! Make sure that we also pass the scope's spread multiplier if we're aiming.
             equippedWeapon.Fire(aiming ? equippedScope.GetMultiplierSpread() : 1.0f);
-
+            AudioManager.instance.PlayOneShot(FMODEvents.instance.firing_AR,this.transform.position);
+            
             //Play firing animation.
             const string stateName = "Fire";
             characterAnimator.CrossFade(stateName, 0.05f, layerOverlay, 0);
@@ -321,6 +324,7 @@ namespace Arena
 
             //Reload.
             equippedWeapon.Reload();
+            
         }
         /// <summary>
         /// Automatically reload if reloadOnEmpty = true
