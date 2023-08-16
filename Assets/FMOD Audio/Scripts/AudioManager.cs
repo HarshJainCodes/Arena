@@ -25,12 +25,13 @@ public class AudioManager : MonoBehaviour
     private List<StudioEventEmitter> eventEmitters;
 
     private EventInstance ambienceEventInstance;
-    private EventInstance musicEventInstance;
+    public EventInstance musicEventInstance;
 
     public static AudioManager instance { get; private set; }
 
     private void Awake()
     {
+        DontDestroyOnLoad(this);
         if (instance != null)
         {
             Debug.LogError("Found more than one Audio Manager in the scene.");
@@ -40,16 +41,17 @@ public class AudioManager : MonoBehaviour
         eventInstances = new List<EventInstance>();
         eventEmitters = new List<StudioEventEmitter>();
 
-        masterBus = RuntimeManager.GetBus("bus:/");
+       /* masterBus = RuntimeManager.GetBus("bus:/");
         musicBus = RuntimeManager.GetBus("bus:/Music");
         ambienceBus = RuntimeManager.GetBus("bus:/Ambience");
-        sfxBus = RuntimeManager.GetBus("bus:/SFX");
+        sfxBus = RuntimeManager.GetBus("bus:/SFX");*/
+        this.enabled = true;
     }
 
     private void Start()
     {
-        InitializeAmbience(FMODEvents.instance.ambience);
-        InitializeMusic(FMODEvents.instance.music);
+       /* InitializeAmbience(FMODEvents.instance.ambience);
+        InitializeMusic(FMODEvents.instance.music);*/
     }
 
     private void Update()

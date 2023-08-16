@@ -18,7 +18,10 @@ public class ToMenu : MonoBehaviour
     /// </summary>
     public static void ToMenuScript()
     {
+        AudioManager.instance.musicEventInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        AudioManager.instance.musicEventInstance.release();
         SceneManager.LoadScene("MainMenu");
+
     }
 
 }

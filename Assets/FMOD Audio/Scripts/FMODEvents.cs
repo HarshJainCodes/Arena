@@ -21,6 +21,18 @@ public class FMODEvents : MonoBehaviour
     [field: SerializeField] public EventReference WallRun { get; private set; }
 
     [field: SerializeField] public EventReference firing_AR { get; private set; }
+    [field: SerializeField] public EventReference audioClipReload { get; private set; }
+    [field: SerializeField] public EventReference audioClipReloadEmpty { get; private set; }
+
+    [field: Header("Editor Level")]
+
+    [field: SerializeField] public EventReference Select { get; private set; }
+    [field: SerializeField] public EventReference Back { get; private set; }
+    [field: SerializeField] public EventReference Delete { get; private set; }
+    [field: SerializeField] public EventReference UI_Confirmation { get; private set; }
+    [field: SerializeField] public EventReference Load { get; private set; }
+
+
 
 
 
@@ -28,6 +40,7 @@ public class FMODEvents : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(this);
         if (instance != null)
         {
             Debug.LogError("Found more than one FMOD Events instance in the scene.");

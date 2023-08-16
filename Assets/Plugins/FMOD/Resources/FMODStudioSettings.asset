@@ -375,12 +375,9 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
-  - AR
-  - Firing
-  - Jump
-  - Master 1
-  - Movements
-  - Reload
+  - Music
+  - PlayerMovements
+  - Weapon
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

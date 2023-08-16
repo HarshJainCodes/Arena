@@ -24,6 +24,7 @@ public class IndividualColour : MonoBehaviour
 
     public void PassToParentObject()
     {
+        AudioManager.instance?.PlayOneShot(FMODEvents.instance.Select, this.transform.position);
         _master.passColour(_Value,this);
     }
 
