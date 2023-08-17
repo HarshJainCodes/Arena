@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (Health <= 0)
         {
-            AudioManager.instance.musicEventInstance.setParameterByName("WaveMusic", 5f);
+            AudioManager.instance?.musicEventInstance.setParameterByName("WaveMusic", 5f);
             Debug.Log("player died");
         }
     }

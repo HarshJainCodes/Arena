@@ -77,7 +77,7 @@ public class SpawnManager : MonoBehaviour
 		if (Generator.IsGridGenerated)
 		{
 			// Check if there are no enemies and the timer is running
-			if (Enemies.Count < 3 && _IsTimerRunning)
+			if (Enemies.Count < 8 && _IsTimerRunning)
 			{
 				// Decrease the wave countdown timer
 				CurrentTime -= Time.deltaTime;
@@ -145,6 +145,6 @@ public class SpawnManager : MonoBehaviour
 
 	private void UpdateMusic(float musicchange)
     {
-            AudioManager.instance.musicEventInstance.setParameterByName("WaveMusic", musicchange);
+            AudioManager.instance?.musicEventInstance.setParameterByName("WaveMusic", musicchange);
 	}
 }

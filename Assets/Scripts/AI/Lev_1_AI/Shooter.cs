@@ -39,7 +39,7 @@ public class Shooter : MonoBehaviour
 
 			if (weapon.timeBetweenShots == 0)
 			{
-				AudioManagerServices.instance.PlayOneShot(weapon.audioSFX.firing, new AudioSettings(1, 0, true));
+				AudioManagerServices.instance?.PlayOneShot(weapon.audioSFX.firing, new AudioSettings(1, 0, true));
 			}
 
 			//SoundManager.Instance.PlaySound(weapon.audioSFX.firing, 0, weapon.pitchVariationFiringSFX, 0);}

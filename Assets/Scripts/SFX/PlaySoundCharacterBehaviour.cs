@@ -93,7 +93,7 @@ namespace Arena
             };
 
 
-            AudioManagerServices.instance.PlayOneShotDelayed(clip, audioSettings, delay);
+            AudioManagerServices.instance?.PlayOneShotDelayed(clip, audioSettings, delay);
             //Play with some delay. Granted, if the delay is set to zero, this will just straight-up play!
             //audioManagerService. PlayOneShotDelayed(clip, audioSettings, delay);
         }

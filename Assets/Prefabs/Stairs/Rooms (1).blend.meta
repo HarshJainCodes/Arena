@@ -3,7 +3,37 @@ guid: 6756d810e9277d44fbdada9619b629a1
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Corner
+    second: {fileID: 2100000, guid: 86964bee5965f54438fa6fd477e01bf2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DoorFrame
+    second: {fileID: 2100000, guid: 605d6f0ec7f56254daee34cf440990cb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: End
+    second: {fileID: 2100000, guid: ebae4b4f95539134c9818ca9b67edc3c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: OneSideWall
+    second: {fileID: 2100000, guid: 727fa74bb310de346bf157e5f728ff2c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stairs_material
+    second: {fileID: 2100000, guid: ab8c3452ec9dd6e4c8c73d4eea557365, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TwoSideWall
+    second: {fileID: 2100000, guid: 41a49f587750fb6468ce8468c4fea12e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

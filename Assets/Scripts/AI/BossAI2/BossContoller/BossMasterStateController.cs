@@ -28,14 +28,14 @@ public class BossMasterStateController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!initialSpawnWaves && !_boss._animationController.GetBool("SpawnEnemies") && _bossSpawns.childCount==0 && !triggered)
+        if (!initialSpawnWaves && !_boss._animationController.GetBool("SpawnEnemies") && _bossSpawns.childCount<20 && !triggered)
         {
             triggered = true;
             _boss.changeState(BossState.Spawn);
             //jumpOnce = true;
             next = true;
         }
-        if (initialSpawnWaves && _spawnManager.CurrentWave==_spawnManager.NumberOfWaves && _spawnManager.Enemies.Count<3)
+        if (initialSpawnWaves && _spawnManager.CurrentWave==1 && _spawnManager.Enemies.Count < 20)//_spawnManager.NumberOfWaves && _spawnManager.Enemies.Count<20)
         {
             _boss.changeState(BossState.Spawn);
             initialSpawnWaves=false;

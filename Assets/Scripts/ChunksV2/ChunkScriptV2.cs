@@ -43,7 +43,8 @@ public class ChunkScriptV2 : MonoBehaviour
 
     
     [SerializeField] private GameObject _FloorParent;
-    
+    [SerializeField] private GameObject _TopFloorParent;
+
     [SerializeField] private GameObject _StairsPrefab;
     
     /// <summary>
@@ -694,7 +695,7 @@ public class ChunkScriptV2 : MonoBehaviour
             {
                 if (MainChunks[floorSize - 1][i][j].GetComponent<BlocksV2>().ID == 3)
                 {
-                    var tile = Instantiate(_FloorParent, new Vector3((i - _FloorParent.transform.localScale.x / 2) * RoomScaleX, (floorSize) * RoomScaleZ, (j - _FloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floorSize));
+                    var tile = Instantiate(_TopFloorParent, new Vector3((i - _TopFloorParent.transform.localScale.x / 2) * RoomScaleX, (floorSize) * RoomScaleZ, (j - _TopFloorParent.transform.localScale.y / 2) * RoomScaleY), Quaternion.identity, FloorsHolder.transform.GetChild(floorSize));
                     tile.transform.localScale = new Vector3(RoomScaleX, RoomScaleY, RoomScaleZ);
                 }
             }

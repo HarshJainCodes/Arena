@@ -193,8 +193,8 @@ namespace Arena
                 jumping = false;
                 canDoublJump = false;
                 landTime = Time.time;
-                AudioManagerServices.instance.PlayOneShot(jumpLand, new AudioSettings(0.5f, 0.0f, true));
-                AudioManager.instance.PlayOneShot(FMODEvents.instance.Land, this.transform.position);
+                AudioManagerServices.instance?.PlayOneShot(jumpLand, new AudioSettings(0.5f, 0.0f, true));
+                AudioManager.instance?.PlayOneShot(FMODEvents.instance.Land, this.transform.position);
             }
             else if (wasGrounded && !grounded)
             {
@@ -429,7 +429,7 @@ namespace Arena
                 return;
             }
            // AudioManagerServices.instance.PlayOneShot(jumpStart, new AudioSettings(0.5f, 0.0f, true));
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.Jump, this.transform.position);
+            AudioManager.instance?.PlayOneShot(FMODEvents.instance.Jump, this.transform.position);
 
             canDoublJump = true;
             jumping = true;

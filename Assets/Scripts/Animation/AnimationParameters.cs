@@ -297,7 +297,7 @@ namespace Arena
             lastShotTime = Time.time;
             //Fire the weapon! Make sure that we also pass the scope's spread multiplier if we're aiming.
             equippedWeapon.Fire(aiming ? equippedScope.GetMultiplierSpread() : 1.0f);
-            AudioManager.instance.PlayOneShot(FMODEvents.instance.firing_AR,this.transform.position);
+            AudioManager.instance?.PlayOneShot(FMODEvents.instance.firing_AR,this.transform.position);
             
             //Play firing animation.
             const string stateName = "Fire";
