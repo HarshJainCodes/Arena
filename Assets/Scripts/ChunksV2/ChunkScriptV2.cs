@@ -237,7 +237,7 @@ public class ChunkScriptV2 : MonoBehaviour
                                 //Debug.Log(orient);
                                 int rot=0;
                                 int offset = -90;
-                                Debug.Log(orient);
+                                //Debug.Log(orient);
                                 //int rng = UnityEngine.Random.Range(0, 100);
                                 switch (orient)
                                 {

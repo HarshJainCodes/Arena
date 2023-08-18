@@ -173,9 +173,9 @@ namespace Arena
             startYScale = transform.localScale.y;
 
             //setting audio instance
-            walkSFX = AudioManager.instance.CreateInstance(FMODEvents.instance.Walk);
-            runSFX = AudioManager.instance.CreateInstance(FMODEvents.instance.Run);
-            wallrunSFX = AudioManager.instance.CreateInstance(FMODEvents.instance.WallRun);
+            //walkSFX = AudioManager.instance.CreateInstance(FMODEvents.instance.Walk);
+            //runSFX = AudioManager.instance.CreateInstance(FMODEvents.instance.Run);
+            //wallrunSFX = AudioManager.instance.CreateInstance(FMODEvents.instance.WallRun);
 
         }
 
