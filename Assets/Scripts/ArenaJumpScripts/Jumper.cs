@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Jumper : MonoBehaviour
 {
+
+    [SerializeField] Transform _startLocation;
+    [SerializeField] Transform _endLocation; 
+    
     // Start is called before the first frame update
     void Start()
     {
