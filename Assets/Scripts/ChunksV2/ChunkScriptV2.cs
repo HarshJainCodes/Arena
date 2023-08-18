@@ -229,8 +229,77 @@ public class ChunkScriptV2 : MonoBehaviour
                                 Destroy(chunk.blockAssigned);
                                 chunk.ID = 7;
                                 stairsFormed = true;
+                                int side1 = ((MainChunks[k][i - 1][j].GetComponent<BlocksV2>().ID == 0 ? 1 : 0) + (MainChunks[k - 1][i + 1][j].GetComponent<BlocksV2>().ID == 0 ? 1 : 0)) /2;
+                                int side2 = ((MainChunks[k][i][j + 1].GetComponent<BlocksV2>().ID == 0 ? 1 : 0) + (MainChunks[k - 1][i][j - 1].GetComponent<BlocksV2>().ID == 0 ? 1 : 0)) /2;
+                                int side3 = ((MainChunks[k][i + 1][j].GetComponent<BlocksV2>().ID == 0 ? 1 : 0) + (MainChunks[k - 1][i - 1][j].GetComponent<BlocksV2>().ID == 0 ? 1 : 0)) /2;
+                                int side4 = ((MainChunks[k][i][j - 1].GetComponent<BlocksV2>().ID == 0 ? 1 : 0) + (MainChunks[k - 1][i][j + 1].GetComponent<BlocksV2>().ID == 0 ? 1 : 0)) /2;
+                                int orient = (side4) * 1 + (side3) * 10 + (side2) * 100 + (side1) * 1000;
+                                //Debug.Log(orient);
+                                int rot=0;
+                                int offset = -90;
+                                Debug.Log(orient);
+                                //int rng = UnityEngine.Random.Range(0, 100);
+                                switch (orient)
+                                {
+                                    case 0000:
+                                        break;
 
-                                chunkBelow.InstantiateStair(i - _StairsPrefab.transform.localScale.x , j - _StairsPrefab.transform.localScale.y, k - 1, _StairsPrefab, RoomScaleX, RoomScaleY, RoomScaleZ, StairsHolder.transform,0);
+                                    case 1000:
+                                        rot = 180+offset;
+                                        break;
+
+                                    case 0100:
+                                        rot = 270+offset;
+                                        break;
+
+                                    case 0010:
+                                        rot = 0 + offset;
+                                        break;
+                                    case 0001:
+                                        rot = 90 + offset;   
+                                        break;
+                                    case 1100:
+                                        rot =180 + offset;
+                                        break;
+                                    case 0110:
+                                        rot = 180 + offset;
+                                        break;
+                                    case 0011:
+                                        rot = 270 + offset;
+                                        break;
+                                    case 1001:
+                                        rot = 180 + offset;
+                                        break;
+                                    case 1010:
+                                        rot = 180 + offset;
+                                        break;
+
+                                    case 0101:
+                                        rot = 270 + offset;
+                                        break;
+
+                                    case 1110:
+                                        rot = 180 + offset;
+                                        break;
+
+                                    case 0111:
+                                        rot = 270 + offset;
+                                        break;
+
+                                    case 1101:
+                                        rot = 270 + offset;
+                                        break;
+
+                                    case 1011:
+                                        rot = 180 + offset;
+                                        break;
+
+                                    case 1111:
+                                        rot = 0 + offset;
+                                        break;
+                                }
+
+                                chunkBelow.InstantiateStair(i - _StairsPrefab.transform.localScale.x , j - _StairsPrefab.transform.localScale.y, k - 1, _StairsPrefab, RoomScaleX, RoomScaleY, RoomScaleZ, StairsHolder.transform,rot);
                             }
                         }
                     }
@@ -855,7 +924,7 @@ public class ChunkScriptV2 : MonoBehaviour
                     }
                 }
             }
-            Debug.Log("Before spawn");
+            //Debug.Log("Before spawn");
         }
     }
 
@@ -928,12 +997,12 @@ public class ChunkScriptV2 : MonoBehaviour
             getter.CreateMultiMaterialMesh = true;
             getter.DestroyCombinedChildren = true;
             getter.CombineMeshes(false);
-            Debug.Log("How is this not done");
+            //Debug.Log("How is this not done");
             _BlendBlocks[i].blocks[0] = objects[i].gameObject;
             _BlendBlocks[i].blocks[1] = objects[i].gameObject;
             _BlendBlocks[i].blocks[2] = objects[i].gameObject;
         }
-        Debug.Log("This is done");
+        //D//ebug.Log("This is done");
     }
     /// <summary>
     /// This function adds the stairs to the top floor in such a fashion that the staris are connected to atleast two walls.
@@ -948,7 +1017,7 @@ public class ChunkScriptV2 : MonoBehaviour
                 if (MainChunks[k][i][j].GetComponent<BlocksV2>()!=null && MainChunks[k][i][j].GetComponent<BlocksV2>().ID==0)
                 {
                     int orient = (MainChunks[k][i][j + 1].GetComponent<BlocksV2>().ID == 0 ? 0 : 1) * 1 + (MainChunks[k][i + 1][j].GetComponent<BlocksV2>().ID == 0 ? 0 : 1) * 10 + (MainChunks[k][i][j - 1].GetComponent<BlocksV2>().ID == 0 ? 0 : 1) * 100 + (MainChunks[k][i-1][j].GetComponent<BlocksV2>().ID == 0 ? 0 : 1) * 1000;
-                    Debug.Log(orient);
+                    //Debug.Log(orient);
                     int rng = UnityEngine.Random.Range(0, 100);
                     if (rng < 15)
                     {
