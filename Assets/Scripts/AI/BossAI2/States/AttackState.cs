@@ -23,8 +23,9 @@ public class AttackState : BossStateInterface
         if(timer>boss.AttackTime)
         {
             //boss.changeState(BossState.Attack);
-            boss._animationController.SetTrigger("GlobalInterrupt");
-            boss._stateMachine.GlobalInterrupt = true;
+            //boss._animationController.SetTrigger("GlobalInterrupt");
+            //boss._stateMachine.GlobalInterrupt = true;
+            boss._stateMachine.ChangeState(BossState.Chase);
             timer = 0;
         }
         

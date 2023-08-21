@@ -60,7 +60,7 @@ public class ParticleEffectsManager : MonoBehaviour
         //_target=_targetSetter.target.GetComponent<PlayerHealth>() ;
         
   
-        Debug.LogError("Reaching");
+        //Debug.LogError("Reaching");
         yield return null;
     }
 }

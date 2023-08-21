@@ -51,7 +51,8 @@ public class BossMain : MonoBehaviour
         _stateMachine.addStates(_death, BossState.Death);
         _stateMachine.addStates(_spawn, BossState.Spawn);
         _stateMachine.addStates(_dash, BossState.Dash);
-        _stateMachine.GlobalInterrupt = true;
+        _stateMachine.ChangeState(BossState.Observe);
+        //_stateMachine.GlobalInterrupt = true;
     }
 
     // Update is called once per frame
@@ -63,6 +64,7 @@ public class BossMain : MonoBehaviour
 
     public void changeState(BossState state)
     {
+        Debug.Log(_stateMachine.CurrentState +" to "+ state);
         _stateMachine.ChangeState(state);
     }
 }

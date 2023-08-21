@@ -85,6 +85,9 @@ namespace Arena
 
         [SerializeField]
         private float jumpHeight = 10f;
+        // Malhar was here
+        public float JumpHeight { set { jumpHeight = value; } get { return jumpHeight; } }
+        //end of changes
         [SerializeField]
         private float jumpCooldown = 0.25f;
         [SerializeField]

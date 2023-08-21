@@ -6,7 +6,7 @@ public class ChaseState : BossStateInterface
 {
     public override void update(BossMain boss)
     {
-        if(Vector3.Magnitude(boss.Target.position-boss.transform.position)<20)
+        if(Vector3.Magnitude(boss.Target.position-boss.transform.position)<10)
         {
             boss.changeState(BossState.Attack);
         }
@@ -17,6 +17,7 @@ public class ChaseState : BossStateInterface
             boss.Aipath.enabled = true;    
         }
         Debug.Log(boss.Aipath.enabled);*/
+        
     }
 
     public override void enter(BossMain bossAgent)

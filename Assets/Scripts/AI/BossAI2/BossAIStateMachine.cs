@@ -23,16 +23,6 @@ public class BossAIStateMachine : MonoBehaviour
     // Update is called once per frame
     public void update()
     {
-        if(_globalInterrupt)
-        {
-            
-            Boss.Aipath.enabled = false;
-            BossStates[(int)CurrentState].exit(Boss);
-            CurrentState = BossState.None;
-            _globalInterrupt = false;
-            BossStates[(int)CurrentState].enter(Boss);
-            //set everything to default here. So all states become equally accessible.
-        }
         BossStates[(int)CurrentState].update(Boss);
     }
 

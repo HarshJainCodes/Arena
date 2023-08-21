@@ -64,11 +64,16 @@ public class BossMasterStateController : MonoBehaviour
         if(_boss._stateMachine.CurrentState==BossState.Chase )
         {
             int rng=Random.Range(0, 1000);
-            if(rng<2 && Vector3.Magnitude(_player.position-_boss.transform.position)>40 && Mathf.Abs(_player.position.y-transform.position.y)<20f)
+            if(rng<20 && Vector3.Magnitude(_player.position-_boss.transform.position)>80 && Mathf.Abs(_player.position.y-transform.position.y)>30f)
             {
                // Debug.Log("Dashing");
+                _boss.changeState(BossState.Jump);
+            }
+            else if(rng<2 && Vector3.Magnitude(_player.position - _boss.transform.position) > 80)
+            {
                 _boss.changeState(BossState.Dash);
             }
+            
         }
     }
 }

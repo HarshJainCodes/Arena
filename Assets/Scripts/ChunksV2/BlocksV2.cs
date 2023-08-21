@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -95,5 +96,70 @@ public class BlocksV2 : MonoBehaviour
         blockAssigned.transform.localScale = new Vector3(scaleX/2, scaleY/2, scaleZ/2);
         blockAssigned.transform.localRotation = Quaternion.Euler(-90,0, rot);
         blockAssigned.transform.parent = parent;
+    }
+
+    //Malhar was here
+    public void InstantiateJumper(float x, float y, float z, GameObject jumper, int scaleX, int scaleY, int scaleZ, Transform parent)
+    {
+        ID = 5;
+        blockAssigned = Instantiate(jumper, new Vector3(x * scaleX, z * scaleZ, y * scaleY), Quaternion.identity);
+        //blockAssigned.transform.localScale = new Vector3(scaleX / 2, scaleY / 2, scaleZ / 2);
+        blockAssigned.transform.parent = parent;
+        Transform dest=jumper.transform.GetChild(1).GetComponent<Transform>();
+        Debug.Log(dest.position);
+        List<Vector3> transforms = new List<Vector3>();
+        RaycastHit hit;
+        //Debug.Log(Physics.Raycast(new Vector3(x * scaleX, y * scaleY, z * scaleZ) + Vector3.forward * (scaleZ) + Vector3.up * (scaleY) * 2, Vector3.down, out hit, 100f));
+        Debug.DrawRay(new Vector3(x*scaleX,z*scaleZ, y * scaleY) + Vector3.forward * (scaleZ) + Vector3.up * (scaleY) * 2, Vector3.down, Color.red,300f);
+        if (Physics.Raycast(new Vector3(x * scaleX, z * scaleZ,y * scaleY) +Vector3.forward*(scaleZ)*2+Vector3.up*(scaleY)*2,Vector3.down,out hit,100f,LayerMask.GetMask("Ground"))) // problems here
+        {
+            
+            //Debug.Log(hit.point);
+            if((hit.point.y-y)>5)
+            {
+                transforms.Add(new Vector3(x * scaleX, z * scaleZ, y * scaleY)-hit.point);
+            }
+        }
+        //Debug.DrawRay(new Vector3(x * scaleX, z * scaleZ, y * scaleY) - Vector3.forward * (scaleZ) + Vector3.up * (scaleY) * 2, Vector3.down, Color.red,300f);
+        if (Physics.Raycast(new Vector3(x*scaleX, z * scaleZ, y * scaleY) - Vector3.forward * (scaleZ)*2 + Vector3.up * (scaleY) * 2, Vector3.down, out hit,100f, LayerMask.GetMask("Ground")))
+        {
+            Debug.Log(hit.point);
+            if ((hit.point.y-y)>5)
+            {
+                transforms.Add(new Vector3(x * scaleX, z * scaleZ, y * scaleY)-hit.point);
+            }
+        }
+        Debug.DrawRay(new Vector3(x * scaleX, z * scaleZ, y * scaleY) + Vector3.left * (scaleZ) + Vector3.up * (scaleY) * 2, Vector3.down, Color.red,300f);
+        if (Physics.Raycast(new Vector3(x * scaleX, z * scaleZ, y * scaleY) + Vector3.left * (scaleX)*2 + Vector3.up * (scaleY) * 2, Vector3.down, out hit,100f, LayerMask.GetMask("Ground")))
+        {
+            Debug.Log(hit.point);
+            if ((hit.point.y - y) > 5)
+            {
+                transforms.Add(new Vector3(x * scaleX, z * scaleZ, y * scaleY) - hit.point);
+            }
+        }
+        Debug.DrawRay(new Vector3(x * scaleX, z * scaleZ, y * scaleY) - Vector3.left * (scaleZ) + Vector3.up * (scaleY) * 2, Vector3.down, Color.red, 300f);
+        if (Physics.Raycast(new Vector3(x * scaleX, z * scaleZ, y * scaleY) - Vector3.left * (scaleX)*2 + Vector3.up * (scaleY) * 2, Vector3.down, out hit,100f, LayerMask.GetMask("Ground")))
+        {
+            Debug.Log(hit.point);
+            if ((hit.point.y - y) > 5)
+            {
+                transforms.Add(new Vector3(x * scaleX, z * scaleZ, y * scaleY)-hit.point);
+            }
+        }
+        Debug.Log(transforms.Count);
+        if(transforms.Count!=0)
+        {
+            Debug.Log("This is working");
+            int rng=Random.Range(0, transforms.Count);
+            dest.position = transforms[rng];
+            Transform control=jumper.transform.GetChild(2).GetComponent<Transform>();
+            control.position = new Vector3(dest.position.x,dest.position.y+(scaleY),dest.position.z);
+        }
+        if(transforms.Count==0)
+        {
+            Destroy(blockAssigned);
+        }
+
     }
 }

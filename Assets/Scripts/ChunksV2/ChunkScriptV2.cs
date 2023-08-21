@@ -44,7 +44,7 @@ public class ChunkScriptV2 : MonoBehaviour
     
     [SerializeField] private GameObject _FloorParent;
     [SerializeField] private GameObject _TopFloorParent;
-
+    [SerializeField] private GameObject _jumper;
     [SerializeField] private GameObject _StairsPrefab;
     
     /// <summary>
@@ -756,6 +756,7 @@ public class ChunkScriptV2 : MonoBehaviour
         }
     }
 
+    //Malhar Was here
     private void formFloorAtTop()
     {
         for(int i=0;i<GridSize;i++)
@@ -770,7 +771,7 @@ public class ChunkScriptV2 : MonoBehaviour
             }
         }
     }
-
+    // Malhar's work ends here
     private void AddCubesOnTop()
     {
         int iMin, iMax, jMin, jMax;
@@ -897,6 +898,7 @@ public class ChunkScriptV2 : MonoBehaviour
         Cursor.visible = false;
     }
 
+    //Malhar was here
     private void _setVoxelBlock()
     {
         for (int i = 0; i < _Volumes.Length; i++)
@@ -1043,8 +1045,13 @@ public class ChunkScriptV2 : MonoBehaviour
                                 break;
                         }
                     }
+                    if(rng>15 && rng<30)
+                    {
+                        MainChunks[k][i][j].GetComponent<BlocksV2>().InstantiateJumper(i-0.5f, j-0.5f, k,_jumper, RoomScaleX, RoomScaleY, RoomScaleZ, StairsHolder.transform);
+                    }
                 }
             }
         }
     }
+    //Malhar's work ends here
 }
