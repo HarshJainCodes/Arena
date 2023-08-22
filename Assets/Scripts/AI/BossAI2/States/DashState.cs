@@ -31,12 +31,14 @@ public class DashState : BossStateInterface
             {
                 if (hit.transform.CompareTag("Player"))
                 {
+                    boss.transform.LookAt(boss.Target);
                     Vector3 start = boss.transform.position;
                     Vector3 destination = boss.Target.position;
                     triggeronce = false;
                     Debug.Log("Boss can Dash");
                     boss.Aipath.enabled = false;
                     jm = boss.gameObject.AddComponent<JumpMath>();
+                    Physics.Raycast(destination, Vector3.down, out hit, 10f, LayerMask.GetMask("Ground"));
                     jm.Destination = destination;
                     jm.Starting = start;
                     jm.Control = new Vector3(destination.x, destination.y+10f, destination.z);
@@ -66,6 +68,7 @@ public class DashState : BossStateInterface
     public override void exit(BossMain bossAgent)
     {
         timer = 0;
+        bossAgent.Aipath.enabled = true;
         bossAgent._animationController.SetTrigger("GlobalInterrupt");
         //bossAgent._animationController.SetBool("Dashed", false);
     }

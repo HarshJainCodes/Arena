@@ -17,6 +17,12 @@ public class BossMain : MonoBehaviour
     public float AttackTime = 4f;
     public float JumpTime = 4f;
     public CharacterController CharController;
+    public GameObject enemySpawn;
+    public GameObject flyingSpawn;
+    public GameObject currentSpawn;
+    public int waveNo;
+    public Transform minionsParent;
+    public Transform bossWeaponTransform;
 
     /// <summary>
     /// This is the state machine that holds and switches between various states.
@@ -35,6 +41,7 @@ public class BossMain : MonoBehaviour
 
     private void Awake()
     {
+        currentSpawn = enemySpawn;
         _stateMachine = new BossAIStateMachine(this);
     }
     // Start is called before the first frame update

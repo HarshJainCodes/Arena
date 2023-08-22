@@ -17,18 +17,19 @@ public class BossMasterStateController : MonoBehaviour
     float timer = 0;
     bool initialSpawnWaves = true;
     bool next = false;
-    bool triggered = false;
+    bool triggered = true;
     [SerializeField] bool chaseSetter = false;
     // Start is called before the first frame update
     void Start()
     {
         _boss.changeState(BossState.Observe);
+        //StartCoroutine(StartTime());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!initialSpawnWaves && !_boss._animationController.GetBool("SpawnEnemies") && _bossSpawns.childCount<20 && !triggered)
+        /*if (!initialSpawnWaves && !_boss._animationController.GetBool("SpawnEnemies") && _bossSpawns.childCount<20 && !triggered)
         {
             triggered = true;
             _boss.changeState(BossState.Spawn);
@@ -39,6 +40,17 @@ public class BossMasterStateController : MonoBehaviour
         {
             _boss.changeState(BossState.Spawn);
             initialSpawnWaves=false;
+        }*/
+        if (_boss.waveNo == 0 && _spawnManager.CurrentWave==1 && initialSpawnWaves)
+        {
+            _boss.changeState(BossState.Spawn);
+            initialSpawnWaves = false;
+        }
+        if (_boss.waveNo == 1 && triggered)
+        {
+            _boss.changeState(BossState.Spawn);
+            next = true;
+            triggered = false;
         }
         if (next)
         {
@@ -64,16 +76,22 @@ public class BossMasterStateController : MonoBehaviour
         if(_boss._stateMachine.CurrentState==BossState.Chase )
         {
             int rng=Random.Range(0, 1000);
-            if(rng<20 && Vector3.Magnitude(_player.position-_boss.transform.position)>80 && Mathf.Abs(_player.position.y-transform.position.y)>30f)
+            if(rng<100 && Vector3.Magnitude(_player.position-_boss.transform.position)>40 && Mathf.Abs(_player.position.y-transform.position.y)>30f)
             {
                // Debug.Log("Dashing");
                 _boss.changeState(BossState.Jump);
             }
-            else if(rng<2 && Vector3.Magnitude(_player.position - _boss.transform.position) > 80)
+            else if(rng<100 && Vector3.Magnitude(_player.position - _boss.transform.position) >40 )
             {
                 _boss.changeState(BossState.Dash);
             }
             
         }
     }
+    /*IEnumerator StartTime()
+    {
+        yield return new WaitForSeconds(5f);
+        initialSpawnWaves = true;
+        yield return null;
+    }*/
 }

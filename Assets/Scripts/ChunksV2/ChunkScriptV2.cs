@@ -1045,10 +1045,10 @@ public class ChunkScriptV2 : MonoBehaviour
                                 break;
                         }
                     }
-                    if(rng>15 && rng<30)
+                    /*if(rng>15 && rng<30)
                     {
                         MainChunks[k][i][j].GetComponent<BlocksV2>().InstantiateJumper(i-0.5f, j-0.5f, k,_jumper, RoomScaleX, RoomScaleY, RoomScaleZ, StairsHolder.transform);
-                    }
+                    }*/
                 }
             }
         }
