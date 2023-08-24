@@ -23,6 +23,7 @@ public class BossMain : MonoBehaviour
     public int waveNo;
     public Transform minionsParent;
     public Transform bossWeaponTransform;
+    public GameObject explosion;
 
     /// <summary>
     /// This is the state machine that holds and switches between various states.
@@ -38,6 +39,7 @@ public class BossMain : MonoBehaviour
     private BossStateInterface _death=new DeathState();
     private BossStateInterface _spawn=new SpawnState();
     private BossStateInterface _dash=new DashState();
+    private BossStateInterface _start = new StartState();
 
     private void Awake()
     {
@@ -58,7 +60,9 @@ public class BossMain : MonoBehaviour
         _stateMachine.addStates(_death, BossState.Death);
         _stateMachine.addStates(_spawn, BossState.Spawn);
         _stateMachine.addStates(_dash, BossState.Dash);
+        _stateMachine.addStates(_start,BossState.Start);
         _stateMachine.ChangeState(BossState.Observe);
+       
         //_stateMachine.GlobalInterrupt = true;
     }
 

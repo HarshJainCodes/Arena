@@ -2380,11 +2380,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6884978062728296460, guid: 3359323a53d13eb4c8ca29ad4367d1b4, type: 3}
   m_PrefabInstance: {fileID: 177145703}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &182917872 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 4213872714494913922, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
-  m_PrefabInstance: {fileID: 353788177}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &185257124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2576,6 +2571,91 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6884978062728296460, guid: 3359323a53d13eb4c8ca29ad4367d1b4, type: 3}
   m_PrefabInstance: {fileID: 202176481}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &222568112
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6333153420978866403}
+    m_Modifications:
+    - target: {fileID: 1297617410832350, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: m_Name
+      value: DustParticleBrightExplosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 1297617410832350, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881997133380914, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881997133380914, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881997133380914, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881997133380914, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881997133380914, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0010607287
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881997133380914, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.015837604
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881997133380914, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.020413846
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881997133380914, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881997133380914, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881997133380914, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881997133380914, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881997133380914, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881997133380914, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881997133380914, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4881997133380914, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198210073868382146, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 199290863666795746, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
 --- !u!1001 &222957202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2957,6 +3037,14 @@ PrefabInstance:
       propertyPath: fieldOfViewMultiplierAimWeapon
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 416886571525124473, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_Cameras.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 416886571525124473, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_Cameras.Array.data[0]
+      value: 
+      objectReference: {fileID: 1387323963}
     - target: {fileID: 547017312641099202, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.13705035
@@ -4387,11 +4475,189 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
       propertyPath: volumeLayer.m_Bits
       value: 36863
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.size
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_BeforeStackBundles.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[0].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.BarrelDistortion, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[1].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.BasicDither, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[2].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Blur, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[3].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Colorize, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[4].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Cutout, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[5].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Dither3D, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[6].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Drawing, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[7].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.FilmBars, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[8].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.GameBoy, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[9].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Glitch, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[10].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Greyscale, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[11].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Halftone, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[12].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Invert, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[13].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Kaleidoscope, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[14].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.LightStreaks, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[15].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Mosaic, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[16].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.NoiseGrain, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[17].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.OilPainting, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[18].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Pixelate, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[19].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.RadialBlur, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[20].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Scanlines, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[21].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.SepiaTone, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[22].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Sharpen, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[23].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Silhouette, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[24].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.SNES, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[25].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.SobelNeon, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[26].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.SobelOutline, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[27].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Underwater, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_AfterStackBundles.Array.data[28].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Vortex, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_BeforeStackBundles.Array.data[0].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Neon, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_BeforeStackBundles.Array.data[1].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Outline, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_BeforeStackBundles.Array.data[2].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.Synthwave, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_BeforeStackBundles.Array.data[3].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.TextAdventure, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6356712065409791398, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
+      propertyPath: m_BeforeStackBundles.Array.data[4].assemblyQualifiedName
+      value: SnapshotShaders.BuiltIn.WorldScan, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
       objectReference: {fileID: 0}
     - target: {fileID: 6369774512195358939, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5023,7 +5289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8345285475021042389, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8380844866328483281, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
       propertyPath: m_LocalScale.x
@@ -5283,7 +5549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8547486995930537902, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8547486996075004582, guid: dc3fe5c4c6be53e4db46be31d7747d5c, type: 3}
       propertyPath: animParams
@@ -13484,11 +13750,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2356472268476013502, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
   m_PrefabInstance: {fileID: 353788177}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &817436064 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3168299550458904836, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
-  m_PrefabInstance: {fileID: 353788177}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &817436065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13501,25 +13762,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fadcc2d9a34a1a34f93d4962ec37e6e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_data: {fileID: 11400000, guid: 8e3fdf4d0785b5e4f9cb2dc1cacf4590, type: 2}
-  m_rootTransform: {fileID: 817436064}
-  m_lodGroup: {fileID: 0}
-  m_renderers:
-  - {fileID: 182917872}
-  m_lodReplacement: 2
-  m_renderPipelineInUse: 2
-  m_insertIndex: 0
-  m_lastImpostor: {fileID: 0}
-  m_folderPath: Assets/Prefabs/ImposterBlocks/
-  m_cutMode: 0
 --- !u!1 &817726761 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6718830694429952318, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
-  m_PrefabInstance: {fileID: 353788177}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &817726762 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2560361900548495877, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
   m_PrefabInstance: {fileID: 353788177}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &817726763
@@ -13534,22 +13779,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fadcc2d9a34a1a34f93d4962ec37e6e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_data: {fileID: 11400000, guid: 6c18740ae4f1d4c46815f1eea466fdea, type: 2}
-  m_rootTransform: {fileID: 817726762}
-  m_lodGroup: {fileID: 0}
-  m_renderers:
-  - {fileID: 817726764}
-  m_lodReplacement: 2
-  m_renderPipelineInUse: 2
-  m_insertIndex: 0
-  m_lastImpostor: {fileID: 1864381752}
-  m_folderPath: Assets/Prefabs/ImposterBlocks/
-  m_cutMode: 0
---- !u!23 &817726764 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 4213872712933836763, guid: 9b121ae4dadcca149a2c3ddc1cd26806, type: 3}
-  m_PrefabInstance: {fileID: 353788177}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &820821226 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8264332488821935659, guid: 3ba77338631dcec40a7f729b514dd9a1, type: 3}
@@ -17401,6 +17630,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6884978062728296460, guid: 3359323a53d13eb4c8ca29ad4367d1b4, type: 3}
   m_PrefabInstance: {fileID: 1060628183}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1076610107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1076610109}
+  - component: {fileID: 1076610108}
+  m_Layer: 0
+  m_Name: Global Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1076610108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076610107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 173f8aa9d984a2c478e17c1208535127, type: 2}
+--- !u!4 &1076610109
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076610107}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.0869775, y: -3.6913023, z: 6.180885}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 41
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1079189361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22423,6 +22701,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6884978062728296460, guid: 3359323a53d13eb4c8ca29ad4367d1b4, type: 3}
   m_PrefabInstance: {fileID: 1596467117}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1600924255 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1297617410832350, guid: 6008993ae0018b349bece046ab7be75c, type: 3}
+  m_PrefabInstance: {fileID: 222568112}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1608545619
 GameObject:
@@ -27881,8 +28164,76 @@ MonoBehaviour:
   m_ShowCustomSorter: 0
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
-  m_BeforeStackBundles: []
-  m_AfterStackBundles: []
+  m_BeforeStackBundles:
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Neon, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Outline, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Synthwave, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.TextAdventure, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.WorldScan, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  m_AfterStackBundles:
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.BarrelDistortion, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.BasicDither, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Blur, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Colorize, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Cutout, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Dither3D, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Drawing, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.FilmBars, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.GameBoy, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Glitch, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Greyscale, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Halftone, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Invert, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Kaleidoscope, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.LightStreaks, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Mosaic, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.NoiseGrain, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.OilPainting, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Pixelate, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.RadialBlur, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Scanlines, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.SepiaTone, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Sharpen, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Silhouette, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.SNES, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.SobelNeon, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.SobelOutline, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Underwater, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: SnapshotShaders.BuiltIn.Vortex, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1959554052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31161,7 +31512,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904052382946}
-  m_LocalRotation: {x: -0.037208576, y: 0.96140033, z: -0.20958422, w: -0.17435448}
+  m_LocalRotation: {x: 0.03706338, y: 0.5563079, z: 0.022807494, w: -0.829836}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31283,7 +31634,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904058514593}
-  m_LocalRotation: {x: -0.037208576, y: 0.96140033, z: -0.20958422, w: -0.17435448}
+  m_LocalRotation: {x: 0.03706338, y: 0.5563079, z: 0.022807494, w: -0.829836}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31488,7 +31839,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904255469873}
-  m_LocalRotation: {x: -0.037208576, y: 0.96140033, z: -0.20958422, w: -0.17435448}
+  m_LocalRotation: {x: 0.03706338, y: 0.5563079, z: 0.022807494, w: -0.829836}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31665,7 +32016,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2396482904437498142}
-  m_LocalRotation: {x: -0.037208576, y: 0.96140033, z: -0.20958422, w: -0.17435448}
+  m_LocalRotation: {x: 0.03706338, y: 0.5563079, z: 0.022807494, w: -0.829836}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -32644,6 +32995,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 137186311}
     - target: {fileID: 6333153421395707275, guid: 86ffa254127808a489ecf4d1e631c72c, type: 3}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 1600924255}
+    - target: {fileID: 6333153421395707275, guid: 86ffa254127808a489ecf4d1e631c72c, type: 3}
       propertyPath: enemySpawn
       value: 
       objectReference: {fileID: 6570049479561560528, guid: 1dfd16a879d825e4a83ba842da29b9c5, type: 3}
@@ -32659,6 +33014,10 @@ PrefabInstance:
       propertyPath: minionsParent
       value: 
       objectReference: {fileID: 497627137}
+    - target: {fileID: 6333153421395707275, guid: 86ffa254127808a489ecf4d1e631c72c, type: 3}
+      propertyPath: bossWeaponTransform
+      value: 
+      objectReference: {fileID: 6333153420978866403}
     - target: {fileID: 6333153421395707279, guid: 86ffa254127808a489ecf4d1e631c72c, type: 3}
       propertyPath: target
       value: 
@@ -32707,6 +33066,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6762079057430480199, guid: 86ffa254127808a489ecf4d1e631c72c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7455607610371078021, guid: 86ffa254127808a489ecf4d1e631c72c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -32721,6 +33084,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86ffa254127808a489ecf4d1e631c72c, type: 3}
+--- !u!4 &6333153420978866403 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6762079057430480199, guid: 86ffa254127808a489ecf4d1e631c72c, type: 3}
+  m_PrefabInstance: {fileID: 6333153420978866402}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8114590595768150708
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -60,9 +60,11 @@ public class SpiderCrawlScript : MonoBehaviour
     /// </summary>
     [SerializeField] Transform _mainModel;
     /// <summary>
-    /// 
+    /// animator controller for minions
     /// </summary>
     [SerializeField] Animator _gameObjectAnimator;
+
+    [SerializeField] GameObject _trails;
     private void Start()
     {
         _target = GameObject.Find("Player").transform;
@@ -84,6 +86,7 @@ public class SpiderCrawlScript : MonoBehaviour
             
         }
         switchPathfindings();
+        turnOffTrails();
     }
 
     /// <summary>
@@ -163,6 +166,14 @@ public class SpiderCrawlScript : MonoBehaviour
                 _aiPathfinding.enabled = false;
                 _isDirectPathfinding = true;
             }
+        }
+    }
+
+    void turnOffTrails()
+    {
+        if(_self.isGrounded)
+        {
+            _trails.SetActive(false);
         }
     }
 }

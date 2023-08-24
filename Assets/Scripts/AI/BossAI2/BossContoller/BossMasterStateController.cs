@@ -41,11 +41,14 @@ public class BossMasterStateController : MonoBehaviour
             _boss.changeState(BossState.Spawn);
             initialSpawnWaves=false;
         }*/
+
+
         if (_boss.waveNo == 0 && _spawnManager.CurrentWave==1 && initialSpawnWaves)
         {
-            _boss.changeState(BossState.Spawn);
+            _boss.changeState(BossState.Start);
             initialSpawnWaves = false;
         }
+
         if (_boss.waveNo == 1 && triggered)
         {
             _boss.changeState(BossState.Spawn);
