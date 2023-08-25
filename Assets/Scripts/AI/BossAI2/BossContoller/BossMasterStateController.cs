@@ -7,7 +7,6 @@ public class BossMasterStateController : MonoBehaviour
 {
     [SerializeField] BossMain _boss;
     [SerializeField] SpawnManager _spawnManager;
-    [SerializeField] SpawnMinions _spawnMinionManager;
     [SerializeField] Transform _player;
     [SerializeField] Transform _bossSpawns;
     [SerializeField] float duration = 10f;
@@ -84,7 +83,7 @@ public class BossMasterStateController : MonoBehaviour
                // Debug.Log("Dashing");
                 _boss.changeState(BossState.Jump);
             }
-            else if(rng<100 && Vector3.Magnitude(_player.position - _boss.transform.position) >40 )
+            else if(rng<40 && Vector3.Magnitude(_player.position - _boss.transform.position) >80 )
             {
                 _boss.changeState(BossState.Dash);
             }

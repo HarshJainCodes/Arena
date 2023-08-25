@@ -23,6 +23,8 @@ public class StartState : BossStateInterface
         if(timer>maxLimit)
         {
             timer = 0;
+            bossAgent.LandingExplosion.SetActive(true);
+            bossAgent.particleTrail.SetActive(false);
             bossAgent.changeState(BossState.Spawn);
         }
     }

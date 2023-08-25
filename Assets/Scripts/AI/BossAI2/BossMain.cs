@@ -24,6 +24,8 @@ public class BossMain : MonoBehaviour
     public Transform minionsParent;
     public Transform bossWeaponTransform;
     public GameObject explosion;
+    public GameObject particleTrail;
+    public GameObject LandingExplosion;
 
     /// <summary>
     /// This is the state machine that holds and switches between various states.
