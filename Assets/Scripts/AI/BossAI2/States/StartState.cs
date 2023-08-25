@@ -11,7 +11,9 @@ public class StartState : BossStateInterface
     bool timerOn = false;
     public override void update(BossMain bossAgent)
     {
-        bossAgent.transform.LookAt(bossAgent.Target);
+        Vector3 loc = bossAgent.Target.position;
+        loc.y = bossAgent.transform.position.y;
+        bossAgent.transform.LookAt(loc);
         if(bossAgent.CharController.isGrounded)
         {
             timerOn= true;
@@ -34,10 +36,10 @@ public class StartState : BossStateInterface
         RaycastHit hit;
         Physics.Raycast(bossAgent.Target.position, Vector3.down, out hit, 100f, LayerMask.GetMask("Ground"));
         Vector3 diff = hit.point;
-        diff.y += 5;
+        diff.y += 1;
         jm.Destination = diff;
         jm.Control = diff;
-        jm.Timing = 2f;
+        jm.Timing = 3f;
         jm.Set = true;
 
     }

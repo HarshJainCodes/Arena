@@ -71,8 +71,15 @@ public class BlocksV2 : MonoBehaviour
     public void InstantiateWall(float x, float y, float z, GameObject wallToInstantiate, int scaleX, int scaleY, int scaleZ, Transform parent, float rotateBy)
     {
         blockAssigned = Instantiate(wallToInstantiate, new Vector3(x * scaleX, z * scaleZ, y * scaleY), Quaternion.identity);
-
-        blockAssigned.transform.localScale = new Vector3(scaleX, scaleY, scaleZ);
+        int tempZ = scaleZ;
+        int rng =Random.Range(0,100);
+        if(z==5 && rng<20)
+        {
+            //Debug.LogError("Here");
+            tempZ=Random.Range(tempZ, tempZ+20);
+        }
+        ///Malhar was Here
+        blockAssigned.transform.localScale = new Vector3(scaleX, tempZ, scaleY);
         blockAssigned.transform.Rotate(new Vector3(0, rotateBy, 0));
         ID = 3;
         blockAssigned.transform.parent = parent;

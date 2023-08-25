@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
 using UnityEngine.Serialization;
+using UnityEngine.Events;
 
 public class SpawnManager : MonoBehaviour
 {
+	//Malhar Was here
+	[SerializeField] UnityEvent BossEvents = new UnityEvent();
 	// Number of waves to be spawned
 	[FormerlySerializedAs("numberOfWaves")] public int NumberOfWaves = 3;
 
@@ -107,6 +110,7 @@ public class SpawnManager : MonoBehaviour
 	// Method to generate a new wave of enemies
 	private void GenerateNewWave()
 	{
+		BossEvents.Invoke();
 		float musicchange = CurrentWave;
 		Debug.Log("generate wave called");
 
